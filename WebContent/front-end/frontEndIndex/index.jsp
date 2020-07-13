@@ -162,7 +162,7 @@
 							<div class="card-body">
 								<h4 class="card-title">席夢思床墊</h4>
 								<p class="card-text">一夜好眠，一覺到天亮</p>
-								<a href="<%=request.getContextPath()%>/">
+								<a href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp">
 									<button class="btn btn-danger">前往商城</button>
 								</a>
 							</div>
@@ -174,7 +174,7 @@
 							<div class="card-body">
 								<h4 class="card-title">貓咪豪宅</h4>
 								<p class="card-text">下雨天不能沒有家，體驗富豪貓生</p>
-								<a href="<%=request.getContextPath()%>/">
+								<a href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp">
 									<button class="btn btn-danger">前往商城</button>
 								</a>
 							</div>
@@ -186,7 +186,7 @@
 							<div class="card-body">
 								<h4 class="card-title">優炭貓砂</h4>
 								<p class="card-text">一夜好眠，一覺到天亮</p>
-								<a href="<%=request.getContextPath()%>/">
+								<a href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp">
 									<button class="btn btn-danger">前往商城</button>
 								</a>
 							</div>
@@ -198,7 +198,7 @@
 							<div class="card-body">
 								<h4 class="card-title">牛排西沙</h4>
 								<p class="card-text">◆營養完整均衡的西莎，乃特選最上等的新鮮材料，並保留原汁精華烹調而成，柔嫩可口，風味絕佳 ◆更多肉塊的西莎精緻軟罐系列產品，鮮嫩真肉，每一口都是極致享受，一餐一罐，新鮮又美味，是狗狗最愛的選擇</p>
-								<a href="<%=request.getContextPath()%>/">
+								<a href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp">
 									<button class="btn btn-danger">前往商城</button>
 								</a>
 							</div>
@@ -210,7 +210,7 @@
 							<div class="card-body">
 								<h4 class="card-title">貓草跳跳魚</h4>
 								<p class="card-text">◆韓國超人氣熱銷跳跳魚 ◆超擬真尾巴擺動，隨機超現實尾部擺動模式 ◆觸碰就會跳動，放置不玩幾分鐘後，進入待機模式節省電量 ◆打開魚肚子，即可將貓薄荷放入內袋 ◆超逼真外觀可立即吸引貓的興趣</p>
-								<a href="<%=request.getContextPath()%>/">
+								<a href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp">
 									<button class="btn btn-danger">前往商城</button>
 								</a>
 							</div>
@@ -222,7 +222,7 @@
 							<div class="card-body">
 								<h4 class="card-title">自動餵食器+循環活水機</h4>
 								<p class="card-text">◆(PETWANT 自動寵物餵食器 PF-102-TW) ◆4.3L飼料桶、飼料桶紅外線裝置提醒餵食狀況 ◆簡單操作餵食設定、10秒錄音功能 ◆可使用電源線、電池雙供電方式 ◆適用於直徑為0.5-1.5cm的乾性顆粒飼料</p>
-								<a href="<%=request.getContextPath()%>/">
+								<a href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp">
 									<button class="btn btn-danger">前往商城</button>
 								</a>
 							</div>
