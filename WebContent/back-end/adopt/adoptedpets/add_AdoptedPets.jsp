@@ -177,8 +177,8 @@
 				</div>
 				<input type="hidden" name="action" value="insert">
 				<div class="form-group row">
-					<div class="col-auto mx-auto input-group text-center">       				
-        				<button type="submit" class="btn btn-primary ">°e¥X</button>	       		
+					<div class="col-auto mx-auto input-group justify-content-center">       				
+        				<button type="submit" class="btn btn-primary">°e¥X</button>	       		
 					</div>
 				</div>
 

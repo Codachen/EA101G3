@@ -177,7 +177,7 @@
 				<input type="hidden" name="petNo" value="${adoptedpetsVO.petNo}">
 				<input type="hidden" name="action" value="update">
 				<div class="form-group row">
-					<div class="col-auto mx-auto input-group text-center">       				
+					<div class="col-auto mx-auto input-group justify-content-center">       				
         				<button type="submit" class="btn btn-primary ">°e¥X</button>	       		
 					</div>
 				</div>

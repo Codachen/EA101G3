@@ -94,7 +94,7 @@ th, td, .pageSelect2 {
 						</div>
 						<div class="col-auto my-1">
 							<a class="btn btn-success"
-								href="<%=request.getContextPath()%>/back-end/interaction/interaction.do"
+								href="<%=request.getContextPath()%>/back-end/adopt/interaction/interaction.do"
 								role="button">新增</a>
 						</div>
 					</div>
@@ -115,7 +115,7 @@ th, td, .pageSelect2 {
 							<th scope="col">互動模式</th>
 							<th scope="col">領養意願</th>					
 							<th scope="col">修改</th>
-							<th scope="col">刪除</th>
+<!-- 							<th scope="col">刪除</th> -->
 						</tr>
 					</thead>
 					<tbody>
@@ -140,20 +140,20 @@ th, td, .pageSelect2 {
 										</div>
 									</FORM>
 								</td>
-								<td>
-									<FORM METHOD="post"
-										ACTION="<%=request.getContextPath()%>/interaction/interaction.do">
-										<div class="input-group">
-											<div>
-												<button class="btn btn-danger" type="submit"
-													id="button-addon1">刪除</button>
-											</div>
-											<input type="hidden" class="form-control" name="interactionNo"
-												value="${interactionVO.interactionNo}"> <input type="hidden"
-												class="form-control" name="action" value="delete">
-										</div>
-									</FORM>
-								</td>
+<!-- 								<td> -->
+<!-- 									<FORM METHOD="post" -->
+<%-- 										ACTION="<%=request.getContextPath()%>/interaction/interaction.do"> --%>
+<!-- 										<div class="input-group"> -->
+<!-- 											<div> -->
+<!-- 												<button class="btn btn-danger" type="submit" -->
+<!-- 													id="button-addon1">刪除</button> -->
+<!-- 											</div> -->
+<!-- 											<input type="hidden" class="form-control" name="interactionNo" -->
+<%-- 												value="${interactionVO.interactionNo}"> <input type="hidden" --%>
+<!-- 												class="form-control" name="action" value="delete"> -->
+<!-- 										</div> -->
+<!-- 									</FORM> -->
+<!-- 								</td> -->
 							</tr>
 					</tbody>
 				</table>

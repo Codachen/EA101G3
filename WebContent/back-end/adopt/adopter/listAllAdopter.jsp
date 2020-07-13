@@ -95,7 +95,7 @@ th, td, .pageSelect2 {
 						</div>
 						<div class="col-auto my-1">
 							<a class="btn btn-success"
-								href="<%=request.getContextPath()%>/back-end/adopter/add_Adopter.jsp"
+								href="<%=request.getContextPath()%>/back-end/adopt/adopter/add_Adopter.jsp"
 								role="button">新增</a>
 						</div>
 					</div>
