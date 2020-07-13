@@ -5,7 +5,10 @@
 
 <jsp:useBean id="listDocs_ByDivno" scope="request" type="java.util.Set<DocVO>" /> <!-- 於EL此行可省略 -->
 <jsp:useBean id="divSvc" scope="page" class="com.div.model.DivService" />
-
+<%
+String divno = request.getParameter("divno");
+pageContext.setAttribute("divno", divno); 
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,13 +31,13 @@
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/hospital/div/css/bootstrap.min.css">
     <!-- Site CSS -->
-    <link rel="stylesheet" href="style5.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/hospital/div/style5.css">
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/hospital/div/css/responsive.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/hospital/div/css/custom.css">
 	<script src="js/modernizr.js"></script> <!-- Modernizr -->
 
     <!--[if lt IE 9]>
@@ -48,13 +51,13 @@
 	<div id="team" class="section wb">
 		<div class="container">
 			<div class="section-title text-center">
-				<h3>Our Team</h3>
-					<c:forEach var="docVO" items="${listDocs_ByDivno}" >
-				<p><c:forEach var="divVO" items="${divSvc.all}" begin="1" end="4">
-                    <c:if test="${docVO.divno==divVO.divno}">
-	                    ${divVO.divno}${divVO.divname}</font>
-                    </c:if>
-                </c:forEach></c:forEach></p>
+				<h3><b></b>
+				<c:forEach var="divVO" items="${divSvc.all}">
+				<c:if test="${divno==divVO.divno}"> 
+ 				【${(divVO.divname)}】醫師 
+ 				</b></h3>您現在查詢的科別編號為${(divVO.divno)}，${(divVO.divname)}醫師一覽。
+ 				</c:if> 
+			</c:forEach>  </p>
 			</div><!-- end title -->
 		
 			<div class="row">

@@ -18,7 +18,7 @@
 
 <html>
 <head><title>¬Ý¶E¶i«× </title>
-<meta http-equiv="refresh" content="10;URL=<%=request.getContextPath()%>/front-end/appt/queue.jsp">
+<meta http-equiv="refresh" content="10;URL=<%=request.getContextPath()%>/front-end/hospital/appt/queue.jsp">
 </head>
 <body bgcolor='white'>
 
