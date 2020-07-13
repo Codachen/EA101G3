@@ -34,7 +34,7 @@
 			<div class="collapse navbar-collapse" id="navbarMenu">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
-						<a href="index.html" class="nav-link">首頁</a>
+						<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="nav-link">首頁</a>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 會員專區 </a>
@@ -82,7 +82,7 @@
 		</nav>
 	</header>
 
-	<main>
+	<main >
 		<div class="container-fluid p-0">
 			<div class="site-content">
 				<div class="d-flex justify-content-end mr-5 mb-auto"></div>
