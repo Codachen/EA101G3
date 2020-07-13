@@ -42,7 +42,7 @@ public class DivServlet2 extends HttpServlet {
 
 				String url = null;
 				 if ("listDocs_ByDivno_C".equals(action))
-					url = "/front-end/hospital/hospital/div/listDocs_ByDivno.jsp"; // ���\��� dept/listAllDept.jsp
+					url = "/front-end/hospital/div/listDocs_ByDivno.jsp"; // ���\��� dept/listAllDept.jsp
 
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
