@@ -13,6 +13,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="/back-end/backEndInclude/head.jsp"%>
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -49,6 +50,7 @@
 </style>
 </head>
 <body>
+<%@ include file="/back-end/backEndInclude/header.jsp"%>
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>
 		<ul>
@@ -111,7 +113,7 @@
 			</div>
 		</div>
 	</div>
-
+<%@ include file="/back-end/backEndInclude/footer.jsp"%>
 </body>
 
 <link rel="stylesheet" type="text/css"

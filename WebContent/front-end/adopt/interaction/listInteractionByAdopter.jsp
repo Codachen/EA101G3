@@ -6,6 +6,12 @@
 <%@ page import="com.adoptedpets.model.*"%>
 <%@ page import="com.interaction.model.*"%>
 <%@ page import="java.sql.Date"%>
+<%@ page import="com.mem.model.*"%>
+<%	
+	MemberVO member = (MemberVO)session.getAttribute("member");
+	String memNO = (String) session.getAttribute("memNO");
+	String memName = (String) session.getAttribute("memName");
+%>
 
 <%
 	InteractionService interactionSvc = new InteractionService();
@@ -34,9 +40,9 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/front-end/frontEndIndex/style.css">
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css">
+	href="<%=request.getContextPath()%>/front-end/adopt/datetimepicker/jquery.datetimepicker.css">
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/fullcalendar-scheduler-5.1.0/lib/main.css">
+	href="<%=request.getContextPath()%>/front-end/adopt/fullcalendar-scheduler-5.1.0/lib/main.css">
 
 <script src="https://kit.fontawesome.com/a559a578e4.js"
 	crossorigin="anonymous"></script>
@@ -58,7 +64,7 @@
 
 <!-- FullCalendar -->
 <script
-	src="<%=request.getContextPath()%>/fullcalendar-scheduler-5.1.0/lib/main.js"></script>
+	src="<%=request.getContextPath()%>/front-end/adopt/fullcalendar-scheduler-5.1.0/lib/main.js"></script>
 
 <style>
 a.nav-link-sub {
@@ -147,93 +153,67 @@ div.interactionTime-row {
 </head>
 
 <body class="d-flex flex-column vh-100">
-	<header>
-		<nav class="navbar navbar-expand-lg navbar-light ">
-			<a href="#" class="navbar-brand ml-3">Cute:)<span
-				style="color: #00E8E8;">Family</span></a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarMenu" aria-controls="navbarMenu"
-				aria-expanded="false" aria-label="Toggle Navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+<header>
+	<nav class="navbar navbar-expand-lg navbar-light ">
+		<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="navbar-brand ml-3">
+			Cute:)
+			<span style="color: #00E8E8;">Family</span>
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle Navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-			<div class="collapse navbar-collapse"></div>
-			<div class="collapse navbar-collapse" id="navbarMenu">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a href="index.html"
-						class="nav-link">首頁</a></li>
-					<!-- <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">會員專區</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">門診專區</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">寵物旅館</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">寵物商城</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">領養專區</a>
-                    </li> -->
-					<li class="nav-item dropdown"><a class="nav-link " href="#"
-						id="navbarDropdownMenuLink" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> 會員專區 </a>
-						<div class="dropdown-menu"
-							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#">會員登入</a> <a
-								class="dropdown-item" href="#">編輯會員資料</a> <a
-								class="dropdown-item" href="#">管理您的寵物</a> <a
-								class="dropdown-item" href="#">瀏覽最新通知</a>
-						</div></li>
-					<li class="nav-item dropdown"><a class="nav-link " href="#"
-						id="navbarDropdownMenuLink" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> 門診專區 </a>
-						<div class="dropdown-menu"
-							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#">門診預約</a> <a
-								class="dropdown-item" href="#">門診查詢</a> <a class="dropdown-item"
-								href="#">瀏覽看診進度</a>
-						</div></li>
-					<li class="nav-item dropdown"><a class="nav-link " href="#"
-						id="navbarDropdownMenuLink" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> 寵物旅館 </a>
-						<div class="dropdown-menu"
-							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#">瀏覽房型</a> <a
-								class="dropdown-item" href="#">旅館預約</a> <a class="dropdown-item"
-								href="#">旅館預約查詢</a>
-						</div></li>
-					<li class="nav-item dropdown"><a class="nav-link " href="#"
-						id="navbarDropdownMenuLink" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> 寵物商城 </a>
-						<div class="dropdown-menu"
-							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#">購物車</a> <a
-								class="dropdown-item" href="#">搜尋商品資訊</a> <a
-								class="dropdown-item" href="#">瀏覽商品資訊</a>
-						</div></li>
-					<li class="nav-item dropdown"><a class="nav-link " href="#"
-						id="navbarDropdownMenuLink" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> 領養專區 </a>
-						<div class="dropdown-menu"
-							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#">互動預約</a> <a
-								class="dropdown-item" href="#">互動預約查詢</a> <a
-								class="dropdown-item" href="#">瀏覽流浪動物</a> <a
-								class="dropdown-item" href="#">領養流浪動物</a>
-						</div></li>
-				</ul>
-				<form class="form-inline my-2 my-lg-0">
-					<button class="btn menu-right-btn border" type="submit">
-						登入</button>
-				</form>
-				<!-- <button class="btn menu-right-btn border" type="submit">
-                    註冊
-                </button> -->
+		<div class="collapse navbar-collapse"></div>
+		<div class="collapse navbar-collapse" id="navbarMenu">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a href="index.html" class="nav-link">首頁</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 會員專區 </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="#">會員登入</a>
+						<form action="<%=request.getContextPath()%>/Puppy/mem.do" METHOD="post" style="margin-bottom: 0px;">
+							<input type="submit" value="編輯會員資料" class="dropdown-item">
+							<input type="hidden" name="memNO" value="${memNO}">
+							<input type="hidden" name="action" value="getOne_For_Update">
+						</form>
+						<a class="dropdown-item" href="#">管理您的寵物</a>
+						<form METHOD="post" ACTION="<%=request.getContextPath()%>/Puppy/mli.do" style="margin-bottom: 0px;">
+							<input type="submit" value="瀏覽最新通知" class="dropdown-item">
+							<input type="hidden" name="mli" value="${memNO}">
+							<input type="hidden" name="action" value="getAll_For_Display">
+						</form>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<a href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp" class="nav-link">門診專區</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a href="<%=request.getContextPath()%>/front-end/Hotel/myIndex.jsp" class="nav-link">寵物旅館</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a href="#" class="nav-link">寵物商城</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a href="<%=request.getContextPath()%>/front-end/adopt/adoptedpets/listAllPets.jsp" class="nav-link">領養專區</a>
+				</li>
+			</ul>
+			<div style="<%=(memNO == null) ? "visibility:hidden" : "visibility:"%>" id="loginFonts">
+				<img alt="" src="<%=request.getContextPath()%>/Puppy/pic.do?memNo=${memNO}" style="height: 50px" id="mempic">
+				<%=memName%>您好~
 			</div>
-		</nav>
+			<a href="#">
+				<button class="btn menu-right-btn border" type="button" style="<%=(memNO == null) ? "display:" : "display:none"%>">註冊</button>
+			</a>
+			<a href="#">
+				<button class="btn menu-right-btn border" type="submit" id="login" style="<%=(memNO == null) ? "display:" : "display:none"%>">登入</button>
+			</a>
+			<form class="form-inline my-2 my-lg-0" action="<%=request.getContextPath()%>/Puppy/logout.do">
+				<button class="btn menu-right-btn border" type="submit" id="logout" style="<%=(memNO != null) ? "display:" : "display:none"%>">登出</button>
+			</form>
+		</div>
+	</nav>
 		<nav class="navbar navbar-expand-lg navbar-light navbar-sub-main"
 			style="background-color: #f1f3f3">
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -246,15 +226,15 @@ div.interactionTime-row {
 				<ul class="navbar-nav">
 					<li class="nav-item subnavli"><a
 						class="d-flex nav-link nav-link-sub align-items-center"
-						href="<%=request.getContextPath()%>/front-end/adoptedpets/listAllPets.jsp"><i
+						href="<%=request.getContextPath()%>/front-end/adopt/adoptedpets/listAllPets.jsp"><i
 							class="fas fa-house-damage"></i>尋找浪浪</a></li>
 					<li class="nav-item subnavli"><a
 						class="d-flex nav-link nav-link-sub align-items-center"
-						href="<%=request.getContextPath()%>/front-end/interaction/listInteractionByAdopter.jsp"><i
+						href="<%=request.getContextPath()%>/front-end/adopt/interaction/listInteractionByAdopter.jsp"><i
 							class="fas fa-search-plus"></i>領養互動查詢</a></li>
 					<li class="nav-item subnavli" id="subnavli-last"><a
 						class="d-flex nav-link nav-link-sub align-items-center"
-						href="<%=request.getContextPath()%>/front-end/adopter/addAdopter.jsp"><i
+						href="<%=request.getContextPath()%>/front-end/adopt/adopter/addAdopter.jsp"><i
 							class="fas fa-user-edit"></i>領養人登記</a></li>
 				</ul>
 			</div>
@@ -333,11 +313,11 @@ div.interactionTime-row {
 		</div>
 	</footer>
 
-	<script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
+	<script src="<%=request.getContextPath()%>/front-end/adopt/datetimepicker/jquery.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script>
+		src="<%=request.getContextPath()%>/front-end/adopt/datetimepicker/jquery.datetimepicker.full.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/base64-js-master/base64js.min.js"></script>
+		src="<%=request.getContextPath()%>/front-end/adopt/base64-js-master/base64js.min.js"></script>
 
 	<script>
 		$.datetimepicker.setLocale('ch');

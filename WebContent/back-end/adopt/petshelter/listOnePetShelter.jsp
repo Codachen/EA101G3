@@ -110,7 +110,7 @@ th, td, .pageSelect2 {
 							<th scope="col">消毒日期</th>
 							<th scope="col">住所狀態</th>
 							<th scope="col">修改</th>
-							<th scope="col">刪除</th>
+<!-- 							<th scope="col">刪除</th> -->
 						</tr>
 					</thead>
 					<tbody>
@@ -133,21 +133,21 @@ th, td, .pageSelect2 {
 									</div>
 								</FORM>
 							</td>
-							<td>
-								<FORM METHOD="post"
-									ACTION="<%=request.getContextPath()%>/petshelter/petshelter.do">
-									<div class="input-group">
-										<div>
-											<button class="btn btn-danger" type="submit"
-												id="button-addon1">刪除</button>
-										</div>
-										<input type="hidden" class="form-control" name="shelterNo"
-											value="${petShelterVO.shelterNo}"> <input
-											type="hidden" class="form-control" name="action"
-											value="delete">
-									</div>
-								</FORM>
-							</td>
+<!-- 							<td> -->
+<!-- 								<FORM METHOD="post" -->
+<%-- 									ACTION="<%=request.getContextPath()%>/petshelter/petshelter.do"> --%>
+<!-- 									<div class="input-group"> -->
+<!-- 										<div> -->
+<!-- 											<button class="btn btn-danger" type="submit" -->
+<!-- 												id="button-addon1">刪除</button> -->
+<!-- 										</div> -->
+<!-- 										<input type="hidden" class="form-control" name="shelterNo" -->
+<%-- 											value="${petShelterVO.shelterNo}"> <input --%>
+<!-- 											type="hidden" class="form-control" name="action" -->
+<!-- 											value="delete"> -->
+<!-- 									</div> -->
+<!-- 								</FORM> -->
+<!-- 							</td> -->
 						</tr>
 					</tbody>
 				</table>

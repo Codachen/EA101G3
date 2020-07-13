@@ -36,6 +36,10 @@
 	crossorigin="anonymous"></script>
 
 <style>
+.adoptedpets-container {
+	top: 0px;
+}
+
 img.rounded {
 	height: 100px;
 }
@@ -53,7 +57,7 @@ th, td {
 </head>
 <body>
 <%@ include file="/back-end/backEndInclude/header.jsp"%>
-	<div class="container-fluid">
+	<div class="container-fluid adoptedpets-container">
 		<div class="row">
 			<div class="col">
 				<table class="table table-bordered">
