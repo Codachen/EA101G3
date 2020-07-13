@@ -75,7 +75,7 @@
 				</span>
 				<div class="btn-ber">
 				
-					<a class="get_btn hvr-bounce-to-top" href="#">預約門診</a>
+					<a class="get_btn hvr-bounce-to-top" href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page.jsp">預約門診</a>
 					<table>
 					<FORM id="form1" METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/appt/appt.do" name="form1">
 					<input type="hidden" name="memno" value="M0004">
@@ -126,7 +126,7 @@
 						<div class="ser-icon">
 							<i class="flaticon-seo"></i> <!-- icon -->
 						</div>
-						<iframe src="<%=request.getContextPath()%>/front-end/appt/queue.jsp" frameborder="0" width="100%" height="100%"></iframe>
+						<iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue.jsp" frameborder="0" width="100%" height="100%"></iframe>
 					</div>
                 </div><!-- end col -->
                 <div class="col-md-4">
@@ -237,7 +237,7 @@
                                 <li>查詢全部醫師</li>
                                
                             </ul>
-							<p><a href='<%=request.getContextPath()%>/front-end/doc/listAllDoc.jsp' style="text-decoration:none;">點此瀏覽全部醫師資訊</a></p>
+							<p><a href='<%=request.getContextPath()%>/front-end/hospital/doc/listAllDoc.jsp' style="text-decoration:none;">點此瀏覽全部醫師資訊</a></p>
 						</div>
 					</div>
 				</div>
