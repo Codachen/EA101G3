@@ -15,7 +15,7 @@
 	position: relative;
 	top: -10px;
 }
-
+1
 .back_to_index {
 	margin-left: 30%;
 }
