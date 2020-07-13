@@ -173,7 +173,7 @@ div.interactionTime-row {
 		<div class="collapse navbar-collapse" id="navbarMenu">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
-					<a href="index.html" class="nav-link">首頁</a>
+					<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="nav-link">首頁</a>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 會員專區 </a>
@@ -192,18 +192,18 @@ div.interactionTime-row {
 						</form>
 					</div>
 				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp" class="nav-link">門診專區</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/Hotel/myIndex.jsp" class="nav-link">寵物旅館</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="#" class="nav-link">寵物商城</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/adopt/adoptedpets/listAllPets.jsp" class="nav-link">領養專區</a>
-				</li>
+					<li class="nav-item dropdown"><a
+						href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp"
+						class="nav-link">門診專區</a></li>
+					<li class="nav-item dropdown"><a
+						href="<%=request.getContextPath()%>/front-end/Hotel/hotelIndex.jsp"
+						class="nav-link">寵物旅館</a></li>
+					<li class="nav-item dropdown"><a
+						href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp"
+						class="nav-link">寵物商城</a></li>
+					<li class="nav-item dropdown"><a
+						href="<%=request.getContextPath()%>/front-end/adopt/adoptedpets/listAllPets.jsp"
+						class="nav-link">領養專區</a></li>
 			</ul>
 			<div style="<%=(memNO == null) ? "visibility:hidden" : "visibility:"%>" id="loginFonts">
 				<img alt="" src="<%=request.getContextPath()%>/Puppy/pic.do?memNo=${memNO}" style="height: 50px" id="mempic">
