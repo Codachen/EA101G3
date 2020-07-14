@@ -106,7 +106,8 @@ img {
                     </c:if>
 								</c:forEach></td>
 			<td>${apptVO.symdesc}</td>
-			<td>
+			<td style="padding-top:23px"><button type="button" class="btn btn-info" id="${apptVO.apptno}" onclick="getDetail(this)">詳細資料</button>
+		
 <%-- 			<img src="<%= request.getContextPath()%>/back-end/hospital/appt/img.do?apptno=${apptVO.apptno}"> --%>
 			</td>
 			<td>${(apptVO.optstate =='0')?'<font color="goldenrod">未看診':(apptVO.optstate =='1')?'<font color="green">已看診':'<font color="red">已取消'}</td>
@@ -116,7 +117,7 @@ img {
 						<button type="submit" class="btn btn-success">看診完畢</button>
                     	</c:if>
                     	<c:if test="${apptVO.optstate !='0'}">
-	                    <button type="submit" class="btn btn-success" disabled>看診完畢</button>
+	                    <button type="submit" class="btn btn-secondary" disabled>看診完畢</button>
                     	</c:if>
 						
 						<input type="hidden" name="apptno" value="${apptVO.apptno}"> 
@@ -128,6 +129,60 @@ img {
 	</table>
 <!-- 		<input class="addEmpBtn" type="button" value="返回員工管理" onclick="location.href='listAllEmp.jsp'"> -->
 
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">詳細資料</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+       <H1 id="demo"></H1>
+	
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<input type="button" id="detile" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
 </body>
+
+<script type="text/javascript">
+
+function getDetail(get){
+// 	alert("FUCK");
+	
+
+    console.log(get.id);
+    
+    var temp = get.id;
+
+	$.ajax({
+        url: "appt.do",   //後端的URL
+        type: "POST",   //用POST的方式
+        dataType: "text",   //response的資料格式
+        cache: false,   //是否暫存
+        data: {action : 'getDetail',apptno : temp}, //傳送給後端的資料
+        success: function(apptno2) {
+//             console.log(response);  //成功後回傳的資料
+
+          	$("#detile").trigger("click");
+         	var aa = apptno2.substr();
+            $('#demo').html(apptno2);
+            
+        }
+    });
+
+}
+
+</script>
+
 </html>
 

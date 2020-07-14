@@ -16,6 +16,8 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.appt.model.*;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 @MultipartConfig
 public class ApptServlet extends HttpServlet {
@@ -64,6 +66,21 @@ public class ApptServlet extends HttpServlet {
 			}
 
 		}
+		
+		
+		if ("getDetail".equals(action)) { // 來自addEmp.jsp的請求
+			 res.setContentType("text/html;charset=UTF-8");
+			String apptno = req.getParameter("apptno");
+			String apptno2 = "測試";
+			JsonArray jsobj = new JsonArray();
+			PrintWriter out = res.getWriter();
+			
+			out.println(apptno);
+			out.println(apptno2);
+//			out.flush();
+		}
+		
+		
 		if ("update".equals(action)) { // 來自listAppt的請求
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to

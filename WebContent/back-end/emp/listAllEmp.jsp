@@ -235,6 +235,8 @@ img {
 		$( "#detile" ).trigger( "click" );
 	});
 	
+	
+	
 	//刪除前的確認
 		function confirmDel() {	
 
