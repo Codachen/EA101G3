@@ -521,4 +521,16 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 		
 		return list;
 	}
+
+	@Override
+	public void updatestatus(Integer status, String memno) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean checkaccount(String account) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

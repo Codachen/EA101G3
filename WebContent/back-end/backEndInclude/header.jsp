@@ -87,7 +87,7 @@
 							<li><a
 								href="<%=request.getContextPath()%>/back-end/productorder/cancel.jsp">訂單管理</a></li>
 							<li><a
-								href="<%=request.getContextPath()%>/back-end/promotion/listAllpromotion.jsp">訂單管理</a></li>
+								href="<%=request.getContextPath()%>/back-end/promotion/listAllpromotion.jsp">優惠管理</a></li>
 						</ul>
 
 					</div>

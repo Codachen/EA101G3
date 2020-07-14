@@ -35,9 +35,6 @@
 </style>
 
 </head>
-<!-- partial:index.partial.html -->
-
-
 <body background="<%=request.getContextPath()%>/front-end/member/member/images/naigou.jpg" style="background-size: Cover;">
 
 
@@ -91,7 +88,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- partial -->
 	<c:if test="${not empty update}">
 		<script>
 			swal("修改成功", "", "success");
