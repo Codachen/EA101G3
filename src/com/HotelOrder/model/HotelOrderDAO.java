@@ -47,8 +47,8 @@ public class HotelOrderDAO implements HotelOrderDAO_interface {
 	// 查詢(單筆)
 	private static final String GET_ONE_STMT = "SELECT * FROM HOTELORDER WHERE ORDERNO=?";
 	// 查詢(全部)
-	private static final String GET_ALL_STMT = "SELECT * FROM HOTELORDER ORDER BY ORDERNO";
-
+	private static final String GET_ALL_STMT = "SELECT * FROM HOTELORDER ORDER BY ORDERNO DESC";
+	// 查詢該會員的歷史訂單紀錄
 	private static final String GET_ONE_MEM_ORDER_STMT = "SELECT * FROM  HOTELORDER WHERE MEMNO=?";
 	// 修改訂單狀態(變成已確認)
 	private static final String STATUS_CHANGE = "UPDATE HOTELORDER SET HOTELORDERSTATUS=? WHERE ORDERNO=?";

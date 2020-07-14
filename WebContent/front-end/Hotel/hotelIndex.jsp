@@ -94,7 +94,6 @@
 					<li class="nav-item dropdown">
 						<a class="nav-link " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 會員專區 </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#">會員登入</a>
 							<form action="<%=request.getContextPath()%>/Puppy/mem.do" METHOD="post" style="margin-bottom: 0px;">
 								<input type="submit" value="編輯會員資料" class="dropdown-item">
 								<input type="hidden" name="memNO" value="${memNO}">
@@ -111,8 +110,11 @@
 					<li class="nav-item">
 						<a href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp" class="nav-link">門診專區</a>
 					</li>
-					<li class="nav-item">
-						<a href="<%=request.getContextPath()%>/front-end/Hotel/hotelIndex.jsp" class="nav-link">寵物旅館</a>
+					<li class="nav-item dropdown">
+						<a class="nav-link " href="<%=request.getContextPath()%>/front-end/Hotel/hotelIndex.jsp" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">寵物旅館</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="<%=request.getContextPath()%>/front-end/Hotel/hotelOrderInfo/hotelOrderInfo.jsp">歷史寄宿紀錄</a>
+						</div>
 					</li>
 					<li class="nav-item">
 						<a href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp" class="nav-link">寵物商城</a>
@@ -129,7 +131,7 @@
 				<a href="#">
 					<button class="btn menu-right-btn border" type="button" style="<%=(memNO == null) ? "display:" : "display:none"%>">註冊</button>
 				</a>
-				<a href="<%=request.getContextPath()%>/front-end/member/login.jsp">
+				<a href="<%=request.getContextPath()%>/front-end/member/member/login.jsp">
 					<button class="btn menu-right-btn border" type="submit" id="login" style="<%=(memNO == null) ? "display:" : "display:none"%>">登入</button>
 				</a>
 				<form class="form-inline my-2 my-lg-0" action="<%=request.getContextPath()%>/Puppy/logout.do">
@@ -151,7 +153,7 @@
 		</div>
 	</main>
 
-	<a name="aboutUs">
+	
 		<main class="section-1">
 			<div class="container">
 				<div class="row">
@@ -173,7 +175,7 @@
 				</div>
 			</div>
 		</main>
-		<a name="petHotel">
+		
 			<main class="section-2">
 				<div class="container">
 					<div class="row">
@@ -324,7 +326,7 @@
 
 
 
-				<a name="contactUs">
+				
 					<footer>
 						<div class="section-5 text-center">
 							<h4 style="margin-top: 5%;">最完善的寵物平台</h4>

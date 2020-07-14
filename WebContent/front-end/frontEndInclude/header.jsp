@@ -27,7 +27,6 @@
 				<li class="nav-item dropdown">
 					<a class="nav-link " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 會員專區 </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="#">會員登入</a>
 						<form action="<%=request.getContextPath()%>/Puppy/mem.do" METHOD="post" style="margin-bottom: 0px;">
 							<input type="submit" value="編輯會員資料" class="dropdown-item">
 							<input type="hidden" name="memNO" value="${memNO}">
@@ -45,7 +44,7 @@
 					<a href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp" class="nav-link">門診專區</a>
 				</li>
 				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/Hotel/myIndex.jsp" class="nav-link">寵物旅館</a>
+					<a href="<%=request.getContextPath()%>/front-end/Hotel/hotelIndex.jsp" class="nav-link">寵物旅館</a>
 				</li>
 				<li class="nav-item dropdown">
 					<a href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp" class="nav-link">寵物商城</a>
@@ -61,7 +60,7 @@
 			<a href="#">
 				<button class="btn menu-right-btn border" type="button" style="<%=(memNO == null) ? "display:" : "display:none"%>">註冊</button>
 			</a>
-			<a href="#">
+			<a href="<%=request.getContextPath()%>/front-end/member/member/login.jsp">
 				<button class="btn menu-right-btn border" type="submit" id="login" style="<%=(memNO == null) ? "display:" : "display:none"%>">登入</button>
 			</a>
 			<form class="form-inline my-2 my-lg-0" action="<%=request.getContextPath()%>/Puppy/logout.do">
