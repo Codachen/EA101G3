@@ -2,6 +2,7 @@ package com.memlatestinfo.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -46,7 +47,7 @@ public class MemlatestinfoServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back-end/member/memlatestinfo/Memlatestinfo_select.jsp");
+							.getRequestDispatcher("/back-end/member/memlatestinfo/listAll_memli.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -60,7 +61,7 @@ public class MemlatestinfoServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back-end/member/memlatestinfo/Memlatestinfo_select.jsp");
+							.getRequestDispatcher("/back-end/member/memlatestinfo/listAll_memli.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -76,14 +77,14 @@ public class MemlatestinfoServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back-end/member/memlatestinfo/Memlatestinfo_select.jsp");
+							.getRequestDispatcher("/back-end/member/memlatestinfo/listAll_memli.jsp");
 					failureView.forward(req, res);
 					return;//�{�����_
 				}
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("mliVO", mliVO); // 資料庫取出的empVO物件,存入req
-				String url = "/back-end/member/memlatestinfo/listone_memli.jsp";
+				String url = "/back-end/member/memlatestinfo/listone_memli2.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 				
@@ -91,14 +92,13 @@ public class MemlatestinfoServlet extends HttpServlet{
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/back-end/member/memlatestinfo/Memlatestinfo_select.jsp");
+						.getRequestDispatcher("/back-end/member/memlatestinfo/listAll_memli.jsp");
 				failureView.forward(req, res);
 			}
 		}
 		
 		
-		if ("getAll_For_Display".equals(action)) {
-
+		if ("getAll_For_Display".equals(action) || "getAll_For_Display_B".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			
@@ -108,7 +108,7 @@ public class MemlatestinfoServlet extends HttpServlet{
 				/***************************2.開始查詢資料*****************************************/				
 				//為了讓登入頁面裡面不會按了最新消息後直接導到listAll
 				if (str == null || (str.trim()).length() == 0) {
-					res.sendRedirect(req.getContextPath() + "/front-end/member/login.jsp");
+					res.sendRedirect(req.getContextPath() + "/front-end/member/member/membercenter.jsp");
 					return;
 				}
 				
@@ -120,8 +120,35 @@ public class MemlatestinfoServlet extends HttpServlet{
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
+					
+					String url = null;
+					if ("getAll_For_Display".equals(action))
+						url = "/front-end/member/member/membercentre.jsp";        
+					else if ("getAll_For_Display_B".equals(action))
+						url = "/back-end/member/memlatestinfo/listAll_memli.jsp";
+					
+					
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front-end/member/login.jsp");
+							.getRequestDispatcher(url);
+					failureView.forward(req, res);
+					return;//程式中斷
+				}
+				
+				
+				//以下為為了讓listAll的會員訊息查詢可以判斷有沒有資料
+				List<String> memcount = new ArrayList();
+				
+				for(MemlatestinfoVO mtt:mliVO) {
+					String x = mtt.getMemNo();
+					memcount.add(x);
+				}
+				
+				if(!memcount.contains(str)) {
+					errorMsgs.add("查無資料");
+					
+					String url = "/back-end/member/memlatestinfo/listAll_memli.jsp";
+					RequestDispatcher failureView = req
+							.getRequestDispatcher(url);
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -131,8 +158,13 @@ public class MemlatestinfoServlet extends HttpServlet{
 				
 				req.setAttribute("mli",str);  //讓listall知道有沒有會員在查詢
 				
+				String url = null;
+				if ("getAll_For_Display".equals(action))
+					url = "/front-end/member/memlatestinfo/listAll_memli.jsp";        
+				else if ("getAll_For_Display_B".equals(action)) {
+					url = "/back-end/member/memlatestinfo/listone_memli.jsp";
+				}
 				
-				String url = "/front-end/member/memlatestinfo/listAll_memli.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); //  成功轉交 listAll.jsp
 				successView.forward(req, res);
 				
@@ -194,6 +226,7 @@ public class MemlatestinfoServlet extends HttpServlet{
 				}
 				
 				String url = "/back-end/member/memlatestinfo/listAll_memli.jsp";
+				req.setAttribute("insert", "新增成功");  //給前面的sweetalert用的
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);	
 				
@@ -279,6 +312,7 @@ public class MemlatestinfoServlet extends HttpServlet{
 				
 				req.setAttribute("mliVO", mliVO);
 				String url ="/back-end/member/memlatestinfo/listAll_memli.jsp";
+				req.setAttribute("update", "修改成功");  //給前面的sweetalert用的
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);	
 				
@@ -308,7 +342,7 @@ public class MemlatestinfoServlet extends HttpServlet{
 				else if ("delete_B".equals(action)) {
 					url = "/back-end/member/memlatestinfo/listAll_memli.jsp";
 				}
-			   req.setAttribute("delete", "新增成功");  //給前面的sweetalert用的
+			   req.setAttribute("delete", "刪除成功");  //給前面的sweetalert用的
 			   RequestDispatcher successView = req.getRequestDispatcher(url);
 			   successView.forward(req, res);
 			   

@@ -45,7 +45,7 @@ public class AccusationServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back-end/member/accusation/acc_select.jsp");
+							.getRequestDispatcher("/back-end/member/accusation/listAll_acc.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -61,7 +61,7 @@ public class AccusationServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back-end/member/accusation/acc_select.jsp");
+							.getRequestDispatcher("/back-end/member/accusation/listAll_acc.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -76,7 +76,7 @@ public class AccusationServlet extends HttpServlet{
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/back-end/member/accusation/acc_select.jsp");
+						.getRequestDispatcher("/back-end/member/accusation/listAll_acc.jsp");
 				failureView.forward(req, res);
 			}
 			
@@ -130,7 +130,7 @@ public class AccusationServlet extends HttpServlet{
 			AccusationService aSvc = new AccusationService();
 			accVO = aSvc.addA(accusationType, accusationContent, accusationStatue);
 			req.setAttribute("insertacc", "新增成功");
-			String url ="/front-end/member/member/login.jsp";
+			String url ="/front-end/member/member/membercenter.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);
 			successView.forward(req, res);
 		   }catch (Exception e) {
@@ -151,6 +151,7 @@ public class AccusationServlet extends HttpServlet{
 		   aSvc.deleteA(accusationNo);
 		   
 		   String url="/back-end/member/accusation/listAll_acc.jsp";
+		   req.setAttribute("delete", "刪除成功");  //給前面的sweetalert用的
 		   RequestDispatcher successView = req.getRequestDispatcher(url);
 		   successView.forward(req, res);
 		   
@@ -242,6 +243,7 @@ public class AccusationServlet extends HttpServlet{
 				accVO = aSvc.updateA(accusationType, accusationContent, accusationStatue, accusationNo);
 
 				req.setAttribute("accVO",accVO);
+				req.setAttribute("update", "新增成功");  //給前面的sweetalert用的
 				String url = "/back-end/member/accusation/listAll_acc.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); //修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);

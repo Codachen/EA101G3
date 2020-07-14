@@ -4,6 +4,7 @@
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!DOCTYPE html>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/back-end/backEndInclude/style.css">
 <%
@@ -26,6 +27,7 @@
 </table>
 
 <table class="table table-hover col-12">
+	<thead class="thead-dark">
 	<tr>
 		<th>訊息編號</th>
 		<th>會員編號</th>
@@ -33,7 +35,7 @@
 		<th>訊息修改</th>
 		<th>訊息刪除</th>
 	</tr>
-	
+	</thead>
 	<%@ include file="page1.file" %>
 	<c:forEach var="mliVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		<c:if test="${mliVO.memNo == mli}">
@@ -124,17 +126,27 @@
     </FORM>
   </li>
   <li>
-  
 <!--   取出會員編號 -->
   <jsp:useBean id="memSvc" scope="page" class="com.mem.model.MemberService" />
+  <!--   讓會員編號不會重複 -->
+  	<%	Set<String> memcount = new LinkedHashSet<String>();
+  		
+  		for(MemlatestinfoVO mm:list){
+  			memcount.add((String)mm.getMemNo());
+  		};
+  	
+  		pageContext.setAttribute("memcount",memcount);
+  	%>
+  	 	  	
+  
      <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Puppy/mli.do" >
        <b>選擇會員編號:</b>
        <select size="1" name="mli">
-         <c:forEach var="mliVO" items="${memSvc.all}" >
-          	<option value="${mliVO.memNo}" class="btn btn-secondary dropdown-toggle">${mliVO.memNo}
+         <c:forEach var="memcount" items="${memcount}" >
+          	<option value="${memcount}" class="btn btn-secondary dropdown-toggle">${memcount}
          </c:forEach>   
        </select>
-       <input type="hidden" name="action" value="getAll_For_Display">
+       <input type="hidden" name="action" value="getAll_For_Display_B">
        <input type="submit" value="送出" class="btn btn-primary">
      </FORM>
   </li>
@@ -144,11 +156,25 @@
 <h3>員工管理</h3>
 
 <ul>
-  <li><a href='<%=request.getContextPath()%>/back-end/memlatestinfo/add_memli.jsp'>新增會員最新消息</a> add a new Memlatestinfo.</li>
+  <li><a href='<%=request.getContextPath()%>/back-end/member/memlatestinfo/add_memli.jsp'>新增會員最新消息</a> add a new Memlatestinfo.</li>
 </ul>
 
 
-
+	<c:if test="${not empty update}">
+		<script>
+			swal("修改成功", "", "success");
+		</script>
+	</c:if>
+	<c:if test="${not empty delete}">
+		<script>
+			swal("刪除成功", "", "success");
+		</script>
+	</c:if>
+	<c:if test="${not empty insert}">
+		<script>
+			swal("新增成功", "", "success");
+		</script>
+	</c:if>	
 </body>
 <%@ include file="/back-end/backEndInclude/footer.jsp"%>
 </html>
