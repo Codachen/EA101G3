@@ -232,6 +232,7 @@ main {
 					<FORM id="form1" METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/appt/appt.do" name="form1">
 					<input type="hidden" name="memno" value="${memNO}">
 					<input type="hidden" name="optstate" value="0">
+					
 					<a class="learn_btn hvr-bounce-to-top" href="javascript:;" onclick="document.getElementById('form1').submit();">預約查詢</a>
         	<input type="hidden" name="action" value="listAppt_ByCompositeQuery2">
 				</FORM>

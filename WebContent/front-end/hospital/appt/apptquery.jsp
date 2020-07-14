@@ -15,10 +15,10 @@
         
            
 <!--        <b>設定會員編號:</b> -->
-       <input type="hidden" name="memno" value="M0004"><br>
+       <input type="hidden" name="memno" value="M0003"><br>
        
-       
-      
+   <!--        <b>設定醫師編號:</b> -->    
+      <input type="hidden" name="DOCTOR.docno" value="3">
     
 <!--        <b>設定看診狀態為0未看診:</b> -->
        <input type="hidden" name="optstate" value="0"><br>
