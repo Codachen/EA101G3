@@ -1,11 +1,113 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
- <jsp:useBean id="docSvc" scope="page" class="com.doc.model.DocService" />
-  <jsp:useBean id="divSvc" scope="page" class="com.div.model.DivService" />
-  
 <!DOCTYPE html>
-<html lang="en">
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<html>
 
+<%
+	String memNO = (String) session.getAttribute("memNO");
+	String memName = (String) session.getAttribute("memName");
+%>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>萌寵家族</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+	integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/front-end/frontEndIndex/style.css">
+
+<script src="https://kit.fontawesome.com/a559a578e4.js"
+	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+	crossorigin="anonymous"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<!-- bootstrap、FontAwesome、googleFont -->
+
+<style>
+a.nav-link-sub {
+	color: #8a8a90 !important;
+	font-size: 20px;
+	padding: 12.5px 50px !important;
+	margin: 0%;
+	font-family: 'Noto Sans TC';
+	white-space: nowrap;
+}
+
+.fas, .far {
+	font-size: 30px;
+	margin: 0px 5px;
+}
+
+.nav-link-sub:hover {
+	color: white !important;
+}
+
+.navbar-sub-main {
+	padding: 0px 16px;
+}
+
+.subnavli {
+	/* 	border-left: 1px solid #8a8a90; */
+	/* 	border-right: 1px solid #8a8a90; */
+	
+}
+
+#subnavli-last {
+	/* 	border-right: 1px solid #8a8a90; */
+	
+}
+
+.pet-card-img-top {
+	position: relative;
+	width: 100%;
+	height: 225px;
+}
+
+.pet-img {
+	width: auto;
+	height: 100%;
+	max-width: 100%;
+}
+
+.pet-card {
+	height: auto;
+}
+
+ul.info-list {
+	list-style-type: circle;
+	list-style-position: inside;
+}
+
+.list-group-item {
+	display: list-item;
+}
+
+main {
+	font-family: 'Noto Sans TC';
+}
+
+#pet-search-title, form.pet-search-form, div.pet-sort-row {
+	padding-left: 15px;
+}
+</style>
     <!-- Basic -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
@@ -14,7 +116,7 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
  
      <!-- Site Metas -->
-    <title>OnNext - One Page Parallax Template Bootstrap 4</title>  
+ 
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -26,7 +128,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- Site CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css">
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="css/responsive.css">
     <!-- Custom CSS -->
@@ -41,6 +143,70 @@
 </head>
 <body id="page-top" class="politics_version">
 
+<!-- HEADER -->
+<header>
+		<nav class="navbar navbar-expand-lg navbar-light ">
+			<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="navbar-brand ml-3">
+				Cute:)
+				<span style="color: #00E8E8;">Family</span>
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle Navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse"></div>
+			<div class="collapse navbar-collapse" id="navbarMenu">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="nav-link">首頁</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 會員專區 </a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+							<form action="<%=request.getContextPath()%>/Puppy/mem.do" METHOD="post" style="margin-bottom: 0px;">
+								<input type="submit" value="編輯會員資料" class="dropdown-item">
+								<input type="hidden" name="memNO" value="${memNO}">
+								<input type="hidden" name="action" value="getOne_For_Update">
+							</form>
+							<a class="dropdown-item" href="#">管理您的寵物</a>
+							<form METHOD="post" ACTION="<%=request.getContextPath()%>/Puppy/mli.do" style="margin-bottom: 0px;">
+								<input type="submit" value="瀏覽最新通知" class="dropdown-item">
+								<input type="hidden" name="mli" value="${memNO}">
+								<input type="hidden" name="action" value="getAll_For_Display">
+							</form>
+						</div>
+					</li>
+					<li class="nav-item dropdown">
+						<a href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp" class="nav-link">門診專區</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a href="<%=request.getContextPath()%>/front-end/Hotel/hotelIndex.jsp" class="nav-link">寵物旅館</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp" class="nav-link">寵物商城</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a href="<%=request.getContextPath()%>/front-end/adopt/adoptedpets/listAllPets.jsp" class="nav-link">領養專區</a>
+					</li>
+				</ul>
+				<div style="<%=(memNO == null) ? "visibility:hidden" : "visibility:"%>">
+					<img alt="" src="<%=request.getContextPath()%>/Puppy/pic.do?memNo=${memNO}" style="height: 50px" id="mempic">
+					<%=memName%>您好~
+				</div>
+				<a href="#">
+					<button class="btn menu-right-btn border" type="button" style="<%=(memNO == null) ? "display:" : "display:none"%>">註冊</button>
+				</a>
+				<a href="<%=request.getContextPath()%>/front-end/member/login.jsp">
+					<button class="btn menu-right-btn border" type="submit" id="login" style="<%=(memNO == null) ? "display:" : "display:none"%>">登入</button>
+				</a>
+				<form class="form-inline my-2 my-lg-0" action="<%=request.getContextPath()%>/Puppy/logout.do">
+					<button class="btn menu-right-btn border" type="submit" id="logout" style="<%=(memNO != null) ? "display:" : "display:none"%>">登出</button>
+				</form>
+			</div>
+		</nav>
+	</header>
+<!-- HEADER -->
+
     <!-- LOADER -->
     <div id="preloader">
         <div id="main-ld">
@@ -52,8 +218,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">
-		
+  
             </li>
           </ul>
         </div>
@@ -181,7 +346,11 @@
                                
                             </ul>
 							
-     
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <jsp:useBean id="docSvc" scope="page" class="com.doc.model.DocService" />
+  <jsp:useBean id="divSvc" scope="page" class="com.div.model.DivService" />
+  
       <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/doc/doc.do" >
        <b></b>
        <select size="1" name="docno" style="width:130px">
@@ -248,25 +417,7 @@
 	
 	
 
-    <div class="copyrights">
-        <div class="container">
-            <div class="footer-distributed">
-<!-- 				<a href="#"><img src="images/logo.png" alt="" /></a> -->
-                <div class="footer-center">
-<!--                     <p class="footer-links"> -->
-<!--                         <a href="#">Home</a> -->
-<!--                         <a href="#">Blog</a> -->
-<!--                         <a href="#">Pricing</a> -->
-<!--                         <a href="#">About</a> -->
-<!--                         <a href="#">Faq</a> -->
-<!--                         <a href="#">Contact</a> -->
-<!--                     </p> -->
-                    <p class="footer-company-name">All Rights Reserved. &copy; 2020 <a href="#">CuteFamily</a>  
-					
-                </div>
-            </div>
-        </div><!-- end container -->
-    </div><!-- end copyrights -->
+    
 
     <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
 
@@ -285,4 +436,32 @@
     <script src="js/jquery.vide.js"></script>
 
 </body>
-</html>
+<footer>
+		<div class="section-5 text-center">
+			<h4 style="margin-top: 5%;">最完善的寵物平台</h4>
+			<h4 class="my-4">如果您有需要 請聯絡我們</h4>
+
+			<div class="form-inline justify-content-center ">
+				<input type="text" name="Email" id="email" placeholder="Email"
+					size="40" class="form-control px-4 py-2"> <input
+					type="button" value="Contact US"
+					class="btn btn-danger px-4 py-2 ml-1">
+			</div>
+			<div class="social" style="margin: 5%;">
+				<div class="d-flex flex-row justify-content-center">
+					<i class="fab fa-facebook-f m-2"></i> <i class="fab fa-twitter m-2"></i>
+					<i class="fab fa-instagram m-2"></i> <i class="fab fa-youtube m-2"></i>
+				</div>
+			</div>
+			<hr>
+			<h5 style="color: lightseagreen;">Cute Family &copy;</h5>
+		</div>
+	</footer>
+	
+	<script
+		src="<%=request.getContextPath()%>/base64-js-master/base64js.min.js"></script>
+	<%-- 	<script src="<%=request.getContextPath()%>/base64-js-master/index.js"></script> --%>
+	
+	
+	</body>
+	</html>
