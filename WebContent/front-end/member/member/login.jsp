@@ -7,6 +7,26 @@
 <%@ include file="/front-end/frontEndInclude/head.jsp"%>
 <%@ include file="/front-end/frontEndInclude/header.jsp"%>
 
+<style>
+.navbar-brand {
+	font-family: 'Pacifico';
+	font-size: 35px; 
+	color: lightcoral !important;
+}  
+.menu-right-btn {
+	padding: 13px 46px;
+	margin-right: 4%;
+	background-color: transparent;
+	transition: all 300ms ease-in;
+	font-family: 'Noto Sans TC';
+	white-space: nowrap;
+}
+
+.menu-right-btn:hover {
+	color: white;
+	background-color: #00E8E8;
+}
+</style>
 
 		<c:if test="${not empty errorMsgs}">
 	<font style="color:red;font-size:20px">請修正以下錯誤:</font>

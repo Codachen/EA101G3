@@ -7,10 +7,33 @@
   <title>會員中心</title>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
   <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/member/member/membercentercss.css">
-  <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/frontEndIndex/style.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/frontEndInclude/style.css">
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <%@ include file="/front-end/frontEndInclude/head.jsp"%>
+
 <%@ include file="/front-end/frontEndInclude/header.jsp"%>
+
+<style>
+.navbar-brand {
+	font-family: 'Pacifico';
+	font-size: 35px; 
+	color: lightcoral !important;
+}  
+.menu-right-btn {
+	padding: 13px 46px;
+	margin-right: 4%;
+	background-color: transparent;
+	transition: all 300ms ease-in;
+	font-family: 'Noto Sans TC';
+	white-space: nowrap;
+}
+
+.menu-right-btn:hover {
+	color: white;
+	background-color: #00E8E8;
+}
+</style>
+
 </head>
 <body>
 <!-- partial:index.partial.html -->

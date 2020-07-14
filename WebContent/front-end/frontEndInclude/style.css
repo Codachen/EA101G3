@@ -10,39 +10,39 @@ body{
 }
 
 .navbar-brand{
-    font-family: 'Pacifico';
-    font-size: 35px;
-    color: lightcoral !important;
+	font-family: 'Pacifico';
+	font-size: 35px; 
+	color: lightcoral !important;
 }  
 
-.nav-link{
-    font-size: 20px;
-    margin: 15px;
-    color: black !important;
-    font-family:'Noto Sans TC' ;
-    white-space: nowrap;
+.nav-link {
+	font-size: 20px;
+	margin: 15px;
+	color: black !important;
+	font-family: 'Noto Sans TC';
+	white-space: nowrap;
 }
 
-.nav-link:hover{
-    color: #00E8E8 !important;
+.nav-link:hover {
+	color: #00E8E8 !important;
 }
 
-.active .nav-link{
-    color: #00E8E8 !important;
+.active .nav-link {
+	color: #00E8E8 !important;
 }
 
-.menu-right-btn{
-    padding: 13px 46px;
-    margin-right: 4%;
-    background-color: transparent;
-    transition: all 300ms ease-in;
-    font-family: 'Noto Sans TC';
-    white-space: nowrap;
+.menu-right-btn {
+	padding: 13px 46px;
+	margin-right: 4%;
+	background-color: transparent;
+	transition: all 300ms ease-in;
+	font-family: 'Noto Sans TC';
+	white-space: nowrap;
 }
 
-.menu-right-btn:hover{
-    color: white;
-    background-color: #00E8E8;
+.menu-right-btn:hover {
+	color: white;
+	background-color: #00E8E8;
 }
 
 /*footer*/
