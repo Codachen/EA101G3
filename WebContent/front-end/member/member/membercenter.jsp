@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/frontEndInclude/style.css">
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <%@ include file="/front-end/frontEndInclude/head.jsp"%>
+
 <%@ include file="/front-end/frontEndInclude/header.jsp"%>
 
 <style>
