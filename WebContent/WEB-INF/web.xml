@@ -60,6 +60,7 @@
 	<filter-mapping>
 		<filter-name>loginFilter</filter-name>
 		<url-pattern>/back-end/adopt/*</url-pattern>
+		<url-pattern>/back-end/backEndIndex/*</url-pattern>
 		<url-pattern>/back-end/emp/*</url-pattern>
 		<url-pattern>/back-end/hospital/*</url-pattern>
 		<url-pattern>/back-end/Hotel/*</url-pattern>
