@@ -84,7 +84,7 @@ th, td {
 
 			<tr>
 				<th>¬Ý¶E¤é´Á</th>
-				<td><input name="optDate" id="f_date1" type="text"></td>
+				<td><input name="optDate" id="f_date1" type="text" autocomplete="off"></td>
 			</tr>
 
 
@@ -168,11 +168,11 @@ th, td {
 
 
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/back-end/datetimepicker/jquery.datetimepicker.css" />
+	href="<%=request.getContextPath()%>/back-end/hospital/datetimepicker/jquery.datetimepicker.css" />
 <script
-	src="<%=request.getContextPath()%>/back-end/datetimepicker/jquery.js"></script>
+	src="<%=request.getContextPath()%>/back-end/hospital/datetimepicker/jquery.js"></script>
 <script
-	src="<%=request.getContextPath()%>/back-end/datetimepicker/jquery.datetimepicker.full.js"></script>
+	src="<%=request.getContextPath()%>/back-end/hospital/datetimepicker/jquery.datetimepicker.full.js"></script>
 
 <style>
 .xdsoft_datetimepicker .xdsoft_datepicker {
