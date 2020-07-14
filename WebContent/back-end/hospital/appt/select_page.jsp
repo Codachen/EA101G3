@@ -66,7 +66,7 @@ text-align: right;
 	<FORM METHOD="post" ACTION="appt.do">
 
 				日期
-				<input name="optDate" id="f_date1" type="text">
+				<input name="optDate" id="f_date1" type="text" autocomplete="off">
 				
 				選擇醫生
 				<select size="1" name="docname">
@@ -94,7 +94,7 @@ text-align: right;
 				<!--        </td> -->
 		</table>
 		<input type="hidden" name="action" value="listAppt"> 
-		<button type="submit" class="btn btn-primary">查詢</button>
+		<button type="submit" class="btn btn-primary">查詢</button><span style="color:grey;">(*不選擇可查詢全部)</span>
 	</FORM>
 	
 	<%if (request.getAttribute("listAppt")!=null){%>
@@ -111,11 +111,11 @@ text-align: right;
 
 </body>
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/back-end/datetimepicker/jquery.datetimepicker.css" />
+	href="<%=request.getContextPath()%>/back-end/hospital/datetimepicker/jquery.datetimepicker.css" />
 <script
-	src="<%=request.getContextPath()%>/back-end/datetimepicker/jquery.js"></script>
+	src="<%=request.getContextPath()%>/back-end/hospital/datetimepicker/jquery.js"></script>
 <script
-	src="<%=request.getContextPath()%>/back-end/datetimepicker/jquery.datetimepicker.full.js"></script>
+	src="<%=request.getContextPath()%>/back-end/hospital/datetimepicker/jquery.datetimepicker.full.js"></script>
 
 <style>
 .xdsoft_datetimepicker .xdsoft_datepicker {
@@ -134,7 +134,7 @@ text-align: right;
 		timepicker : false, //timepicker:true,
 		step : 1, //step: 60 (這是timepicker的預設間隔60分鐘)
 		format : 'Y-m-d', //format:'Y-m-d H:i:s',
-		value : new Date()
+// 		value : new Date()
 	//disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
 	//startDate:	            '2017/07/10',  // 起始日
 	//minDate:               '-1970-01-01', // 去除今日(不含)之前

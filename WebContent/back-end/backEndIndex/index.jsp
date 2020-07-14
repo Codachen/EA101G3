@@ -63,8 +63,7 @@
 
 	<nav class="navbar fixed-top">
 		<div class="icon">
-			<a href="<%=request.getContextPath()%>/back-end/emp/index.jsp">Cute:)<span
-				style="color: #00E8E8;">Family</span>
+			<a href="<%=request.getContextPath()%>/back-end/backEndIndex/index.jsp">Cute:)<span style="color: #00E8E8;">Family</span>
 			</a>
 
 		</div>
@@ -76,7 +75,7 @@
 				src="<%= request.getContextPath()%>/back-end/emp/img.do?empID=${empVONav.empID}"
 				class="mem-pic"> <span class="mem-name">${empVONav.empName}</span>
 			<FORM METHOD="post"
-				ACTION="<%=request.getContextPath()%>/back-end/emp/login.do"
+				ACTION="<%=request.getContextPath()%>/back-end/backEndLogin/login.do"
 				class="logoutForm">
 				<%-- 				<a class="dropdown-item" href="<%=request.getContextPath()%>/back-end/login.html">登出</a> --%>
 				<!-- 			<input type="submit" value="登出"> -->
