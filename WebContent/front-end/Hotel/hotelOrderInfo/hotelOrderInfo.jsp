@@ -24,17 +24,13 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/Hotel/hotelOrderInfo/style.css">
 
 <style>
-.navbar {
-	background: #ccedd2;
-}
+/* .navbar { */
+/* 	background: #ccedd2; */
+/* } */
 
 .section-2 {
-	background: #94d3ac;
-	height: 600px;
-}
-
-footer {
-	background: #655c56;
+ 	height: 400px; 
+ 	background-color:white;
 }
 
 footer h4 {
@@ -116,12 +112,12 @@ footer .form-inline {
 	</header>
 
 	<div class="section-2">
-		<div class="col-12">
+		<div class="col-12 mt-5">
 			<table class="table table-striped text-center">
 				<thead>
 					<tr>
 						<th scope="col">訂單編號</th>
-						<th scope="col">會員編號</th>
+<!-- 						<th scope="col">會員編號</th> -->
 						<th scope="col">房型編號</th>
 						<th scope="col">房間編號</th>
 						<th scope="col">房型價格</th>
@@ -138,7 +134,7 @@ footer .form-inline {
 						<tr>
 
 							<td>${hotelOrderVO.orderNo}</td>
-							<td>${hotelOrderVO.memNo}</td>
+<%-- 							<td>${hotelOrderVO.memNo}</td> --%>
 							<td>${hotelOrderVO.roomTypeNo}</td>
 							<td>${hotelOrderVO.roomNo}</td>
 							<td>${hotelOrderVO.roomTypePrice}</td>
@@ -153,15 +149,20 @@ footer .form-inline {
 							</td>
 							<td>${hotelOrderVO.totalPrice}</td>
 							<td>
+								<font style="color:red;">
 								<c:if test="${hotelOrderVO.hotelOrderStatus == 0}">
 									<c:out value="待確認"></c:out>
 								</c:if>
+								</font>
+								<font style="color:blue;">
 								<c:if test="${hotelOrderVO.hotelOrderStatus == 1}">
 									<c:out value="已完成"></c:out>
 								</c:if>
+								</font>
 								<c:if test="${hotelOrderVO.hotelOrderStatus == 2}">
 									<c:out value="已取消"></c:out>
 								</c:if>
+								
 							</td>
 						</tr>
 					</c:forEach>
