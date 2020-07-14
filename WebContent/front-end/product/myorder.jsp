@@ -188,7 +188,6 @@
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="<%=request.getContextPath()%>/front-end/product/myorder.jsp">查看歷史訂單</a>
                     <a class="dropdown-item" href="<%=request.getContextPath()%>/front-end/product/shopcart.jsp">我的購物車</a>
-                    <a class="dropdown-item" href="#">瀏覽最新通知</a>
                   </div>
                 </nav>
               </div>
@@ -196,7 +195,12 @@
 					<table class="table">
 						<thead class="thead">
 							<tr class="ordertr">
-								<th colspan="5">我的訂單</th>
+								<c:if test="${orderVO.orderstatus==3}">
+									<th colspan="4">我的訂單</th>
+								</c:if>								
+								<c:if test="${orderVO.orderstatus!=3}">
+									<th colspan="5">我的訂單</th>
+								</c:if>								
 							</tr>
 						</thead>
 						<tbody>
@@ -205,10 +209,12 @@
 								<th>訂單日期:${orderVO.orderdate}</th>
 								<th>訂單總額:NT$${orderVO.ordertotal}</th>
 								<th>訂單狀態:${(orderVO.orderstatus==0)?'未出貨':(orderVO.orderstatus==1)?'已出貨':(orderVO.orderstatus==2)?'已完成':(orderVO.orderstatus==3)?'已取消':(orderVO.orderstatus==4)?'審核中':''}</th>
-								<th>
+								<c:if test="${orderVO.orderstatus!=3}">
+									<th>
 									<button class="btn btn-info showmodal" value="${orderVO.orderstatus}">取消訂單</button>
 									<input type="hidden" value="${orderVO.orderid}">
-								</th>
+									</th>
+								</c:if>
 							</tr>
 						</tbody>
 					</table>

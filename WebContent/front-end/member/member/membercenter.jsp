@@ -59,9 +59,11 @@
       <span class="member-role">Chief Systems Architect</span>
     </div>
     <div class="member">
+    	<a href="<%=request.getContextPath()%>/front-end/product/myorder.jsp">
       <img class="centerpic" src="<%=request.getContextPath()%>/front-end/member/member/images/mall.png">
       <h2 class="member-name">商城明細</h2>
       <span class="member-role">Chief Operating Officer</span>
+      </a>
     </div>
     <div class="member">
       <img class="centerpic" src="<%=request.getContextPath()%>/front-end/member/member/images/hotel.jpg">
