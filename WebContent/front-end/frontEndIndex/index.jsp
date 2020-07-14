@@ -85,7 +85,7 @@
 	<main >
 		<div class="container-fluid p-0">
 			<div class="site-content">
-				<div class="d-flex justify-content-end mr-5 mb-auto"></div>
+				<img src="images/cat_Index_1.jpg">
 			</div>
 		</div>
 		<div class="section-1">
@@ -236,7 +236,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-7">
-						<img src="images/roomType.jpg" alt="Images" width="590px" class="img-fluid" style="border-radius: 10px;">
+						<img src="images/roomType.jpg" alt="Images"  class="img-fluid" style="border-radius: 10px;">
 					</div>
 					<div class="col-md-5">
 						<h1 class="text-secondary">寵&nbsp&nbsp物&nbsp&nbsp旅&nbsp&nbsp館</h1>
