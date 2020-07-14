@@ -27,7 +27,7 @@
 	background-color: #00E8E8;
 }
 </style>
-
+<body background="<%= request.getContextPath()%>/front-end/member/member/images/534557.jpg" style="background-size:Cover;" >
 		<c:if test="${not empty errorMsgs}">
 	<font style="color:red;font-size:20px">請修正以下錯誤:</font>
 	<ul>
