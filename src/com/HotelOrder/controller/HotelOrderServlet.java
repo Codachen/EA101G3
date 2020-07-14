@@ -18,6 +18,7 @@ import com.HotelOrder.model.HotelOrderVO;
 import com.HotelRoom.model.HotelRoomService;
 import com.HotelRoom.model.HotelRoomVO;
 import com.HotelRoomType.model.HotelRoomTypeService;
+import com.memlatestinfo.model.MemlatestinfoService;
 
 public class HotelOrderServlet extends HttpServlet {
 
@@ -213,7 +214,7 @@ public class HotelOrderServlet extends HttpServlet {
 						+ totalPrice + "NT』，祝您住房愉快~!"; // 信件內容
 				String to = memEmail; // 會員信箱
 				/*--------------------------------------------------------------------------------------------*/
-
+				
 				HotelOrderVO hotelOrderVO = new HotelOrderVO();
 				hotelOrderVO.setOrderNo(orderNo);
 				hotelOrderVO.setMemNo(memNo);
@@ -249,6 +250,12 @@ public class HotelOrderServlet extends HttpServlet {
 
 				/*************************** 2.1 開始寄信 ***************************************/
 				hotelOrderSvc.sendMail(to, subject, messageText);
+				/*************************** 2.2 開始新增會員最新資料 ***************************************/
+				MemlatestinfoService memlatestinfoSvc = new MemlatestinfoService();
+				
+				String infoContent = "親愛的" + memName + "~您好，您申請的寵物寄宿服務已成功~!";
+				
+				memlatestinfoSvc.addMemli(memNo, infoContent);
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 				String url = "/front-end/Hotel/hotel-pay/pay.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 新增成功後轉交listAllHotelOrder.jsp

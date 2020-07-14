@@ -106,8 +106,8 @@ public class HotelOrderVO implements java.io.Serializable {
 		return title;
 	}
 
-	public void setTitle(String memNo) {
-		this.title = memNo;
+	public void setTitle(String memNo,int roomNo) {
+		this.title = memNo + " " + roomNo + "號房";
 	}
 
 	public Timestamp getStart() {

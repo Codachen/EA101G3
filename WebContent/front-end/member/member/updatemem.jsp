@@ -10,8 +10,7 @@
 <% 
 	MemberVO memVO = (MemberVO) request.getAttribute("memVO");
 %>
-<% 
-%>
+
 
 
 <html>
@@ -43,7 +42,7 @@
 
 </head>
 
-
+<body background="<%= request.getContextPath()%>/front-end/member/member/images/cat2.jpg" style="background-size:Cover;" >
 
 
 <%-- 錯誤表列 --%>
