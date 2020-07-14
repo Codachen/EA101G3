@@ -196,7 +196,7 @@ main {
 				<a href="#">
 					<button class="btn menu-right-btn border" type="button" style="<%=(memNO == null) ? "display:" : "display:none"%>">註冊</button>
 				</a>
-				<a href="<%=request.getContextPath()%>/front-end/member/login.jsp">
+				<a href="<%=request.getContextPath()%>/front-end/member/member/login.jsp">
 					<button class="btn menu-right-btn border" type="submit" id="login" style="<%=(memNO == null) ? "display:" : "display:none"%>">登入</button>
 				</a>
 				<form class="form-inline my-2 my-lg-0" action="<%=request.getContextPath()%>/Puppy/logout.do">
@@ -243,7 +243,7 @@ main {
 					<a class="get_btn hvr-bounce-to-top" href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page.jsp">預約門診</a>
 					<table>
 					<FORM id="form1" METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/appt/appt.do" name="form1">
-					<input type="hidden" name="memno" value="M0004">
+					<input type="hidden" name="memno" value="${memNO}">
 					<input type="hidden" name="optstate" value="0">
 					<a class="learn_btn hvr-bounce-to-top" href="javascript:;" onclick="document.getElementById('form1').submit();">預約查詢</a>
         	<input type="hidden" name="action" value="listAppt_ByCompositeQuery2">

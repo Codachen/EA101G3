@@ -122,7 +122,7 @@ public class ApptServlet2 extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front-end/hospital/appt/select_page.jsp");
+						.getRequestDispatcher("/front-end/hospital/appt/select_page3.jsp");
 				failureView.forward(req, res);
 			}
 		}	
@@ -143,7 +143,7 @@ public class ApptServlet2 extends HttpServlet {
 						
 						/***************************2.�}�l�ƦX�d��***************************************/
 						ApptService apptSvc = new ApptService();
-						List<ApptVO> list  = apptSvc.getQueue(map);
+						List<ApptVO> list  = apptSvc.getAppt(map);
 						
 						/***************************3.�d�ߧ���,�ǳ����(Send the Success view)************/
 						req.setAttribute("listAppt_ByCompositeQuery2", list); // ��Ʈw���X��list����,�s�Jrequest
@@ -154,7 +154,7 @@ public class ApptServlet2 extends HttpServlet {
 					} catch (Exception e) {
 						errorMsgs.add(e.getMessage());
 						RequestDispatcher failureView = req
-								.getRequestDispatcher("/front-end/hospital/appt/select_page.jsp");
+								.getRequestDispatcher("/front-end/hospital/appt/listAppt_ByCompositeQuery2.jsp");
 						failureView.forward(req, res);
 					}
 				}		

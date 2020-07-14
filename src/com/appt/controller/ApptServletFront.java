@@ -32,7 +32,7 @@ public class ApptServletFront extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		//測試用session
-		HttpSession session = req.getSession();	
+//		HttpSession session = req.getSession();	
 		
 			
 		if ("addAppt".equals(action)) {
@@ -48,11 +48,11 @@ public class ApptServletFront extends HttpServlet {
 			
 			req.setAttribute("optVO", optVO);
 			
-			//給予假資料
-			MemberService mSvc = new MemberService();
-
-			MemberVO member=mSvc.getOneEmp("M0003");
-			session.setAttribute("member",member);
+//			//給予假資料
+//			MemberService mSvc = new MemberService();
+//
+//			MemberVO member=mSvc.getOneEmp("M0003");
+//			session.setAttribute("member",member);
 			
 			
 			System.out.println(optVO.getOptSession());
