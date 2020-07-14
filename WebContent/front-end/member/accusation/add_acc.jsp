@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
         integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/member/accusation/sockettest.css">
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- bootstrap、FontAwesome、googleFont -->
 </head>
 

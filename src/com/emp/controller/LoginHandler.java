@@ -64,7 +64,7 @@ public class LoginHandler extends HttpServlet {
 					} catch (Exception ignored) {
 					}
 
-					res.sendRedirect(req.getContextPath() + "/back-end/emp/index.jsp"); // *工作3: (-->如無來源網頁:則重導首頁)
+					res.sendRedirect(req.getContextPath() + "/back-end/backEndIndex/index.jsp"); // *工作3: (-->如無來源網頁:則重導首頁)
 				}
 			
 			
@@ -79,7 +79,7 @@ public class LoginHandler extends HttpServlet {
 			session.removeAttribute("account");
 			session.removeAttribute("empVO");
 			System.out.println("登出有被執行");
-			res.sendRedirect(req.getContextPath() + "/back-end/emp/login.html");
+			res.sendRedirect(req.getContextPath() + "/back-end/backEndLogin/login.html");
 		}
 	}
 }

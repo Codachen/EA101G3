@@ -68,7 +68,7 @@ public class PicServlet extends HttpServlet{
 			
 		}
 		catch(NullPointerException e) {
-			InputStream in = getServletContext().getResourceAsStream("/images/nopeople.jpg");
+			InputStream in = getServletContext().getResourceAsStream("/back-end/member/member/images/nopeople.jpg");
 			byte[] b = new byte[in.available()];
 			in.read(b);
 			outs.write(b);

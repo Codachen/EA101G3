@@ -17,6 +17,7 @@
 <%@ include file="/back-end/backEndInclude/header.jsp"%>
 
 <table class="table table-hover col-12">
+	<thead class="thead-dark">
 	<tr>
 		<th>會員編號</th>
 		<th>會員姓名</th>
@@ -29,8 +30,9 @@
 		<th>會員狀態</th>
 		<th>會員照片</th>
 		<th>修改</th>
-		<th>刪除</th>
+		<th>停權</th>
 	</tr>
+	</thead>
 	<tr>
 		<td><%=memVO.getMemNo()%></td>
 		<td><%=memVO.getMemName()%></td>
