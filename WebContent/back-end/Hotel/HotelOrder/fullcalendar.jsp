@@ -58,7 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     },
     events: ${list}
-    	
   });
 
   calendar.render();
@@ -104,5 +103,6 @@ document.addEventListener('DOMContentLoaded', function() {
 <%@ include file="/back-end/backEndInclude/header.jsp"%>
   <div id='calendar'></div>
 <%@ include file="/back-end/backEndInclude/footer.jsp"%>
+
 </body>
 </html>

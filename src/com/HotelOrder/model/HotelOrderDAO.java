@@ -25,6 +25,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.memlatestinfo.model.MemlatestinfoVO;
+
 public class HotelOrderDAO implements HotelOrderDAO_interface {
 	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
 	private static DataSource ds = null;
@@ -54,6 +56,9 @@ public class HotelOrderDAO implements HotelOrderDAO_interface {
 	private static final String STATUS_CHANGE = "UPDATE HOTELORDER SET HOTELORDERSTATUS=? WHERE ORDERNO=?";
 	// 修改訂單狀態(變成已取消)
 	private static final String STATUS_CANCEL = "UPDATE HOTELORDER SET HOTELORDERSTATUS=2 WHERE ORDERNO=?";
+	// FullCalendar用
+	private static final String GET_FULLCALENDAR_MSG = "SELECT MEMNAME,CHECKINDATE,CHECKOUTDATE,ROOMNO FROM MEMBER M JOIN HOTELORDER H ON M.MEMNO = H.MEMNO";
+	
 
 	@Override
 	public void insert(HotelOrderVO hotelOrderVO) {
@@ -438,13 +443,13 @@ public class HotelOrderDAO implements HotelOrderDAO_interface {
 		try {
 
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ALL_STMT);
+			pstmt = con.prepareStatement(GET_FULLCALENDAR_MSG);
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				hotelOrderVO = new HotelOrderVO();
-				hotelOrderVO.setTitle(rs.getString("memNo"));
+				hotelOrderVO.setTitle(rs.getString("memName"),rs.getInt("roomNo"));
 				hotelOrderVO.setStart(rs.getTimestamp("checkInDate"));
 				hotelOrderVO.setEnd(rs.getTimestamp("checkOutDate"));
 				list.add(hotelOrderVO);
