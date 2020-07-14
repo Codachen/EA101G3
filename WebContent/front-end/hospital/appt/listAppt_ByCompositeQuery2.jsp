@@ -1,124 +1,101 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
 <%@ page import="java.util.*"%>
 <%@ page import="com.appt.model.*"%>
 
-<%-- ¸U¥Î½Æ¦X¬d¸ß-¥i¥Ñ«È¤áºİselect_page.jspÀH·N¼W´î¥ô¦ó·Q¬d¸ßªºÄæ¦ì --%>
-<%-- ¦¹­¶¥u§@¬°½Æ¦X¬d¸ß®É¤§µ²ªG½m²ß¡A¥iµø»İ­n¦A¼W¥[¤À­¶¡B°e¥X­×§ï¡B§R°£¤§¥\¯à--%>
+<%-- è¬ç”¨è¤‡åˆæŸ¥è©¢-å¯ç”±å®¢æˆ¶ç«¯select_page.jspéš¨æ„å¢æ¸›ä»»ä½•æƒ³æŸ¥è©¢çš„æ¬„ä½ --%>
+<%-- æ­¤é åªä½œç‚ºè¤‡åˆæŸ¥è©¢æ™‚ä¹‹çµæœç·´ç¿’ï¼Œå¯è¦–éœ€è¦å†å¢åŠ åˆ†é ã€é€å‡ºä¿®æ”¹ã€åˆªé™¤ä¹‹åŠŸèƒ½--%>
 
 <jsp:useBean id="listAppt_ByCompositeQuery2" scope="request" type="java.util.List<ApptVO>" />
 <jsp:useBean id="docSvc" scope="page" class="com.doc.model.DocService" />
 <jsp:useBean id="optSvc" scope="page" class="com.opt.model.OptService" />
 
 
-<html>
-<head><title>¹w¬ù¬d¸ß - listEmps_ByCompositeQuery2.jsp</title>
-
-<style>
-  table#table-1 {
-	background-color: #CCCCFF;
-    border: 2px solid black;
-    text-align: center;
-  }
-  table#table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
-</style>
-
-<style>
-  table {
-	width: 800px;
-	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
-  }
-  table, th, td {
-    border: 1px solid #CCCCFF;
-  }
-  th, td {
-    padding: 5px;
-    text-align: center;
-  }
-</style>
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Course Card UI Design - #094 of #100Days100Projects</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css'><link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/hospital/appt/style.css">
 
 </head>
-<body bgcolor='white'>
+<body>
 
-<h1>
-
-
-
-
-<table>
-	<tr>
-		<th>¬ù¶E½s¸¹</th>
-		<th>·|­ûÃdª«½s¸¹</th>
-		<th>¬İ¶E®É¶¡</th>
-		<th>Âå®v</th>
-		<th>¶E¶¡</th>
-		<th>¬İ¶E¸¹</th>
-		<th>Ãdª«¯gª¬´y­z</th>
-		<th>¯gª¬¹Ï¤ù</th>
-	</tr>
+<!-- partial:index.partial.html -->
+<c:forEach var="apptVO" items="${listAppt_ByCompositeQuery2}">
+<div class="courses-container">
+	<div class="course">
+		<div class="course-preview">
 	
-	<c:forEach var="apptVO" items="${listAppt_ByCompositeQuery2}">
-		
-		<tr>
-			<td>${apptVO.apptno}</td>
-			<td>${apptVO.petNo}</td>
-			
-			<td>
+			<h3>å¯µç‰©ç·¨è™Ÿ${apptVO.petNo}</h3>
+			<h2>
 			<c:forEach var="optVO" items="${optSvc.all}">
             <c:if test="${apptVO.sessionno==optVO.sessionNo}">
 	        ${optVO.optDate}<br>${optVO.optSession}  
 	        </c:if>
             </c:forEach>
-            </td>
             
-            <td>
+            </h2>
+			<a href="#">ç´„è¨ºè™Ÿ${apptVO.apptno}</a>
+		</div>
+		
+		<div class="course-info">
+			<table>
+	<tr><td>
 			<c:forEach var="optVO" items="${optSvc.all}"> 
 			<c:forEach var="docVO" items="${docSvc.all}">
             <c:if test="${(apptVO.sessionno==optVO.sessionNo)&&(optVO.docNo==docVO.docno)}">
-	        ${docVO.docno}<br>${docVO.docname}<br>
+	       <h6> ${docVO.docno}</h6><h2>${docVO.docname}</h2>
             </c:if>
             </c:forEach>
             </c:forEach>
-            </td>
             
-            <td>
-			<c:forEach var="optVO" items="${optSvc.all}"> 
+            <h3> è¨ºé–“è™Ÿ<c:forEach var="optVO" items="${optSvc.all}"> 
 			<c:forEach var="docVO" items="${docSvc.all}">
             <c:if test="${(apptVO.sessionno==optVO.sessionNo)&&(optVO.docNo==docVO.docno)}">
 	        ${docVO.roomno}
             </c:if>
             </c:forEach>
             </c:forEach>
-            </td>
-            
-			<td>${apptVO.seqno}</td>
-			<td>${apptVO.symdesc}</td>
+            <br>
+			çœ‹è¨ºè™Ÿ ${apptVO.seqno}<br>
+			å¯µç‰©ç—‡ç‹€:${apptVO.symdesc}</h3>
 			<td>
-			<img alt="" src="<%=request.getContextPath()%>/front-end/hospital/appt/ShowSymPhoto.do?apptno=${apptVO.apptno}" id="display">
-			</td>
+			<br>
 			
-			<td> 
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/hospital/front-end/appt/appt.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="¨ú®ø">
+			</td>
+		</td>
+			<td>
+			
+				<img src="<%=request.getContextPath()%>/front-end/appt/ShowSymPhoto.do?apptno=${apptVO.apptno}" id="display" width="200" height="200">
+			</td>
+</tr>
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/appt/appt.do">
+			<button class="btn" type="submit" value="Submit">å–æ¶ˆ</button>
+			<td>
 			     <input type="hidden" name="apptno"  value="${apptVO.apptno}">
 			     <input type="hidden" name="action" value="cancel"></FORM>
 			</td>
-			
-		</tr>
-	</c:forEach>
-</table>
+		</table>
+		</div>
+	</div>
+</div>
 
+	</c:forEach>
+<!--panel-->
+
+
+
+<button class="floating-btn">
+	<a href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp" style="color:white;">å›é–€è¨ºé¦–é </a>
+</button>
+
+
+</div>
+
+<!-- partial -->
+  <script  src="<%=request.getContextPath()%>/front-end/hospital/appt/script.js"></script>
 
 </body>
 </html>
