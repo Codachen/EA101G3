@@ -5,8 +5,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
  <link rel="stylesheet" href="<%=request.getContextPath()%>/back-end/backEndInclude/style.css">
+ <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!DOCTYPE html>
-
+<link rel="stylesheet" href="<%=request.getContextPath()%>/back-end/member/accusation/sockettest.css">
 <%
 AccusationService aSvc = new AccusationService();
 	List<AccusationVO> list = aSvc.getAll();
@@ -19,16 +20,17 @@ AccusationService aSvc = new AccusationService();
 </head>
 <body>
 <%@ include file="/back-end/backEndInclude/header.jsp"%>
-<c:if test="${not empty errorMsgs}">
-	<font style="color:red">請修正以下錯誤:</font>
-	<ul>
-		<c:forEach var="message" items="${errorMsgs}">
-			<li style="color:red">${message}</li>
-		</c:forEach>
-	</ul>
-</c:if>
+<%-- <c:if test="${not empty errorMsgs}"> --%>
+<!-- 	<font style="color:red">請修正以下錯誤:</font> -->
+<!-- 	<ul> -->
+<%-- 		<c:forEach var="message" items="${errorMsgs}"> --%>
+<%-- 			<li style="color:red">${message}</li> --%>
+<%-- 		</c:forEach> --%>
+<!-- 	</ul> -->
+<%-- </c:if> --%>
 
 <table class="table table-hover">
+	<thead class="thead-dark">
 	<tr>
 		<th>客訴編號</th>
 		<th>客訴類型</th>
@@ -38,6 +40,7 @@ AccusationService aSvc = new AccusationService();
 		<th>修改</th>
 		<th>刪除</th>
 	</tr>
+	</thead>
 	<%@ include file="/back-end/member/accusation/page1.file" %> 
 	<c:forEach var="accVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
@@ -80,7 +83,6 @@ AccusationService aSvc = new AccusationService();
 
 <h3>資料查詢:</h3>
 	
-<%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
 	<ul>
@@ -115,7 +117,19 @@ AccusationService aSvc = new AccusationService();
 </ul>
 
 
+	<c:if test="${not empty update}">
+		<script>
+			swal("修改成功", "", "success");
+		</script>
+	</c:if>
+	<c:if test="${not empty delete}">
+		<script>
+			swal("刪除成功", "", "success");
+		</script>
+	</c:if>
 
+
+ <%@ include file="/back-end/member/accusation/websocketjs-back.jsp"%>  
 </body>
 <%@ include file="/back-end/backEndInclude/footer.jsp"%>
 </html>

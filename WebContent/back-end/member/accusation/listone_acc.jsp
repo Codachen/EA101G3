@@ -24,6 +24,7 @@
 	</table>
 
 	<table class="table table-hover col-12">
+		<thead class="thead-dark">
 		<tr>
 			<th>客訴編號</th>
 			<th>客訴類型</th>
@@ -33,6 +34,7 @@
 			<th>修改</th>
 			<th>刪除</th>
 		</tr>
+		</thead>
 		<tr>
 			<td><%=accVO.getAccusationNo()%></td>
 			<td><%=accVO.getAccusationType()%></td>

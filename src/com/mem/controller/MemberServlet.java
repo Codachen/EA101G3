@@ -267,6 +267,7 @@ public class MemberServlet extends HttpServlet{
 				
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
 				String url = "/back-end/member/member/listAll.jsp";
+				req.setAttribute("update", "新增成功");  //給前面的sweetalert用的
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 				
@@ -364,8 +365,16 @@ public class MemberServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("memVO", memVO); // 含有輸入格式錯誤的empVO物件,也存入req
+					String url = null;
+					System.out.println(action);
+					if ("update".equals(action))
+						url = "/front-end/member/member/updatemem.jsp";        
+					else if ("update_B".equals(action))
+						url = "/back-end/member/member/updatemem.jsp";
+					
+					
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front-end/member/member/updatemem.jsp");
+							.getRequestDispatcher(url);
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
@@ -378,7 +387,7 @@ public class MemberServlet extends HttpServlet{
 //				req.setAttribute("memVO", memVO); // 資料庫update成功後,正確的的empVO物件,存入req
 				String url = null;
 				if ("update".equals(action))
-					url = "/front-end/member/member/login.jsp";        
+					url = "/front-end/member/member/membercenter.jsp";        
 				else if ("update_B".equals(action))
 					url = "/back-end/member/member//listAll.jsp";
 				req.setAttribute("update", "新增成功");  //給前面的sweetalert用的
@@ -420,7 +429,7 @@ public class MemberServlet extends HttpServlet{
 				
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back-end/member/member/list_Query.jsp");
+							.getRequestDispatcher("/back-end/member/member/listAll.jsp");
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
@@ -433,7 +442,7 @@ public class MemberServlet extends HttpServlet{
 			}catch (Exception e) {
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/back-end/member/member/Member_select.jsp");
+						.getRequestDispatcher("/back-end/member/member/listAll.jsp");
 				failureView.forward(req, res);
 			}
 		}

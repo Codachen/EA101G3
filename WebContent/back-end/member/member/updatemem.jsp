@@ -31,7 +31,7 @@
 
 <div class="container">
 <div class="row justify-content-center align-items-center">
-<FORM METHOD="post" ACTION="mem.do" name="form1" enctype="multipart/form-data" class="">
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Puppy/mem.do" name="form1" enctype="multipart/form-data" class="">
 <h3>資料修改:</h3>
 <table class="table table-hover text-nowrap ">
 	<tr>

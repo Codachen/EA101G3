@@ -233,10 +233,10 @@ MemberVO member = (MemberVO) request.getAttribute("member");
     </div>
     </div>
     
-<!--     <div class="form-group row "> -->
-<!--     <label for="inputPassword3" class="col-sm-2 col-form-label">會員狀態:</label> -->
+<!--     <div class="form-group row"> -->
+<!--     <label for="inputPassword3" class="col-sm-2 col-form-label" >會員狀態:</label> -->
 <!--     <div class="col-sm-10"> -->
-<%--       <input type="TEXT" class="form-control col-sm-7" id="" placeholder="會員狀態"  name="status"	 value="<%=memVO.getMemStatus()%>"> --%>
+      <input type="hidden" class="form-control col-sm-7" id="" placeholder="會員狀態"  name="status"	 value="<%=memVO.getMemStatus()%>">
 <!--     </div> -->
 <!--     </div> -->
 <br>

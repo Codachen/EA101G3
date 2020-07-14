@@ -4,7 +4,7 @@
 <%@ page import="com.emp.model.*"%>
  <link rel="stylesheet" href="<%=request.getContextPath()%>/back-end/backEndInclude/style.css">
  
- <link rel="stylesheet" href="<%=request.getContextPath()%>/css/sockettest.css">  
+<%-- <link rel="stylesheet" href="<%=request.getContextPath()%>/back-end/member/member/sockettest.css"> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,7 +86,7 @@
        <input type="submit" value="送出">
 		
     </form>
- <%@ include file="/back-end/member/member/websocketjs-back.jsp"%>  
+<%--  <%@ include file="/back-end/member/member/websocketjs-back.jsp"%>   --%>
 </body>
 <%@ include file="/back-end/backEndInclude/footer.jsp"%>
 </html>
