@@ -11,135 +11,36 @@
         integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style2.css">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/frontEndInclude/style.css">
 <%
 	MemlatestinfoService mSvc = new MemlatestinfoService();
 	List<MemlatestinfoVO> list = mSvc.getAll();
 	pageContext.setAttribute("list",list);
-	String memNO = (String) session.getAttribute("memNO");  //判斷會員登入
-	String memName = (String) session.getAttribute("memName"); //判斷會員名稱
 %>
 
-<html>
-<head>
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>萌寵家族</title>
+<%@ include file="/front-end/frontEndInclude/head.jsp"%>
+<%@ include file="/front-end/frontEndInclude/header.jsp"%>
 
-    
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light ">
-            <a href="#" class="navbar-brand ml-3">Cute:)<span style="color:#00E8E8;">Family</span></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu"
-                aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle Navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+<style>
+.navbar-brand {
+	font-family: 'Pacifico';
+	font-size: 35px; 
+	color: lightcoral !important;
+}  
+.menu-right-btn {
+	padding: 13px 46px;
+	margin-right: 4%;
+	background-color: transparent;
+	transition: all 300ms ease-in;
+	font-family: 'Noto Sans TC';
+	white-space: nowrap;
+}
 
-            <div class="collapse navbar-collapse"></div>
-            <div class="collapse navbar-collapse" id="navbarMenu">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a href="index.html" class="nav-link">首頁</a>
-                    </li>
-                    <!-- <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">會員專區</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">門診專區</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">寵物旅館</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">寵物商城</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">領養專區</a>
-                    </li> -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            會員專區
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">會員登入</a>
-                                                        <form action="<%=request.getContextPath()%>/Puppy/mem.do" METHOD="post" style="margin-bottom: 0px;">
-                            <input type="submit" value="編輯會員資料" class="dropdown-item">
-			    			<input type="hidden" name="memNO"  value="${memNO}">
-			    			<input type="hidden" name="action"	value="getOne_For_Update">
- 							</form>
-                            <a class="dropdown-item" href="#">管理您的寵物</a>                           
-                           	<form METHOD="post" ACTION="<%=request.getContextPath()%>/Puppy/mli.do" style="margin-bottom: 0px;">
-                            <input type="submit" value="瀏覽最新通知" class="dropdown-item">
-			    			<input type="hidden" name="mli"  value="${memNO}">
-			    			<input type="hidden" name="action"	value="getAll_For_Display">
-			    			</form>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            門診專區
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">門診預約</a>
-                            <a class="dropdown-item" href="#">門診查詢</a>
-                            <a class="dropdown-item" href="#">瀏覽看診進度</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            寵物旅館
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">瀏覽房型</a>
-                            <a class="dropdown-item" href="#">旅館預約</a>
-                            <a class="dropdown-item" href="#">旅館預約查詢</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            寵物商城
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">購物車</a>
-                            <a class="dropdown-item" href="#">搜尋商品資訊</a>
-                            <a class="dropdown-item" href="#">瀏覽商品資訊</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            領養專區
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">互動預約</a>
-                            <a class="dropdown-item" href="#">互動預約查詢</a>
-                            <a class="dropdown-item" href="#">瀏覽流浪動物</a>
-                            <a class="dropdown-item" href="#">領養流浪動物</a>
-                        </div>
-                    </li>
-                </ul>
-                <div style="<%= (memNO ==null)? "visibility:hidden":"visibility:"%>"><img alt="" src="<%=request.getContextPath()%>/Puppy/pic.do?memNo=${memNO}" style="height:50px" id="mempic"> <%= memName%>您好~</div>	
-               
-                <form class="form-inline my-2 my-lg-0">
-                    <button class="btn menu-right-btn border" type="submit" id="login" style="<%= (memNO ==null)? "display:":"display:none"%>">
-	 					<a href="<%=request.getContextPath()%>/front-end/member/member/login.jsp"> 登入 </a> 
-                    </button>
-                </form>
-               
-                 <form class="form-inline my-2 my-lg-0" action="<%=request.getContextPath()%>/Puppy/logout.do">
-                    <button class="btn menu-right-btn border" type="submit" id="logout" style="<%= (memNO !=null)? "display:":"display:none"%>">
-                        登出
-                    </button>
-                </form>
-            </div>
-        </nav>
-    </header>
-
+.menu-right-btn:hover {
+	color: white;
+	background-color: #00E8E8;
+}
+</style>
 
 <div class="container">
 <div class="row justify-content-center align-items-center">
