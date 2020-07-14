@@ -54,7 +54,7 @@ footer .form-inline {
 <body>
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-light ">
-			<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/Index.jsp" class="navbar-brand ml-3">
+			<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="navbar-brand ml-3">
 				Cute:)
 				<span style="color: #00E8E8;">Family</span>
 			</a>
@@ -66,7 +66,7 @@ footer .form-inline {
 			<div class="collapse navbar-collapse" id="navbarMenu">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
-						<a href="<%=request.getContextPath()%>/front-end/Hotel/myIndex.jsp" class="nav-link">首頁</a>
+						<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="nav-link">首頁</a>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 會員專區 </a>
@@ -86,16 +86,16 @@ footer .form-inline {
 						</div>
 					</li>
 					<li class="nav-item">
-						<a href="<%=request.getContextPath()%>/front-end/Hotel/hotelIndex.jsp#aboutUs" class="nav-link">關於我們</a>
+						<a href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp" class="nav-link">門診專區</a>
 					</li>
 					<li class="nav-item">
-						<a href="<%=request.getContextPath()%>/front-end/Hotel/hotelIndex.jsp#petHotel" class="nav-link">寄宿服務</a>
+						<a href="<%=request.getContextPath()%>/front-end/Hotel/hotelIndex.jsp" class="nav-link">寵物旅館</a>
 					</li>
 					<li class="nav-item">
-						<a href="<%=request.getContextPath()%>/front-end/Hotel/hotelOrderInfo/hotelOrderInfo.jsp" class="nav-link">訂單查詢</a>
+						<a href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp" class="nav-link">寵物商城</a>
 					</li>
 					<li class="nav-item">
-						<a href="<%=request.getContextPath()%>/front-end/Hotel/hotelIndex.jsp#contactUs" class="nav-link">聯絡我們</a>
+						<a href="<%=request.getContextPath()%>/front-end/adopt/adoptedpets/listAllPets.jsp" class="nav-link">領養專區</a>
 					</li>
 				</ul>
 				<div style="<%=(memNO == null) ? "visibility:hidden" : "visibility:"%>">
