@@ -72,7 +72,7 @@
 		
 		<tr>
 			<td>${apptVO.apptno}</td>
-			<td>${apptVO.petno}</td>
+			<td>${apptVO.petNo}</td>
 			
 			<td>
 			<c:forEach var="optVO" items="${optSvc.all}">
@@ -105,11 +105,11 @@
 			<td>${apptVO.seqno}</td>
 			<td>${apptVO.symdesc}</td>
 			<td>
-			<img alt="" src="<%=request.getContextPath()%>/front-end/appt/ShowSymPhoto.do?apptno=${apptVO.apptno}" id="display">
+			<img alt="" src="<%=request.getContextPath()%>/front-end/hospital/appt/ShowSymPhoto.do?apptno=${apptVO.apptno}" id="display">
 			</td>
 			
 			<td> 
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/appt/appt.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/hospital/front-end/appt/appt.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="¨ú®ø">
 			     <input type="hidden" name="apptno"  value="${apptVO.apptno}">
 			     <input type="hidden" name="action" value="cancel"></FORM>

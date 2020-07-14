@@ -383,6 +383,67 @@ public class ApptDAO implements ApptDAO_interface {
 		return list;
 	}
 
+	//預約查詢//
+	@Override
+	public List<ApptVO> getAppt(Map<String, String[]> map) {
+		List<ApptVO> list = new ArrayList<ApptVO>();
+		ApptVO apptVO = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			String finalSQL = "select * from APPOINTMENT " + jdbcUtil_CompositeQuery_Appt2.get_WhereCondition(map)
+					+ "order by apptno";
+			pstmt = con.prepareStatement(finalSQL);
+			System.out.println("����finalSQL(by DAO) = " + finalSQL);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				apptVO = new ApptVO();
+				apptVO.setApptno(rs.getString("apptno"));
+				apptVO.setMemno(rs.getString("memno"));
+				apptVO.setPetNo(rs.getString("petNo"));
+				apptVO.setSessionno(rs.getString("sessionno"));
+				apptVO.setSeqno(rs.getInt("seqno"));
+				apptVO.setSymdesc(rs.getString("symdesc"));
+				apptVO.setSymphoto(rs.getBytes("symphoto"));
+				apptVO.setOptstate(rs.getInt("optstate"));
+				list.add(apptVO); // Store the row in the List
+			}
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+	
 	// 看診進度查詢開始//
 	@Override
 	public List<ApptVO> getQueue(Map<String, String[]> map) {

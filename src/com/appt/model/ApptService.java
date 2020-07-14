@@ -85,6 +85,10 @@ public class ApptService {
 		return dao.getAll(map);
 	}
 	
+	public List<ApptVO> getAppt(Map<String, String[]> map) {
+		return dao.getAppt(map);
+	}
+	
 	public List<ApptVO> getQueue(Map<String, String[]> map) {
 		return dao.getQueue(map);
 	}
