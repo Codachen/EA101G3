@@ -94,7 +94,6 @@
 					<li class="nav-item dropdown">
 						<a class="nav-link " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 會員專區 </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#">會員登入</a>
 							<form action="<%=request.getContextPath()%>/Puppy/mem.do" METHOD="post" style="margin-bottom: 0px;">
 								<input type="submit" value="編輯會員資料" class="dropdown-item">
 								<input type="hidden" name="memNO" value="${memNO}">
