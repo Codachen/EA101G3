@@ -90,7 +90,7 @@
 		</div>
 		<div class="section-1">
 			<div class="container text-center">
-				<h1 class="heading-1">門診專區</h1>
+				<h1 class="heading-1">門診專區1</h1>
 				<br>
 				<h1 class="heading-2">最優質的醫療團隊，讓您的愛寵倍感呵護~啾咪^.^</h1>
 				<p class="para-1">本著誠信、謹慎、敬業的態度，提供愛犬與愛貓族先進專業的醫療服務，歡迎惠顧。</p>
