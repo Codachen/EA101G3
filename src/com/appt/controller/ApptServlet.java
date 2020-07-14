@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
+
+import org.json.JSONArray;
 
 import com.appt.model.*;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 
 @MultipartConfig
 public class ApptServlet extends HttpServlet {
@@ -69,15 +69,43 @@ public class ApptServlet extends HttpServlet {
 		
 		
 		if ("getDetail".equals(action)) { // 來自addEmp.jsp的請求
-			 res.setContentType("text/html;charset=UTF-8");
+			 res.setContentType("application/json;charset=UTF-8");
 			String apptno = req.getParameter("apptno");
-			String apptno2 = "測試";
 			JsonArray jsobj = new JsonArray();
-			PrintWriter out = res.getWriter();
+//			PrintWriter out = res.getWriter();
 			
-			out.println(apptno);
-			out.println(apptno2);
-//			out.flush();
+			ApptService apptsvc = new ApptService();
+			ApptVO apptVO = new ApptVO();
+			apptVO = apptsvc.getOneAppt(apptno);
+			JSONArray jObj = new JSONArray();
+			jObj.put(apptVO.getSymdesc());
+			jObj.put(apptVO.getSymphoto());
+//			String symdesc=apptVO.getSymdesc();
+//			byte[] symphoto=apptVO.getSymphoto();
+			System.out.println(apptVO.getSymdesc());
+			
+//			Map<String, Object> data = new HashMap<String, Object>(); 
+//			data.put("date", new Date()); 
+//			data.put("email", "accountwcx@qq.com"); 
+//			data.put("age", 30); 
+//			data.put("name", "csdn"); 
+//			data.put("array", new int[]{1,2,3,4}); 
+			
+			// Get the printwriter object from response to write the required json object to the output stream      
+			PrintWriter out = res.getWriter();
+			// Assuming your json object is **jsonObject**, perform the following, it will return your json object  
+			out.print(jObj);
+			out.flush();
+			
+//			String symphotoStr = byteToString(symphoto);
+//			String finalPhoto = compress(symphotoStr);
+			
+//			res.getWriter("FUCK);
+//            res.getWriter().flush();
+//			
+// 			
+//			out.println(apptno);
+//			out.println(symdesc);
 		}
 		
 		
@@ -133,5 +161,7 @@ public class ApptServlet extends HttpServlet {
 		}
 
 	}
+	
+
 
 }
