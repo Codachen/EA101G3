@@ -48,7 +48,7 @@
 					<a href="<%=request.getContextPath()%>/front-end/Hotel/myIndex.jsp" class="nav-link">寵物旅館</a>
 				</li>
 				<li class="nav-item dropdown">
-					<a href="#" class="nav-link">寵物商城</a>
+					<a href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp" class="nav-link">寵物商城</a>
 				</li>
 				<li class="nav-item dropdown">
 					<a href="<%=request.getContextPath()%>/front-end/adopt/adoptedpets/listAllPets.jsp" class="nav-link">領養專區</a>
