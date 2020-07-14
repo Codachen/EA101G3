@@ -14,4 +14,6 @@ public interface ApptDAO_interface {
     public List<ApptVO> getAll(Map<String, String[]> map); 
   //看診進度//
     public List<ApptVO> getQueue(Map<String, String[]> map);
+  //預約查詢
+    public List<ApptVO> getAppt(Map<String, String[]> map); 
 }
