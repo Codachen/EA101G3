@@ -24,6 +24,7 @@
 
 table {
 	text-align: center;
+	background-color: white;
 	
 }
 
@@ -50,9 +51,13 @@ color:red;
 font-weight:bold; 
 }
 
-img {
-	max-width: 150px;
+#img {
+	max-width: 1800px;
 }
+
+/* .modal-body img{ */
+/* width:800px; */
+/* } */
 </style>
 
 </head>
@@ -82,7 +87,7 @@ img {
 			<th>日期</th>
 			<th>時段</th>
 			<th>寵物名稱</th>
-			<th>寵物症狀詳細資料</th>
+			<th>寵物症狀</th>
 			<th>症狀圖片</th>
 			<th>狀態</th>
 			<th>確認</th>
@@ -106,7 +111,7 @@ img {
                     </c:if>
 								</c:forEach></td>
 			<td>${apptVO.symdesc}</td>
-			<td style="padding-top:23px"><button type="button" class="btn btn-info" id="${apptVO.apptno}" onclick="getDetail(this)">詳細資料</button>
+			<td style="padding-top:23px"><button type="button" class="btn btn-info" id="${apptVO.apptno}" onclick="getDetail(this)">點我觀看</button>
 		
 <%-- 			<img src="<%= request.getContextPath()%>/back-end/hospital/appt/img.do?apptno=${apptVO.apptno}"> --%>
 			</td>
@@ -129,58 +134,97 @@ img {
 	</table>
 <!-- 		<input class="addEmpBtn" type="button" value="返回員工管理" onclick="location.href='listAllEmp.jsp'"> -->
 
-
+<input type="hidden" id="detile" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">詳細資料</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <h5 class="modal-title" id="exampleModalLabel">症狀圖片</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="clearImg()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" id="modal-body">
 
        <H1 id="demo"></H1>
 	
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearImg()">Close</button>
       </div>
     </div>
   </div>
 </div>
 
-<input type="button" id="detile" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+
+
 </body>
 
 <script type="text/javascript">
-
 function getDetail(get){
-// 	alert("FUCK");
+	var temp = get.id;
+	
+	var url = 'img.do?apptno='+temp;
+	console.log(url);
+var xhr = new XMLHttpRequest();
+xhr.open("get", url, true);
+xhr.responseType = "blob";
+xhr.onload = function() {
+    if (this.status == 200) {
+        var blob = this.response;
+        var img = document.createElement("img");
+        img.setAttribute('id','img');
+        img.onload = function(e) {
+            window.URL.revokeObjectURL(img.src); // 當圖片載入完成後清除釋放
+        };
+        img.src = window.URL.createObjectURL(blob);
+        $("#demo").before(img);// 這裡也可以使用dom
+        $("#detile").trigger("click");
+    }
+}
+xhr.send();
+}
+
+
+	
+	function clearImg(){
+
+// 		var img = document.getElementsByClassName('test');
+		document.getElementById('modal-body').removeChild(document.getElementById('img'));
+
+		
+// 		var obj = document.getElementById('modal-body');
+// 		   var imgParent = obj.parentNode;
+// 		   imgParent.removeChild(obj);
+// var obj = document.getElementById('');
+// console.log(obj);
+
+	}
+
+
+// function getDetail(get){
 	
 
-    console.log(get.id);
+//     console.log(get.id);
     
-    var temp = get.id;
+//     var temp = get.id;
 
-	$.ajax({
-        url: "appt.do",   //後端的URL
-        type: "POST",   //用POST的方式
-        dataType: "text",   //response的資料格式
-        cache: false,   //是否暫存
-        data: {action : 'getDetail',apptno : temp}, //傳送給後端的資料
-        success: function(apptno2) {
+// 	$.ajax({
+//         url: "appt.do",   //後端的URL
+//         type: "POST",   //用POST的方式
+//         dataType: "json",   //response的資料格式
+//         cache: false,   //是否暫存
+//         data: {action : 'getDetail',apptno : temp}, //傳送給後端的資料
+//         success: function(response) {
 //             console.log(response);  //成功後回傳的資料
 
-          	$("#detile").trigger("click");
-         	var aa = apptno2.substr();
-            $('#demo').html(apptno2);
+//           	$("#detile").trigger("click");
+//             $('#demo').html(response);
             
-        }
-    });
+//         }
+//     });
 
-}
+// }
 
 </script>
 

@@ -25,9 +25,7 @@
 table {
 	width: 100%;
 	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
-	border: 1px solid #CCCCFF;
+	
 }
 
 table, th, td {
@@ -39,15 +37,16 @@ th {
 	background-color: lightcoral;
 }
 
-th, td {
-	padding: 5px;
-	border-bottom: dotted;
-	border-width: 1px;
-	border-color: rgba(0, 0, 0, 0.5);
+td {
+	height: 100px;
+	line-height: 100px;
 }
 
+
+
 img {
-	max-width: 100px;
+	height: 100px;
+	
 }
 
 #addbtn {
@@ -56,6 +55,8 @@ img {
 	padding: 5px 20px;
 	margin-bottom: 20px;
 }
+
+
 
 
 </style>
@@ -84,7 +85,7 @@ img {
 		</ul>
 	</c:if>
 
-	<table>
+	<table class="table table-striped">
 		<tr>
 			<th>員工編號</th>
 			<th>員工照片</th>
@@ -136,7 +137,7 @@ img {
 <%-- 				<td>${empVO.quitdate}</td> --%>
 <!-- 				以上做在詳細資料內 -->
 				<td>${(empVO.empStatus =='1')?'<font color="green">在職中':(empVO.empStatus =='2')?'休假中':'<font color="darkred">已離職'}</td>
-				<td>
+				<td style="padding-top:43px">
 					<FORM METHOD="post"
 						ACTION="<%=request.getContextPath()%>/back-end/emp/emp.do"
 						style="margin-bottom: 0px;">
@@ -154,7 +155,7 @@ img {
 <!-- 							name="action" value="delete" id="delete"> -->
 <!-- 					</FORM> -->
 <!-- 				</td> -->
-				<td>
+				<td style="padding-top:43px">
 					<FORM METHOD="post"
 						ACTION="<%=request.getContextPath()%>/back-end/emp/emp.do"
 						style="margin-bottom: 0px;">
