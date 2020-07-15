@@ -38,7 +38,7 @@ public class jdbcUtil_CompositeQuery_Mr {
 				else
 					whereCondition.append(" and " + aCondition);
 
-				System.out.println("���e�X�d�߸�ƪ�����count = " + count);
+				
 			}
 		}
 		
