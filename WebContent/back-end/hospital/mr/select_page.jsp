@@ -31,10 +31,10 @@
 </c:if>
 
 <ul>
-<h3>資料查詢</h3>
+<h3>診療紀錄查詢</h3>
 
 <table>
-  <li><a href='listAllMr.jsp'>紀錄一覽</a><br></li>
+  <li><a href='listAllMr.jsp'>全部診療紀錄一覽</a><br></li>
 
 
 <!--   <tr> -->
@@ -69,10 +69,9 @@
 <!-- </tr> -->
 <li>   
     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/mr/mr.do" name="form1">
-        <b><font color=blue>條件查詢:</font></b> <br>
-        <b>選擇日期:</b>
-        <input type="text" name="mrno" id="f_date1" type="text" autocomplete="off"><br>
-               
+       
+        <input type="text" name="mrno" id="f_date1" type="text" autocomplete="off">
+             
    <jsp:useBean id="docSvc" scope="page" class="com.doc.model.DocService" />
                
        <b>選擇醫師:</b>
@@ -117,9 +116,9 @@
 
 
 </body>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
-<script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
-<script src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/front-end/hospital/datetimepicker/jquery.datetimepicker.css" />
+<script src="<%=request.getContextPath()%>/front-end/hospital/datetimepicker/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/front-end/hospital/datetimepicker/jquery.datetimepicker.full.js"></script>
 
 <script>
         $.datetimepicker.setLocale('zh');
@@ -128,9 +127,9 @@
 	       timepicker:false,       //timepicker:true,
 	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
 	       format:'Ymd',         //format:'Y-m-d H:i:s',
-		   value: '',              // value:   new Date(),
-		   validateOnBlur: false  
-		   //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
+		   value: 'new Date()', 
+		   validateOnBlur: false  // value:   new Date(),
+           //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
            //startDate:	            '2017/07/10',  // 起始日
            //minDate:               '-1970-01-01', // 去除今日(不含)之前
            //maxDate:               '+1970-01-01'  // 去除今日(不含)之後

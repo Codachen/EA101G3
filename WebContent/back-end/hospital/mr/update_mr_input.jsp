@@ -9,16 +9,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-	
+<%@ include file="/back-end/backEndInclude/head.jsp"%>
+
+<style type="text/css">
+
+.select{
+/* border-style: solid; */
+/*   border-color: red; */
+  width:900px;
+
+}
+.select td{
+/* border-style: solid; */
+/*   border-color: red; */
+}
+.select th{
+text-align: right;
+/* border-style: solid; */
+/*   border-color: red; */
+}
+
+/* form{ */
+/* display:inline; */
+/* margin:0px; */
+/* } */
+
+</style>
+
+
+
+
+
 </head>
+
 <body>
+	<%@ include file="/back-end/backEndInclude/header.jsp"%>
 
 	<!-- ****************************以下為實際功能頁變更區域**************************** -->
 <span class="mainTitle">紀錄管理</span>
 
 	<hr class="mainTitlehr">
 		 
-	<h6><a href="select_page.jsp"  target="_parent"><img src="images/back.png" width="32" height="32" border="0">返回管理主頁面</a></h6>
+	<a href="<%=request.getContextPath()%>/back-end/hospital/mr/select_page.jsp">返回</a></h6>
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -100,19 +132,7 @@
 <input type="submit" value="送出修改"></FORM>
 
 	<!-- ****************************以上為實際功能頁變更區域*************************** -->
-</div>
-
-
-
-
-<footer class="Footer">Copyright © 萌寵家族 Cute Family
-</footer>
-
-
-</div>
-
-</div>
-
+<%@ include file="/back-end/backEndInclude/footer.jsp"%>
 
 </body>
 </html>
