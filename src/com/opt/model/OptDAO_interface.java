@@ -14,6 +14,8 @@ public interface OptDAO_interface {
     public List<OptVO> getCalInfo();
     //萬用複合查詢(傳入參數型態Map)(回傳 List)
     public List<OptVO> getCalInfo(Map<String, String[]> map);
-    public List<OptVO> getCalInfoByDoc(String docno);
+    
+    //棄用
+//    public List<OptVO> getCalInfoByDoc(String docno);
 
 }

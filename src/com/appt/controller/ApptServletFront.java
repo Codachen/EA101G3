@@ -39,6 +39,7 @@ public class ApptServletFront extends HttpServlet {
 			
 			try {		
 			String sessionNo = req.getParameter("sessionNo");
+			System.out.println(sessionNo);
 			
 			OptVO optVO = new OptVO();
 			optVO.setSessionNo(sessionNo);

@@ -23,28 +23,29 @@
 <style>
 table {
 	width: 100%;
-	background-color: white;
 	margin-top: 5px;
 	margin-bottom: 5px;
-	border: 1px solid #CCCCFF;
-	font-size: 24px;
+	border: 2px solid grey;
+	font-size: 22px;
+	
 }
 
 table, th, td {
 	text-align: center;
+	
 }
 
 th {
 	padding: 5px;
-	background-color: lightcoral;
+	background-color: #E1F5FF;
+	
 }
 
 th, td {
+	
 	padding: 5px;
-	border-bottom: dotted;
-	border-width: 1px;
-	border-color: rgba(0, 0, 0, 0.5);
 }
+
 
 img {
 	max-width: 100px;
@@ -54,27 +55,33 @@ img {
 	font-size: 32px;
 }
 .memTable{
-width: 100%;
-	background-color: white;
+	width: 100%;
 	margin-top: 5px;
 	margin-bottom: 5px;
-	border: 1px solid #CCCCFF;
-	font-size: 24px;
+	border: 2px solid grey;
+	font-size: 22px;
 
 }
 .memTable th {
 	width: 300px;
+	border-top: 1px solid #D5D5D5;
 }
 
-.memTable td * {
+.memTable td  {
 	float: left;
 	font-size: 24px;
+	text-align:left;
 }
 
 
 .main {
-	width: 80%;
+font-family: 'Noto Sans TC';
+	width: 90%;
 	margin: 0 auto;
+}
+
+.star{
+color:red;
 }
 </style>
 
@@ -146,11 +153,11 @@ width: 100%;
 
 
 
-		<br> <span class="mainTitle">確認會員資料/填寫症狀描述(非必填)</span>
+		<br> <span class="mainTitle">確認會員資料</span>
 		<FORM METHOD="post" ACTION="apptStart.do" name="form1" id="form1"
 			enctype="multipart/form-data">
 
-			<table class="memTable">
+			<table class="memTable table-striped">
 
 
 
@@ -177,7 +184,7 @@ width: 100%;
 
 
 				<tr>
-					<th>選擇寵物</th>
+					<th>選擇寵物<span class="star">*</span></th>
 					<td><select size="1" name="petNo" style="width: 247px;">
 							<%-- 					下方member.memNo的member是一個MemberVO，在原本session裡面--%>
 							<option value="">未選擇
@@ -200,10 +207,11 @@ width: 100%;
 				<tr>
 					<th>上傳寵物症狀圖片</th>
 					<td><input type="file" name="symphoto" class="upl">
-						<div>
-							<img class="preview" style="max-width: 150px; max-height: 150px;">
+						<div style="width: 100%;">
+							<img class="preview" style="max-width: 300px;border-radius:10px;">
 							<div class="size"></div>
-						</div></td>
+						</div>
+					</td>
 				</tr>
 
 
@@ -252,8 +260,6 @@ width: 100%;
 
 				reader.onload = function(e) {
 					$('.preview').attr('src', e.target.result);
-					var KB = format_float(e.total / 1024, 2);
-					$('.size').text("檔案大小：" + KB + " KB");
 				}
 
 				reader.readAsDataURL(input.files[0]);

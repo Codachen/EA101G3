@@ -79,9 +79,9 @@ public class OptService {
 	}
 	
 //  棄用
-	public List<OptVO> getCalInfoByDoc(String docno) {
-		return dao.getCalInfoByDoc(docno);
-	}
+//	public List<OptVO> getCalInfoByDoc(String docno) {
+//		return dao.getCalInfoByDoc(docno);
+//	}
 	
 	public List<OptVO> getAll() {
 		return dao.getAll();

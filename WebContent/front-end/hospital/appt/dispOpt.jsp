@@ -20,8 +20,8 @@ String docName = request.getParameter("docName");
 //String docno = request.getParameter("doc");
 Map<String, String[]> map = request.getParameterMap();
 // System.out.print(request.getParameter("doc"));
-// pageContext.setAttribute("divNo", divNo);
-// pageContext.setAttribute("docName", docName);
+pageContext.setAttribute("divNo", divNo);
+pageContext.setAttribute("docName", docName);
 // System.out.print(docno);
 
 
@@ -47,7 +47,7 @@ pageContext.setAttribute("jsonStr", jsonStr);
 <link href='<%=request.getContextPath()%>/front-end/hospital/fullcalendar/main.css' rel='stylesheet'/>
 <script src='<%=request.getContextPath()%>/front-end/hospital/fullcalendar/main.js'></script>
 <script src='<%=request.getContextPath()%>/front-end/hospital/fullcalendar/locales-all.js'></script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>
 	var eventDate = '';
@@ -75,14 +75,23 @@ pageContext.setAttribute("jsonStr", jsonStr);
       
       eventClick: function(arg) {
     	  var str = arg.event.id;
+    	  var strTitle = arg.event.title;
     	  //JQ post寫法，無法使用，但可接收後端處理資料
 //     	  $.post("apptStart.do?action=addAppt&sessionNo="+str+"");
-    	  window.location.href='apptStart.do?action=addAppt&sessionNo='+str+'';
-        
-    	  console.log(arg.event.start);
-    	  console.log(arg.event.title);	  
-    	  console.log(arg.event.id);
-	
+    	  
+           	  console.log(arg.event.start);
+   	     	  console.log(arg.event.title);	  
+   	     	  console.log(arg.event.id);
+
+    	 
+    		  if(strTitle.indexOf('已額滿')==-1){
+    			  window.location.href='apptStart.do?action=addAppt&sessionNo='+str+'';
+
+    		  }
+    		  else{
+    			  swal("已額滿", "請選擇其他時段喔!", "error");
+    		  }
+
       },
       editable: true,
       dayMaxEvents: true, // allow "more" link when too many events
@@ -103,16 +112,28 @@ pageContext.setAttribute("jsonStr", jsonStr);
   #calendar {
 	    max-width: 1000px;
 	    margin: 0 auto;
+	    
+		background-color: rgba(255,255,255,0.70);
+	   
 	    }
   .calendarTitle{
   		text-align:center;
   		font-size:40px;
-  		font-family: 'Noto Sans TC', sans-serif;
   
   }
   .main {
-	width: 80%;
+	width: 90%;
 	margin: 0 auto;
+	font-family: 'Noto Sans TC';
+}
+.myMain{
+min-height:800px;
+ background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+     background-size: cover;
+	
+	background-image: url("../appt/uploads/apptStartImg.png");
 }
 	    
   </style>
@@ -128,20 +149,26 @@ pageContext.setAttribute("jsonStr", jsonStr);
 
 	<div class="calendarTitle">
 		<jsp:useBean id="docSvc" scope="page" class="com.doc.model.DocService" />
-			
+		<jsp:useBean id="divSvc" scope="page" class="com.div.model.DivService" />
+			<c:forEach var="divVO" items="${divSvc.all}">
+				<c:if test="${divNo==divVO.divno}"> 
+ 				${(divVO.divname)}
+ 				</c:if> 		
+			</c:forEach> 	
 			<c:forEach var="docVO" items="${docSvc.all}">
 				<c:if test="${docName==docVO.docname}"> 
- 				${(docVO.docname)} 醫師 門診值班表
- 				</c:if> 
-			</c:forEach> 
-	
+ 				${(docVO.docname)} 醫師 
+ 				</c:if> 		
+			</c:forEach> 			
+				門診值班表
 	</div>
-	
 	<hr class="mainTitlehr">
+	<div class="myMain">
 	<div id='calendar'></div>
 
 	</div>
-
+	<hr class="mainTitlehr">
+	</div>
 	
 <%@ include file="/front-end/frontEndInclude/footer.jsp"%>
 </body>
