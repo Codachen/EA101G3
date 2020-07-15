@@ -10,20 +10,19 @@
 <html>
 <head>
 
-<%@ include file="/back-end/backEndInclude/head.jsp" %>
+
 
 	
 </head>
 <body>
-<%@ include file="/back-end/backEndInclude/header.jsp" %>
+
 	
 
 	<!-- ****************************以下為實際功能頁變更區域**************************** -->
 <span class="mainTitle">醫師檢索</span>
 
 	<hr class="mainTitlehr">
-		 
-	<h6><a href="select_page.jsp"><img src="images/back.png" width="32" height="32" border="0">返回管理主頁面</a></h6>
+		
 
 <table>
 	<tr>
