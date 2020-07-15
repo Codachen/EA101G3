@@ -243,61 +243,61 @@ main {
 		</div>
 		
 	</section>
-
-<!--     <div id="about" class="section wb"> -->
-<!--         <div class="container"> -->
-<!--             <div class="row"> -->
-<!--                 <div class="col-md-6"> -->
-<!--                     <div class="message-box">                         -->
-<!--                         <h2>看診進度查詢</h2> -->
-<!--                         <p> Integer rutrum ligula eu dignissim laoreet. Pellentesque venenatis nibh sed tellus faucibus bibendum. Sed fermentum est vitae rhoncus molestie. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed vitae rutrum neque. Ut id erat sit amet libero bibendum aliquam. Donec ac egestas libero, eu bibendum risus. Phasellus et congue justo. </p> -->
-<!-- 						<p>Sed vitae rutrum neque. Ut id erat sit amet libero bibendum aliquam. Donec ac egestas libero, eu bibendum risus. Phasellus et congue justo.</p> -->
-
-<!--                         <a href="#" class="sim-btn hvr-bounce-to-top"><span>Contact Us</span></a> -->
-<!--                     </div>end messagebox -->
-<!--                 </div>end col -->
-
-<!--                 <div class="col-md-6"> -->
-<!--                     <div class="right-box-pro wow fadeIn"> -->
-<!--                         <img src="uploads/about_04.jpg" alt="" class="img-fluid img-rounded"> -->
-<!--                     </div>end media -->
-<!--                 </div>end col -->
-<!--             </div>end row -->
-<!--         </div>end container -->
-<!--     </div>end section -->
 	
     <div id="services" class="section lb">
         <div class="container">
             <div class="section-title text-center">
-                <h3>Services</h3>
-                <p>Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam risus.</p>
+               <h3>看診進度</h3>
+                <p>為您即時顯示目前看診進度</p>
             </div><!-- end title -->
 
             <div class="row">
 				<div class="col-md-4">
                     <div class="services-inner-box">
 						<div class="ser-icon">
-							<i class="flaticon-seo"></i> <!-- icon -->
-						</div>
-						<iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue.jsp" frameborder="0" width="100%" height="100%"></iframe>
+							<i class="flaticon-discuss-issue"></i>
+							
+							 <!-- icon -->
+						</div>DR01
+						<h2>張國彬醫師</h2>
+						<iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue1.jsp" frameborder="0" width="100%" height="100%"></iframe>
 					</div>
                 </div><!-- end col -->
+                
                 <div class="col-md-4">
                     <div class="services-inner-box">
 						<div class="ser-icon">
-							<i class="flaticon-development"></i>
-						</div>
-						<h2>Responsive Design</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							<i class="flaticon-discuss-issue"></i>
+						</div>DR02
+						<h2>李美玲醫師</h2>
+						<iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queueB.jsp" frameborder="0" width="100%" height="100%"></iframe>
 					</div>
                 </div><!-- end col -->
 				<div class="col-md-4">
                     <div class="services-inner-box">
 						<div class="ser-icon">
-							<i class="flaticon-process"></i>
-						</div>
-						<h2>Creative Design</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							<i class="flaticon-discuss-issue"></i>
+						</div>DR03
+						<h2>黃昭文醫師</h2>
+						<iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queueC.jsp" frameborder="0" width="100%" height="100%"></iframe>
+					</div>
+                </div><!-- end col -->
+                <div class="col-md-4">
+                    <div class="services-inner-box">
+						<div class="ser-icon">
+							<i class="flaticon-discuss-issue"></i>
+						</div>DR04
+						<h2>蔡旻烜醫師</h2>
+						<iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queueD.jsp" frameborder="0" width="100%" height="100%"></iframe>
+					</div>
+                </div><!-- end col -->
+                <div class="col-md-4">
+                    <div class="services-inner-box">
+						<div class="ser-icon">
+							<i class="flaticon-discuss-issue"></i>
+						</div>DR05
+						<h2>鄭柏昕醫師</h2>
+						<iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queueE.jsp" frameborder="0" width="100%" height="100%"></iframe>
 					</div>
                 </div><!-- end col -->
 				
@@ -320,35 +320,32 @@ main {
 					<div class="post-box">
 						<div class="post-thumb">
 							<img src="uploads/blog-01.jpg" class="img-fluid" alt="post-img" />
-							<div class="date">
-								<span>Select by</span>
-								<span>No. / Name</span>
-								
-							</div>
+							
 						</div>
 						<div class="post-info">
-							<h4>編號／姓名查詢</h4>
+							<h4>門診值班表</h4>
 							<ul>
-                                <li>選擇醫師編號及姓名以查詢詳細資訊</li>
+                                <li>檢索醫生看診值班時段</li>
   
                                
                             </ul>
 							
+<p><a href='<%=request.getContextPath()%>/front-end/hospital/appt/dispOpt.jsp' style="text-decoration:none;"><b>點此瀏覽門診班表</b></a></p>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  <jsp:useBean id="docSvc" scope="page" class="com.doc.model.DocService" />
   <jsp:useBean id="divSvc" scope="page" class="com.div.model.DivService" />
   
-      <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/doc/doc.do" >
-       <b></b>
-       <select size="1" name="docno" style="width:130px">
-         <c:forEach var="docVO" items="${docSvc.all}" > 
-          <option value="${docVO.docno}">${docVO.docno}-${docVO.docname}
-         </c:forEach>   
-       </select>
-       <input type="hidden" name="action" value="getOne_For_Display">
-       <input type="submit" value="送出">
-    </FORM>
+<%--       <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/doc/doc.do" > --%>
+<!--        <b></b> -->
+<!--        <select size="1" name="docno" style="width:130px"> -->
+<%--          <c:forEach var="docVO" items="${docSvc.all}" >  --%>
+<%--           <option value="${docVO.docno}">${docVO.docno}-${docVO.docname} --%>
+<%--          </c:forEach>    --%>
+<!--        </select> -->
+<!--        <input type="hidden" name="action" value="getOne_For_Display"> -->
+<!--        <input type="submit" value="送出"> -->
+<!--     </FORM> -->
 						</div>
 					</div>
 				</div>
@@ -356,10 +353,7 @@ main {
 					<div class="post-box">
 						<div class="post-thumb">
 							<img src="uploads/blog-02.jpg" class="img-fluid" alt="post-img" />
-							<div class="date">
-								<span>Select by</span>
-								<span>Department</span>
-							</div>
+							
 						</div>
 						<div class="post-info">
 							<h4>科別查詢</h4>
@@ -383,10 +377,7 @@ main {
 					<div class="post-box">
 						<div class="post-thumb">
 							<img src="uploads/blog-03.jpg" class="img-fluid" alt="post-img" />
-							<div class="date">
-								<span>All</span>
-								<span>Doctors</span>
-							</div>
+							
 						</div>
 						<div class="post-info">
 							<h4>全部醫師一覽</h4>
@@ -394,7 +385,7 @@ main {
                                 <li>查詢全部醫師</li>
                                
                             </ul>
-							<p><a href='<%=request.getContextPath()%>/front-end/hospital/doc/listAllDoc.jsp' style="text-decoration:none;">點此瀏覽全部醫師資訊</a></p>
+							<p><a href='<%=request.getContextPath()%>/front-end/hospital/doc/listAllDoc.jsp' style="text-decoration:none;"><b>點此瀏覽全部醫師資訊</b></a></p>
 						</div>
 					</div>
 				</div>

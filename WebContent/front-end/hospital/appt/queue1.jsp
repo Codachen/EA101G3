@@ -20,27 +20,10 @@
            
 <!--        <b>設定編號日期:</b> -->
        <input type="hidden" name="apptno" id="f_date1" type="text" autocomplete="off"><br>
-       
+
+<!--        <b>設定醫師編號:</b> -->      
+  <input type="hidden" name="DOCTOR.docno" value="1">
   
-<!--   時段條件      -->
-<%--   <jsp:useBean id="optSvc" scope="page" class="com.opt.model.OptService" /> --%>
-<%--   <jsp:useBean id="docSvc" scope="page" class="com.doc.model.DocService" /> --%>
-
-<!--  	<td style="text-align:left;">  -->
-<!--   	<li> -->
-<!--      <b><font>選擇時段:</font></b> -->
-<!--        <select size="1" name="sessionno"> -->
-<%--          <c:forEach var="optVO" items="${optSvc.all}" >  --%>
-<%--          <c:forEach var="docVO" items="${docSvc.all}" >  --%>
-<%--          <c:if test="${(optVO.docNo==docVO.docno)}"> --%>
-<%--           <option value="${optVO.sessionNo}">${docVO.docname} --%>
-<%--           </c:if> --%>
-<%--          </c:forEach> --%>
-<%--          </c:forEach>     --%>
-<!--        </select> -->
-
-    
-    
 <!--        <b>設定看診狀態為1已看診:</b> -->
        <input type="hidden" name="optstate" value="1"><br>
            
@@ -53,9 +36,9 @@
 </ul>
 
 
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
-<script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
-<script src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/front-end/hospital/datetimepicker/jquery.datetimepicker.css" />
+<script src="<%=request.getContextPath()%>/front-end/hospital/datetimepicker/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/front-end/hospital/datetimepicker/jquery.datetimepicker.full.js"></script>
 </body>
 <script>
         $.datetimepicker.setLocale('zh');
