@@ -41,7 +41,7 @@
 	background-color: #00E8E8;
 }
 </style>
-
+<body background="<%= request.getContextPath()%>/front-end/member/member/images/cat3.jpg" style="background-size:Cover;" >
 <div class="container">
 <div class="row justify-content-center align-items-center">
 <table class="table table-hover text-nowrap ">

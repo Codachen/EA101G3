@@ -46,6 +46,7 @@ public class login extends HttpServlet {
 			req.setAttribute("errorMsgs", errorMsgs);
 									
 		try {
+			System.out.println("in");
 			MemberService mSvc = new MemberService();
 			String memAccount = req.getParameter("memAccount");
 			String memPassword = req.getParameter("memPassword");			
@@ -71,9 +72,13 @@ public class login extends HttpServlet {
 			
 			
 			if(memberVO ==null) {
-				errorMsgs.add("會員帳密錯誤");	
+				errorMsgs.add("會員帳密錯誤");
 			}
-			
+			if(memberVO !=null) {
+				if(mSvc.getOneEmp(memberVO.getMemNo()).getMemStatus()!=1) {
+					errorMsgs.add("會員尚未驗證");
+				}
+			}
 			if (!errorMsgs.isEmpty()) {
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/front-end/member/member/login.jsp");

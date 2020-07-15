@@ -161,20 +161,7 @@ main {
 						<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="nav-link">首頁</a>
 					</li>
 					<li class="nav-item dropdown">
-						<a class="nav-link " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 會員專區 </a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-							<form action="<%=request.getContextPath()%>/Puppy/mem.do" METHOD="post" style="margin-bottom: 0px;">
-								<input type="submit" value="編輯會員資料" class="dropdown-item">
-								<input type="hidden" name="memNO" value="${memNO}">
-								<input type="hidden" name="action" value="getOne_For_Update">
-							</form>
-							<a class="dropdown-item" href="#">管理您的寵物</a>
-							<form METHOD="post" ACTION="<%=request.getContextPath()%>/Puppy/mli.do" style="margin-bottom: 0px;">
-								<input type="submit" value="瀏覽最新通知" class="dropdown-item">
-								<input type="hidden" name="mli" value="${memNO}">
-								<input type="hidden" name="action" value="getAll_For_Display">
-							</form>
-						</div>
+						<a href="<%=request.getContextPath()%>/front-end/member/member/membercenter.jsp" class="nav-link">會員專區</a>
 					</li>
 					<li class="nav-item dropdown">
 						<a href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp" class="nav-link">門診專區</a>
@@ -245,6 +232,7 @@ main {
 					<FORM id="form1" METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/appt/appt.do" name="form1">
 					<input type="hidden" name="memno" value="${memNO}">
 					<input type="hidden" name="optstate" value="0">
+					
 					<a class="learn_btn hvr-bounce-to-top" href="javascript:;" onclick="document.getElementById('form1').submit();">預約查詢</a>
         	<input type="hidden" name="action" value="listAppt_ByCompositeQuery2">
 				</FORM>

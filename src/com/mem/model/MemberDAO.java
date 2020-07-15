@@ -34,7 +34,7 @@ public class MemberDAO implements MemberDAO_interface {
 	}
 
 
-	private static final String INSERT_STMT = "INSERT INTO MEMBER (memNo,memName,memAccount,memPassword,memCreditCardId,memPhone,memEmail,memAddress,memStatus) VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),?,?,?,?,?,?,?,?)";
+	private static final String INSERT_STMT = "INSERT INTO MEMBER (memno,memname,memaccount,mempassword,memcreditcardid,memphone,mememail,memaddress,memstatus,mempic) VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'), ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String UPDATE_STMT = "UPDATE MEMBER SET memName=?,memAccount=?,memPassword=?,memCreditCardId=?,memPhone=?,memEmail=?,memAddress=?,memStatus=?,mempic=? WHERE memNo=?";
 	private static final String DELETE_STMT = "UPDATE MEMBER SET memStatus=2 WHERE memNO = ?";
 	private static final String GETALL_STAT = "SELECT * FROM MEMBER ORDER BY memNO"; //WHERE MEMSTATUS = '0'
@@ -43,7 +43,8 @@ public class MemberDAO implements MemberDAO_interface {
 	private static final String READ_PIC = "SELECT MEMPIC FROM MEMBER WHERE MEMNO=?";
 	public static final String  INSERT_ALL = "INSERT INTO MEMBER (memNo,memName,memAccount,memPassword,memCreditCardId,memPhone,memEmail,memAddress,memStatus,mempic) VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),?,?,?,?,?,?,?,?,?)";
 	private static final String login = "SELECT memNo FROM MEMBER WHERE memAccount=? AND memPassword=?";
-
+	private static final String UPDATEMEMSTATUS="UPDATE MEMBER SET MEMSTATUS=? WHERE MEMNO=?";
+	private static final String CHECKACCOUNT="SELECT* FROM MEMBER WHERE MEMACCOUNT=?";
 	
 	public void insert(MemberVO memberVO) {
 		Connection con = null;
@@ -62,6 +63,7 @@ public class MemberDAO implements MemberDAO_interface {
 			pstmt.setString(6, memberVO.getMemEmail());
 			pstmt.setString(7, memberVO.getMemAddress());
 			pstmt.setInt(8, memberVO.getMemStatus());
+			pstmt.setBytes(9, memberVO.getMempic());
 
 			pstmt.executeUpdate();
 
@@ -494,5 +496,87 @@ public class MemberDAO implements MemberDAO_interface {
 		
 		
 		return list;
+	}
+	@Override
+	public void updatestatus(Integer status, String memno) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATEMEMSTATUS);
+			pstmt.setInt(1, status);
+			pstmt.setString(2,memno);
+			pstmt.executeUpdate();
+			System.out.println("success");
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}		
+	}
+
+	@Override
+	public boolean checkaccount(String account) {
+		//	MemVO memVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(CHECKACCOUNT);
+
+			pstmt.setString(1, account);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return true;
+			}else {
+				return false;
+			}	
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
 	}
 }

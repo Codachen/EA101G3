@@ -16,4 +16,6 @@ public interface MemberDAO_interface {
 	public void insertall(MemberVO memberVO);
 	public MemberVO findBymemNO(String memAccount,String memPassword);
 	public List<MemberVO> getAll(Map<String, String[]> map); 
+	public void updatestatus(Integer status,String memno);
+    public boolean checkaccount(String account);
 }

@@ -394,9 +394,12 @@ public class ApptDAO implements ApptDAO_interface {
 		ResultSet rs = null;
 
 		try {
-
+//JOIN測試
 			con = ds.getConnection();
-			String finalSQL = "select * from APPOINTMENT " + jdbcUtil_CompositeQuery_Appt2.get_WhereCondition(map)
+			String finalSQL = "select * from APPOINTMENT "+ 
+					"JOIN OPTSESSION ON APPOINTMENT.sessionno = OPTSESSION.sessionNo "+
+		            "JOIN DOCTOR ON OPTSESSION.DOCNO = DOCTOR.DOCNO "
+					+ jdbcUtil_CompositeQuery_Appt2.get_WhereCondition(map)
 					+ "order by apptno";
 			pstmt = con.prepareStatement(finalSQL);
 			System.out.println("����finalSQL(by DAO) = " + finalSQL);
@@ -457,7 +460,10 @@ public class ApptDAO implements ApptDAO_interface {
 		try {
 
 			con = ds.getConnection();
-			String finalSQL = "select * from APPOINTMENT " + jdbcUtil_CompositeQuery_Appt2.get_WhereCondition(map)
+			String finalSQL = "select * from APPOINTMENT "+
+					"JOIN OPTSESSION ON APPOINTMENT.sessionno = OPTSESSION.sessionNo "+
+		            "JOIN DOCTOR ON OPTSESSION.DOCNO = DOCTOR.DOCNO "
+					+ jdbcUtil_CompositeQuery_Appt2.get_WhereCondition(map)
 					+ "order by apptno";
 			pstmt = con.prepareStatement(finalSQL);
 			System.out.println("����finalSQL(by DAO) = " + finalSQL);

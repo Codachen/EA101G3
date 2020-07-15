@@ -40,7 +40,7 @@ body{
 	margin-bottom: 45px;
 }
 .chat-text{
-	position: fixed;
+	position: absolute;
 	bottom: 0px;
 	height: 45px;
 	width: inherit;
