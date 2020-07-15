@@ -8,67 +8,17 @@
 <%
 	String memNO = (String) session.getAttribute("memNO");
 	String memName = (String) session.getAttribute("memName");
-
+	
 	MemberPetService memberPetSvc = new MemberPetService();
 	List<MemberPetVO> list = memberPetSvc.getPetsFromThisMember(memNO);
 	pageContext.setAttribute("list", list);
 %>
+
 <html>
 <head>
-<title>萌寵家族旅館</title>
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
-
-<!-- bootstrap、FontAwesome、googleFont -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/Hotel/style.css">
+<%@ include file="/front-end/frontEndInclude/head.jsp"%>
 
 <style>
-.xdsoft_datetimepicker .xdsoft_datepicker {
-	width: 300px;
-}
-
-.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box {
-	height: 151px;
-}
-
-.card-img-top {
-	max-width: 348px;
-	max-height: 231px;
-}
-
-.room {
-	display: none;
-}
-
-.show {
-	animation: showup 1s linear;
-	display: inline-block;
-}
-
-.div_pic {
-	width: 900px;
-	height: 300px;
-	margin: 60px auto;
-}
-
-.section-6 h1 {
-	font-family: 'Noto Sans TC';
-}
-
-@keyframes showup {
-			0% {
-				opacity: 0;
-			}
-
-			50% {
-				opacity: .5;
-			}
-
-			100% {
-				opacity: 1;
-			}
-		}
 
 </style>
 
@@ -140,7 +90,6 @@
 			</div>
 		</nav>
 	</header>
-
 	<main>
 		<div class="container-fluid">
 			<div class="row">

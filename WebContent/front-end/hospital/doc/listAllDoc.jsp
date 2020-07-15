@@ -32,7 +32,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- Site CSS -->
-    <link rel="stylesheet" href="style5.css">
+    <link rel="stylesheet" href="style6.css">
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="css/responsive.css">
     <!-- Custom CSS -->
@@ -97,7 +97,10 @@
         </div><!-- end container -->
     </div><!-- end copyrights -->
 
-    <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
+       <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
+<button class="floating-btn">
+	<a href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp" style="color:white;">回門診首頁</a>
+</button>
 
     <!-- ALL JS FILES -->
     <script src="js/all.js"></script>

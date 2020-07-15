@@ -41,9 +41,17 @@ public class MemberServlet extends HttpServlet{
 				out.print("1");
 			}
 		}
-		
+		if("memchecksuccess".equals(action)) {
+			String memberno = req.getParameter("memberno");
+			Integer status = new Integer(req.getParameter("memberstatus"));
+			MemberService svc = new MemberService();
+			svc.updatememstatus(status, memberno);
+			System.out.println("success");
+			String url = "/front-end/member/member/login.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+			successView.forward(req, res);
+		}
 		  if ("insert".equals(action)) { // 來自addEmp.jsp的請求  
-				System.out.println("imn");
 				List<String> errorMsgs = new LinkedList<String>();
 				// Store this set in the request scope, in case we need to
 				// send the ErrorPage view.
@@ -123,8 +131,8 @@ public class MemberServlet extends HttpServlet{
 					
 					/***************************2.開始新增資料***************************************/
 					MemberService memSvc = new MemberService();
-					memVO = memSvc.addM(memname, memaccount, mempassword, memcreditcardid,memphone, mememail, memaddress, 0, mempic);
-					MailService svc = new MailService("http://localhost:8081/EA101_TEAM3-111/mem/addMem.jsp");
+					String seq = memSvc.addM(memname, memaccount, mempassword, memcreditcardid,memphone, mememail, memaddress, 0, mempic);
+					MailService svc = new MailService("http://localhost:8081/EA101G3/Puppy/mem.do?action=memchecksuccess&memberno="+seq+"&memberstatus=1");
 					svc.start();
 					/***************************3.新增完成,準備轉交(Send the Success view)***********/
 					String url = "/front-end/frontEndIndex/index.jsp";

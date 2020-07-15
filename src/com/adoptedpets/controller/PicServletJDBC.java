@@ -25,7 +25,6 @@ public class PicServletJDBC extends HttpServlet {
 			AdoptedPetsService adoptedPetssrv = new AdoptedPetsService();
 			AdoptedPetsVO adoptedPetsVO = adoptedPetssrv.getOneAdoptedPets(petNo) ;
 			byte[] buf = adoptedPetsVO.getPetPic();
-			System.out.println(adoptedPetsVO.getPetPic());
 			out.write(buf);
 		
 		}catch (Exception e){

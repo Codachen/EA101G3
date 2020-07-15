@@ -33,7 +33,7 @@ public class ShowDocPic extends HttpServlet{
 				}
 				in.close();
 			}else {
-				java.io.InputStream in = getServletContext().getResourceAsStream("/NoData/none.jpg");
+				java.io.InputStream in = getServletContext().getResourceAsStream("/front-end/hospital/Nodata/none.jpg");
 				byte[] b = new byte[in.available()];
 				in.read(b);
 				out.write(b);
@@ -41,7 +41,7 @@ public class ShowDocPic extends HttpServlet{
 			}
 			
 		} catch(Exception e) {
-			java.io.InputStream in = getServletContext().getResourceAsStream("/NoData/none.jpg");
+			java.io.InputStream in = getServletContext().getResourceAsStream("/front-end/hospital/Nodata/none.jpg");
 			byte[] b = new byte[in.available()];
 			in.read(b);
 			out.write(b);

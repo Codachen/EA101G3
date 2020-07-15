@@ -101,7 +101,7 @@ footer .form-inline {
 				<a href="#">
 					<button class="btn menu-right-btn border" type="button" style="<%=(memNO == null) ? "display:" : "display:none"%>">註冊</button>
 				</a>
-				<a href="<%=request.getContextPath()%>/front-end/member/login.jsp">
+				<a href="<%=request.getContextPath()%>/front-end/member/member/login.jsp">
 					<button class="btn menu-right-btn border" type="submit" id="login" style="<%=(memNO == null) ? "display:" : "display:none"%>">登入</button>
 				</a>
 				<form class="form-inline my-2 my-lg-0" action="<%=request.getContextPath()%>/Puppy/logout.do">

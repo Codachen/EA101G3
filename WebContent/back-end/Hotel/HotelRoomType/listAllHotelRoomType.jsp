@@ -98,12 +98,16 @@
 								<td>${hotelRoomTypeVO.roomTypePrice}</td>
 								<td>${hotelRoomTypeVO.roomTypeService}</td>
 								<td>
+									<font style="color:blue">
 									<c:if test="${hotelRoomTypeVO.roomTypeStatus == 0}">
 										<c:out value="已存在"></c:out>
 									</c:if>
+									</font>
+									<font style="color:red">
 									<c:if test="${hotelRoomTypeVO.roomTypeStatus == 1}">
 										<c:out value="已移除"></c:out>
 									</c:if>
+									</font>
 								</td>
 								<td>
 									<img alt="房型圖片" class="images" src="<%=request.getContextPath()%>/back-end/HotelRoomType/HotelRoomPic.do?roomTypeNo=${hotelRoomTypeVO.roomTypeNo}">

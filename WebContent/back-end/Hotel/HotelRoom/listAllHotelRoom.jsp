@@ -93,12 +93,16 @@
 								<td><img alt="寵物圖片" class="images" src="<%=request.getContextPath()%>/back-end/HotelRoom/HotelRoomPic2.do?petNo=${hotelRoomVO.petNo}" onerror="this.src='<%=request.getContextPath()%>/back-end/Hotel/HotelRoom/images/NOPIC2.jpg'"></td>
 <%-- 								<td>${memberPetSVC.getOneMemberPet(hotelRoomVO.petNo).petPic}</td> --%>
 								<td>
+									<font style="color:blue">
 									<c:if test="${hotelRoomVO.roomStatus == 0}">
 										<c:out value="已存在"></c:out>
 									</c:if>
+									</font>
+									<font style="color:red">
 									<c:if test="${hotelRoomVO.roomStatus == 1}">
 										<c:out value="已移除"></c:out>
 									</c:if>
+									</font>
 								</td>
 								<td>
 									<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/HotelRoom/HotelRoom.do" style="margin-bottom: 0px;">

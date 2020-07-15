@@ -33,7 +33,7 @@ public class ShowSymPhoto extends HttpServlet{
 				}
 				in.close();
 			}else {
-				java.io.InputStream in = getServletContext().getResourceAsStream("/NoData/nopic.gif");
+				java.io.InputStream in = getServletContext().getResourceAsStream("/front-end/hospital/Nodata/nopic.gif");
 				byte[] b = new byte[in.available()];
 				in.read(b);
 				out.write(b);
@@ -41,7 +41,7 @@ public class ShowSymPhoto extends HttpServlet{
 			}
 			
 		} catch(Exception e) {
-			java.io.InputStream in = getServletContext().getResourceAsStream("/NoData/nopic.gif");
+			java.io.InputStream in = getServletContext().getResourceAsStream("/front-end/hospital/Nodata/nopic.gif");
 			byte[] b = new byte[in.available()];
 			in.read(b);
 			out.write(b);

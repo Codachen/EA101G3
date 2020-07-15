@@ -8,7 +8,7 @@ import javax.servlet.http.Part;
 import com.mem.model.*;
 
 public interface MemberDAO_interface {
-	public void insert(MemberVO memberVO);
+	public String insert(MemberVO memberVO);
 	public void update(MemberVO memberVO);
 	public void delete(String memNo);
 	public List<MemberVO> getAll();

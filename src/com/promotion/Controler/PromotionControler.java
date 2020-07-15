@@ -19,7 +19,7 @@ import com.promotionDetail.model.PromoDetailVO;
 
 
 public class PromotionControler extends HttpServlet {
-	
+	//test
 	
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
