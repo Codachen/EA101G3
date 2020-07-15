@@ -5,15 +5,15 @@
 <%@ page import="com.adoptedpets.model.*"%>
 <%@ page import="java.sql.Date"%>
 <%@ page import="com.mem.model.*"%>
+
 <%	
 	MemberVO member = (MemberVO)session.getAttribute("member");
 	String memNO = (String) session.getAttribute("memNO");
 	String memName = (String) session.getAttribute("memName");
-%>
 
-
-<%
-	AdoptedPetsVO adoptedpetsVO = (AdoptedPetsVO) request.getAttribute("adoptedpetsVO");
+// 	MemberPetService adoptedPetsSvc = new AdoptedPetsService();
+// 	List<AdoptedPetsVO> list = adoptedPetsSvc.getAll();
+// 	pageContext.setAttribute("list", list);
 %>
 
 <!DOCTYPE html>
@@ -48,7 +48,8 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 	crossorigin="anonymous"></script>
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 <!-- bootstrap、FontAwesome、googleFont -->
 
@@ -76,12 +77,14 @@ a.nav-link-sub {
 }
 
 .subnavli {
-/* 	border-left: 1px solid #8a8a90; */
+	/* 	border-left: 1px solid #8a8a90; */
 	/* 	border-right: 1px solid #8a8a90; */
+	
 }
 
 #subnavli-last {
-/* 	border-right: 1px solid #8a8a90; */
+	/* 	border-right: 1px solid #8a8a90; */
+	
 }
 
 .pet-card-img-top {
@@ -100,12 +103,7 @@ a.nav-link-sub {
 	height: auto;
 }
 
-.pet-figure {
-	height: 400px;
-	weight: auto;
-}
-
-ul {
+ul.info-list {
 	list-style-type: circle;
 	list-style-position: inside;
 }
@@ -117,12 +115,16 @@ ul {
 main {
 	font-family: 'Noto Sans TC';
 }
+
+#pet-search-title, form.pet-search-form, div.pet-sort-row {
+	padding-left: 15px;
+}
 </style>
 
 </head>
 
 <body>
-<header>
+	<header>
 		<nav class="navbar navbar-expand-lg navbar-light ">
 			<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="navbar-brand ml-3">
 				Cute:)
@@ -171,136 +173,4 @@ main {
 			</form>
 		</div>
 	</nav>
-</header>
-	<main role="main">
-		<nav class="navbar navbar-expand-lg navbar-light navbar-sub-main"
-			style="background-color: #f1f3f3">
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="justify-content-center collapse navbar-collapse"
-				id="navbarNavDropdown">
-				<ul class="navbar-nav">
-					<li class="nav-item subnavli"><a
-						class="d-flex nav-link nav-link-sub align-items-center"
-						href="<%=request.getContextPath()%>/front-end/adopt/adoptedpets/listAllPets.jsp"><i
-							class="fas fa-house-damage"></i>尋找浪浪</a></li>
-					<li class="nav-item subnavli"><a
-						class="d-flex nav-link nav-link-sub align-items-center"
-						href="<%=request.getContextPath()%>/front-end/adopt/interaction/listInteractionByAdopter.jsp"><i
-							class="fas fa-search-plus"></i>領養互動查詢</a></li>
-					<li class="nav-item subnavli" id="subnavli-last"><a
-						class="d-flex nav-link nav-link-sub align-items-center"
-						href="<%=request.getContextPath()%>/front-end/adopt/adopter/addAdopter.jsp"><i
-							class="fas fa-user-edit"></i>領養人登記</a></li>
-				</ul>
-			</div>
-		</nav>
-		<section class="pet-search"></section>
-		<div class="container-fluid">
-			<div class="row justify-content-center align-items-center">
-				<div class="col-lg-3 text-right mt-3">
-					<figure class="figure pet-figure">
-						<img
-							src="<%=request.getContextPath()%>/adoptedpetspic.do?petNo=${adoptedpetsVO.petNo}"
-							class="figure-img img-fluid rounded pet-img" alt="...">
-						<figcaption class="figure-caption text-right">
-							${adoptedpetsVO.petNo}</figcaption>
-					</figure>
-				</div>
-				<div class="col-lg-3">
-					<ul class="list-group list-group-flush text-left">
-						<li class="list-group-item">編號：${adoptedpetsVO.petNo}</li>
-						<li class="list-group-item">類型：${adoptedpetsVO.petSpecies}</li>
-						<li class="list-group-item">品種：${adoptedpetsVO.petBreed}</li>
-						<li class="list-group-item">性別：${adoptedpetsVO.petGender}</li>
-						<li class="list-group-item">收容日期：${adoptedpetsVO.adoptedDate}</li>
-
-					</ul>
-				</div>
-			</div>
-		</div>
-		</div>
-
-	</main>
-	<footer>
-		<div class="section-5 text-center">
-			<h4 style="margin-top: 5%;">最完善的寵物平台</h4>
-			<h4 class="my-4">如果您有需要 請聯絡我們</h4>
-
-			<div class="form-inline justify-content-center">
-				<input type="text" name="Email" id="email" placeholder="Email"
-					size="40" class="form-control px-4 py-2"> <input
-					type="button" value="Contact US"
-					class="btn btn-danger px-4 py-2 ml-1">
-			</div>
-			<div class="social" style="margin: 5%;">
-				<div class="d-flex flex-row justify-content-center">
-					<i class="fab fa-facebook-f m-2"></i> <i class="fab fa-twitter m-2"></i>
-					<i class="fab fa-instagram m-2"></i> <i class="fab fa-youtube m-2"></i>
-				</div>
-			</div>
-			<hr>
-			<h5 style="color: lightseagreen;">Cute Family &copy;</h5>
-		</div>
-	</footer>
-	<script>
-		$(document).ready(
-				function() {
-					$("li.subnavli").mouseenter(
-							function() {
-
-								if ($(this).index() !== 2) {
-									$(this).css({
-										"background-color" : "#fd9742c9",
-										"border-left" : "1px solid white"
-									});
-									$(this).next().css({
-										"border-left" : "1px solid white",
-									});
-									$(this).find("a").attr("style",
-											"color: white !important");
-								} else {
-									$(this).css({
-										"background-color" : "#fd9742c9",
-										"border-left" : "1px solid white",
-										"border-right" : "1px solid white"
-									});
-									$(this).find("a").attr("style",
-											"color: white !important");
-
-								}
-								
-
-							}).mouseleave(
-							function() {
-
-								if ($(this).index() !== 2) {
-									$(this).css({
-										"background-color" : "#f1f3f3",
-										"border-left" : ""
-									});
-									$(this).next().css({
-										"border-left" : "",
-									});
-									$(this).find("a").attr("style",
-											"color: #8a8a90 !important");
-								} else {
-									$(this).css({
-										"background-color" : "#f1f3f3",
-										"border-left" : "",
-										"border-right" : ""
-									});
-									$(this).find("a").attr("style",
-											"color: #8a8a90 !important");
-								}
-							});
-
-				});
-	</script>
-
-
-</body>
-</html>
+	</header>

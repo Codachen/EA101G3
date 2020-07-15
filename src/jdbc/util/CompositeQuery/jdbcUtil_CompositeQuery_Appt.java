@@ -81,7 +81,7 @@ public class jdbcUtil_CompositeQuery_Appt {
 	            "JOIN DOCTOR ON OPTSESSION.DOCNO = DOCTOR.DOCNO "+
 	            jdbcUtil_CompositeQuery_Appt.get_WhereCondition(map)
 	            + " order by seqno";
-		System.out.println("●●finalSQL = " + finalSQL);
+		
 
 	}
 }

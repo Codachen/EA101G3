@@ -65,12 +65,12 @@
 										</div>
 										<div class="col-md-4">
 											<div class="form-group"><label for="form_need">地址</label> 
-											<input type="text" class="form-control" placeholder="輸入地址" name="road">
+											<input type="text" class="form-control" placeholder="輸入地址" name="road" required>
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group"><label for="form_need">信用卡號</label>
-												<input type="text" value=""  class="form-control" placeholder="輸入信用卡號" >
+												<input maxlength="16" type="text" value=""  class="form-control" placeholder="輸入信用卡號" required>
 											</div>
 										</div>
 										<div class="col-md-2">
@@ -107,7 +107,7 @@
 										</div>
 										<div class="col-md-2">
 											<div class="form-group"><label for="form_need">檢核碼</label>
-												<input type="text" name="" class="form-control" maxlength="3">
+												<input  type="text" name="" class="form-control" maxlength="3" required>
 											</div>
 										</div>
 									</div>

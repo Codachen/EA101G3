@@ -16,7 +16,7 @@ public class MemberService {
 		dao = new MemberDAO();
 	}
 
-	public MemberVO addM(String memname, String memaccount, String mempassword, String memcreditcardid, String memphone,
+	public String addM(String memname, String memaccount, String mempassword, String memcreditcardid, String memphone,
 			String mememail, String memaddress, Integer memstatus, byte[] mempic) {
 		MemberVO memberVO = new MemberVO();
 		memberVO.setMemName(memname);
@@ -28,9 +28,8 @@ public class MemberService {
 		memberVO.setMemAddress(memaddress);
 		memberVO.setMemStatus(memstatus);
 		memberVO.setMempic(mempic);
-		dao.insert(memberVO);
 
-		return memberVO;
+		return dao.insert(memberVO);
 	}
 
 	public MemberVO updateM(String memNo, String memName, String memAccount, String memPassword, String memCreditCardId,

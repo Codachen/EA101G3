@@ -3,46 +3,43 @@
 
 <html>
 <head>
+
+</head>
+
 <title>IBM Emp: Home</title>
 
+<%--自動送出 --%>
+<body onload="document.form1.submit()"> 
 <%-- 萬用複合查詢-以下欄位-可隨意增減 --%>
 <ul>  
   <li>   
-    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/mr/mr.do" name="form1">
-        <b><font color=blue>萬用複合查詢:</font></b> <br>
+  <%--自動刷新--%>
+    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/appt/appt.do" name="form1">
+        
+        
+           
+<!--        <b>設定編號日期:</b> -->
+       <input type="hidden" name="apptno" id="f_date1" type="text" autocomplete="off"><br>
 
-    
-      <jsp:useBean id="docSvc" scope="page" class="com.doc.model.DocService" />
-               
-       <b>選擇醫師:</b>
-       <select size="1" name="docno" >
-          <option value="">
-         <c:forEach var="docVO" items="${docSvc.all}" > 
-          <option value="${docVO.docno}">${docVO.docname}
-         </c:forEach>   
-       </select><br>
+<!--        <b>設定醫師編號:</b> -->      
+  <input type="hidden" name="DOCTOR.docno" value="5">
+  
+<!--        <b>設定看診狀態為1已看診:</b> -->
+       <input type="hidden" name="optstate" value="1"><br>
+           
        
-       
-       <b>雇用日期:</b>
-	   <input name="mrno" id="f_date1" type="text">
 		        
-        <input type="submit" value="送出">
-        <input type="hidden" name="action" value="listMr_ByCompositeQuery">
+<!--         <input type="submit" value="送出"> -->
+        <input type="hidden" name="action" value="listAppt_ByCompositeQueryE">
      </FORM>
   </li>
 </ul>
 
 
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/front-end/hospital/datetimepicker/jquery.datetimepicker.css" />
+<script src="<%=request.getContextPath()%>/front-end/hospital/datetimepicker/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/front-end/hospital/datetimepicker/jquery.datetimepicker.full.js"></script>
 </body>
-
-
-
-<!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
-
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
-<script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
-<script src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script>
-
 <script>
         $.datetimepicker.setLocale('zh');
         $('#f_date1').datetimepicker({
@@ -50,8 +47,7 @@
 	       timepicker:false,       //timepicker:true,
 	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
 	       format:'Ymd',         //format:'Y-m-d H:i:s',
-		   value: '',
-		   validateOnBlur: false  // value:   new Date(),
+		   value: 'new Date()',              // value:   new Date(),
            //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
            //startDate:	            '2017/07/10',  // 起始日
            //minDate:               '-1970-01-01', // 去除今日(不含)之前
@@ -109,4 +105,5 @@
         //      }});
         
 </script>
+
 </html>

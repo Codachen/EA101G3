@@ -320,7 +320,7 @@ req.setAttribute("mrVO", mrVO); // 含有輸入格式錯誤的mrVO物件,也存�
 			} catch (Exception e) {
 				errorMsgs.add("刪除資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/back-end/hospital/doc/listAllMr.jsp");
+						.getRequestDispatcher("/back-end/hospital/mr/listAllMr.jsp");
 				failureView.forward(req, res);
 			}
 		}

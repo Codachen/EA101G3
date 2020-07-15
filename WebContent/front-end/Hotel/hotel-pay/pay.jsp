@@ -166,10 +166,11 @@ color:whitesmoke;
 					</div>
 					<input type="hidden" name="action" value="payMoney">
 					<div class="d-flex justify-content-center">
-						<button type="submit" class="btn-primary">確認付款</button>
+						<button type="submit" class="btn btn-primary">確認付款</button>
 						<button id="generatecard" style="display:none;">隨機生成</button>
 					</div>
 				</form>
+				<button class="btn btn-warning" onclick="insertValue();">神奇小按鈕</button>
 			</div>
 		</div>
 	</div>
@@ -182,5 +183,17 @@ color:whitesmoke;
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
+
+<script>
+
+function insertValue(){
+	$('#name').val('鳴人');
+	$('#cardnumber').val('4984014121389556');
+	$('#expirationdate').val('12/11');
+	$('#securitycode').val('750');
+}
+
+</script>
+
 
 </html>

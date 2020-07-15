@@ -102,15 +102,21 @@
 								</td>
 								<td>${hotelOrderVO.totalPrice}</td>
 								<td>
+									<font style="color:red">
 									<c:if test="${hotelOrderVO.hotelOrderStatus == 0}">
 										<c:out value="待確認"></c:out>
 									</c:if>
+									</font>
+									<font style="color:blue">
 									<c:if test="${hotelOrderVO.hotelOrderStatus == 1}">
 										<c:out value="已完成"></c:out>
 									</c:if>
+									</font>
+									<font style="color:green">
 									<c:if test="${hotelOrderVO.hotelOrderStatus == 2}">
 										<c:out value="已取消"></c:out>
 									</c:if>
+									</font>
 								</td>
 								<td>
 									<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/HotelOrder/HotelOrder.do" style="margin-bottom: 0px;">

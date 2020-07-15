@@ -98,27 +98,27 @@ th, td {
 					<div class="row">
 						<div class="col-7">
 							<div class="form-group font-weight-bold" id="select3">
-								<input type="hidden" name="roomTypeNo" size="45" value="<%=(hotelRoomTypeVO == null) ? "RT004" : hotelRoomTypeVO.getRoomTypeNo()%>" />
+								<input type="hidden" name="roomTypeNo" size="45" value="1" />
 							</div>
 							<div class="form-group font-weight-bold" id="select3">
 								<label for="exampleInputEmail1">房型名稱:</label>
-								<input type="text" class="form-control" name="roomTypeName" value="<%=(hotelRoomTypeVO == null) ? "舒適房" : hotelRoomTypeVO.getRoomTypeName()%>" />
+								<input type="text" class="form-control" name="roomTypeName" value="${hotelRoomTypeVO.roomTypeName}" id="row1"/>
 							</div>
 							<div class="form-group font-weight-bold" id="select3">
 								<label for="exampleInputEmail1">房型簡介: </label>
-								<input type="text" class="form-control" name="roomTypeDescribe" value="<%=(hotelRoomTypeVO == null) ? "最溫馨最舒適的房間，讓您的寵物享受優游夏日時光。不限貓狗，一天『600』NT" : hotelRoomTypeVO.getRoomTypeDescribe()%>" />
+								<input type="text" class="form-control" name="roomTypeDescribe" value="${hotelRoomTypeVO.roomTypeDescribe}" id="row2"/>
 							</div>
 							<div class="form-group font-weight-bold" id="select3">
 								<label for="exampleInputEmail1">房型空間:(長 X 高 X 寬(cm)) </label>
-								<input type="text" class="form-control" name="roomTypeSpace" value="<%=(hotelRoomTypeVO == null) ? "200cm*200cm*300cm" : hotelRoomTypeVO.getRoomTypeSpace()%>" />
+								<input type="text" class="form-control" name="roomTypeSpace" value="${hotelRoomTypeVO.roomTypeSpace}" id="row3" />
 							</div>
 							<div class="form-group font-weight-bold" id="select3">
 								<label for="exampleInputEmail1">房型價格: </label>
-								<input type="text" class="form-control" name="roomTypePrice" value="<%=(hotelRoomTypeVO == null) ? "750" : hotelRoomTypeVO.getRoomTypePrice()%>" />
+								<input type="text" class="form-control" name="roomTypePrice" value="${hotelRoomTypeVO.roomTypePrice}" id="row4" />
 							</div>
 							<div class="form-group font-weight-bold" id="select3">
 								<label for="exampleInputEmail1">房型服務: </label>
-								<input type="text" class="form-control" name="roomTypeService" value="<%=(hotelRoomTypeVO == null) ? "公園散步" : hotelRoomTypeVO.getRoomTypeService()%>" />
+								<input type="text" class="form-control" name="roomTypeService" value="${hotelRoomTypeVO.roomTypeService}" id="row5" />
 							</div>
 							<div class="form-group font-weight-bold" id="select3">
 								<input type="hidden" class="form-control" name="roomTypeStatus" value="0" />
@@ -143,6 +143,7 @@ th, td {
 						</div>
 					</div>
 				</form>
+				<button class="btn btn-warning" onclick="insertValue();">神奇小按鈕</button>
 			</div>
 		</div>
 	</div>
@@ -164,6 +165,19 @@ th, td {
 			}
 		}
 
+	</script>
+	
+	<script>
+		function insertValue(){
+			$('#row1').val('舒適房');
+			$('#row2').val('最溫馨最舒適的房間，讓您的寵物享受優游夏日時光。不限貓狗，一天『600』NT');
+			$('#row3').val('200cm*200cm*300cm');
+			$('#row4').val('750');
+			$('#row5').val('公園散步');
+		}
+	
+	
+	
 	</script>
 
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
