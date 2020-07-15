@@ -59,15 +59,20 @@
 				<h2 class="member-name">診所預約</h2>
 				<span class="member-role">Clinic appointment</span>
 			</div>
+			
 			<div class="member">
+			<a href="<%=request.getContextPath()%>/front-end/product/myorder.jsp">
 				<img class="centerpic" src="<%=request.getContextPath()%>/front-end/member/member/images/mall.png">
 				<h2 class="member-name">商城明細</h2>
 				<span class="member-role">Mall details</span>
+				</a>
 			</div>
 			<div class="member">
+				<a href="<%=request.getContextPath()%>/front-end/Hotel/hotelOrderInfo/hotelOrderInfo.jsp">
 				<img class="centerpic" src="<%=request.getContextPath()%>/front-end/member/member/images/hotel.jpg">
-				<h2 class="member-name">旅館預約</h2>
-				<span class="member-role">Hotel details</span>
+				<h2 class="member-name">旅館訂單</h2>
+				<span class="member-role">Hotel Order</span>
+				</a>
 			</div>
 
 			<div class="member">

@@ -27,7 +27,7 @@ public class jdbcUtil_CompositeQuery_member {
 					whereCondition.append(" where " + aCondition);
 				else
 					whereCondition.append(" and " + aCondition);
-				System.out.println("有送出查詢資料的欄位數count = " + count);
+				
 			}
 		}
 		

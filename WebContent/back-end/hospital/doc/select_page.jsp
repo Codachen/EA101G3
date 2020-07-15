@@ -35,7 +35,7 @@
   <tr>
     <td style="text-align:left;"> 
   	<li>
-    <FORM METHOD="post" ACTION="doc.do" >
+    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/doc/doc.do" >
         <b>輸入醫師編號:</b>
         <input type="text" size="5" name="docno" style="width:130px">
         <input type="hidden" name="action" value="getOne_For_Display">
@@ -49,7 +49,7 @@
 <tr> 
  <td style="text-align:left;"> 
   <li>
-     <FORM METHOD="post" ACTION="doc.do" >
+     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/doc/doc.do" >
        <b>選擇醫師編號:</b>
        <select size="1" name="docno" style="width:130px">
          <c:forEach var="docVO" items="${docSvc.all}" > 
@@ -65,7 +65,7 @@
 <tr> 
  <td style="text-align:left;"> 
   <li>
-     <FORM METHOD="post" ACTION="doc.do" >
+     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/doc/doc.do" >
        <b>選擇醫師姓名:</b>
        <select style="width:130px" name="docno">
          <c:forEach var="docVO" items="${docSvc.all}" > 
@@ -102,7 +102,7 @@
 <h3>醫生管理</h3>
 
 <ul>
-  <li><a href='addDoc.jsp'>新增一位醫師。</a></li>
+  <li><a href='<%=request.getContextPath()%>/back-end/hospital/doc/addDoc.jsp'>新增一位醫師。</a></li>
 </ul>
 
 <!-- ****************************以上為實際功能頁變更區域*************************** -->

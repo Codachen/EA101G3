@@ -18,44 +18,25 @@
 
 <html>
 <head><title>看診進度 </title>
-<meta http-equiv="refresh" content="10;URL=<%=request.getContextPath()%>/front-end/hospital/appt/queue.jsp">
+<meta http-equiv="refresh" content="10;URL=<%=request.getContextPath()%>/front-end/hospital/appt/queue1.jsp">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+	integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
+	crossorigin="anonymous">
 </head>
 <body bgcolor='white'>
 
 <h1>
 
-目前看診號${fn:length(listAppt_ByCompositeQuery)+1}
+<c:choose>
+    <c:when test="${fn:length(listAppt_ByCompositeQuery)==0}">
+       <i class="fas fa-exclamation-circle"></i> 今日沒有看診
+    </c:when>
+    <c:otherwise>
+        <i class="fas fa-user-md"></i>目前看診號${fn:length(listAppt_ByCompositeQuery)+1}
+    </c:otherwise>
+</c:choose>
 
-
-
-
-<!-- <table> -->
-<!-- 	<tr> -->
-<!-- 		<th>員工編號</th> -->
-<!-- 		<th>員工姓名</th> -->
-<!-- 		<th>職位</th> -->
-<!-- 		<th>雇用日期</th> -->
-<!-- 		<th>薪水</th> -->
-<!-- 		<th>獎金</th> -->
-<!-- 		<th>部門</th> -->
-<!-- 	</tr> -->
-	
-<%-- 	<c:forEach var="apptVO" items="${listAppt_ByCompositeQuery}"> --%>
-		
-<!-- 		<tr> -->
-<%-- 			<td>${apptVO.apptno}</td> --%>
-<%-- 			<td>${apptVO.memno}</td> --%>
-<%-- 			<td>${apptVO.sessionno}</td> --%>
-<%-- 			<td>${apptVO.seqno}</td> --%>
-<%-- 			<td>${apptVO.symdesc}</td> --%>
-<!-- 			<td> -->
-<%-- 			<img alt="" src="<%=request.getContextPath()%>/front-end/appt/ShowSymPhoto.do?apptno=${apptVO.apptno}" id="display"> --%>
-<!-- 			</td> -->
-<%-- 			<td>${apptVO.optstate}</td> --%>
-			
-<!-- 		</tr> -->
-<%-- 	</c:forEach> --%>
-<!-- </table> -->
 
 </body>
 </html>

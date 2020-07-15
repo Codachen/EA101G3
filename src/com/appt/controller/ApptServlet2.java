@@ -127,6 +127,130 @@ public class ApptServlet2 extends HttpServlet {
 			}
 		}	
 		
+		//DR02
+		if ("listAppt_ByCompositeQueryB".equals(action)) { // �Ӧ�select_page.jsp���ƦX�d�߽ШD
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				
+				/***************************1.�N��J����ରMap**********************************/ 
+				//�ĥ�Map<String,String[]> getParameterMap()����k 
+				//�`�N:an immutable java.util.Map 
+				Map<String, String[]> map = req.getParameterMap();
+				
+				/***************************2.�}�l�ƦX�d��***************************************/
+				ApptService apptSvc = new ApptService();
+				List<ApptVO> list  = apptSvc.getQueue(map);
+				
+				/***************************3.�d�ߧ���,�ǳ����(Send the Success view)************/
+				req.setAttribute("listAppt_ByCompositeQueryB", list); // ��Ʈw���X��list����,�s�Jrequest
+				RequestDispatcher successView = req.getRequestDispatcher("/front-end/hospital/appt/listAppt_ByCompositeQueryB.jsp"); // ���\���listEmps_ByCompositeQuery.jsp
+				successView.forward(req, res);
+				
+				/***************************��L�i�઺���~�B�z**********************************/
+			} catch (Exception e) {
+				errorMsgs.add(e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/front-end/hospital/appt/select_page3.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		//DR03
+				if ("listAppt_ByCompositeQueryC".equals(action)) { // �Ӧ�select_page.jsp���ƦX�d�߽ШD
+					List<String> errorMsgs = new LinkedList<String>();
+					// Store this set in the request scope, in case we need to
+					// send the ErrorPage view.
+					req.setAttribute("errorMsgs", errorMsgs);
+
+					try {
+						
+						/***************************1.�N��J����ରMap**********************************/ 
+						//�ĥ�Map<String,String[]> getParameterMap()����k 
+						//�`�N:an immutable java.util.Map 
+						Map<String, String[]> map = req.getParameterMap();
+						
+						/***************************2.�}�l�ƦX�d��***************************************/
+						ApptService apptSvc = new ApptService();
+						List<ApptVO> list  = apptSvc.getQueue(map);
+						
+						/***************************3.�d�ߧ���,�ǳ����(Send the Success view)************/
+						req.setAttribute("listAppt_ByCompositeQueryC", list); // ��Ʈw���X��list����,�s�Jrequest
+						RequestDispatcher successView = req.getRequestDispatcher("/front-end/hospital/appt/listAppt_ByCompositeQueryC.jsp"); // ���\���listEmps_ByCompositeQuery.jsp
+						successView.forward(req, res);
+						
+						/***************************��L�i�઺���~�B�z**********************************/
+					} catch (Exception e) {
+						errorMsgs.add(e.getMessage());
+						RequestDispatcher failureView = req
+								.getRequestDispatcher("/front-end/hospital/appt/select_page3.jsp");
+						failureView.forward(req, res);
+					}
+				}
+				//DR04
+				if ("listAppt_ByCompositeQueryD".equals(action)) { // �Ӧ�select_page.jsp���ƦX�d�߽ШD
+					List<String> errorMsgs = new LinkedList<String>();
+					// Store this set in the request scope, in case we need to
+					// send the ErrorPage view.
+					req.setAttribute("errorMsgs", errorMsgs);
+
+					try {
+						
+						/***************************1.�N��J����ରMap**********************************/ 
+						//�ĥ�Map<String,String[]> getParameterMap()����k 
+						//�`�N:an immutable java.util.Map 
+						Map<String, String[]> map = req.getParameterMap();
+						
+						/***************************2.�}�l�ƦX�d��***************************************/
+						ApptService apptSvc = new ApptService();
+						List<ApptVO> list  = apptSvc.getQueue(map);
+						
+						/***************************3.�d�ߧ���,�ǳ����(Send the Success view)************/
+						req.setAttribute("listAppt_ByCompositeQueryD", list); // ��Ʈw���X��list����,�s�Jrequest
+						RequestDispatcher successView = req.getRequestDispatcher("/front-end/hospital/appt/listAppt_ByCompositeQueryD.jsp"); // ���\���listEmps_ByCompositeQuery.jsp
+						successView.forward(req, res);
+						
+						/***************************��L�i�઺���~�B�z**********************************/
+					} catch (Exception e) {
+						errorMsgs.add(e.getMessage());
+						RequestDispatcher failureView = req
+								.getRequestDispatcher("/front-end/hospital/appt/select_page3.jsp");
+						failureView.forward(req, res);
+					}
+				}
+				//DR05
+				if ("listAppt_ByCompositeQueryE".equals(action)) { // �Ӧ�select_page.jsp���ƦX�d�߽ШD
+					List<String> errorMsgs = new LinkedList<String>();
+					// Store this set in the request scope, in case we need to
+					// send the ErrorPage view.
+					req.setAttribute("errorMsgs", errorMsgs);
+
+					try {
+						
+						/***************************1.�N��J����ରMap**********************************/ 
+						//�ĥ�Map<String,String[]> getParameterMap()����k 
+						//�`�N:an immutable java.util.Map 
+						Map<String, String[]> map = req.getParameterMap();
+						
+						/***************************2.�}�l�ƦX�d��***************************************/
+						ApptService apptSvc = new ApptService();
+						List<ApptVO> list  = apptSvc.getQueue(map);
+						
+						/***************************3.�d�ߧ���,�ǳ����(Send the Success view)************/
+						req.setAttribute("listAppt_ByCompositeQueryE", list); // ��Ʈw���X��list����,�s�Jrequest
+						RequestDispatcher successView = req.getRequestDispatcher("/front-end/hospital/appt/listAppt_ByCompositeQueryE.jsp"); // ���\���listEmps_ByCompositeQuery.jsp
+						successView.forward(req, res);
+						
+						/***************************��L�i�઺���~�B�z**********************************/
+					} catch (Exception e) {
+						errorMsgs.add(e.getMessage());
+						RequestDispatcher failureView = req
+								.getRequestDispatcher("/front-end/hospital/appt/select_page3.jsp");
+						failureView.forward(req, res);
+					}
+				}
 		//會員查詢預約
 				if ("listAppt_ByCompositeQuery2".equals(action)) { // �Ӧ�select_page.jsp���ƦX�d�߽ШD
 					List<String> errorMsgs = new LinkedList<String>();

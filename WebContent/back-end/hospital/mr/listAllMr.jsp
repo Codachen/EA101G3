@@ -16,7 +16,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<%@ include file="/back-end/backEndInclude/head.jsp" %>
+<%@ include file="/back-end/backEndInclude/head.jsp"%>
 	<title>Table V04</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,14 +33,14 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/back-end/hospital/mr/css/util.css">
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/back-end/hospital/mr/css/main.css">
 <!--===============================================================================================-->
 </head>
 <%@ include file="page1.file" %> 
 <body>
 	<%@ include file="/back-end/backEndInclude/header.jsp" %>
-	<span class="mainTitle">診療紀錄管理</span>
+	<span class="mainTitle">診療紀錄管理</span> <a href="<%=request.getContextPath()%>/back-end/hospital/mr/select_page.jsp">返回</a></h6>
 
 	<hr class="mainTitlehr">
 	<div class="limiter">
@@ -88,7 +88,7 @@
                 			</td>
 									<td class="cell100 column4"><c:forEach var="apptVO" items="${apptSvc.all}">
             				<c:if test="${mrVO.apptno==apptVO.apptno}">
-	           				${apptVO.petno}<br>
+	           				${apptVO.petNo}<br>
                   			  </c:if>
                 			</c:forEach></td>
 									<td class="cell100 column5">${mrVO.symptom}</td>
@@ -98,7 +98,7 @@
 									<td class="cell100 column9">${mrVO.operfee}</td>
 									<td class="cell100 column10"> 
 									<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/mr/mr.do" style="margin-bottom: 0px;">
-			    					<input type="image" src="images/icons/edit.jpg" width="20" height="20">
+			    					<input type="image" src="<%=request.getContextPath()%>/back-end/hospital/mr/images/icons/edit.jpg" width="20" height="20">
 			     					<input type="hidden" name="mrno"  value="${mrVO.mrno}">
 			     					<input type="hidden" name="action"	value="getOne_For_Update"></FORM></td>
 									

@@ -125,7 +125,7 @@
 				<img alt="" src="<%=request.getContextPath()%>/Puppy/pic.do?memNo=${memNO}" style="height: 50px" id="mempic">
 				<%=memName%>±z¦n~
 			</div>
-			<a href="#">
+			<a href="<%=request.getContextPath()%>/front-end/member/member/addMem.jsp">
 				<button class="btn menu-right-btn border" type="button" style="<%=(memNO == null) ? "display:" : "display:none"%>">µù¥U</button>
 			</a>
 			<a href="<%=request.getContextPath()%>/front-end/member/member/login.jsp">
