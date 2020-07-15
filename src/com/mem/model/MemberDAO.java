@@ -24,6 +24,7 @@ import jdbcUtil_CompositeQuery.jdbcUtil_CompositeQuery_member;
 public class MemberDAO implements MemberDAO_interface {
 	
 	private static DataSource ds = null;
+	
 	static {
 		try {
 			Context ctx = new InitialContext();
@@ -46,14 +47,16 @@ public class MemberDAO implements MemberDAO_interface {
 	private static final String UPDATEMEMSTATUS="UPDATE MEMBER SET MEMSTATUS=? WHERE MEMNO=?";
 	private static final String CHECKACCOUNT="SELECT* FROM MEMBER WHERE MEMACCOUNT=?";
 	
-	public void insert(MemberVO memberVO) {
+	public String insert(MemberVO memberVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-
+		ResultSet rs = null;
+		String seq = "";
 		try {
+			String[] col= { "MEMNO" };
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(INSERT_STMT);
-
+			pstmt = con.prepareStatement(INSERT_ALL,col);
+			
 //			pstmt.setInt(1, memberVO.getMemNo());
 			pstmt.setString(1, memberVO.getMemName());
 			pstmt.setString(2, memberVO.getMemAccount());
@@ -64,12 +67,21 @@ public class MemberDAO implements MemberDAO_interface {
 			pstmt.setString(7, memberVO.getMemAddress());
 			pstmt.setInt(8, memberVO.getMemStatus());
 			pstmt.setBytes(9, memberVO.getMempic());
-
 			pstmt.executeUpdate();
-
+			rs = pstmt.getGeneratedKeys();
+			if(rs.next())
+				seq = rs.getString(1);
+			//System.out.println(seq);
 		} catch (SQLException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+			e.printStackTrace();
 		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
 			if (pstmt != null) {
 				try {
 					pstmt.close();
@@ -85,7 +97,7 @@ public class MemberDAO implements MemberDAO_interface {
 				}
 			}
 		}
-
+		return seq;
 	}
 
 	public void update(MemberVO memberVO) {
