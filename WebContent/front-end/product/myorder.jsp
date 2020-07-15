@@ -26,9 +26,10 @@
 </head>
 <body id="mybody">
 	<%
-		String memno = (String) session.getAttribute("memNO");
+		String memNO = (String) session.getAttribute("memNO");
+		String memName = (String) session.getAttribute("memName");
 		PorderService svc = new PorderService();
-		List<PorderVO> list = svc.getbymemno(memno);
+		List<PorderVO> list = svc.getbymemno(memNO);
 		request.setAttribute("orderlist", list);
 	%>
 	
@@ -36,7 +37,7 @@
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">å–æ¶ˆè¨‚å–®</h5>
+	        <h5 class="modal-title" id="exampleModalLabel">¨ú®ø­q³æ</h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
@@ -44,10 +45,10 @@
 	      <div class="modal-body">
 	        <form action="<%=request.getContextPath()%>/order/porder.do" method="POST" >
 	          <div class="form-group">
-	            <label for="message-text" class="col-form-label">å–æ¶ˆåŸå› </label>
-	            <textarea class="form-control" id="message-text" placeholder="è«‹è¼¸å…¥åŸå› " name="textarea"></textarea>
+	            <label for="message-text" class="col-form-label">¨ú®ø­ì¦]</label>
+	            <textarea class="form-control" id="message-text" placeholder="½Ğ¿é¤J­ì¦]" name="textarea"></textarea>
 	          </div>
-	          <input disabled type="submit" value="é€å‡º" class="btn btn-primary w-100" id="cancelbtn">
+	          <input disabled type="submit" value="°e¥X" class="btn btn-primary w-100" id="cancelbtn">
 	          <input type="hidden" value="cancelorder" name="action">
 	          <input type="hidden" name="orderid" id="modalorderid" value="">
 	          <input type="hidden" name="url"  value="<%=request.getServletPath()%>">
@@ -63,10 +64,10 @@
 				<div class="row ml-3 mr-3 mt-2">
 					<div class="col-12">
 						<div class="jumbotron" id="myjumbotron">
-						  <h1 class="display-4">æ‚¨æ²’æœ‰ä»»ä½•è¨‚å–®!!</h1>
+						  <h1 class="display-4">±z¨S¦³¥ô¦ó­q³æ!!</h1>
 						  <hr class="my-4">
 						  <p class="lead">
-						    <a role="button" class="btn btn-primary btn-lg" href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp">è¿”å›è³¼ç‰©</a>
+						    <a role="button" class="btn btn-primary btn-lg" href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp">ªğ¦^ÁÊª«</a>
 						  </p>
 						</div>
 					</div>	
@@ -74,16 +75,6 @@
 			</div>
 	</c:if>
 	<c:if test="${not empty orderlist}">
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<%@ page import="com.mem.model.*"%>
-<%	
-	MemberVO member = (MemberVO)session.getAttribute("member");
-	String memNO = (String) session.getAttribute("memNO");
-	String memName = (String) session.getAttribute("memName");
-%>
-
-
 <header>
 	<nav class="navbar navbar-expand-lg navbar-light ">
 			<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="navbar-brand ml-3">
@@ -98,36 +89,36 @@
 		<div class="collapse navbar-collapse" id="navbarMenu">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
-					<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="nav-link">é¦–é </a>
+					<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="nav-link">­º­¶</a>
 				</li>
 				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/member/member/membercenter.jsp" class="nav-link">æœƒå“¡å°ˆå€</a>
+					<a href="<%=request.getContextPath()%>/front-end/member/member/membercenter.jsp" class="nav-link">·|­û±M°Ï</a>
 				</li>
 				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp" class="nav-link">é–€è¨ºå°ˆå€</a>
+					<a href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp" class="nav-link">ªù¶E±M°Ï</a>
 				</li>
 				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/Hotel/hotelIndex.jsp" class="nav-link">å¯µç‰©æ—…é¤¨</a>
+					<a href="<%=request.getContextPath()%>/front-end/Hotel/hotelIndex.jsp" class="nav-link">Ãdª«®ÈÀ]</a>
 				</li>
 				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp" class="nav-link">å¯µç‰©å•†åŸ</a>
+					<a href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp" class="nav-link">Ãdª«°Ó«°</a>
 				</li>
 				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/adopt/adoptedpets/listAllPets.jsp" class="nav-link">é ˜é¤Šå°ˆå€</a>
+					<a href="<%=request.getContextPath()%>/front-end/adopt/adoptedpets/listAllPets.jsp" class="nav-link">»â¾i±M°Ï</a>
 				</li>
 			</ul>
 			<div style="<%=(memNO == null) ? "visibility:hidden" : "visibility:"%>" id="loginFonts">
 				<img alt="" src="<%=request.getContextPath()%>/Puppy/pic.do?memNo=${memNO}" style="height: 50px" id="mempic">
-				<%=memName%>æ‚¨å¥½~
+				<%=memName%>±z¦n~
 			</div>
 			<a href="<%=request.getContextPath()%>/front-end/member/member/addMem.jsp">
-				<button class="btn menu-right-btn border" type="button" style="<%=(memNO == null) ? "display:" : "display:none"%>">è¨»å†Š</button>
+				<button class="btn menu-right-btn border" type="button" style="<%=(memNO == null) ? "display:" : "display:none"%>">µù¥U</button>
 			</a>
 			<a href="<%=request.getContextPath()%>/front-end/member/member/login.jsp">
-				<button class="btn menu-right-btn border" type="submit" id="login" style="<%=(memNO == null) ? "display:" : "display:none"%>">ç™»å…¥</button>
+				<button class="btn menu-right-btn border" type="submit" id="login" style="<%=(memNO == null) ? "display:" : "display:none"%>">µn¤J</button>
 			</a>
 			<form class="form-inline my-2 my-lg-0" action="<%=request.getContextPath()%>/Puppy/logout.do">
-				<button class="btn menu-right-btn border" type="submit" id="logout" style="<%=(memNO != null) ? "display:" : "display:none"%>">ç™»å‡º</button>
+				<button class="btn menu-right-btn border" type="submit" id="logout" style="<%=(memNO != null) ? "display:" : "display:none"%>">µn¥X</button>
 			</form>
 		</div>
 	</nav>
@@ -138,16 +129,16 @@
 			<div class="col-12 mt-1">
 				   <div class="nav-scroller py-1 mb-2">
                 <nav class="nav d-flex justify-content-end mynavbar">
-				<a class="p-2  ml-2" href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp">å•†åŸé¦–é </a> 
-				<a class="p-2  ml-2" href="<%=request.getContextPath()%>/front-end/product/dogindex.jsp">ç‹—ç‹—å°ˆå€</a>
-                  <a class="p-2  ml-2" href="<%=request.getContextPath()%>/front-end/product/catindex.jsp">è²“å’ªå°ˆå€</a>
-                  <a class="p-2  ml-2" href="<%=request.getContextPath()%>/front-end/product/anotherindex.jsp">å…¶ä»–å°ˆå€</a>
+				<a class="p-2  ml-2" href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp">°Ó«°­º­¶</a> 
+				<a class="p-2  ml-2" href="<%=request.getContextPath()%>/front-end/product/dogindex.jsp">ª¯ª¯±M°Ï</a>
+                  <a class="p-2  ml-2" href="<%=request.getContextPath()%>/front-end/product/catindex.jsp">¿ß«}±M°Ï</a>
+                  <a class="p-2  ml-2" href="<%=request.getContextPath()%>/front-end/product/anotherindex.jsp">¨ä¥L±M°Ï</a>
                   <a class="p-2  ml-2 dropdown" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">å€‹äººè³‡æ–™</a>
-                  <a class="p-2  ml-2 text-danger" href="<%=request.getContextPath()%>/front-end/product/shopcart.jsp">è³¼ç‰©è»Š</a>
+                  aria-haspopup="true" aria-expanded="false">­Ó¤H¸ê®Æ</a>
+                  <a class="p-2  ml-2 text-danger" href="<%=request.getContextPath()%>/front-end/product/shopcart.jsp">ÁÊª«¨®</a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="<%=request.getContextPath()%>/front-end/product/myorder.jsp">æŸ¥çœ‹æ­·å²è¨‚å–®</a>
-                    <a class="dropdown-item" href="<%=request.getContextPath()%>/front-end/product/shopcart.jsp">æˆ‘çš„è³¼ç‰©è»Š</a>
+                    <a class="dropdown-item" href="<%=request.getContextPath()%>/front-end/product/myorder.jsp">¬d¬İ¾ú¥v­q³æ</a>
+                    <a class="dropdown-item" href="<%=request.getContextPath()%>/front-end/product/shopcart.jsp">§ÚªºÁÊª«¨®</a>
                   </div>
                 </nav>
               </div>
@@ -156,22 +147,22 @@
 						<thead class="thead">
 							<tr class="ordertr">
 								<c:if test="${orderVO.orderstatus==3}">
-									<th colspan="4">æˆ‘çš„è¨‚å–®</th>
+									<th colspan="4">§Úªº­q³æ</th>
 								</c:if>								
 								<c:if test="${orderVO.orderstatus!=3}">
-									<th colspan="5">æˆ‘çš„è¨‚å–®</th>
+									<th colspan="5">§Úªº­q³æ</th>
 								</c:if>								
 							</tr>
 						</thead>
 						<tbody>
 							<tr class="carttr table-Default">
 								<th>${orderVO.orderid}</th>
-								<th>è¨‚å–®æ—¥æœŸ:${orderVO.orderdate}</th>
-								<th>è¨‚å–®ç¸½é¡:NT$${orderVO.ordertotal}</th>
-								<th>è¨‚å–®ç‹€æ…‹:${(orderVO.orderstatus==0)?'æœªå‡ºè²¨':(orderVO.orderstatus==1)?'å·²å‡ºè²¨':(orderVO.orderstatus==2)?'å·²å®Œæˆ':(orderVO.orderstatus==3)?'å·²å–æ¶ˆ':(orderVO.orderstatus==4)?'å¯©æ ¸ä¸­':''}</th>
+								<th>­q³æ¤é´Á:${orderVO.orderdate}</th>
+								<th>­q³æÁ`ÃB:NT$${orderVO.ordertotal}</th>
+								<th>­q³æª¬ºA:${(orderVO.orderstatus==0)?'¥¼¥X³f':(orderVO.orderstatus==1)?'¤w¥X³f':(orderVO.orderstatus==2)?'¤w§¹¦¨':(orderVO.orderstatus==3)?'¤w¨ú®ø':(orderVO.orderstatus==4)?'¼f®Ö¤¤':''}</th>
 								<c:if test="${orderVO.orderstatus!=3}">
 									<th>
-									<button class="btn btn-info showmodal" value="${orderVO.orderstatus}">å–æ¶ˆè¨‚å–®</button>
+									<button class="btn btn-info showmodal" value="${orderVO.orderstatus}">¨ú®ø­q³æ</button>
 									<input type="hidden" value="${orderVO.orderid}">
 									</th>
 								</c:if>
@@ -181,14 +172,14 @@
 					<div class="container mt-0 p-0">
 						<div class="row mt-0">
 							<div class="col-8 mb-3">
-								<button class="btn btn-info border-radius getdetail">æŸ¥çœ‹æ˜ç´°</button>
+								<button class="btn btn-info border-radius getdetail">¬d¬İ©ú²Ó</button>
 								<table class="table detail mt-2">
 									<thead class="thead">
 										<tr class="detailtr">
-											<th>å•†å“åç¨±</th>
-											<th>å•†å“åœ–ç‰‡</th>
-											<th>è³¼è²·æ•¸é‡</th>
-											<th>å•†å“å–®åƒ¹</th>
+											<th>°Ó«~¦WºÙ</th>
+											<th>°Ó«~¹Ï¤ù</th>
+											<th>ÁÊ¶R¼Æ¶q</th>
+											<th>°Ó«~³æ»ù</th>
 										</tr>
 									</thead>
 									<tbody>	
@@ -217,7 +208,7 @@
 		    <div class="toast-header">
 		      <svg class=" rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
 		                    <rect fill="#007aff" width="100%" height="100%" /></svg>
-		      <strong class="mr-auto">è¨Šæ¯é€šçŸ¥</strong>
+		      <strong class="mr-auto">°T®§³qª¾</strong>
 		      <small class="text-muted">now</small>
 		      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
 		                    <span aria-hidden="true">&times;</span>
