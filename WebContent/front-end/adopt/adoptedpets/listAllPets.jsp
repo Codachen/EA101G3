@@ -125,16 +125,14 @@ main {
 
 <body>
 	<header>
-		<nav class="navbar navbar-expand-lg navbar-light ">
-			<a
-				href="<%=request.getContextPath()%>/front-end/adopt/frontEndIndex/index.jsp"
-				class="navbar-brand ml-3"> Cute:) <span style="color: #00E8E8;">Family</span>
+	<nav class="navbar navbar-expand-lg navbar-light ">
+			<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="navbar-brand ml-3">
+				Cute:)
+				<span style="color: #00E8E8;">Family</span>
 			</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarMenu" aria-controls="navbarMenu"
-				aria-expanded="false" aria-label="Toggle Navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle Navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
 			<div class="collapse navbar-collapse"></div>
 			<div class="collapse navbar-collapse" id="navbarMenu">
@@ -184,16 +182,13 @@ main {
 					<%=memName%>您好~
 				</div>
 				<a href="#">
-					<button class="btn menu-right-btn border" type="button"
-						style="<%=(memNO == null) ? "display:" : "display:none"%>">註冊</button>
-				</a> <a href="#">
-					<button class="btn menu-right-btn border" type="submit" id="login"
-						style="<%=(memNO == null) ? "display:" : "display:none"%>">登入</button>
+					<button class="btn menu-right-btn border" type="button" style="<%=(memNO == null) ? "display:" : "display:none"%>">註冊</button>
 				</a>
-				<form class="form-inline my-2 my-lg-0"
-					action="<%=request.getContextPath()%>/Puppy/logout.do">
-					<button class="btn menu-right-btn border" type="submit" id="logout"
-						style="<%=(memNO != null) ? "display:" : "display:none"%>">登出</button>
+				<a href="<%=request.getContextPath()%>/front-end/member/member/login.jsp">
+					<button class="btn menu-right-btn border" type="submit" id="login" style="<%=(memNO == null) ? "display:" : "display:none"%>">登入</button>
+				</a>
+				<form class="form-inline my-2 my-lg-0" action="<%=request.getContextPath()%>/Puppy/logout.do">
+					<button class="btn menu-right-btn border" type="submit" id="logout" style="<%=(memNO != null) ? "display:" : "display:none"%>">登出</button>
 				</form>
 			</div>
 		</nav>
