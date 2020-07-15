@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
@@ -13,16 +13,21 @@
 
 
 <%
-String docno = request.getParameter("doc");
-String divno = request.getParameter("divno");
 
-
-pageContext.setAttribute("docno", docno);
-System.out.print(docno);
+request.setCharacterEncoding("UTF-8");
+String divNo = request.getParameter("divNo");
+String docName = request.getParameter("docName");
+//String docno = request.getParameter("doc");
+Map<String, String[]> map = request.getParameterMap();
+// System.out.print(request.getParameter("doc"));
+// pageContext.setAttribute("divNo", divNo);
+// pageContext.setAttribute("docName", docName);
+// System.out.print(docno);
 
 
 OptService optSvc = new OptService();
-List<OptVO> list = optSvc.getCalInfoByDoc(docno);
+// List<OptVO> list = optSvc.getCalInfoByDoc(docno);
+List<OptVO> list = optSvc.getCalInfo(map);
 Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 String jsonStr = gson.toJson(list);
 
@@ -70,7 +75,7 @@ pageContext.setAttribute("jsonStr", jsonStr);
       
       eventClick: function(arg) {
     	  var str = arg.event.id;
-    	  //JQ post¼gªk¡AµLªk¨Ï¥Î¡A¦ı¥i±µ¦¬«áºİ³B²z¸ê®Æ
+    	  //JQ postå¯«æ³•ï¼Œç„¡æ³•ä½¿ç”¨ï¼Œä½†å¯æ¥æ”¶å¾Œç«¯è™•ç†è³‡æ–™
 //     	  $.post("apptStart.do?action=addAppt&sessionNo="+str+"");
     	  window.location.href='apptStart.do?action=addAppt&sessionNo='+str+'';
         
@@ -123,9 +128,10 @@ pageContext.setAttribute("jsonStr", jsonStr);
 
 	<div class="calendarTitle">
 		<jsp:useBean id="docSvc" scope="page" class="com.doc.model.DocService" />
+			
 			<c:forEach var="docVO" items="${docSvc.all}">
-				<c:if test="${docno==docVO.docno}"> 
- 				${(docVO.docname)} Âå®v ªù¶E­È¯Zªí
+				<c:if test="${docName==docVO.docname}"> 
+ 				${(docVO.docname)} é†«å¸« é–€è¨ºå€¼ç­è¡¨
  				</c:if> 
 			</c:forEach> 
 	

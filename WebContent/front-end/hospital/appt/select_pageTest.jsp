@@ -1,5 +1,5 @@
 <%@page import="com.doc.model.DocService"%>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
@@ -87,7 +87,7 @@ margin:0px auto;
 <%@ include file="/front-end/frontEndInclude/header.jsp"%>
 	<div class="main">
 
-	<span class="mainTitle">é–€è¨ºé ç´„</span>
+	<span class="mainTitle">ªù¶E¹w¬ù</span>
 
 
 	<hr class="mainTitlehr">
@@ -97,16 +97,19 @@ margin:0px auto;
 
 <div class="allsel" style="width: 100%" align="center">
 
-<div class="sel">ç§‘åˆ¥<br>
-	<select id="divno" class="divno" name="divno">
-		<option value="ALL" selected>è«‹é¸æ“‡
-		<option value="D01">çŠ¬ç§‘</option>
-		<option value="D02">è²“ç§‘</option>
-		<option value="D03">å…¶ä»–ç§‘</option>
+<div class="sel">¬ì§O<br>
+	<select id="divno" class="divno" name="divNo">
+		<option value="" selected>½Ğ¿ï¾Ü</option>
+		<option value="D01">¤ü¬ì</option>
+		<option value="D02">¿ß¬ì</option>
+		<option value="D03">¨ä¥L¬ì</option>
 	</select></div>
 
-<div class="sel">é†«ç”Ÿ<br>
-	<select id="doc" class="doc" name="doc">
+<div class="sel">Âå¥Í<br>
+
+	<select id="doc" class="doc" name="docName">
+	<option value="" selected>¥¼¿ï¾Ü</option>
+	
 
 
 	</select></div>
@@ -114,12 +117,14 @@ margin:0px auto;
 	<br>
 <!-- <input type="hidden" name="action" value="displayOpt">  -->
 		
-		<button type="submit" class="btn btn-primary" id="startBtn">é–‹å§‹é ç´„</button>
+		<button type="submit" class="btn btn-primary" id="startBtn">¶}©l¹w¬ù</button>
 	</FORM>
 
 </div>
 
 </div>
+
+<span>¤£¿ï¨ú¥i¬d¸ß¥ş³¡Âå¥Í</span>
 
 <%@ include file="/front-end/frontEndInclude/footer.jsp"%>
 </body>
@@ -130,52 +135,55 @@ $(function() {
 	
 
 
-	//jsonè½‰æˆ JS jsoné™£åˆ—
+	//jsonÂà¦¨ JS json°}¦C
 	var json1 = '<%=jsonStr1%>'
 	var json2 = '<%=jsonStr2%>'
 	var json3 = '<%=jsonStr3%>'
 	
 	var divno =  document.getElementById("divno");
 	var str ='';
-	//optionç™¼ç”Ÿæ”¹è®Š
+	//optionµo¥Í§ïÅÜ
 	
 	divno.onchange=function (){
 			str = divno.value;
 			if(str==='D01'){
 				var obj = JSON.parse(json1);
 			$('#doc').html("");
+			$('#doc').append("<option value=''>¬d¸ß¥ş³¡</option>");
 			$.each(obj, function (index,item) {
 	            var docno = obj[index].docno;
 	            var docname = obj[index].docname;
-	            //æ§‹é€ å‹•æ…‹option
+	            //ºc³y°ÊºAoption
 	            
-	            $('#doc').append("<option value='"+docno+"'>"+docname+"</option>");
+	            $('#doc').append("<option value='"+docname+"'>"+docname+"</option>");
 	        });
 			}
 			if(str==='D02'){
 				var obj = JSON.parse(json2);
 			$('#doc').html("");
+			$('#doc').append("<option value=''>¬d¸ß¥ş³¡</option>");
 			$.each(obj, function (index,item) {
 	            var docno = obj[index].docno;
 	            var docname = obj[index].docname;
-	            //æ§‹é€ å‹•æ…‹option
+	            //ºc³y°ÊºAoption
 	            
-	            $('#doc').append("<option value='"+docno+"'>"+docname+"</option>");
+	            $('#doc').append("<option value='"+docname+"'>"+docname+"</option>");
 	        });
 			}
 			
 			if(str==='D03'){
 				var obj = JSON.parse(json3);
 			$('#doc').html("");
+			$('#doc').append("<option value=''>¬d¸ß¥ş³¡</option>");
 			$.each(obj, function (index,item) {
 	            var docno = obj[index].docno;
 	            var docname = obj[index].docname;
-	            //æ§‹é€ å‹•æ…‹option
+	            //ºc³y°ÊºAoption
 	            
-	            $('#doc').append("<option value='"+docno+"'>"+docname+"</option>");
+	            $('#doc').append("<option value='"+docname+"'>"+docname+"</option>");
 	        });
 			}
-			if(str==="ALL"){
+			if(str===""){
 				$('#doc').html("");
 			}
 

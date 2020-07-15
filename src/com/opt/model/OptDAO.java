@@ -498,7 +498,7 @@ public class OptDAO implements OptDAO_interface {
 		}
 		return list;
 	}
-	
+	@Override
 	public List<OptVO> getCalInfo(Map<String, String[]> map) {
 		List<OptVO> list = new ArrayList<OptVO>();
 		OptVO optVO = null;
@@ -510,12 +510,12 @@ public class OptDAO implements OptDAO_interface {
 		try {
 
 			con = ds.getConnection();
-			String finalSQL = "SELECT sessionNo,docName,divNo,to_char(optDate,'yyyy-mm-dd')optDate,"+
-			"optSession,currentCount,currentCount " + 
-			"FROM OPTSESSION " + 
-			"JOIN DOCTOR ON OPTSESSION.DOCNO = DOCTOR.DOCNO " + 
-			jdbcUtil_CompositeQuery_Opt.get_WhereCondition(map)+
-			"order by sessionNo";
+			String finalSQL = "SELECT sessionNo,DOCTOR.docno,docName,divNo,to_char(optDate,'yyyy-mm-dd')optDate,"+
+					"optSession,currentCount,maximum " + 
+					"FROM OPTSESSION " + 
+					"JOIN DOCTOR ON OPTSESSION.docno = DOCTOR.docno " + 
+					jdbcUtil_CompositeQuery_Opt.get_WhereCondition(map)+
+					"order by sessionNo";
 			
 			pstmt = con.prepareStatement(finalSQL);
 			System.out.println("finalSQL(班表複合查) = "+finalSQL);

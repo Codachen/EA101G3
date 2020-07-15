@@ -598,6 +598,12 @@ public class OptJDBCDAO implements OptDAO_interface {
 		}
 	}
 
+	@Override
+	public List<OptVO> getCalInfo(Map<String, String[]> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 	

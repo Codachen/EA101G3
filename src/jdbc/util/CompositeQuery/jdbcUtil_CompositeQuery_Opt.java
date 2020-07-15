@@ -17,7 +17,7 @@ public class jdbcUtil_CompositeQuery_Opt {
 
 		if ("currentCount".equals(columnName)|| "currentCount".equals(columnName)) // 用於其他
 			aCondition = columnName + "=" + value;
-		else if ("sessionNo".equals(columnName) || "docName".equals(columnName)||"optSession".equals(columnName)||"divNo".equals(columnName)) // 用於varchar
+		else if ("DOCTOR.docno".equals(columnName) ||"sessionNo".equals(columnName) || "docName".equals(columnName)||"optSession".equals(columnName)||"divNo".equals(columnName)) // 用於varchar
 			aCondition = columnName + " like '%" + value + "%'";
 		else if ("optDate".equals(columnName))                          // 用於Oracle的date
 			aCondition = "to_char(" + columnName + ",'yyyy-mm-dd')='" + value + "'";
@@ -58,14 +58,14 @@ public class jdbcUtil_CompositeQuery_Opt {
 		
 //		map.put("optSession", new String[] { "14:00~17:00" }); // 注意Map裡面會含有action的key
 
-//		map.put("docName", new String[] { "李美玲" });
+//		map.put("DOCTOR.docno", new String[] { "DR01" });
 		
 //		map.put("divNo", new String[] { "D01" });
 		
-		String finalSQL = "SELECT sessionNo,docName,divNo,to_char(optDate,'yyyy-mm-dd')optDate,"+
+		String finalSQL = "SELECT sessionNo,DOCTOR.docno,docName,divNo,to_char(optDate,'yyyy-mm-dd')optDate,"+
 				"optSession,currentCount,currentCount " + 
 				"FROM OPTSESSION " + 
-				"JOIN DOCTOR ON OPTSESSION.DOCNO = DOCTOR.DOCNO " + 
+				"JOIN DOCTOR ON OPTSESSION.docno = DOCTOR.docno " + 
 				jdbcUtil_CompositeQuery_Opt.get_WhereCondition(map)+
 				"order by sessionNo";
 		System.out.println("●●finalSQL = " + finalSQL);
