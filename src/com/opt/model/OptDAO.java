@@ -7,6 +7,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import jdbc.util.CompositeQuery.jdbcUtil_CompositeQuery_Appt2;
+import jdbc.util.CompositeQuery.jdbcUtil_CompositeQuery_Opt;
+
 import java.sql.*;
 import java.sql.Date;
 
@@ -458,6 +461,67 @@ public class OptDAO implements OptDAO_interface {
 
 			while (rs.next()) {
 				// empVO 也稱為 Domain objects
+				
+			
+				optVO = new OptVO();
+//		
+				optVO.setTitle(rs.getString("docName"),rs.getInt("currentCount"),rs.getInt("maximum"),rs.getString("optSession"));
+				optVO.setStart(rs.getDate("optDate"));
+				list.add(optVO); // Store the row in the list
+			}
+			
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+	
+	public List<OptVO> getCalInfo(Map<String, String[]> map) {
+		List<OptVO> list = new ArrayList<OptVO>();
+		OptVO optVO = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			String finalSQL = "SELECT sessionNo,docName,divNo,to_char(optDate,'yyyy-mm-dd')optDate,"+
+			"optSession,currentCount,currentCount " + 
+			"FROM OPTSESSION " + 
+			"JOIN DOCTOR ON OPTSESSION.DOCNO = DOCTOR.DOCNO " + 
+			jdbcUtil_CompositeQuery_Opt.get_WhereCondition(map)+
+			"order by sessionNo";
+			
+			pstmt = con.prepareStatement(finalSQL);
+			System.out.println("finalSQL(班表複合查) = "+finalSQL);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
 				
 			
 				optVO = new OptVO();

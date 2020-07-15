@@ -52,12 +52,16 @@ font-weight:bold;
 }
 
 #img {
-	max-width: 1800px;
+	max-width: 1100px;
 }
 
 /* .modal-body img{ */
 /* width:800px; */
 /* } */
+
+
+
+
 </style>
 
 </head>
