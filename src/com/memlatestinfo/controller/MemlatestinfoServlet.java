@@ -108,7 +108,7 @@ public class MemlatestinfoServlet extends HttpServlet{
 				/***************************2.開始查詢資料*****************************************/				
 				//為了讓登入頁面裡面不會按了最新消息後直接導到listAll
 				if (str == null || (str.trim()).length() == 0) {
-					res.sendRedirect(req.getContextPath() + "/front-end/member/member/membercenter.jsp");
+					res.sendRedirect(req.getContextPath() + "/front-end/member/member/login.jsp");
 					return;
 				}
 				
@@ -136,22 +136,22 @@ public class MemlatestinfoServlet extends HttpServlet{
 				
 				
 				//以下為為了讓listAll的會員訊息查詢可以判斷有沒有資料
-				List<String> memcount = new ArrayList();
+//				List<String> memcount = new ArrayList();
+//				
+//				for(MemlatestinfoVO mtt:mliVO) {
+//					String x = mtt.getMemNo();
+//					memcount.add(x);
+//				}
 				
-				for(MemlatestinfoVO mtt:mliVO) {
-					String x = mtt.getMemNo();
-					memcount.add(x);
-				}
-				
-				if(!memcount.contains(str)) {
-					errorMsgs.add("查無資料");
-					
-					String url = "/back-end/member/memlatestinfo/listAll_memli.jsp";
-					RequestDispatcher failureView = req
-							.getRequestDispatcher(url);
-					failureView.forward(req, res);
-					return;//程式中斷
-				}
+//				if(!memcount.contains(str)) {
+//					errorMsgs.add("查無資料");
+//					
+//					String url = "/back-end/member/memlatestinfo/listAll_memli.jsp";
+//					RequestDispatcher failureView = req
+//							.getRequestDispatcher(url);
+//					failureView.forward(req, res);
+//					return;//程式中斷
+//				}   這是之前為了讓listall下面的會員搜尋有刪除重複功能
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("mliVO", mliVO); //資料庫取出的empVO物件,存入req
