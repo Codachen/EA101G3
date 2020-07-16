@@ -15,17 +15,64 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="/back-end/backEndInclude/head.jsp"%>
+<style>
+/* table { */
+/* 	width: 100%; */
+/* 	background-color: white; */
+/* 	margin-top: 5px; */
+/* 	margin-bottom: 5px; */
+/* 	border: 1px solid #CCCCFF; */
+/* } */
+
+table {
+	text-align: center;
+	background-color: white;
 	
+}
+
+ th { 
+/* 	padding: 5px; */
+ 	background-color: lightcoral;
+} 
+
+/* th, td { */
+/* 	padding: 5px; */
+/* 	border-bottom: dotted; */
+/* 	border-width: 1px; */
+/* 	border-color: rgba(0, 0, 0, 0.5); */
+/* } */
+
+td{
+line-height:60px;
+height:60px;
+}
+
+.seqno{
+font-size:28px; 
+color:red; 
+font-weight:bold; 
+}
+
+#img {
+	max-width: 1800px;
+}
+
+/* .modal-body img{ */
+/* width:800px; */
+/* } */
+</style>
 </head>
+
 <body>
-	
+		<%@ include file="/back-end/backEndInclude/header.jsp" %>
 
 	<!-- ****************************以下為實際功能頁變更區域**************************** -->
 <span class="mainTitle">所有醫師資料</span>
 
 	<hr class="mainTitlehr">
 		 
-	<h6><a href="select_page.jsp"><img src="images/back.png" width="32" height="32" border="0">返回管理主頁面</a></h6>
+	<a href="<%=request.getContextPath()%>/back-end/hospital/doc/select_page.jsp">返回</a></h6>
 
 
 <%-- 錯誤表列 --%>
@@ -60,11 +107,11 @@
 			<td>${docVO.docname}</td>
 			<td>${docVO.roomno}</td>
 			<td>${docVO.seniority}</td>
-			<td>${docVO.intro}</td> 
+			<td width="40%"  align="left">${docVO.intro}</td> 
 			<td>
 			<img alt="" src="<%=request.getContextPath()%>/back-end/doc/ShowDocPic.do?docno=${docVO.docno}" id="display">
 			</td>
-			<td>${docVO.docstatus}</td>
+			<td width="5%">${docVO.docstatus}</td>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/doc/doc.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改">
@@ -88,8 +135,7 @@
 
 
 
-<footer class="Footer">Copyright © 萌寵家族 Cute Family
-</footer>
+<%@ include file="/back-end/backEndInclude/footer.jsp"%>
 
 
 </div>

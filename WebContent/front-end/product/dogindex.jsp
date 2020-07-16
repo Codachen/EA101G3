@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="<%= request.getContextPath()%>/front-end/product/style.css">
 <link rel="stylesheet" href="<%= request.getContextPath()%>/front-end/product/dogindex.css">
 <!-- bootstrap、FontAwesome、googleFont -->
+<!-- bootstrap、FontAwesome、googleFont -->
 <style>
 .myjumbotron {
 	background-image: url("<%=request.getContextPath()%>/front-end/product/img/6.jpg");
@@ -73,8 +74,10 @@
 				</li>
 			</ul>
 			<div style="<%=(memNO == null) ? "visibility:hidden" : "visibility:"%>" id="loginFonts">
+				<span class="nav-link">
 				<img alt="" src="<%=request.getContextPath()%>/Puppy/pic.do?memNo=${memNO}" style="height: 50px" id="mempic">
-				<%=memName%>您好~
+				 <%=memName%>您好~
+				  </span>
 			</div>
 			<a href="<%=request.getContextPath()%>/front-end/member/member/addMem.jsp">
 				<button class="btn menu-right-btn border" type="button" style="<%=(memNO == null) ? "display:" : "display:none"%>">註冊</button>
