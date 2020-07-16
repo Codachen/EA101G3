@@ -27,7 +27,6 @@ public class jdbcUtil_CompositeQuery_member {
 					whereCondition.append(" where " + aCondition);
 				else
 					whereCondition.append(" and " + aCondition);
-				
 			}
 		}
 		

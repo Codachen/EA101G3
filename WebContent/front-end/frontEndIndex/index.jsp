@@ -16,6 +16,9 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/frontEndIndex/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/frontEndInclude/style.css">
+
+
 <!-- bootstrap、FontAwesome、googleFont -->
 </head>
 
@@ -70,6 +73,7 @@
 		</div>
 	</nav>
 	</header>
+
 
 	<main >
 		<div class="container-fluid p-0">
