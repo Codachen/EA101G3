@@ -7,48 +7,66 @@
 <jsp:useBean id="divSvc" scope="page" class="com.div.model.DivService" />
 
 <html>
-<head><title>部門員工 - listEmps_ByDeptno.jsp</title>
-
+<head>
+<%@ include file="/back-end/backEndInclude/head.jsp"%>
 <style>
-  table#table-2 {
-	background-color: #CCCCFF;
-    border: 2px solid black;
-    text-align: center;
-  }
-  table#table-2 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
-</style>
+/* table { */
+/* 	width: 100%; */
+/* 	background-color: white; */
+/* 	margin-top: 5px; */
+/* 	margin-bottom: 5px; */
+/* 	border: 1px solid #CCCCFF; */
+/* } */
 
-<style>
-  table {
-	width: 800px;
+table {
+	text-align: center;
 	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
-  }
-  table, th, td {
-    border: 1px solid #CCCCFF;
-  }
-  th, td {
-    padding: 5px;
-    text-align: center;
-  }
-</style>
+	
+}
 
+ th { 
+/* 	padding: 5px; */
+ 	background-color: lightcoral;
+} 
+
+/* th, td { */
+/* 	padding: 5px; */
+/* 	border-bottom: dotted; */
+/* 	border-width: 1px; */
+/* 	border-color: rgba(0, 0, 0, 0.5); */
+/* } */
+
+td{
+line-height:60px;
+height:60px;
+}
+
+.seqno{
+font-size:28px; 
+color:red; 
+font-weight:bold; 
+}
+
+#img {
+	max-width: 1800px;
+}
+
+/* .modal-body img{ */
+/* width:800px; */
+/* } */
+</style>
 </head>
-<body bgcolor='white'>
-<table id="table-2">
-	<tr><td>
-		 <h3>按科別查詢醫師 </h3>
+
+<body>
+		<%@ include file="/back-end/backEndInclude/header.jsp" %>
+
+	<!-- ****************************以下為實際功能頁變更區域**************************** -->
+<span class="mainTitle">科別醫師檢索</span>
+
+	<hr class="mainTitlehr">
 		 
-		 <h4><a href="<%=request.getContextPath()%>/back-end/doc/select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
+	<a href="<%=request.getContextPath()%>/back-end/hospital/doc/select_page.jsp">返回</a></h6>
+
 	</td></tr>
 </table>
 <table>
@@ -91,11 +109,11 @@
 			<td>${docVO.docname}</td>
 			<td>${docVO.roomno}</td>
 			<td>${docVO.seniority}</td>
-			<td>${docVO.intro}</td> 
+			<td  width="40%"  align="left">${docVO.intro}</td> 
 			<td>
 			<img alt="" src="<%=request.getContextPath()%>/back-end/doc/ShowDocPic.do?docno=${docVO.docno}" id="display">
 			</td>
-			<td>${docVO.docstatus}</td>	
+			<td width="5%">${docVO.docstatus}</td>	
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/doc/doc.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改">
@@ -107,9 +125,7 @@
 	</c:forEach>
 </table>
 
-<br>本網頁的路徑:<br><b>
-   <font color=blue>request.getServletPath():</font> <%=request.getServletPath()%><br>
-   <font color=blue>request.getRequestURI(): </font> <%=request.getRequestURI()%> </b>
+
 
 </body>
 </html>

@@ -29,7 +29,7 @@
 <h3>資料查詢</h3>
 
 <table>
-  <li><a href='listAllDoc.jsp'>醫師一覽</a><br></li>
+  <li><a href='<%=request.getContextPath()%>/back-end/hospital/doc/listAllDoc.jsp'>醫師一覽</a><br></li>
 
 
   <tr>

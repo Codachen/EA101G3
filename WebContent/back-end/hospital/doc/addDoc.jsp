@@ -21,18 +21,19 @@
 
 	<hr class="mainTitlehr">
 
-	<h6><a href="select_page.jsp">返回管理主頁面</a></h6>
+	<a href="<%=request.getContextPath()%>/back-end/hospital/doc/select_page.jsp">返回</a></h6>
 <h3>醫師新增:</h3>
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
 	<ul>
-		<c:forEach var="message" items="${errorMsgs}">
+	    <c:forEach var="message" items="${errorMsgs}">
 			<li style="color:red">${message}</li>
 		</c:forEach>
 	</ul>
 </c:if>
+
 
 <FORM METHOD="post" ACTION="doc.do" name="form1" enctype="multipart/form-data">
 <table>

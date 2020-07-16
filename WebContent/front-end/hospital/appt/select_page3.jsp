@@ -8,6 +8,8 @@
 %>
 
 <head>
+ <script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>萌寵家族</title>
@@ -126,13 +128,13 @@ main {
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/hospital/appt/css/bootstrap.min.css">
     <!-- Site CSS -->
-    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/hospital/appt/style2.css">
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/hospital/appt/css/responsive.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/hospital/appt/css/custom.css">
 	<script src="js/modernizr.js"></script> <!-- Modernizr -->
 
     <!--[if lt IE 9]>
@@ -258,48 +260,277 @@ main {
 							<i class="flaticon-discuss-issue"></i>
 							
 							 <!-- icon -->
-						</div>DR01
+						</div><h1>早診 Morning</h1>
 						<h2>張國彬醫師</h2>
-						<iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue1.jsp" frameborder="0" width="100%" height="100%"></iframe>
+						<div class="morning"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue1.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
+						</div>
+						<div class="morning2" style="height:65px;"><i class="fas fa-exclamation-circle"></i>現在不是早診時段
+					</div>		
 					</div>
                 </div><!-- end col -->
+                <script type="text/javascript">
+$(document).ready(function () {
+    var d = new Date();
+    var dayOfWeek = d.getDay();
+    var hour = d.getHours();
+    
+    // open hours Monday - Friday 9am - 5:pm = open
+   if (dayOfWeek !== 6 && dayOfWeek !== 0 && hour >= 10 && hour < 12) {
+    $('.morning').show();
+    $('.morning2').hide();
+    $('.noon').hide(); 
+   	$('.noon2').show();
+   	$('.evening').hide(); 
+	$('.evening2').show();
+}
+    
+   else if (dayOfWeek !== 6 && dayOfWeek !== 0 && hour >= 14 && hour < 17) {
+	   $('.noon').show();
+	   $('.noon2').hide(); 
+	   $('.morning').hide(); 
+	   $('.morning2').show();
+	   $('.evening').hide(); 
+ 	   $('.evening2').show();
+   }
+    
+	else if (dayOfWeek !== 6 && dayOfWeek !== 0 && hour >= 18 && hour < 20) {
+	   $('.evening').show();
+  	   $('.evening2').hide(); 
+  	   $('.morning').hide(); 
+   	   $('.morning2').show();
+       $('.noon').hide(); 
+   	   $('.noon2').show();
+   }
+else {
+	$('.morning').hide(); 
+	$('.morning2').show();
+    $('.noon').hide(); 
+	$('.noon2').show();
+	$('.evening').hide(); 
+	$('.evening2').show();
+}
+  });
+
+  
+</script>
+                <!-- ------------------------------------------------- -->
+                <div class="col-md-4">
+                    <div class="services-inner-box">
+						<div class="ser-icon">
+							<i class="flaticon-discuss-issue"></i>
+							
+							 <!-- icon -->
+						</div><h1>午診  Afternoon 14:00~17:00</h1>
+						<h2>張國彬醫師</h2>
+						<div class="noon"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue1B.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
+						</div>
+						<div class="noon2" style="height:65px;"><i class="fas fa-exclamation-circle"></i>現在不是午診時段
+					</div>		
+					</div>
+                </div>
+               <!-- ------------------------------------------------- -->
+                <!-- ------------------------------------------------- -->
+                <div class="col-md-4">
+                    <div class="services-inner-box">
+						<div class="ser-icon">
+							<i class="flaticon-discuss-issue"></i>
+							
+							 <!-- icon -->
+						</div>DR01<h1>夜診 Evening 18:00~20:00</h1>
+						<h2>張國彬醫師</h2>
+						<div class="evening"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue1C.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
+						</div>
+						<div class="evening2" style="height:65px;"><i class="fas fa-exclamation-circle"></i>現在不是夜診時段
+					</div>		
+					</div>
+                </div>
+               <!-- ------------------------------------------------- -->
                 
                 <div class="col-md-4">
                     <div class="services-inner-box">
 						<div class="ser-icon">
 							<i class="flaticon-discuss-issue"></i>
-						</div>DR02
+							
+							 <!-- icon -->
+						</div>DR02<h1>早診</h1>
 						<h2>李美玲醫師</h2>
-						<iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queueB.jsp" frameborder="0" width="100%" height="100%"></iframe>
+						<div class="morning"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue2.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
+						</div>
+						<div class="morning2" style="height:65px;"><i class="fas fa-exclamation-circle"></i>現在不是早診時段
+					</div>		
 					</div>
-                </div><!-- end col -->
-				<div class="col-md-4">
+                </div>
+                
+                <!-- ------------------------------------------------- -->
+                <div class="col-md-4">
                     <div class="services-inner-box">
 						<div class="ser-icon">
 							<i class="flaticon-discuss-issue"></i>
-						</div>DR03
+							
+							 <!-- icon -->
+						</div>DR02<h1>午診</h1>
+						<h2>李美玲醫師</h2>
+						<div class="noon"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue2B.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
+						</div>
+						<div class="noon2" style="height:65px;"><i class="fas fa-exclamation-circle"></i>現在不是午診時段
+					</div>		
+					</div>
+                </div>
+               <!-- ------------------------------------------------- -->
+                <!-- ------------------------------------------------- -->
+                <div class="col-md-4">
+                    <div class="services-inner-box">
+						<div class="ser-icon">
+							<i class="flaticon-discuss-issue"></i>
+							
+							 <!-- icon -->
+						</div>DR02<h1>夜診</h1>
+						<h2>李美玲醫師</h2>
+						<div class="evening"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue2C.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
+						</div>
+						<div class="evening2" style="height:65px;"><i class="fas fa-exclamation-circle"></i>現在不是夜診時段
+					</div>		
+					</div>
+                </div>
+               <!-- ------------------------------------------------- --><div class="col-md-4">
+                    <div class="services-inner-box">
+						<div class="ser-icon">
+							<i class="flaticon-discuss-issue"></i>
+							
+							 <!-- icon -->
+						</div>DR03<h1>早診</h1>
 						<h2>黃昭文醫師</h2>
-						<iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queueC.jsp" frameborder="0" width="100%" height="100%"></iframe>
+						<div class="morning"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue3.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
+						</div>
+						<div class="morning2" style="height:65px;"><i class="fas fa-exclamation-circle"></i>現在不是早診時段
+					</div>		
 					</div>
-                </div><!-- end col -->
+                </div>
+                
+                <!-- ------------------------------------------------- -->
                 <div class="col-md-4">
                     <div class="services-inner-box">
 						<div class="ser-icon">
 							<i class="flaticon-discuss-issue"></i>
-						</div>DR04
+							
+							 <!-- icon -->
+						</div>DR03<h1>午診</h1>
+						<h2>黃昭文醫師</h2>
+						<div class="noon"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue3B.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
+						</div>
+						<div class="noon2" style="height:65px;"><i class="fas fa-exclamation-circle"></i>現在不是午診時段
+					</div>		
+					</div>
+                </div>
+               <!-- ------------------------------------------------- -->
+                <!-- ------------------------------------------------- -->
+                <div class="col-md-4">
+                    <div class="services-inner-box">
+						<div class="ser-icon">
+							<i class="flaticon-discuss-issue"></i>
+							
+							 <!-- icon -->
+						</div>DR03<h1>夜診</h1>
+						<h2>黃昭文醫師</h2>
+						<div class="evening"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue3C.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
+						</div>
+						<div class="evening2" style="height:65px;"><i class="fas fa-exclamation-circle"></i>現在不是夜診時段
+					</div>		
+					</div>
+                </div>
+               <!-- ------------------------------------------------- --><div class="col-md-4">
+                    <div class="services-inner-box">
+						<div class="ser-icon">
+							<i class="flaticon-discuss-issue"></i>
+							
+							 <!-- icon -->
+						</div>DR04<h1>早診</h1>
 						<h2>蔡旻烜醫師</h2>
-						<iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queueD.jsp" frameborder="0" width="100%" height="100%"></iframe>
+						<div class="morning"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue4.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
+						</div>
+						<div class="morning2" style="height:65px;"><i class="fas fa-exclamation-circle"></i>現在不是早診時段
+					</div>		
 					</div>
-                </div><!-- end col -->
+                </div>
+                
+                <!-- ------------------------------------------------- -->
                 <div class="col-md-4">
                     <div class="services-inner-box">
 						<div class="ser-icon">
 							<i class="flaticon-discuss-issue"></i>
-						</div>DR05
-						<h2>鄭柏昕醫師</h2>
-						<iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queueE.jsp" frameborder="0" width="100%" height="100%"></iframe>
+							
+							 <!-- icon -->
+						</div>DR04<h1>午診</h1>
+						<h2>蔡旻烜醫師</h2>
+						<div class="noon"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue4B.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
+						</div>
+						<div class="noon2" style="height:65px;"><i class="fas fa-exclamation-circle"></i>現在不是午診時段
+					</div>		
 					</div>
-                </div><!-- end col -->
+                </div>
+               <!-- ------------------------------------------------- -->
+                <!-- ------------------------------------------------- -->
+                <div class="col-md-4">
+                    <div class="services-inner-box">
+						<div class="ser-icon">
+							<i class="flaticon-discuss-issue"></i>
+							
+							 <!-- icon -->
+						</div>DR04<h1>夜診</h1>
+						<h2>蔡旻烜醫師</h2>
+						<div class="evening"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue4C.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
+						</div>
+						<div class="evening2" style="height:65px;"><i class="fas fa-exclamation-circle"></i>現在不是夜診時段
+					</div>		
+					</div>
+                </div>
+                <div class="col-md-4">
+                    <div class="services-inner-box">
+						<div class="ser-icon">
+							<i class="flaticon-discuss-issue"></i>
+							
+							 <!-- icon -->
+						</div>DR05<h1>早診</h1>
+						<h2>鄭柏昕醫師</h2>
+						<div class="morning"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue5.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
+						</div>
+						<div class="morning2" style="height:65px;"><i class="fas fa-exclamation-circle"></i>現在不是早診時段
+					</div>		
+					</div>
+                </div>
+                
+                <!-- ------------------------------------------------- -->
+                <div class="col-md-4">
+                    <div class="services-inner-box">
+						<div class="ser-icon">
+							<i class="flaticon-discuss-issue"></i>
+							
+							 <!-- icon -->
+						</div>DR05<h1>午診</h1>
+						<h2>鄭柏昕醫師</h2>
+						<div class="noon"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue5B.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
+						</div>
+						<div class="noon2" style="height:65px;"><i class="fas fa-exclamation-circle"></i>現在不是午診時段
+					</div>		
+					</div>
+                </div>
+               <!-- ------------------------------------------------- -->
+                <!-- ------------------------------------------------- -->
+                <div class="col-md-4">
+                    <div class="services-inner-box">
+						<div class="ser-icon">
+							<i class="flaticon-discuss-issue"></i>
+							
+							 <!-- icon -->
+						</div>DR05<h1>夜診</h1>
+						<h2>鄭柏昕醫師</h2>
+						<div class="evening"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue5C.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
+						</div>
+						<div class="evening2" style="height:65px;"><i class="fas fa-exclamation-circle"></i>現在不是夜診時段
+					</div>		
+					</div>
+                </div>
+               <!-- ------------------------------------------------- -->
 				
             </div><!-- end row -->
         </div><!-- end container -->
@@ -330,7 +561,7 @@ main {
                                
                             </ul>
 							
-<p><a href='<%=request.getContextPath()%>/front-end/hospital/appt/dispOpt.jsp' style="text-decoration:none;"><b>點此瀏覽門診班表</b></a></p>
+<p><a href='<%=request.getContextPath()%>/front-end/hospital/appt/select_page.jsp' style="text-decoration:none;"><b>點此瀏覽門診班表</b></a></p>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  <jsp:useBean id="docSvc" scope="page" class="com.doc.model.DocService" />
