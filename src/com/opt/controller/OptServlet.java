@@ -7,6 +7,8 @@ import javax.servlet.*;
 
 import javax.servlet.http.*;
 
+import com.appt.model.ApptService;
+import com.appt.model.ApptVO;
 import com.google.gson.*;
 
 import com.opt.model.*;
@@ -191,7 +193,38 @@ public class OptServlet extends HttpServlet {
 			}
 		}
 		
+		//看診進度查詢
+				if ("listQueue1".equals(action)) { // �Ӧ�select_page.jsp���ƦX�d�߽ШD
+					List<String> errorMsgs = new LinkedList<String>();
+					// Store this set in the request scope, in case we need to
+					// send the ErrorPage view.
+					req.setAttribute("errorMsgs", errorMsgs);
 
+					try {
+						
+						/***************************1.�N��J����ରMap**********************************/ 
+						//�ĥ�Map<String,String[]> getParameterMap()����k 
+						//�`�N:an immutable java.util.Map 
+						Map<String, String[]> map = req.getParameterMap();
+						
+						/***************************2.�}�l�ƦX�d��***************************************/
+						OptService optSvc = new OptService();
+						List<OptVO> list  = optSvc.getQueue(map);
+						
+						/***************************3.�d�ߧ���,�ǳ����(Send the Success view)************/
+						req.setAttribute("listQueue1", list); // ��Ʈw���X��list����,�s�Jrequest
+						RequestDispatcher successView = req.getRequestDispatcher("/front-end/hospital/appt/listQueue1.jsp"); // ���\���listEmps_ByCompositeQuery.jsp
+						successView.forward(req, res);
+						
+						/***************************��L�i�઺���~�B�z**********************************/
+					} catch (Exception e) {
+						errorMsgs.add(e.getMessage());
+						RequestDispatcher failureView = req
+								.getRequestDispatcher("/front-end/hospital/appt/select_page3.jsp");
+						failureView.forward(req, res);
+					}
+				}	
+		
 
 //		if ("testJson".equals(action)) {	 // 來自addEmp.jsp的請求
 //			

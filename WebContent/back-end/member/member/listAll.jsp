@@ -23,7 +23,7 @@
 <%@ include file="/back-end/backEndInclude/header.jsp"%>
 <table id="table-1" >
 	<tr ><td>
-		 <h3>所有會員資料 - listAll.jsp</h3>
+		 <h3>所有會員資料</h3>
 	</td></tr>
 </table>
 <%-- <c:if test="${not empty errorMsgs}"> --%>

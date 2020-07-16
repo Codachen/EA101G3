@@ -26,9 +26,9 @@
 	<filter-mapping>
 		<filter-name>loginfilter</filter-name>
 		<url-pattern>/front-end/member/updatemem.jsp</url-pattern>
-		<url-pattern>/front-end/memlatestinfo/listAll_memli.jsp</url-pattern>
+		<url-pattern>/front-end/member/listAll_memli.jsp</url-pattern>
 		<url-pattern>/front-end/product/check.jsp</url-pattern>
-		<url-pattern>/front-end/product/myorder.jsp</url-pattern>	
+		<url-pattern>/front-end/product/myorder.jsp</url-pattern>
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
         <dispatcher>INCLUDE</dispatcher>
@@ -343,6 +343,16 @@
 		<servlet-name>OptServlet</servlet-name>
 		<url-pattern>/back-end/hospital/opt/opt.do</url-pattern>
 	</servlet-mapping>
+
+<servlet>
+		<servlet-name>OptServlet2</servlet-name>
+		<servlet-class>com.opt.controller.OptServlet2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OptServlet2</servlet-name>
+		<url-pattern>/front-end/hospital/opt/opt.do</url-pattern>
+	</servlet-mapping>
+
 
 	<servlet>
 		<servlet-name>ApptServlet</servlet-name>

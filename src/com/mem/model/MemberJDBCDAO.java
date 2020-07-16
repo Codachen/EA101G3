@@ -34,15 +34,17 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 	private static final String login = "SELECT memNo FROM MEMBER WHERE memAccount=? AND memPassword=?";
 
 	
-	public void insert(MemberVO memberVO) {
+	public String insert(MemberVO memberVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-
+		ResultSet rs = null;
+		Integer seq = null;
 		try {
+			String[] col= {"memno"};
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(INSERT_STMT);
-
+			pstmt = con.prepareStatement(INSERT_STMT,col);
+			
 //			pstmt.setInt(1, memberVO.getMemNo());
 			pstmt.setString(1, memberVO.getMemName());
 			pstmt.setString(2, memberVO.getMemAccount());
@@ -54,12 +56,21 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 			pstmt.setInt(8, memberVO.getMemStatus());
 
 			pstmt.executeUpdate();
-
+			rs = pstmt.getGeneratedKeys();
+			rs.next();
+			seq = rs.getInt(1);
 		} catch (SQLException e) {
 			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 		} catch (ClassNotFoundException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
 			if (pstmt != null) {
 				try {
 					pstmt.close();
@@ -75,6 +86,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 				}
 			}
 		}
+		return "";
 
 	}
 
@@ -520,5 +532,17 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 		
 		
 		return list;
+	}
+
+	@Override
+	public void updatestatus(Integer status, String memno) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean checkaccount(String account) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

@@ -2,6 +2,9 @@ package com.opt.model;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
+
+import com.appt.model.ApptVO;
 
 
 
@@ -81,4 +84,7 @@ public class OptService {
 		return dao.getAll();
 	}
 
+	public List<OptVO> getQueue(Map<String, String[]> map) {
+		return dao.getQueue(map);
+	}
 }

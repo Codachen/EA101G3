@@ -1,7 +1,6 @@
 package com.appt.controller;
 
 import java.io.*;
-import java.io.BufferedInputStream;
 import java.util.*;
 
 import javax.servlet.*;
@@ -14,6 +13,7 @@ import com.appt.model.*;
  */
 public class ApptShowImg extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
@@ -26,6 +26,7 @@ public class ApptShowImg extends HttpServlet {
 			ApptService apptSvc = new ApptService();
 			ApptVO apptVO = apptSvc.getOneAppt(apptno);
 			byte[] buf = apptVO.getSymphoto();
+			System.out.println(apptVO.getApptno());
 			out.write(buf);
 
 		} catch (Exception e) {

@@ -2,6 +2,8 @@ package com.HotelOrder.model;
 
 import java.util.List;
 
+import com.memlatestinfo.model.MemlatestinfoVO;
+
 public interface HotelOrderDAO_interface {
 	public void insert(HotelOrderVO hotelOrderVO);
 
@@ -12,7 +14,7 @@ public interface HotelOrderDAO_interface {
 	public void confirm(HotelOrderVO hotelOrderVO);
 	
 	public void cancel(String orderNo);
-
+	
 	public HotelOrderVO findByPrimaryKey(String orderNo);
 
 	public List<HotelOrderVO> getAll();

@@ -26,9 +26,10 @@
 </head>
 <body id="mybody">
 	<%
-		String memno = (String) session.getAttribute("memNO");
+		String memNO = (String) session.getAttribute("memNO");
+		String memName = (String) session.getAttribute("memName");
 		PorderService svc = new PorderService();
-		List<PorderVO> list = svc.getbymemno(memno);
+		List<PorderVO> list = svc.getbymemno(memNO);
 		request.setAttribute("orderlist", list);
 	%>
 	
@@ -74,104 +75,54 @@
 			</div>
 	</c:if>
 	<c:if test="${not empty orderlist}">
-	  <header>
-    <nav class="navbar navbar-expand-lg navbar-light ">
-      <a href="#" class="navbar-brand ml-3">Cute:)<span style="color:#7CE3A6;">Family</span></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu"
-      aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle Navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<header>
+	<nav class="navbar navbar-expand-lg navbar-light ">
+			<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="navbar-brand ml-3">
+				Cute:)
+				<span style="color: #00E8E8;">Family</span>
+			</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle Navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-    <div class="collapse navbar-collapse"></div>
-    <div class="collapse navbar-collapse" id="navbarMenu">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a href="index.html" class="nav-link">首頁</a>
-        </li>
-                    <!-- <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">會員專區</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">門診專區</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">寵物旅館</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">寵物商城</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">領養專區</a>
-                      </li> -->
-                      <li class="nav-item dropdown">
-                        <a class="nav-link " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        會員專區
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">會員登入</a>
-                        <a class="dropdown-item" href="#">編輯會員資料</a>
-                        <a class="dropdown-item" href="#">管理您的寵物</a>
-                        <a class="dropdown-item" href="#">瀏覽最新通知</a>
-                      </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                      aria-haspopup="true" aria-expanded="false">
-                      門診專區
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">門診預約</a>
-                      <a class="dropdown-item" href="#">門診查詢</a>
-                      <a class="dropdown-item" href="#">瀏覽看診進度</a>
-                    </div>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    寵物旅館
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">瀏覽房型</a>
-                    <a class="dropdown-item" href="#">旅館預約</a>
-                    <a class="dropdown-item" href="#">旅館預約查詢</a>
-                  </div>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  寵物商城
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">購物車</a>
-                  <a class="dropdown-item" href="#">搜尋商品資訊</a>
-                  <a class="dropdown-item" href="#">瀏覽商品資訊</a>
-                </div>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                領養專區
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">互動預約</a>
-                <a class="dropdown-item" href="#">互動預約查詢</a>
-                <a class="dropdown-item" href="#">瀏覽流浪動物</a>
-                <a class="dropdown-item" href="#">領養流浪動物</a>
-              </div>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <button class="btn menu-right-btn border" type="submit">
-              登入
-            </button>
-          </form>
-                <!-- <button class="btn menu-right-btn border" type="submit">
-                    註冊
-                  </button> -->
-                </div>
-              </nav>
-            </header>
+		<div class="collapse navbar-collapse"></div>
+		<div class="collapse navbar-collapse" id="navbarMenu">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="nav-link">首頁</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a href="<%=request.getContextPath()%>/front-end/member/member/membercenter.jsp" class="nav-link">會員專區</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp" class="nav-link">門診專區</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a href="<%=request.getContextPath()%>/front-end/Hotel/hotelIndex.jsp" class="nav-link">寵物旅館</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp" class="nav-link">寵物商城</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a href="<%=request.getContextPath()%>/front-end/adopt/adoptedpets/listAllPets.jsp" class="nav-link">領養專區</a>
+				</li>
+			</ul>
+			<div style="<%=(memNO == null) ? "visibility:hidden" : "visibility:"%>" id="loginFonts">
+				<img alt="" src="<%=request.getContextPath()%>/Puppy/pic.do?memNo=${memNO}" style="height: 50px" id="mempic">
+				<%=memName%>您好~
+			</div>
+			<a href="<%=request.getContextPath()%>/front-end/member/member/addMem.jsp">
+				<button class="btn menu-right-btn border" type="button" style="<%=(memNO == null) ? "display:" : "display:none"%>">註冊</button>
+			</a>
+			<a href="<%=request.getContextPath()%>/front-end/member/member/login.jsp">
+				<button class="btn menu-right-btn border" type="submit" id="login" style="<%=(memNO == null) ? "display:" : "display:none"%>">登入</button>
+			</a>
+			<form class="form-inline my-2 my-lg-0" action="<%=request.getContextPath()%>/Puppy/logout.do">
+				<button class="btn menu-right-btn border" type="submit" id="logout" style="<%=(memNO != null) ? "display:" : "display:none"%>">登出</button>
+			</form>
+		</div>
+	</nav>
+</header>
 			
 	<div class="container mb-0">
 		<div class="row ml-3 mr-3 mt-2" id="mybody">
@@ -188,7 +139,6 @@
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="<%=request.getContextPath()%>/front-end/product/myorder.jsp">查看歷史訂單</a>
                     <a class="dropdown-item" href="<%=request.getContextPath()%>/front-end/product/shopcart.jsp">我的購物車</a>
-                    <a class="dropdown-item" href="#">瀏覽最新通知</a>
                   </div>
                 </nav>
               </div>
@@ -196,7 +146,12 @@
 					<table class="table">
 						<thead class="thead">
 							<tr class="ordertr">
-								<th colspan="5">我的訂單</th>
+								<c:if test="${orderVO.orderstatus==3}">
+									<th colspan="4">我的訂單</th>
+								</c:if>								
+								<c:if test="${orderVO.orderstatus!=3}">
+									<th colspan="5">我的訂單</th>
+								</c:if>								
 							</tr>
 						</thead>
 						<tbody>
@@ -205,10 +160,12 @@
 								<th>訂單日期:${orderVO.orderdate}</th>
 								<th>訂單總額:NT$${orderVO.ordertotal}</th>
 								<th>訂單狀態:${(orderVO.orderstatus==0)?'未出貨':(orderVO.orderstatus==1)?'已出貨':(orderVO.orderstatus==2)?'已完成':(orderVO.orderstatus==3)?'已取消':(orderVO.orderstatus==4)?'審核中':''}</th>
-								<th>
+								<c:if test="${orderVO.orderstatus!=3}">
+									<th>
 									<button class="btn btn-info showmodal" value="${orderVO.orderstatus}">取消訂單</button>
 									<input type="hidden" value="${orderVO.orderid}">
-								</th>
+									</th>
+								</c:if>
 							</tr>
 						</tbody>
 					</table>

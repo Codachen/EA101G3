@@ -29,7 +29,7 @@
 
 <c:choose>
     <c:when test="${fn:length(listAppt_ByCompositeQueryB)==0}">
-       <i class="fas fa-exclamation-circle"></i> 今日沒有看診
+       <i class="fas fa-exclamation-circle"></i>今日沒有看診
     </c:when>
     <c:otherwise>
         <i class="fas fa-user-md"></i>目前看診號${fn:length(listAppt_ByCompositeQueryB)+1}

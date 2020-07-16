@@ -1,6 +1,7 @@
 package com.mem.controller;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -12,7 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import com.mem.model.MemberVO;
+
 import com.mem.model.*;
 @MultipartConfig(maxRequestSize=100*1024*1024)
 
@@ -29,6 +30,124 @@ public class MemberServlet extends HttpServlet{
 		res.setContentType("text/html; charset=UTF-8");
 		String action = req.getParameter("action");
 //		HttpSession session = req.getSession();
+			
+		PrintWriter out = res.getWriter();
+		if("checkaccount".equals(action)) {
+			String account = req.getParameter("account");
+			MemberService svc = new MemberService();
+			if(svc.checkaccount(account)) {
+				out.print("0");
+			}else {
+				out.print("1");
+			}
+		}
+		if("memchecksuccess".equals(action)) {
+			String memberno = req.getParameter("memberno");
+			Integer status = new Integer(req.getParameter("memberstatus"));
+			MemberService svc = new MemberService();
+			svc.updatememstatus(status, memberno);
+			System.out.println("success");
+			String url = "/front-end/member/member/login.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+			successView.forward(req, res);
+		}
+		  if ("insert".equals(action)) { // 來自addEmp.jsp的請求  
+				List<String> errorMsgs = new LinkedList<String>();
+				// Store this set in the request scope, in case we need to
+				// send the ErrorPage view.
+				req.setAttribute("errorMsgs", errorMsgs);
+
+				try {
+					/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
+					
+					String memname = req.getParameter("memname");
+					String memnameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
+					if (memname == null || memname.trim().length() == 0) {
+						errorMsgs.add("會員姓名: 請勿空白");
+					} else if(!memname.trim().matches(memnameReg)) { //以下練習正則(規)表示式(regular-expression)
+						errorMsgs.add("員工姓名: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
+		            }
+					String memaccount = req.getParameter("memaccount").trim();
+					if (memaccount == null || memaccount.trim().length() == 0) {
+						errorMsgs.add("會員帳號: 請勿空白");
+					}	
+					
+					String mempassword = req.getParameter("mempassword").trim();
+					if (mempassword == null || mempassword.trim().length() == 0) {
+						errorMsgs.add("會員密碼: 請勿空白");
+					}	
+
+					String memcreditcardid = req.getParameter("memcreditcardid").trim();
+					String memcreditcardidReg = "^[0-9]{16}$";
+					if (memcreditcardid == null || memcreditcardid.trim().length() == 0) {
+						errorMsgs.add("會員卡號: 請勿空白");
+					}else if(!memcreditcardid.trim().matches(memcreditcardidReg)) { 
+						errorMsgs.add("會員卡號只能為數字 , 且長度必需在16碼");
+		            }
+					
+					
+					String memphone = req.getParameter("memphone").trim();
+					if (memphone == null || memphone.trim().length() == 0) {
+						errorMsgs.add("會員手機: 請勿空白");
+					}
+					
+					String mememail = req.getParameter("mememail");
+					if (mememail == null || mememail.trim().length() == 0) {
+						errorMsgs.add("會員信箱: 請勿空白");
+						mememail = "";
+					}
+					String memaddress = req.getParameter("memaddress");
+					if (memaddress == null || memaddress.trim().length() == 0) {
+						errorMsgs.add("住址: 請勿空白");
+					}
+					
+					Part part = req.getPart("mempic");
+					InputStream in = part.getInputStream();
+					if(in.available()<=0) {
+						errorMsgs.add("請上傳圖片");
+					}
+					byte[] mempic = new byte[in.available()];
+					in.read(mempic);
+					in.close();
+					
+					MemberVO memVO = new MemberVO();
+					memVO.setMemName(memname);
+					memVO.setMemAccount(memaccount);
+					memVO.setMemPassword(mempassword);
+					memVO.setMemCreditCardId(memcreditcardid);
+					memVO.setMemPhone(memphone);
+					memVO.setMemEmail(mememail);
+					memVO.setMemAddress(memaddress);
+					memVO.setMemStatus(0);
+					memVO.setMempic(mempic);
+					// Send the use back to the form, if there were errors
+					if (!errorMsgs.isEmpty()) {
+						req.setAttribute("memVobject", memVO); // 含有輸入格式錯誤的memVO物件,也存入req
+						RequestDispatcher failureView = req
+								.getRequestDispatcher("/front-end/member/member/addMem.jsp");
+						failureView.forward(req, res);
+						return;
+					}
+					
+					/***************************2.開始新增資料***************************************/
+					MemberService memSvc = new MemberService();
+					String seq = memSvc.addM(memname, memaccount, mempassword, memcreditcardid,memphone, mememail, memaddress, 0, mempic);
+					MailService svc = new MailService("http://localhost:8081/EA101G3/Puppy/mem.do?action=memchecksuccess&memberno="+seq+"&memberstatus=1");
+					svc.start();
+					/***************************3.新增完成,準備轉交(Send the Success view)***********/
+					String url = "/front-end/frontEndIndex/index.jsp";
+					RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+					successView.forward(req, res);				
+					
+					/***************************其他可能的錯誤處理**********************************/
+				} catch (Exception e) {
+					errorMsgs.add(e.getMessage());
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/front-end/member/member/addMem.jsp");
+					failureView.forward(req, res);
+				}
+			}
+		
 		
 		if("getOne_For_Display".equals(action)) {
 			
