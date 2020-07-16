@@ -425,7 +425,7 @@ req.setAttribute("empVO", empVO); // 含有輸入格式錯誤的empVO物件,也�
 			      MailService mailService = new MailService();
 			      mailService.sendMail(to, subject, messageText);
 			      
-			     
+			     req.setAttribute("sweet", "sweetDis");
 
 				
 				String url = "/back-end/emp/listAllEmp.jsp";

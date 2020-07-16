@@ -19,9 +19,11 @@
 	Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 	String jsonStr = gson.toJson(list);
 
-// 	System.out.println("Object to JSON: " + jsonStr);
+	// 	System.out.println("Object to JSON: " + jsonStr);
 
 	pageContext.setAttribute("jsonStr", jsonStr);
+	
+	OptVO optVO = (OptVO) request.getAttribute("OptVO"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
 %>
 
 
@@ -67,7 +69,8 @@
     	  console.log(dateStr);
     	  $('#formDate').html('');
     	  $('#formDate').append(dateStr);
-    	  
+		  var optDate =  document.getElementById('optDate');
+		  $('#optDate').val(dateStr);
     	  $('#exampleModal').modal('show');
 //           var title = prompt('Event Title:');
 //           if (title) {
@@ -79,8 +82,47 @@
 //           }
 //           calendar.unselect()
         },
+        eventClick: function(arg) {
+        	swal({
+        		  title: "你確定要刪除這個時段嗎?",
+        		  text: "無人預約可被刪除，有被預約的則無法刪除",
+        		  icon: "warning",
+        		  buttons: true,
+        		  dangerMode: true,
+        		})
+        		.then((willDelete) => {
+        		  if (willDelete) {
+        			  var sessionNoStr = arg.event.id;
+        	        	 console.log(sessionNoStr);
+        	        	$.ajax({
+        			         url: "opt.do",   //後端的URL
+        			         type: "POST",   //用POST的方式
+        			         dataType: "text",   //response的資料格式
+        			         cache: false,   //是否暫存
+        			         data: {action : 'delete', sessionNo : sessionNoStr }, //傳送給後端的資料
+        			         success: function(res) { //成功後回傳的資料
+        			        	 if(res==='OK'){
+        			        		 arg.event.remove();
+        			        		 
+        			        	 }else{
+        			        		 swal("刪除失敗！", "此時段已有人預約，不可隨意刪除", "error");
+        			        	 }
+        			         }
+        			     });
+        		    swal("刪除成功！", {
+        		      icon: "success",
+        		    });
+        		  } else {
+        		    swal("刪除未被執行");
+        		  }
+        		});
+        	
+        	
+        	 
+            
+          },
       selectMirror: true,
-      editable: false,
+      editable: true,
       dayMaxEvents: true, // allow "more" link when too many events
       events: ${jsonStr}
 //       events: [{'title':123,'start':'2020-07-02'}]
@@ -118,24 +160,44 @@
 
 <style>
 #calendar {
-	width: 100%;
-	/* 	margin: 0 auto; */
-}
-.modal *{
- font-size:24px;
+	max-width: 80%;
+	margin: 0 auto;
 }
 
-.form-control { 
- color:#1757A5;
- } 
- 
- #formDate{
- color:#B32F2F;
- font-size:30px;
- }
+.modal * {
+	font-size: 24px;
+	
+}
+.modal-header{
+box-shadow: 0px 0px 4px black;
+background: linear-gradient(#DCDCDC,grey);
+border-color:black;
 
+}
+.modal-footer{
+box-shadow: 0px 0px 2px black;
+}
 
+.form-control {
+	color: #1757A5;
+}
 
+#formDate {
+	color: #B32F2F;
+	
+}
+
+.errorMsgs{
+ width:100%;
+ text-align:center;
+ background-color:#B52B2B;
+ color:white;
+ box-shadow: 0px 0px 1px black;
+}
+
+.errorMsgs *{
+ font-size: 18px;
+}
 </style>
 
 
@@ -166,57 +228,71 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form METHOD="post" ACTION="opt.do">
+					<form METHOD="post" ACTION="opt.do" id="form1">
 						<div class="form-group">
 							日期
-							<p id="formDate"></p>
+							<p id="formDate">${optVO.optDate}</p>
 						</div>
+
 						<div class="form-group">
-							科別 <select class="form-control form-control-sm" id="divno" >
+							科別 <select class="form-control form-control-sm" id="divno">
 								<option value="">未選擇
 									<c:forEach var="divVO" items="${divSvc.all}">
 										<option value="${divVO.divno}">${divVO.divname}
 									</c:forEach>
 							</select>
-							
+
 						</div>
 						<div class="form-group">
-							醫生
-							<select id="doctor" class="form-control form-control-sm" id="docno">
-								
+							醫生 <select id="doctor" class="form-control form-control-sm"
+								id="docno" name="docno">
+
 							</select>
 						</div>
 						<div class="form-group">
 							時段<br>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="optSession" id="inlineRadio1" value="10:00-12:00">
-								<label class="form-check-label" for="inlineRadio1">早上</label>
+								<input class="form-check-input" type="radio" name="optSession"
+									id="inlineRadio1" value="10:00~12:00" ${(optVO.optSession=='10:00~12:00')?'checked':''}> <label
+									class="form-check-label" for="inlineRadio1">早上</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="optSession" id="inlineRadio2" value="14:00-17:00">
-								<label class="form-check-label" for="inlineRadio2">下午</label>
+								<input class="form-check-input" type="radio" name="optSession"
+									id="inlineRadio2" value="14:00~17:00" ${(optVO.optSession=='14:00~17:00')?'checked':''}> <label
+									class="form-check-label" for="inlineRadio2">下午</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio"
-									name="optSession" id="inlineRadio3" value="18:00-20:00"> 
-									<label class="form-check-label"
-									for="inlineRadio3">晚上</label>
+								<input class="form-check-input" type="radio" name="optSession"
+									id="inlineRadio3" value="18:00~20:00" ${(optVO.optSession=='18:00~20:00')?'checked':''}> <label
+									class="form-check-label" for="inlineRadio3">晚上</label>
 							</div>
 						</div>
 						<div class="form-group">
-							最大人數
-							<input type="text" name="maximum" class="form-control form-control-sm" VALUE="10" >
+							最大人數 <input type="text" name="maximum"
+								class="form-control form-control-sm" value="10">
 						</div>
-						<input type="hidden" name="action" value="insert"> 
-						<button type="submit" class="btn btn-primary">新增</button>
+						<input type="hidden" name="action" value="insert"> <input
+							type="hidden" name="optDate" value="" id="optDate">
 					</form>
 				</div>
+				<div class="errorMsgs" id="errorMsgs">
+				<%-- 錯誤表列 --%>
+				<c:if test="${not empty errorMsgs}">
+					<p>請修正以下錯誤:</p>
+					<script>
+					$(function() {
+						$('#exampleModal').modal('show');
+					});
+					</script>
+						<c:forEach var="message" items="${errorMsgs}">
+							<p>${message}</p>
+						</c:forEach>
+				</c:if></div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">取消</button>
-					<button type="button" class="btn btn-primary">新增</button>
+					<button type="button" class="btn btn-primary"
+						onclick="document.getElementById('form1').submit()">新增</button>
 				</div>
 			</div>
 		</div>
@@ -254,6 +330,9 @@
 		     });
 		})
 		
+	})
+	$('#exampleModal').on('hidden.bs.modal', function (e) {
+		$('#errorMsgs').html('');
 	})
 </script>
 

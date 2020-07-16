@@ -12,6 +12,7 @@
 	
 	EmpVO empVO = (EmpVO) request.getAttribute("empVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
 	
+	request.getAttribute("sweet");
 	
 %>
 
@@ -19,6 +20,7 @@
 <html>
 <head>
 <%@ include file="/back-end/backEndInclude/head.jsp"%>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
 <style>
@@ -84,6 +86,10 @@ img {
 			</c:forEach>
 		</ul>
 	</c:if>
+	<c:if test="${not empty sweet}">
+		<script>swal("員工新增成功!", "已提交驗證信至員工信箱", "success");</script>
+	</c:if>
+	
 
 	<table class="table table-striped">
 		<tr>

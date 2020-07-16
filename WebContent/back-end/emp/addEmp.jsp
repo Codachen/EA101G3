@@ -11,6 +11,7 @@
 <head>
 <%@ include file="/back-end/backEndInclude/head.jsp"%>
 
+
 <%
 	// 	String empGender = null;
 	// 	try {
@@ -30,6 +31,18 @@ table {
 	border: 7px solid;
 	border-color:rgb(100,100,100,0.2);
 	
+}
+.leftmain{
+
+float:left;
+	
+}
+.rightmain{
+margin-top: 5px;
+float:left;
+
+	border-color:rgb(100,100,100,0.2);
+
 }
 
 th {
@@ -57,6 +70,18 @@ th, td {
 .mainTitlehr {
 	border: 2px solid lightcoral;
 }
+.errorMsgs{
+ width:100%;
+ text-align:center;
+ background-color:rgba(240,50,30,0.9);
+ color:white;
+ box-shadow: 0px 0px 1px black;
+}
+
+.errorMsgs *{
+ font-size: 14px;
+}
+}
 </style>
 
 </head>
@@ -71,18 +96,21 @@ th, td {
 	<a href="listAllEmp.jsp">返回員工資料</a>
 
 	<hr class="mainTitlehr">
-
-
+	
 	<%-- 錯誤表列 --%>
+	
 	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">請修正以下錯誤:</font>
-		<ul>
+		<div class="errorMsgs">	
+		<p>請修正以下錯誤:</p>
+	
 			<c:forEach var="message" items="${errorMsgs}">
-				<li style="color: red">${message}</li>
+				<p>${message}</p>
 			</c:forEach>
-		</ul>
-	</c:if>
 
+		
+		</div>
+	</c:if>
+	<div class="leftmain col-6">
 	<FORM METHOD="post" ACTION="emp.do" name="form1" id="form1"
 		enctype="multipart/form-data">
 		<table class="table table-striped">
@@ -173,10 +201,7 @@ th, td {
 			<tr>
 				<th>員工照片</th>
 				<td><input type="file" name="empPic" class="upl">
-					<div>
-						<img class="preview" style="max-width: 150px; max-height: 150px;">
-						<div class="size"></div>
-					</div></td>
+					</td>
 			</tr>
 
 
@@ -184,9 +209,16 @@ th, td {
 
 		</table>
 		<br> <input type="hidden" name="action" value="insert"> 
+		
 		<button type="submit" class="btn btn-primary">送出新增</button>
 	</FORM>
+	</div><div class="rightmain col-6">
+	<div style="width:100%;text-align:center;">
+						<img class="preview" style="max-height: 500px;max-width: 660px;" src="https://icon-library.com/images/person-image-icon/person-image-icon-6.jpg">
+					</div>
+	</div>
 	 <span id="lblMsg"></span>
+	 
 	
 	<%@ include file="/back-end/backEndInclude/footer.jsp"%>
 </body>

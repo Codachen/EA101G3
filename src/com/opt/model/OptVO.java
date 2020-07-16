@@ -14,6 +14,8 @@ public class OptVO implements java.io.Serializable{
 	private String title;
 	private Date start;
 	private String id;
+	private String color;
+	
 
 	
 	
@@ -106,6 +108,44 @@ public class OptVO implements java.io.Serializable{
 	public void setId(String id) {
 		this.id = id;
 	}
+
+
+
+	public String getcolor() {
+		return color;
+	}
+	public void setcolor(String docName) {
+		
+		switch(docName) {
+		case "張國彬":
+			this.color = "#378006";
+			
+			break;
+		case "李美玲":
+			this.color = "#DC733C";
+			
+			break;
+		case "黃昭文":
+			this.color = "#4252A2";
+			
+			break;
+		case "蔡旻烜":
+			this.color = "#F46767";
+			
+			break;
+		case "鄭柏昕":
+			this.color = "#504D4D";
+			
+			break;
+
+		default:
+			this.color = "#378006";
+			break;
+		}
+		
+	}
+		
+		
 
 
 }
