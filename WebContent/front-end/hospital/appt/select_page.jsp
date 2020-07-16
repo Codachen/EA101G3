@@ -77,10 +77,10 @@ background-repeat: no-repeat;
 	background-image: url("../appt/uploads/apptStartImg.png");
 
 }
-  .main {
-	max-width: 90%;
-	margin: 0 auto;
-	font-family: 'Noto Sans TC';
+   .main { 
+ 	max-width: 90%; 
+ 	margin: 0 auto; 
+	font-family: 'Noto Sans TC'; 
 
 }
 .form1{
