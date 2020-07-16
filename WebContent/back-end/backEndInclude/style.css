@@ -17,7 +17,7 @@ html, body {
 	background-position: center;
 }
 
-/*ä¸Šæ–¹å°è¦½åˆ—*/
+/*¤W¤è¾ÉÄı¦C*/
 
 
 .icon{
@@ -29,7 +29,7 @@ html, body {
 }
 
 
-/*å°è¦½åˆ—åœ–æ¨™*/
+/*¾ÉÄı¦C¹Ï¼Ğ*/
 .icon a {
 	font-family: 'Pacifico';
 	font-size: 38px;
@@ -61,7 +61,7 @@ html, body {
 	min-height: 100%;
 }
 
-/*æœƒå“¡ç™»å…¥å¾Œç…§ç‰‡*/
+/*·|­ûµn¤J«á·Ó¤ù*/
 .mem-pic {
 	width: 60px;
 	height: 60px;
@@ -80,7 +80,7 @@ html, body {
 	
 }
 
-/*å³ä¸Šè§’åŠŸèƒ½é¸å–®*/
+/*¥k¤W¨¤¥\¯à¿ï³æ*/
 .action {
 	font-family: 'Noto Sans TC', sans-serif;
 	color: #00E8E8;
@@ -96,7 +96,7 @@ html, body {
 }
 
 
-/*å´é‚Šæ¬„*/
+/*°¼ÃäÄæ*/
 .aside {
 	line-height: 45px;
 	font-size: 22px;
@@ -107,11 +107,11 @@ html, body {
 	min-height: 100%;
 }
 
-/*å´é‚Šæ¬„æ–‡å­—é å·¦*/
+/*°¼ÃäÄæ¤å¦r¾a¥ª*/
 .nav .nav-item {
 	text-align: left;
 }
-/*å´é‚Šæ¬„å…§æ¸…å–®*/
+/*°¼ÃäÄæ¤º²M³æ*/
 .nav .nav-item .nav-link {
 	letter-spacing: 8px;
 	font-family: 'Noto Sans TC', sans-serif;
@@ -126,7 +126,7 @@ html, body {
 	line-height: 35px;
 	transition: all 0.5s;
 }
-/*å´é‚Šæ¬„å…§æ¸…å–®(å–®ä¸€åŠŸèƒ½)*/
+/*°¼ÃäÄæ¤º²M³æ(³æ¤@¥\¯à)*/
 .nav .nav-item-single a {
 	letter-spacing: 8px;
 	font-family: 'Noto Sans TC', sans-serif;
@@ -140,14 +140,14 @@ html, body {
 	padding-top: 5px;
 }
 
-/*å´é‚Šæ¬„å…§æ¸…å–®hover*/
+/*°¼ÃäÄæ¤º²M³æhover*/
 .nav .nav-item .nav-link:hover {
 	height: 220px;
 	cursor: pointer;
 	background-color: rgba(0, 0, 0, 0.5);
 }
 
-/*å´é‚Šæ¬„å…§æ¸…å–®çš„ç¬¬äºŒå±¤æ¸…å–®*/
+/*°¼ÃäÄæ¤º²M³æªº²Ä¤G¼h²M³æ*/
 .nav-link ul li {
 	padding-top: 5px;
 	display: block;
@@ -156,12 +156,12 @@ html, body {
 	transition: all 0.8s;
 }
 
-/*å´é‚Šæ¬„å…§æ¸…å–®çš„ç¬¬äºŒå±¤æ¸…å–®é€£çµ*/
+/*°¼ÃäÄæ¤º²M³æªº²Ä¤G¼h²M³æ³sµ²*/
 .nav-link ul li a {
 	color: white;
 }
 
-/*å´é‚Šæ¬„å…§æ¸…å–®(å–®ä¸€åŠŸèƒ½)é€£çµ*/
+/*°¼ÃäÄæ¤º²M³æ(³æ¤@¥\¯à)³sµ²*/
 .nav .nav-item-single a {
 	letter-spacing: 8px;
 	font-family: 'Noto Sans TC', sans-serif;
@@ -175,13 +175,13 @@ html, body {
 	line-height: 35px;
 	padding-top: 10px;
 }
-/*å´é‚Šæ¬„å…§æ¸…å–®(å–®ä¸€åŠŸèƒ½)é€£çµhover*/
+/*°¼ÃäÄæ¤º²M³æ(³æ¤@¥\¯à)³sµ²hover*/
 .nav .nav-item-single a:hover {
 	cursor: pointer;
 	background-color: rgba(0, 0, 0, 0.5);
 }
 
-/*ä¸»å…§å®¹æ¨™é¡Œ*/
+/*¥D¤º®e¼ĞÃD*/
 .mainTitle {
 	letter-spacing: 8px;
 	font-family: 'Noto Sans TC', sans-serif;
@@ -191,11 +191,11 @@ html, body {
 	padding-left: 20px;
 }
 
-/*ä¸»å…§å®¹æ¨™é¡Œä¸‹åˆ†éš”ç·š*/
+/*¥D¤º®e¼ĞÃD¤U¤À¹j½u*/
 .mainTitlehr {
 	border: 2px solid lightcoral;
 }
-/*ä¸»å…§å®¹*/
+/*¥D¤º®e*/
 .main {
 	font-family: 'Noto Sans TC', sans-serif;
 	padding: 20px 10px 20px 10px;
@@ -209,7 +209,7 @@ html, body {
 	right: 8px;
 }
 
-/*é å°¾*/
+/*­¶§À*/
 footer {
 	float: left;
 	height: 100px;
@@ -228,7 +228,7 @@ footer {
 	}
 }
 
-/*ä»¥ä¸‹ç‚ºRWDé…ç½®*/
+/*¥H¤U¬°RWD°t¸m*/
 @media ( max-width : 1700px) {
 	div.aside {
 		white-space: nowrap;

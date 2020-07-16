@@ -122,7 +122,7 @@ public class AccusationServlet extends HttpServlet{
 			if (!errorMsgs.isEmpty()) {
 				req.setAttribute("accVO", accVO); // 含有輸入格式錯誤的empVO物件,也存入req
 						RequestDispatcher failureView = req
-								.getRequestDispatcher("/front-end/member/member/accusation/add_acc.jsp");
+								.getRequestDispatcher("/front-end/member/accusation/add_acc.jsp");
 						failureView.forward(req, res);
 						return;
 			}
@@ -136,7 +136,7 @@ public class AccusationServlet extends HttpServlet{
 		   }catch (Exception e) {
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front-end/member/member/accusation/add_acc.jsp");
+						.getRequestDispatcher("/front-end/member/accusation/add_acc.jsp");
 				failureView.forward(req, res);
 			}
 			

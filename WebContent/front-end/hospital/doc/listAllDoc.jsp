@@ -20,7 +20,7 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
  
      <!-- Site Metas -->
-    <title>OnNext - One Page Parallax Template Bootstrap 4</title>  
+    <title>Doctors</title>  
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">

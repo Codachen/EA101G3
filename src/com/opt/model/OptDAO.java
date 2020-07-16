@@ -7,6 +7,10 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+
+import com.appt.model.ApptVO;
+
+
 import jdbc.util.CompositeQuery.jdbcUtil_CompositeQuery_Appt2;
 import jdbc.util.CompositeQuery.jdbcUtil_CompositeQuery_Opt;
 
@@ -561,5 +565,70 @@ public class OptDAO implements OptDAO_interface {
 		return list;
 	}
 	
+	// 看診進度查詢開始//
+		@Override
+		public List<OptVO> getQueue(Map<String, String[]> map) {
+			List<OptVO> list = new ArrayList<OptVO>();
+			OptVO optVO = null;
+
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+
+			try {
+
+				con = ds.getConnection();
+				String finalSQL = "select * from OPTSESSION "+
+						"JOIN APPOINTMENT ON APPOINTMENT.sessionno = OPTSESSION.sessionNo "+
+			            "JOIN DOCTOR ON OPTSESSION.DOCNO = DOCTOR.DOCNO "
+						+ jdbcUtil_CompositeQuery_Appt2.get_WhereCondition(map)
+						+ "order by apptno";
+				pstmt = con.prepareStatement(finalSQL);
+				System.out.println("finalSQL(by DAO) = " + finalSQL);
+				rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+					optVO = new OptVO();
+					optVO.setSessionNo(rs.getString("sessionNo"));
+					optVO.setDocNo(rs.getString("docNo"));
+					optVO.setOptDate(rs.getDate("optDate"));
+					optVO.setOptSession(rs.getString("optSession"));
+					optVO.setCurrentCount(rs.getInt("currentCount"));
+					optVO.setMaximum(rs.getInt("maximum"));
+
+					list.add(optVO); // Store the row in the list
+				}
+
+				// Handle any SQL errors
+			} catch (SQLException se) {
+				throw new RuntimeException("A database error occured. " + se.getMessage());
+			} finally {
+				if (rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if (con != null) {
+					try {
+						con.close();
+					} catch (Exception e) {
+						e.printStackTrace(System.err);
+					}
+				}
+			}
+			return list;
+		}
+
+
+	//看診進度查詢結束//	
 
 }

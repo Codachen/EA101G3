@@ -18,15 +18,6 @@
 <html>
 <head>
 <%@ include file="/front-end/frontEndInclude/head.jsp"%>
-
-<style>
-
-</style>
-
-
-
-
-
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -285,7 +276,7 @@
 					<input type="text" name="Email" id="email" placeholder="Email" size="40" class="form-control px-4 py-2">
 					<input type="button" value="Contact US" class="btn btn-danger px-4 py-2 ml-1">
 				</div>
-				<a href="">
+				<a href="<%=request.getContextPath()%>//front-end/member/accusation/add_acc.jsp">
 					<button class="btn btn-outline-secondary" style="margin-top: 2%;">
 						<h5>我要客訴</h5>
 					</button>

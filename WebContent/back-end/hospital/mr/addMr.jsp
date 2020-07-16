@@ -16,16 +16,33 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<%@ include file="/back-end/backEndInclude/head.jsp" %>
+
+	
 </head>
 <body>
+<%@ include file="/back-end/backEndInclude/header.jsp" %>
+	
 
 	<!-- ****************************以下為實際功能頁變更區域**************************** -->
 
-<span class="mainTitle">紀錄管理</span>
+	<span class="mainTitle">診療紀錄管理</span>
 
 	<hr class="mainTitlehr">
 
-	<h6><a href="select_page.jsp"><img src="images/back.png" width="32" height="32" border="0">返回管理主頁面</a></h6>
+	
+<%-- 錯誤表列 --%>
+<c:if test="${not empty errorMsgs}">
+	<font style="color:red">請修正以下錯誤:</font>
+	<ul>
+	    <c:forEach var="message" items="${errorMsgs}">
+			<li style="color:red">${message}</li>
+		</c:forEach>
+	</ul>
+</c:if>
+
+	<a href="<%=request.getContextPath()%>/back-end/hospital/mr/select_page.jsp">返回</a></h6>
 <h3>紀錄新增:</h3>
 
 <%-- 錯誤表列 --%>
@@ -124,8 +141,7 @@
 
 
 
-<footer class="Footer">Copyright © 萌寵家族 Cute Family
-</footer>
+<%@ include file="/back-end/backEndInclude/footer.jsp"%>
 
 
 </div>

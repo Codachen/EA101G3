@@ -348,6 +348,16 @@
 		<url-pattern>/back-end/hospital/opt/opt.do</url-pattern>
 	</servlet-mapping>
 
+<servlet>
+		<servlet-name>OptServlet2</servlet-name>
+		<servlet-class>com.opt.controller.OptServlet2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OptServlet2</servlet-name>
+		<url-pattern>/front-end/hospital/opt/opt.do</url-pattern>
+	</servlet-mapping>
+
+
 	<servlet>
 		<servlet-name>ApptServlet</servlet-name>
 		<servlet-class>com.appt.controller.ApptServlet</servlet-class>

@@ -20,7 +20,7 @@ import com.opt.model.*;
  * Servlet implementation class OptServlet
  */
 
-public class OptServlet extends HttpServlet {
+public class OptServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -159,6 +159,11 @@ public class OptServlet extends HttpServlet {
 					
 					
 				}
+				
+				
+	
+				
+
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
@@ -188,7 +193,6 @@ public class OptServlet extends HttpServlet {
 			}
 		}
 		
-
 		//看診進度查詢
 				if ("listQueue1".equals(action)) { // �Ӧ�select_page.jsp���ƦX�d�߽ШD
 					List<String> errorMsgs = new LinkedList<String>();
@@ -222,13 +226,60 @@ public class OptServlet extends HttpServlet {
 				}	
 		
 
+//		if ("testJson".equals(action)) {	 // 來自addEmp.jsp的請求
+//			
+//			
+//			OptService optSvc = new OptService();
+//		
+//				List<OptVO> list = optSvc.getAll();
+//				String docno = new String();
+//				for(OptVO optVO:list) {
+//					docno = optVO.getDocNo();
+//					System.out.println(optVO.getDocNo());
+//					System.out.println(optVO.getOptSession());
+//					System.out.println(optVO.getOptDate());
+//					System.out.println(optVO.getMaximum());
+//					
+//				}
+//				System.out.println("醫生:"+docno);
+//			
+//			
+//			
+//				Gson gson = new Gson();
+//			
+//			String strvalue = "[{\"title\":\"大師\",\"start\":\"2020-07-02\"}]";
+//			
+//			
+//			
+//			
+//			 res.setCharacterEncoding("UTF-8");
+//		        System.out.println("strvalue="+strvalue);
+//		        try {
+//		            res.getWriter().print(strvalue);
+//		        } catch (IOException e) {
+//		            e.printStackTrace();
+//		        }
+//
+//
+//
+//	}
 		
 		
-
+//		public String getData(String title, String start) throws JSONException {
+//		    JSONObject jsonObject = new JSONObject("{  title : VARIABLE1,  start : VARIABLE2}");
+//		   
+//		    jsonObject.put("title", name);
+//		    jsonObject.put("start", age);
+//		    return jsonObject.toString();
+//		}
 
 }
 
-
+//	 public String testJson(HttpServletRequest request, HttpServletResponse response) {
+//	        String strvalue = "[{\"id\":111,\"title\":\"Event1\",\"start\":\"2012-03-10\",\"url\":\"http:\\/\\/yahoo.com\\/\"},{\"id\":222,\"title\":\"Event2\",\"start\":\"2012-03-20\",\"end\":\"2012-03-22\",\"url\":\"http:\\/\\/yahoo.com\\/\"}]";
+//	       
+//	        return null;
+//	    }
 
 }
 

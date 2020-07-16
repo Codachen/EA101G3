@@ -17,6 +17,7 @@ html, body {
 	background-position: center;
 }
 
+/*上方導覽列*/
 
 
 .icon{
@@ -28,6 +29,7 @@ html, body {
 }
 
 
+/*導覽列圖標*/
 .icon a {
 	font-family: 'Pacifico';
 	font-size: 38px;
@@ -59,6 +61,7 @@ html, body {
 	min-height: 100%;
 }
 
+/*會員登入後照片*/
 .mem-pic {
 	width: 60px;
 	height: 60px;
@@ -77,6 +80,7 @@ html, body {
 	
 }
 
+/*右上角功能選單*/
 .action {
 	font-family: 'Noto Sans TC', sans-serif;
 	color: #00E8E8;
@@ -92,6 +96,7 @@ html, body {
 }
 
 
+/*側邊欄*/
 .aside {
 	line-height: 45px;
 	font-size: 22px;
@@ -102,9 +107,11 @@ html, body {
 	min-height: 100%;
 }
 
+/*側邊欄文字靠左*/
 .nav .nav-item {
 	text-align: left;
 }
+/*側邊欄內清單*/
 .nav .nav-item .nav-link {
 	letter-spacing: 8px;
 	font-family: 'Noto Sans TC', sans-serif;
@@ -119,6 +126,7 @@ html, body {
 	line-height: 35px;
 	transition: all 0.5s;
 }
+/*側邊欄內清單(單一功能)*/
 .nav .nav-item-single a {
 	letter-spacing: 8px;
 	font-family: 'Noto Sans TC', sans-serif;
@@ -132,12 +140,14 @@ html, body {
 	padding-top: 5px;
 }
 
+/*側邊欄內清單hover*/
 .nav .nav-item .nav-link:hover {
 	height: 220px;
 	cursor: pointer;
 	background-color: rgba(0, 0, 0, 0.5);
 }
 
+/*側邊欄內清單的第二層清單*/
 .nav-link ul li {
 	padding-top: 5px;
 	display: block;
@@ -146,10 +156,12 @@ html, body {
 	transition: all 0.8s;
 }
 
+/*側邊欄內清單的第二層清單連結*/
 .nav-link ul li a {
 	color: white;
 }
 
+/*側邊欄內清單(單一功能)連結*/
 .nav .nav-item-single a {
 	letter-spacing: 8px;
 	font-family: 'Noto Sans TC', sans-serif;
@@ -163,11 +175,13 @@ html, body {
 	line-height: 35px;
 	padding-top: 10px;
 }
+/*側邊欄內清單(單一功能)連結hover*/
 .nav .nav-item-single a:hover {
 	cursor: pointer;
 	background-color: rgba(0, 0, 0, 0.5);
 }
 
+/*主內容標題*/
 .mainTitle {
 	letter-spacing: 8px;
 	font-family: 'Noto Sans TC', sans-serif;
@@ -177,15 +191,17 @@ html, body {
 	padding-left: 20px;
 }
 
+/*主內容標題下分隔線*/
 .mainTitlehr {
 	border: 2px solid lightcoral;
 }
+/*主內容*/
 .main {
 	font-family: 'Noto Sans TC', sans-serif;
 	padding: 20px 10px 20px 10px;
 	float: left;
 	min-height: 900px;
-	background: rgba(255, 255, 255, 0.9);
+	background: rgba(255, 255, 255, 0.90);
 	text-align: left;
 	border-radius: 7px;
 	margin-top: 8px;
@@ -193,6 +209,7 @@ html, body {
 	right: 8px;
 }
 
+/*頁尾*/
 footer {
 	float: left;
 	height: 100px;
@@ -211,6 +228,7 @@ footer {
 	}
 }
 
+/*以下為RWD配置*/
 @media ( max-width : 1700px) {
 	div.aside {
 		white-space: nowrap;
