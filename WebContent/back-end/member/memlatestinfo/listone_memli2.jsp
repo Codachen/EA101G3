@@ -48,7 +48,7 @@ MemlatestinfoVO mliVO = (MemlatestinfoVO) request.getAttribute("mliVO");
 			 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Puppy/mli.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="刪除" class="btn btn-primary">
 			     <input type="hidden" name="memLatestInfoNo"  value="${mliVO.memLatestInfoNo}">
-			     <input type="hidden" name="action" value="delete_B"></FORM>
+			     <input type="hidden" name="action" value="delete_B"> </FORM>
 		</td>
 	</tr>
 </table>
