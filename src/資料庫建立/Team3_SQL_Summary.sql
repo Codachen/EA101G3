@@ -538,7 +538,7 @@ NOMAXVALUE;
 ------------------創建SEQ結束-------------------
 
 --會員假資料--
-INSERT INTO MEMBER VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),'鳴人','DAVID817653','123456','1234123412341234','0927210939','weiyuwang465@gmail.com','臺南市關廟區富強路481巷400號32樓','1', load_blob('mem1.jpg'));
+INSERT INTO MEMBER VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),'鳴人','DAVID817653','123456','1234123412341234','0927210939','weiyuwang466@gmail.com','臺南市關廟區富強路481巷400號32樓','1', load_blob('mem1.jpg'));
 INSERT INTO MEMBER VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),'佐助','JACK321570','993783','4929641269737475','0972413469','JinZhengHong@teleworm.us','南投縣名間鄉河濱街三段583號 ','1', load_blob('mem2.jpg'));
 INSERT INTO MEMBER VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),'小櫻','AMY791792','806955','4916778416017271','0938161581','HongGuHao@dayrep.com','嘉義縣東石鄉棒球三街406巷517號7樓','1', load_blob('mem3.jpg'));
 INSERT INTO MEMBER VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),'卡卡西','GARY691528','984283','5224428005396199','0929272193','DaiYuanRong@dayrep.com','苗栗縣後龍鎮龍華南街478巷948弄364號','1', load_blob('mem4.jpg'));
