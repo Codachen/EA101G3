@@ -14,7 +14,7 @@
 <ul>  
   <li>   
   <%--自動刷新--%>
-    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/appt/appt.do" name="form1">
+    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/hospital/opt/opt.do" name="form1">
         
         
            
@@ -22,15 +22,17 @@
        <input type="hidden" name="apptno" id="f_date1" type="text" autocomplete="off"><br>
 
 <!--        <b>設定醫師編號:</b> -->      
-  <input type="hidden" name="DOCTOR.docno" value="5">
+  <input type="hidden" name="DOCTOR.docno" value="2">
   
-<!--        <b>設定看診狀態為1已看診:</b> -->
-       <input type="hidden" name="optstate" value="1"><br>
-           
+<!--        <b>設定看診狀態為0未看診:</b> -->
+       <input type="hidden" name="optstate" value="0">
+       
+       <!-- 設定為早診 -->
+       <input type="hidden" name="optsession" value="10">    
        
 		        
 <!--         <input type="submit" value="送出"> -->
-        <input type="hidden" name="action" value="listAppt_ByCompositeQueryE">
+        <input type="hidden" name="action" value="listQueue2">
      </FORM>
   </li>
 </ul>

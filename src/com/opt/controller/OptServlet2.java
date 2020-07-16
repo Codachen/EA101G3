@@ -193,7 +193,7 @@ public class OptServlet2 extends HttpServlet {
 			}
 		}
 		
-		//看診進度查詢
+		//看診進度查詢1
 				if ("listQueue1".equals(action)) { // �Ӧ�select_page.jsp���ƦX�d�߽ШD
 					List<String> errorMsgs = new LinkedList<String>();
 					// Store this set in the request scope, in case we need to
@@ -223,9 +223,454 @@ public class OptServlet2 extends HttpServlet {
 								.getRequestDispatcher("/front-end/hospital/appt/select_page3.jsp");
 						failureView.forward(req, res);
 					}
-				}	
-		
+				}
+				//看診進度查詢1B
+				if ("listQueue1B".equals(action)) { // �Ӧ�select_page.jsp���ƦX�d�߽ШD
+					List<String> errorMsgs = new LinkedList<String>();
+					// Store this set in the request scope, in case we need to
+					// send the ErrorPage view.
+					req.setAttribute("errorMsgs", errorMsgs);
 
+					try {
+						
+						/***************************1.�N��J����ରMap**********************************/ 
+						//�ĥ�Map<String,String[]> getParameterMap()����k 
+						//�`�N:an immutable java.util.Map 
+						Map<String, String[]> map = req.getParameterMap();
+						
+						/***************************2.�}�l�ƦX�d��***************************************/
+						OptService optSvc = new OptService();
+						List<OptVO> list  = optSvc.getQueue(map);
+						
+						/***************************3.�d�ߧ���,�ǳ����(Send the Success view)************/
+						req.setAttribute("listQueue1B", list); // ��Ʈw���X��list����,�s�Jrequest
+						RequestDispatcher successView = req.getRequestDispatcher("/front-end/hospital/appt/listQueue1B.jsp"); // ���\���listEmps_ByCompositeQuery.jsp
+						successView.forward(req, res);
+						
+						/***************************��L�i�઺���~�B�z**********************************/
+					} catch (Exception e) {
+						errorMsgs.add(e.getMessage());
+						RequestDispatcher failureView = req
+								.getRequestDispatcher("/front-end/hospital/appt/select_page3.jsp");
+						failureView.forward(req, res);
+					}
+				}	
+				
+				//看診進度查詢1C
+				if ("listQueue1C".equals(action)) { // �Ӧ�select_page.jsp���ƦX�d�߽ШD
+					List<String> errorMsgs = new LinkedList<String>();
+					// Store this set in the request scope, in case we need to
+					// send the ErrorPage view.
+					req.setAttribute("errorMsgs", errorMsgs);
+
+					try {
+						
+						/***************************1.�N��J����ରMap**********************************/ 
+						//�ĥ�Map<String,String[]> getParameterMap()����k 
+						//�`�N:an immutable java.util.Map 
+						Map<String, String[]> map = req.getParameterMap();
+						
+						/***************************2.�}�l�ƦX�d��***************************************/
+						OptService optSvc = new OptService();
+						List<OptVO> list  = optSvc.getQueue(map);
+						
+						/***************************3.�d�ߧ���,�ǳ����(Send the Success view)************/
+						req.setAttribute("listQueue1C", list); // ��Ʈw���X��list����,�s�Jrequest
+						RequestDispatcher successView = req.getRequestDispatcher("/front-end/hospital/appt/listQueue1C.jsp"); // ���\���listEmps_ByCompositeQuery.jsp
+						successView.forward(req, res);
+						
+						/***************************��L�i�઺���~�B�z**********************************/
+					} catch (Exception e) {
+						errorMsgs.add(e.getMessage());
+						RequestDispatcher failureView = req
+								.getRequestDispatcher("/front-end/hospital/appt/select_page3.jsp");
+						failureView.forward(req, res);
+					}
+				}	
+				//看診進度查詢2
+				if ("listQueue2".equals(action)) { // �Ӧ�select_page.jsp���ƦX�d�߽ШD
+					List<String> errorMsgs = new LinkedList<String>();
+					// Store this set in the request scope, in case we need to
+					// send the ErrorPage view.
+					req.setAttribute("errorMsgs", errorMsgs);
+
+					try {
+						
+						/***************************1.�N��J����ରMap**********************************/ 
+						//�ĥ�Map<String,String[]> getParameterMap()����k 
+						//�`�N:an immutable java.util.Map 
+						Map<String, String[]> map = req.getParameterMap();
+						
+						/***************************2.�}�l�ƦX�d��***************************************/
+						OptService optSvc = new OptService();
+						List<OptVO> list  = optSvc.getQueue(map);
+						
+						/***************************3.�d�ߧ���,�ǳ����(Send the Success view)************/
+						req.setAttribute("listQueue2", list); // ��Ʈw���X��list����,�s�Jrequest
+						RequestDispatcher successView = req.getRequestDispatcher("/front-end/hospital/appt/listQueue2.jsp"); // ���\���listEmps_ByCompositeQuery.jsp
+						successView.forward(req, res);
+						
+						/***************************��L�i�઺���~�B�z**********************************/
+					} catch (Exception e) {
+						errorMsgs.add(e.getMessage());
+						RequestDispatcher failureView = req
+								.getRequestDispatcher("/front-end/hospital/appt/select_page3.jsp");
+						failureView.forward(req, res);
+					}
+				}
+				
+				//看診進度查詢2B
+				if ("listQueue2B".equals(action)) { // �Ӧ�select_page.jsp���ƦX�d�߽ШD
+					List<String> errorMsgs = new LinkedList<String>();
+					// Store this set in the request scope, in case we need to
+					// send the ErrorPage view.
+					req.setAttribute("errorMsgs", errorMsgs);
+
+					try {
+						
+						/***************************1.�N��J����ରMap**********************************/ 
+						//�ĥ�Map<String,String[]> getParameterMap()����k 
+						//�`�N:an immutable java.util.Map 
+						Map<String, String[]> map = req.getParameterMap();
+						
+						/***************************2.�}�l�ƦX�d��***************************************/
+						OptService optSvc = new OptService();
+						List<OptVO> list  = optSvc.getQueue(map);
+						
+						/***************************3.�d�ߧ���,�ǳ����(Send the Success view)************/
+						req.setAttribute("listQueue2B", list); // ��Ʈw���X��list����,�s�Jrequest
+						RequestDispatcher successView = req.getRequestDispatcher("/front-end/hospital/appt/listQueue2B.jsp"); // ���\���listEmps_ByCompositeQuery.jsp
+						successView.forward(req, res);
+						
+						/***************************��L�i�઺���~�B�z**********************************/
+					} catch (Exception e) {
+						errorMsgs.add(e.getMessage());
+						RequestDispatcher failureView = req
+								.getRequestDispatcher("/front-end/hospital/appt/select_page3.jsp");
+						failureView.forward(req, res);
+					}
+				}
+				
+			
+				//看診進度查詢2C
+				if ("listQueue2C".equals(action)) { // �Ӧ�select_page.jsp���ƦX�d�߽ШD
+					List<String> errorMsgs = new LinkedList<String>();
+					// Store this set in the request scope, in case we need to
+					// send the ErrorPage view.
+					req.setAttribute("errorMsgs", errorMsgs);
+
+					try {
+						
+						/***************************1.�N��J����ରMap**********************************/ 
+						//�ĥ�Map<String,String[]> getParameterMap()����k 
+						//�`�N:an immutable java.util.Map 
+						Map<String, String[]> map = req.getParameterMap();
+						
+						/***************************2.�}�l�ƦX�d��***************************************/
+						OptService optSvc = new OptService();
+						List<OptVO> list  = optSvc.getQueue(map);
+						
+						/***************************3.�d�ߧ���,�ǳ����(Send the Success view)************/
+						req.setAttribute("listQueue2C", list); // ��Ʈw���X��list����,�s�Jrequest
+						RequestDispatcher successView = req.getRequestDispatcher("/front-end/hospital/appt/listQueue2C.jsp"); // ���\���listEmps_ByCompositeQuery.jsp
+						successView.forward(req, res);
+						
+						/***************************��L�i�઺���~�B�z**********************************/
+					} catch (Exception e) {
+						errorMsgs.add(e.getMessage());
+						RequestDispatcher failureView = req
+								.getRequestDispatcher("/front-end/hospital/appt/select_page3.jsp");
+						failureView.forward(req, res);
+					}
+				}	
+
+				//看診進度查詢3
+				if ("listQueue3".equals(action)) { // �Ӧ�select_page.jsp���ƦX�d�߽ШD
+					List<String> errorMsgs = new LinkedList<String>();
+					// Store this set in the request scope, in case we need to
+					// send the ErrorPage view.
+					req.setAttribute("errorMsgs", errorMsgs);
+
+					try {
+						
+						/***************************1.�N��J����ରMap**********************************/ 
+						//�ĥ�Map<String,String[]> getParameterMap()����k 
+						//�`�N:an immutable java.util.Map 
+						Map<String, String[]> map = req.getParameterMap();
+						
+						/***************************2.�}�l�ƦX�d��***************************************/
+						OptService optSvc = new OptService();
+						List<OptVO> list  = optSvc.getQueue(map);
+						
+						/***************************3.�d�ߧ���,�ǳ����(Send the Success view)************/
+						req.setAttribute("listQueue3", list); // ��Ʈw���X��list����,�s�Jrequest
+						RequestDispatcher successView = req.getRequestDispatcher("/front-end/hospital/appt/listQueue3.jsp"); // ���\���listEmps_ByCompositeQuery.jsp
+						successView.forward(req, res);
+						
+						/***************************��L�i�઺���~�B�z**********************************/
+					} catch (Exception e) {
+						errorMsgs.add(e.getMessage());
+						RequestDispatcher failureView = req
+								.getRequestDispatcher("/front-end/hospital/appt/select_page3.jsp");
+						failureView.forward(req, res);
+					}
+				}
+				
+				//看診進度查詢3B
+				if ("listQueue3B".equals(action)) { // �Ӧ�select_page.jsp���ƦX�d�߽ШD
+					List<String> errorMsgs = new LinkedList<String>();
+					// Store this set in the request scope, in case we need to
+					// send the ErrorPage view.
+					req.setAttribute("errorMsgs", errorMsgs);
+
+					try {
+						
+						/***************************1.�N��J����ରMap**********************************/ 
+						//�ĥ�Map<String,String[]> getParameterMap()����k 
+						//�`�N:an immutable java.util.Map 
+						Map<String, String[]> map = req.getParameterMap();
+						
+						/***************************2.�}�l�ƦX�d��***************************************/
+						OptService optSvc = new OptService();
+						List<OptVO> list  = optSvc.getQueue(map);
+						
+						/***************************3.�d�ߧ���,�ǳ����(Send the Success view)************/
+						req.setAttribute("listQueue3B", list); // ��Ʈw���X��list����,�s�Jrequest
+						RequestDispatcher successView = req.getRequestDispatcher("/front-end/hospital/appt/listQueue3B.jsp"); // ���\���listEmps_ByCompositeQuery.jsp
+						successView.forward(req, res);
+						
+						/***************************��L�i�઺���~�B�z**********************************/
+					} catch (Exception e) {
+						errorMsgs.add(e.getMessage());
+						RequestDispatcher failureView = req
+								.getRequestDispatcher("/front-end/hospital/appt/select_page3.jsp");
+						failureView.forward(req, res);
+					}
+				}
+				
+				//看診進度查詢3C
+				if ("listQueue3C".equals(action)) { // �Ӧ�select_page.jsp���ƦX�d�߽ШD
+					List<String> errorMsgs = new LinkedList<String>();
+					// Store this set in the request scope, in case we need to
+					// send the ErrorPage view.
+					req.setAttribute("errorMsgs", errorMsgs);
+
+					try {
+						
+						/***************************1.�N��J����ରMap**********************************/ 
+						//�ĥ�Map<String,String[]> getParameterMap()����k 
+						//�`�N:an immutable java.util.Map 
+						Map<String, String[]> map = req.getParameterMap();
+						
+						/***************************2.�}�l�ƦX�d��***************************************/
+						OptService optSvc = new OptService();
+						List<OptVO> list  = optSvc.getQueue(map);
+						
+						/***************************3.�d�ߧ���,�ǳ����(Send the Success view)************/
+						req.setAttribute("listQueue3C", list); // ��Ʈw���X��list����,�s�Jrequest
+						RequestDispatcher successView = req.getRequestDispatcher("/front-end/hospital/appt/listQueue3C.jsp"); // ���\���listEmps_ByCompositeQuery.jsp
+						successView.forward(req, res);
+						
+						/***************************��L�i�઺���~�B�z**********************************/
+					} catch (Exception e) {
+						errorMsgs.add(e.getMessage());
+						RequestDispatcher failureView = req
+								.getRequestDispatcher("/front-end/hospital/appt/select_page3.jsp");
+						failureView.forward(req, res);
+					}
+				}
+				
+				//看診進度查詢4
+				if ("listQueue4".equals(action)) { // �Ӧ�select_page.jsp���ƦX�d�߽ШD
+					List<String> errorMsgs = new LinkedList<String>();
+					// Store this set in the request scope, in case we need to
+					// send the ErrorPage view.
+					req.setAttribute("errorMsgs", errorMsgs);
+
+					try {
+						
+						/***************************1.�N��J����ରMap**********************************/ 
+						//�ĥ�Map<String,String[]> getParameterMap()����k 
+						//�`�N:an immutable java.util.Map 
+						Map<String, String[]> map = req.getParameterMap();
+						
+						/***************************2.�}�l�ƦX�d��***************************************/
+						OptService optSvc = new OptService();
+						List<OptVO> list  = optSvc.getQueue(map);
+						
+						/***************************3.�d�ߧ���,�ǳ����(Send the Success view)************/
+						req.setAttribute("listQueue4", list); // ��Ʈw���X��list����,�s�Jrequest
+						RequestDispatcher successView = req.getRequestDispatcher("/front-end/hospital/appt/listQueue4.jsp"); // ���\���listEmps_ByCompositeQuery.jsp
+						successView.forward(req, res);
+						
+						/***************************��L�i�઺���~�B�z**********************************/
+					} catch (Exception e) {
+						errorMsgs.add(e.getMessage());
+						RequestDispatcher failureView = req
+								.getRequestDispatcher("/front-end/hospital/appt/select_page3.jsp");
+						failureView.forward(req, res);
+					}
+				}
+				
+				//看診進度查詢4B
+				if ("listQueue4B".equals(action)) { // �Ӧ�select_page.jsp���ƦX�d�߽ШD
+					List<String> errorMsgs = new LinkedList<String>();
+					// Store this set in the request scope, in case we need to
+					// send the ErrorPage view.
+					req.setAttribute("errorMsgs", errorMsgs);
+
+					try {
+						
+						/***************************1.�N��J����ରMap**********************************/ 
+						//�ĥ�Map<String,String[]> getParameterMap()����k 
+						//�`�N:an immutable java.util.Map 
+						Map<String, String[]> map = req.getParameterMap();
+						
+						/***************************2.�}�l�ƦX�d��***************************************/
+						OptService optSvc = new OptService();
+						List<OptVO> list  = optSvc.getQueue(map);
+						
+						/***************************3.�d�ߧ���,�ǳ����(Send the Success view)************/
+						req.setAttribute("listQueue4B", list); // ��Ʈw���X��list����,�s�Jrequest
+						RequestDispatcher successView = req.getRequestDispatcher("/front-end/hospital/appt/listQueue4B.jsp"); // ���\���listEmps_ByCompositeQuery.jsp
+						successView.forward(req, res);
+						
+						/***************************��L�i�઺���~�B�z**********************************/
+					} catch (Exception e) {
+						errorMsgs.add(e.getMessage());
+						RequestDispatcher failureView = req
+								.getRequestDispatcher("/front-end/hospital/appt/select_page3.jsp");
+						failureView.forward(req, res);
+					}
+				}
+				
+				//看診進度查詢4C
+				if ("listQueue4C".equals(action)) { // �Ӧ�select_page.jsp���ƦX�d�߽ШD
+					List<String> errorMsgs = new LinkedList<String>();
+					// Store this set in the request scope, in case we need to
+					// send the ErrorPage view.
+					req.setAttribute("errorMsgs", errorMsgs);
+
+					try {
+						
+						/***************************1.�N��J����ରMap**********************************/ 
+						//�ĥ�Map<String,String[]> getParameterMap()����k 
+						//�`�N:an immutable java.util.Map 
+						Map<String, String[]> map = req.getParameterMap();
+						
+						/***************************2.�}�l�ƦX�d��***************************************/
+						OptService optSvc = new OptService();
+						List<OptVO> list  = optSvc.getQueue(map);
+						
+						/***************************3.�d�ߧ���,�ǳ����(Send the Success view)************/
+						req.setAttribute("listQueue4C", list); // ��Ʈw���X��list����,�s�Jrequest
+						RequestDispatcher successView = req.getRequestDispatcher("/front-end/hospital/appt/listQueue4C.jsp"); // ���\���listEmps_ByCompositeQuery.jsp
+						successView.forward(req, res);
+						
+						/***************************��L�i�઺���~�B�z**********************************/
+					} catch (Exception e) {
+						errorMsgs.add(e.getMessage());
+						RequestDispatcher failureView = req
+								.getRequestDispatcher("/front-end/hospital/appt/select_page3.jsp");
+						failureView.forward(req, res);
+					}
+				}
+				
+				//看診進度查詢5
+				if ("listQueue5".equals(action)) { // �Ӧ�select_page.jsp���ƦX�d�߽ШD
+					List<String> errorMsgs = new LinkedList<String>();
+					// Store this set in the request scope, in case we need to
+					// send the ErrorPage view.
+					req.setAttribute("errorMsgs", errorMsgs);
+
+					try {
+						
+						/***************************1.�N��J����ରMap**********************************/ 
+						//�ĥ�Map<String,String[]> getParameterMap()����k 
+						//�`�N:an immutable java.util.Map 
+						Map<String, String[]> map = req.getParameterMap();
+						
+						/***************************2.�}�l�ƦX�d��***************************************/
+						OptService optSvc = new OptService();
+						List<OptVO> list  = optSvc.getQueue(map);
+						
+						/***************************3.�d�ߧ���,�ǳ����(Send the Success view)************/
+						req.setAttribute("listQueue5", list); // ��Ʈw���X��list����,�s�Jrequest
+						RequestDispatcher successView = req.getRequestDispatcher("/front-end/hospital/appt/listQueue5.jsp"); // ���\���listEmps_ByCompositeQuery.jsp
+						successView.forward(req, res);
+						
+						/***************************��L�i�઺���~�B�z**********************************/
+					} catch (Exception e) {
+						errorMsgs.add(e.getMessage());
+						RequestDispatcher failureView = req
+								.getRequestDispatcher("/front-end/hospital/appt/select_page3.jsp");
+						failureView.forward(req, res);
+					}
+				}
+				
+				//看診進度查詢5B
+				if ("listQueue5B".equals(action)) { // �Ӧ�select_page.jsp���ƦX�d�߽ШD
+					List<String> errorMsgs = new LinkedList<String>();
+					// Store this set in the request scope, in case we need to
+					// send the ErrorPage view.
+					req.setAttribute("errorMsgs", errorMsgs);
+
+					try {
+						
+						/***************************1.�N��J����ରMap**********************************/ 
+						//�ĥ�Map<String,String[]> getParameterMap()����k 
+						//�`�N:an immutable java.util.Map 
+						Map<String, String[]> map = req.getParameterMap();
+						
+						/***************************2.�}�l�ƦX�d��***************************************/
+						OptService optSvc = new OptService();
+						List<OptVO> list  = optSvc.getQueue(map);
+						
+						/***************************3.�d�ߧ���,�ǳ����(Send the Success view)************/
+						req.setAttribute("listQueue5B", list); // ��Ʈw���X��list����,�s�Jrequest
+						RequestDispatcher successView = req.getRequestDispatcher("/front-end/hospital/appt/listQueue5B.jsp"); // ���\���listEmps_ByCompositeQuery.jsp
+						successView.forward(req, res);
+						
+						/***************************��L�i�઺���~�B�z**********************************/
+					} catch (Exception e) {
+						errorMsgs.add(e.getMessage());
+						RequestDispatcher failureView = req
+								.getRequestDispatcher("/front-end/hospital/appt/select_page3.jsp");
+						failureView.forward(req, res);
+					}
+				}
+				
+				//看診進度查詢5C
+				if ("listQueue5C".equals(action)) { // �Ӧ�select_page.jsp���ƦX�d�߽ШD
+					List<String> errorMsgs = new LinkedList<String>();
+					// Store this set in the request scope, in case we need to
+					// send the ErrorPage view.
+					req.setAttribute("errorMsgs", errorMsgs);
+
+					try {
+						
+						/***************************1.�N��J����ରMap**********************************/ 
+						//�ĥ�Map<String,String[]> getParameterMap()����k 
+						//�`�N:an immutable java.util.Map 
+						Map<String, String[]> map = req.getParameterMap();
+						
+						/***************************2.�}�l�ƦX�d��***************************************/
+						OptService optSvc = new OptService();
+						List<OptVO> list  = optSvc.getQueue(map);
+						
+						/***************************3.�d�ߧ���,�ǳ����(Send the Success view)************/
+						req.setAttribute("listQueue5C", list); // ��Ʈw���X��list����,�s�Jrequest
+						RequestDispatcher successView = req.getRequestDispatcher("/front-end/hospital/appt/listQueue5C.jsp"); // ���\���listEmps_ByCompositeQuery.jsp
+						successView.forward(req, res);
+						
+						/***************************��L�i�઺���~�B�z**********************************/
+					} catch (Exception e) {
+						errorMsgs.add(e.getMessage());
+						RequestDispatcher failureView = req
+								.getRequestDispatcher("/front-end/hospital/appt/select_page3.jsp");
+						failureView.forward(req, res);
+					}
+				}
 //		if ("testJson".equals(action)) {	 // 來自addEmp.jsp的請求
 //			
 //			
