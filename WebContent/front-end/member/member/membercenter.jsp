@@ -68,7 +68,7 @@ opacity:0.4;
 			</div>
 			<div class="member">
 				<a href="<%=request.getContextPath()%>/front-end/member/memberpet/ListAllPetsByMember.jsp">
-					<img class="centerpic" src="<%=request.getContextPath()%>/front-end/member/member/images/dog.jpg">
+					<img class="centerpic" src="<%=request.getContextPath()%>/front-end/member/member/images/puppy.png">
 					<h2 class="member-name">寵物專區</h2>
 					<span class="member-role">Pet Zone</span>
 				</a>
