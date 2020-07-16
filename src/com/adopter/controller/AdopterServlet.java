@@ -366,11 +366,6 @@ public class AdopterServlet extends HttpServlet {
 				AdopterVO adopterVO = new AdopterVO();
 				adopterVO = adopterSvc.getOneMail(adopterName);
 				
-				System.out.println(adopterMail);
-				System.out.println(adopterVO.getAdopterMail());
-				System.out.println(adopterVO.getAdopterNo());
-				System.out.println(req.getContextPath());
-				
 				
 				if (adopterMail.equals(adopterVO.getAdopterMail())) {
 					HttpSession session = req.getSession();
@@ -400,8 +395,6 @@ public class AdopterServlet extends HttpServlet {
 				errorMsgs.add("刪除資料失敗:" + e.getMessage());
 				System.out.println(e.getMessage());
 				res.sendRedirect(req.getContextPath()+"/front-end/adopt/adopter/adopterLogIn.jsp");
-//				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/adopt/adopter/adopterLogIn.jsp");
-//				failureView.forward(req, res);
 			}
 		}
 

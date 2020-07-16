@@ -41,7 +41,7 @@ public class MemberPetDAO implements MemberPetDAO_interface {
 	//查全部寵物
 	private static final String GET_ALL_STMT ="SELECT * FROM MEMBERPET ORDER BY petNo";
 	//查詢相對應的會員所擁有的全部寵物
-	private static final String GET_MEMBERPETS_FROM_THISMEMBER = "SELECT PETNO,PEtNAME FROM MEMBERPET WHERE MEMNO=?";
+	private static final String GET_MEMBERPETS_FROM_THISMEMBER = "SELECT * FROM MEMBERPET WHERE MEMNO=?";
 	
 	
 	@Override
@@ -291,7 +291,14 @@ public class MemberPetDAO implements MemberPetDAO_interface {
 			while (rs.next()) {
 				memberPetVO = new MemberPetVO();
 				memberPetVO.setPetNo(rs.getString("petNo"));
+				memberPetVO.setMemNo(rs.getString("memNo"));
 				memberPetVO.setPetName(rs.getString("petName"));
+				memberPetVO.setPetVariety(rs.getString("petVariety"));
+				memberPetVO.setPetAge(rs.getInt("petAge"));
+				memberPetVO.setPetGender(rs.getString("petGender"));
+				memberPetVO.setPetStatus(rs.getInt("petStatus"));
+				memberPetVO.setPetPic(rs.getBytes("petPic"));
+				
 				list.add(memberPetVO);
 			}
 

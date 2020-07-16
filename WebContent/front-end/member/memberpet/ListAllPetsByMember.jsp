@@ -4,17 +4,8 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.adoptedpets.model.*"%>
 <%@ page import="java.sql.Date"%>
-<%@ page import="com.mem.model.*"%>
+<%@ page import="com.MemberPet.model.*"%>
 
-<%	
-	MemberVO member = (MemberVO)session.getAttribute("member");
-	String memNO = (String) session.getAttribute("memNO");
-	String memName = (String) session.getAttribute("memName");
-
-// 	MemberPetService adoptedPetsSvc = new AdoptedPetsService();
-// 	List<AdoptedPetsVO> list = adoptedPetsSvc.getAll();
-// 	pageContext.setAttribute("list", list);
-%>
 
 <!DOCTYPE html>
 <html>
@@ -52,6 +43,14 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 <!-- bootstrap、FontAwesome、googleFont -->
+<%@ include file="/front-end/frontEndInclude/head.jsp"%>
+<%@ include file="/front-end/frontEndInclude/header.jsp"%>
+<%
+	MemberPetService memberPetSvc = new MemberPetService();
+List<MemberPetVO> list = memberPetSvc.getPetsFromThisMember(memNO);
+pageContext.setAttribute("list", list);
+%>
+
 
 <style>
 a.nav-link-sub {
@@ -90,7 +89,7 @@ a.nav-link-sub {
 .pet-card-img-top {
 	position: relative;
 	width: 100%;
-	height: 225px;
+	height: 300px;
 }
 
 .pet-img {
@@ -124,53 +123,77 @@ main {
 </head>
 
 <body>
-	<header>
-		<nav class="navbar navbar-expand-lg navbar-light ">
-			<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="navbar-brand ml-3">
-				Cute:)
-				<span style="color: #00E8E8;">Family</span>
-			</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle Navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse"></div>
-		<div class="collapse navbar-collapse" id="navbarMenu">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="nav-link">首頁</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/member/member/membercenter.jsp" class="nav-link">會員專區</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp" class="nav-link">門診專區</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/Hotel/hotelIndex.jsp" class="nav-link">寵物旅館</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp" class="nav-link">寵物商城</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/adopt/adoptedpets/listAllPets.jsp" class="nav-link">領養專區</a>
-				</li>
-			</ul>
-			<div style="<%=(memNO == null) ? "visibility:hidden" : "visibility:"%>" id="loginFonts">
-				<span class="nav-link">
-				<img alt="" src="<%=request.getContextPath()%>/Puppy/pic.do?memNo=${memNO}" style="height: 50px" id="mempic">
-				 <%=memName%>您好~
-				  </span>
+	<main role="main">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-4">
+					<a class="btn btn-outline-success ml-5"
+						href="<%=request.getContextPath()%>/front-end/member/memberpet/AddMemberPets.jsp"
+						role="button">新增</a>
+				</div>
+				<div class="col-4 bg-light text-center">
+					<h3>寵物資訊</h3>
+				</div>
+				<div class="col-4"></div>
 			</div>
-			<a href="<%=request.getContextPath()%>/front-end/member/member/addMem.jsp">
-				<button class="btn menu-right-btn border" type="button" style="<%=(memNO == null) ? "display:" : "display:none"%>">註冊</button>
-			</a>
-			<a href="<%=request.getContextPath()%>/front-end/member/member/login.jsp">
-				<button class="btn menu-right-btn border" type="submit" id="login" style="<%=(memNO == null) ? "display:" : "display:none"%>">登入</button>
-			</a>
-			<form class="form-inline my-2 my-lg-0" action="<%=request.getContextPath()%>/Puppy/logout.do">
-				<button class="btn menu-right-btn border" type="submit" id="logout" style="<%=(memNO != null) ? "display:" : "display:none"%>">登出</button>
-			</form>
+			<div class="row pet-list mt-5">
+				<c:forEach var="memberPetVO" items="${list}" varStatus="loop">
+					<c:if test="${memberPetVO.petStatus == '0'}">
+						<div class="col-md-6">
+							<div class="card mb-4 shadow-sm pet-card  border-white">
+								<div
+									class="card-img-top pet-card-img-top d-flex justify-content-center">
+									<img
+										src="<%=request.getContextPath()%>/memberpet/memberpetpic.do?petNo=${memberPetVO.petNo}"
+										class="pet-img rounded">
+								</div>
+								<div class="container">
+									<ul class="list-group list-group-flush info-list">
+										<li class="list-group-item text-center">姓名：${memberPetVO.petName}</li>
+										<li class="list-group-item text-center">品種：${memberPetVO.petVariety}</li>
+										<li class="list-group-item text-center">性別：${memberPetVO.petGender}</li>
+										<li class="list-group-item text-center">年齡：${memberPetVO.petAge}</li>
+									</ul>
+								</div>
+								<div
+									class="card-body pet-card-body d-flex justify-content-center">
+									<div class="btn-group ">
+										<FORM METHOD="post"
+											ACTION="<%=request.getContextPath()%>/memberpet/memberpet.do">
+											<button type="submit" class="btn btn-lg btn-outline-warning">修改</button>
+											<input type="hidden" class="form-control" name="petNo"
+												value="${memberPetVO.petNo}"><input type="hidden"
+												class="form-control" name="action" value="getOne_For_Update">
+										</FORM>
+										<FORM METHOD="post"
+											ACTION="<%=request.getContextPath()%>/memberpet/memberpet.do">
+											<button type="submit" class="btn btn-lg btn-outline-danger">移除</button>
+											<input type="hidden" class="form-control" name="petNo"
+												value="${memberPetVO.petNo}"> <input type="hidden"
+												class="form-control" name="memNo" value="${memNO}">
+											<input type="hidden" class="form-control" name="petName"
+												value="${memberPetVO.petName}"> <input type="hidden"
+												class="form-control" name="petVariety"
+												value="${memberPetVO.petVariety}"> <input
+												type="hidden" class="form-control" name="petAge"
+												value="${memberPetVO.petAge}"> <input type="hidden"
+												class="form-control" name="petGender"
+												value="${memberPetVO.petGender}"> <input
+												type="hidden" class="form-control" name="petStatus"
+												value="${memberPetVO.petStatus}"> <input
+												type="hidden" class="form-control" name="action"
+												value="delete">
+
+										</FORM>
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:if>
+				</c:forEach>
+			</div>
 		</div>
-	</nav>
-	</header>
+	</main>
+	<%@ include file="/front-end/frontEndInclude/footer.jsp"%>
+</body>
+</html>

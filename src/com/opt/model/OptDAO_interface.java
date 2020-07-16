@@ -15,7 +15,6 @@ public interface OptDAO_interface {
     public List<OptVO> getAll();
     public List<OptVO> getCalInfo();
 
-    public List<OptVO> getCalInfoByDoc(String docno);
     //看診進度//
     public List<OptVO> getQueue(Map<String, String[]> map);
 
@@ -24,6 +23,6 @@ public interface OptDAO_interface {
     
     //棄用
 //    public List<OptVO> getCalInfoByDoc(String docno);
-
+}
 
 

@@ -72,8 +72,7 @@
 			</form>
 		</div>
 	</nav>
-	</header>
-
+</header>
 
 	<main >
 		<div class="container-fluid p-0">
