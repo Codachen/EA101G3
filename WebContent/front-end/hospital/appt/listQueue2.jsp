@@ -2,23 +2,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
 <%@ page import="java.util.*"%>
-<%@ page import="com.appt.model.*"%>
+<%@ page import="com.opt.model.*"%>
 
 <%-- 萬用複合查詢-可由客戶端select_page.jsp隨意增減任何想查詢的欄位 --%>
 <%-- 此頁只作為複合查詢時之結果練習，可視需要再增加分頁、送出修改、刪除之功能--%>
 
-<jsp:useBean id="listAppt_ByCompositeQueryB" scope="request" type="java.util.List<ApptVO>" />
+<jsp:useBean id="listQueue2" scope="request" type="java.util.List<OptVO>" />
+<jsp:useBean id="apptSvc" scope="page" class="com.appt.model.ApptService" />
 
- <% 
- ApptService apptSvc = new ApptService();
- List<ApptVO> list  = listAppt_ByCompositeQueryB;
- pageContext.setAttribute("list",list);
  
- %>
 
 <html>
 <head><title>看診進度 </title>
-<meta http-equiv="refresh" content="10;URL=<%=request.getContextPath()%>/front-end/hospital/appt/queueB.jsp">
+<meta http-equiv="refresh" content="10;URL=<%=request.getContextPath()%>/front-end/hospital/appt/queue2.jsp">
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
 	integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
@@ -27,15 +23,27 @@
 
 <h1>
 
+
+
+
+
 <c:choose>
-    <c:when test="${fn:length(listAppt_ByCompositeQueryB)==0}">
-       <i class="fas fa-exclamation-circle"></i>今日沒有看診
+    <c:when test="${fn:length(listQueue2)==0}">
+       <i class="fas fa-exclamation-circle"></i>今日已結束看診
     </c:when>
     <c:otherwise>
-        <i class="fas fa-user-md"></i>目前看診號${fn:length(listAppt_ByCompositeQueryB)+1}
+    <c:forEach var="optVO" items="${listQueue2}">
+    
+        <i class="fas fa-user-md"></i>目前看診號${optVO.currentCount+1-(fn:length(listQueue2))} <br><br><br><br><br>
+     </c:forEach>
+    
     </c:otherwise>
 </c:choose>
 
+ 
+<%--  <c:forEach var="optVO" items="${listQueue1}"> --%>
+<%-- ${optVO.currentCount} --%>
+<%--  </c:forEach> --%>
 
 <!-- <table> -->
 <!-- 	<tr> -->

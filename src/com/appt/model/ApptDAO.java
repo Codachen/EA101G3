@@ -466,7 +466,6 @@ public class ApptDAO implements ApptDAO_interface {
 					+ jdbcUtil_CompositeQuery_Appt2.get_WhereCondition(map)
 					+ "order by apptno";
 			pstmt = con.prepareStatement(finalSQL);
-			System.out.println("finalSQL(by DAO) = " + finalSQL);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
