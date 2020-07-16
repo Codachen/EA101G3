@@ -16,48 +16,31 @@
 <html>
 <head>
 <%@ include file="/front-end/frontEndInclude/head.jsp"%>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
 table {
 	width: 100%;
-	background-color: white;
 	margin-top: 5px;
 	margin-bottom: 5px;
-	border: 1px solid #CCCCFF;
+	border: 2px solid grey;
 	font-size: 24px;
+	
 }
 
 table, th, td {
 	text-align: center;
+	
 }
 
 th {
 	padding: 5px;
-	background-color: lightcoral;
+	background-color: #E1F5FF;
+	
 }
 
 th, td {
+	
 	padding: 5px;
-	border-bottom: dotted;
-	border-width: 1px;
-	border-color: rgba(0, 0, 0, 0.5);
-}
-
-img {
-	max-width: 100px;
-}
-
-.mainTitle {
-	font-size: 32px;
-}
-
-.memTable th {
-	width: 300px;
-}
-
-.memTable td * {
-	float: left;
-	font-size: 24px;
 }
 
 .submit {
@@ -66,8 +49,13 @@ img {
 }
 
 .main {
-	width: 80%;
+	width: 90%;
 	margin: 0 auto;
+	font-family: 'Noto Sans TC';
+}
+
+.mainTitle {
+	font-size: 32px;
 }
 </style>
 
@@ -76,7 +64,11 @@ img {
 <body>
 
 	<%@ include file="/front-end/frontEndInclude/header.jsp"%>
-
+	<script>
+	 swal("預約成功!", "", "success");
+	
+	</script>
+	
 	<div class="main">
 		<span class="mainTitle">掛號預約內容</span>
 
@@ -102,7 +94,7 @@ img {
 					<th>科別</th>
 					<th>獸醫師</th>
 					<th>診間</th>
-					<th>預約順位</th>
+					<th>預約號碼</th>
 					<!-- 			<th>最大預約數</th> -->
 				</tr>
 				<tr>
@@ -130,7 +122,7 @@ img {
 	                    ${docVO.roomno}診
                     </c:if>
 						</c:forEach></td>
-					<td>${optVO.currentCount+1}</td>
+					<td><span style="font-size : 24px;color:red;">${optVO.currentCount+1}</span></td>
 					<%-- 			<td>${optVO.maximum}</td> --%>
 
 				
@@ -138,9 +130,12 @@ img {
 			</table>
 			<br>
 			<div style="width: 100%" align="center">
-				<img
-					src="https://viacapo.com/wp-content/themes/GoDoCommerceTheme/img/successgif.gif"><br>
-				<span style="font-size : 30px;color:#0E923A;"> 預約成功</span>
+				<span style="font-size : 36px;color:#0E923A;"> 預約成功</span>
+				
+			</div>
+			<div style="width: 100%" align="center">
+				<span style="font-size : 24px;color:black;"> 可隨時至預約查詢查看記錄喔！</span>
+				
 			</div>
 
 
@@ -157,35 +152,6 @@ img {
 </body>
 
 
-<script>
-	$(function() {
 
-		function format_float(num, pos) {
-			var size = Math.pow(10, pos);
-			return Math.round(num * size) / size;
-		}
-
-		function preview(input) {
-
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
-
-				reader.onload = function(e) {
-					$('.preview').attr('src', e.target.result);
-					var KB = format_float(e.total / 1024, 2);
-					$('.size').text("檔案大小：" + KB + " KB");
-				}
-
-				reader.readAsDataURL(input.files[0]);
-			}
-		}
-
-		$("body").on("change", ".upl", function() {
-			console.log("123");
-			preview(this);
-		})
-
-	})
-</script>
 </html>
 

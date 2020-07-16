@@ -58,7 +58,7 @@ font-size:28px;
 }
 
 #startBtn{
-font-size:28px;
+font-size:24px;
 }
 
 .sel{
@@ -67,14 +67,25 @@ font-size:28px;
 
 .allsel{
 margin:0px auto;
+padding-top:50px;
+height:360px;
+background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+     background-size: cover;
+	
+	background-image: url("../appt/uploads/apptStartImg.png");
 
 }
   .main {
-	width: 80%;
+	max-width: 90%;
 	margin: 0 auto;
-	font-family: 'Noto Sans TC', sans-serif;
-}
+	font-family: 'Noto Sans TC';
 
+}
+.form1{
+	
+}
 
 </style>
 
@@ -92,34 +103,40 @@ margin:0px auto;
 
 	<hr class="mainTitlehr">
 
-<FORM METHOD="post" ACTION="dispOpt.jsp">
 
 
 <div class="allsel" style="width: 100%" align="center">
 
+<FORM METHOD="post" class="form1" ACTION="dispOpt.jsp">
+
 <div class="sel">科別<br>
-	<select id="divno" class="divno" name="divno">
-		<option value="ALL" selected>請選擇
-		<option value="D01">犬科</option>
-		<option value="D02">貓科</option>
+	<select id="divno" class="divno" name="divNo">
+		<option value="" selected>請選擇</option>
+		<option value="D01">貓科</option>
+		<option value="D02">犬科</option>
 		<option value="D03">其他科</option>
 	</select></div>
 
 <div class="sel">醫生<br>
-	<select id="doc" class="doc" name="doc">
+
+	<select id="doc" class="doc" name="docName">
+	<option value="" selected>未選擇</option>
+	
 
 
 	</select></div>
+	
 	<br>
 	<br>
 <!-- <input type="hidden" name="action" value="displayOpt">  -->
 		
 		<button type="submit" class="btn btn-primary" id="startBtn">開始預約</button>
 	</FORM>
-
+</div>
+<hr class="mainTitlehr">
 </div>
 
-</div>
+<!-- <span>不選取可查詢全部醫生</span> -->
 
 <%@ include file="/front-end/frontEndInclude/footer.jsp"%>
 </body>
@@ -144,38 +161,41 @@ $(function() {
 			if(str==='D01'){
 				var obj = JSON.parse(json1);
 			$('#doc').html("");
+			$('#doc').append("<option value=''>查詢全部</option>");
 			$.each(obj, function (index,item) {
 	            var docno = obj[index].docno;
 	            var docname = obj[index].docname;
 	            //構造動態option
 	            
-	            $('#doc').append("<option value='"+docno+"'>"+docname+"</option>");
+	            $('#doc').append("<option value='"+docname+"'>"+docname+"</option>");
 	        });
 			}
 			if(str==='D02'){
 				var obj = JSON.parse(json2);
 			$('#doc').html("");
+			$('#doc').append("<option value=''>查詢全部</option>");
 			$.each(obj, function (index,item) {
 	            var docno = obj[index].docno;
 	            var docname = obj[index].docname;
 	            //構造動態option
 	            
-	            $('#doc').append("<option value='"+docno+"'>"+docname+"</option>");
+	            $('#doc').append("<option value='"+docname+"'>"+docname+"</option>");
 	        });
 			}
 			
 			if(str==='D03'){
 				var obj = JSON.parse(json3);
 			$('#doc').html("");
+			$('#doc').append("<option value=''>查詢全部</option>");
 			$.each(obj, function (index,item) {
 	            var docno = obj[index].docno;
 	            var docname = obj[index].docname;
 	            //構造動態option
 	            
-	            $('#doc').append("<option value='"+docno+"'>"+docname+"</option>");
+	            $('#doc').append("<option value='"+docname+"'>"+docname+"</option>");
 	        });
 			}
-			if(str==="ALL"){
+			if(str===""){
 				$('#doc').html("");
 			}
 

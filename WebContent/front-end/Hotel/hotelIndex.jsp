@@ -5,24 +5,25 @@
 <%@ page import="com.mem.model.*"%>
 <%@ page import="java.util.*"%>
 
-	<%	
-		MemberVO member = (MemberVO)session.getAttribute("member");
-		String memNO = (String) session.getAttribute("memNO");
-		String memName = (String) session.getAttribute("memName");
 
-		MemberPetService memberPetSvc = new MemberPetService();
-		List<MemberPetVO> list = memberPetSvc.getPetsFromThisMember(memNO);
-		pageContext.setAttribute("list", list);
-	%>
+<%
+	String memNO = (String) session.getAttribute("memNO");
+	String memName = (String) session.getAttribute("memName");
+	
+	MemberPetService memberPetSvc = new MemberPetService();
+	List<MemberPetVO> list = memberPetSvc.getPetsFromThisMember(memNO);
+	pageContext.setAttribute("list", list);
+%>
 
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>萌寵家族旅館</title>
-<!-- bootstrap、FontAwesome、googleFont -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+<%@ include file="/front-end/frontEndInclude/head.jsp"%>
+
+<style>
+
+</style>
+
+
 
 
 
@@ -72,6 +73,8 @@
 				 <%=memName%>您好~
 				  </span>
 			</div>
+
+
 			<a href="<%=request.getContextPath()%>/front-end/member/member/addMem.jsp">
 				<button class="btn menu-right-btn border" type="button" style="<%=(memNO == null) ? "display:" : "display:none"%>">註冊</button>
 			</a>
@@ -86,6 +89,7 @@
 </header>
 	
 	
+
 	<main>
 		<div class="container-fluid">
 			<div class="row">
