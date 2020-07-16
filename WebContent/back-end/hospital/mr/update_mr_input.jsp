@@ -62,7 +62,7 @@ text-align: right;
 	</ul>
 </c:if>
 
-<FORM METHOD="post" ACTION="mr.do" name="form1" enctype="multipart/form-data">
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/mr/mr.do" name="form1" enctype="multipart/form-data">
 <table>
 <!-- 	<tr> -->
 <!-- 		<td>科別編號:</td> -->
