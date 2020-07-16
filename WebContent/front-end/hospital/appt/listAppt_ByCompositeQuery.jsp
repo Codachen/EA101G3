@@ -13,9 +13,8 @@
  ApptService apptSvc = new ApptService();
  List<ApptVO> list  = listAppt_ByCompositeQuery;
  pageContext.setAttribute("list",list);
- 
  %>
-
+ 
 <html>
 <head><title>¬Ý¶E¶i«× </title>
 <meta http-equiv="refresh" content="10;URL=<%=request.getContextPath()%>/front-end/hospital/appt/queue1.jsp">
@@ -27,6 +26,17 @@
 <body bgcolor='white'>
 
 <h1>
+
+ ${listAppt_ByCompositeQuery.sessionno}
+ <jsp:useBean id="optSvc" scope="page" class="com.opt.model.OptService" />
+ 
+ 
+ <c:forEach var="optVO" items="${optSvc.all}">
+				<c:if test="${listAppt_ByCompositeQuery.sessionno==optVO.sessionNo}"> 
+ 				¡i${(optVO.currentCount)}¡j
+ 				
+ 				</c:if> 
+			</c:forEach>
 
 <c:choose>
     <c:when test="${fn:length(listAppt_ByCompositeQuery)==0}">

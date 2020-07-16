@@ -9,19 +9,67 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="/back-end/backEndInclude/head.jsp"%>
+<style>
+/* table { */
+/* 	width: 100%; */
+/* 	background-color: white; */
+/* 	margin-top: 5px; */
+/* 	margin-bottom: 5px; */
+/* 	border: 1px solid #CCCCFF; */
+/* } */
 
-
-
+table {
+	text-align: center;
+	background-color: white;
 	
+}
+
+ th { 
+/* 	padding: 5px; */
+ 	background-color: lightcoral;
+} 
+
+/* th, td { */
+/* 	padding: 5px; */
+/* 	border-bottom: dotted; */
+/* 	border-width: 1px; */
+/* 	border-color: rgba(0, 0, 0, 0.5); */
+/* } */
+
+td{
+line-height:60px;
+height:60px;
+}
+
+.seqno{
+font-size:28px; 
+color:red; 
+font-weight:bold; 
+}
+
+#img {
+	max-width: 1800px;
+}
+
+/* .modal-body img{ */
+/* width:800px; */
+/* } */
+</style>
 </head>
-<body>
 
-	
+<body>
+		<%@ include file="/back-end/backEndInclude/header.jsp" %>
 
 	<!-- ****************************以下為實際功能頁變更區域**************************** -->
-<span class="mainTitle">醫師檢索</span>
+<span class="mainTitle">醫師查詢</span>
 
 	<hr class="mainTitlehr">
+		 
+	<a href="<%=request.getContextPath()%>/back-end/hospital/doc/select_page.jsp">返回</a></h6>
+
+
+
 		
 
 <table>
@@ -42,11 +90,11 @@
 		<td><%=docVO.getDocname()%></td>
 		<td><%=docVO.getRoomno()%></td>
 		<td><%=docVO.getSeniority()%></td>
-		<td><%=docVO.getIntro()%></td>
+		<td width="40%"  align="left"><%=docVO.getIntro()%></td>
 		<td>
 			<img alt="" src="<%=request.getContextPath()%>/back-end/doc/ShowDocPic.do?docno=${docVO.docno}" id="display">
 		</td>
-		<td><%=docVO.getDocstatus()%></td>
+		<td width="5%"><%=docVO.getDocstatus()%></td>
 		<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/doc/doc.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改">
@@ -58,7 +106,18 @@
 
 	<!-- ****************************以上為實際功能頁變更區域*************************** -->
 
-<%@ include file="/back-end/backEndInclude/footer.jsp" %>
+</div>
+
+
+
+
+<%@ include file="/back-end/backEndInclude/footer.jsp"%>
+
+
+</div>
+
+</div>
+
 
 </body>
 </html>

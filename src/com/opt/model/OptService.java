@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Map;
 
 
+import com.appt.model.ApptVO;
+
+
+
 
 public class OptService {
 	
@@ -87,4 +91,7 @@ public class OptService {
 		return dao.getAll();
 	}
 
+	public List<OptVO> getQueue(Map<String, String[]> map) {
+		return dao.getQueue(map);
+	}
 }
