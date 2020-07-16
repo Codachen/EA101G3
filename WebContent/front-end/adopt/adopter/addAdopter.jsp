@@ -111,9 +111,9 @@ ul.info-list {
 	padding: 0px;
 }
 
-main {
+body{
 	font-family: 'Noto Sans TC';
-	height: 80%;	
+	height: 100%;	
 	background-image: url("images/addAdopterbg2.jpg");
 	/* The image used */
 	background-color: #cccccc; /* Used if the image is unavailable */
@@ -131,8 +131,8 @@ hr {
 
 </head>
 
-<body class="vh-100">
-<header>
+<body>
+<header class="bg-white">
 		<nav class="navbar navbar-expand-lg navbar-light ">
 			<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="navbar-brand ml-3">
 				Cute:)
@@ -207,9 +207,8 @@ hr {
 					</ul>				
 			</div>
 		</nav>
-		<section class="pet-search"></section>
 		<div class="container">
-			<div class="row justify-content-center">
+			<div class="row justify-content-center pb-auto">
 				<div class="col-5 d-flex justify-content-center mt-5">
 					<form method="post" enctype="multipart/form-data"
 						action="<%=request.getContextPath()%>/adopter/adopter.do">
@@ -255,7 +254,7 @@ hr {
 			</div>
 		</div>
 	</main>
-	<footer>
+	<footer class="bg-white footer fixed-bottom">
 		<div class="text-center">
 			<hr>
 			<h5 style="color: lightseagreen;">Cute Family &copy;</h5>

@@ -50,9 +50,11 @@
 				</a>
 			</div>
 			<div class="member">
-				<img class="centerpic" src="<%=request.getContextPath()%>/front-end/member/member/images/dog.jpg">
-				<h2 class="member-name">寵物專區</h2>
-				<span class="member-role">Pet Zone</span>
+				<a href="<%=request.getContextPath()%>/front-end/member/memberpet/ListAllPetsByMember.jsp">
+					<img class="centerpic" src="<%=request.getContextPath()%>/front-end/member/member/images/dog.jpg">
+					<h2 class="member-name">寵物專區</h2>
+					<span class="member-role">Pet Zone</span>
+				</a>
 			</div>
 			<div class="member">
 				<img class="centerpic" src="<%=request.getContextPath()%>/front-end/member/member/images/hosiptal.jpg">
