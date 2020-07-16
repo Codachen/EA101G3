@@ -29,6 +29,8 @@
 		<url-pattern>/front-end/member/listAll_memli.jsp</url-pattern>
 		<url-pattern>/front-end/product/check.jsp</url-pattern>
 		<url-pattern>/front-end/product/myorder.jsp</url-pattern>
+		<url-pattern>/front-end/hospital/appt/addAppt.jsp</url-pattern>
+		<url-pattern>/front-end/hospital/appt/apptSuccess.jsp</url-pattern>
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
         <dispatcher>INCLUDE</dispatcher>
