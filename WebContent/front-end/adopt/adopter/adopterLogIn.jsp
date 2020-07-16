@@ -6,20 +6,15 @@
 <%@ page import="java.sql.Date"%>
 <%@ page import="com.adopter.model.*"%>
 <%@ page import="com.mem.model.*"%>
-<%	
-	MemberVO member = (MemberVO)session.getAttribute("member");
-	String memNO = (String) session.getAttribute("memNO");
-	String memName = (String) session.getAttribute("memName");
-%>
 
-<%
-	AdopterVO adoptetVO = (AdopterVO) request.getAttribute("adopterVO");
-%>
+
 
 <!DOCTYPE html>
 <html>
 
 <head>
+<%@ include file="/front-end/frontEndInclude/head.jsp"%>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>萌寵家族</title>
@@ -49,7 +44,10 @@
 	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 	crossorigin="anonymous"></script>
 
-
+<%@ include file="/front-end/frontEndInclude/header.jsp"%>
+<%
+	AdopterVO adoptetVO = (AdopterVO) request.getAttribute("adopterVO");
+%>
 <!-- bootstrap、FontAwesome、googleFont -->
 
 <style>
@@ -127,13 +125,13 @@ hr {
 	margin-top: 0px;
 }
 
-main {
+body{
 	font-family: 'Noto Sans TC';
-	height: 80%;
+	height: 100%;
 	background-image: url("images/loginbackground.jpg");
 	/* The image used */
 	background-color: #cccccc; /* Used if the image is unavailable */
-	background-position: center; /* Center the image */
+	background-position: center top; /* Center the image */
 	background-repeat: no-repeat; /* Do not repeat the image */
 	background-size: cover;
 	/* Resize the background image to cover the entire container */
@@ -155,61 +153,13 @@ main {
 p.text-right {
 	color: white;
 }
+
+header{
+	background-color: white;
+}
 </style>
 
-</head>
-
-<body class="vh-100">
-<header>
-		<nav class="navbar navbar-expand-lg navbar-light ">
-			<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="navbar-brand ml-3">
-				Cute:)
-				<span style="color: #00E8E8;">Family</span>
-			</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle Navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse"></div>
-		<div class="collapse navbar-collapse" id="navbarMenu">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="nav-link">首頁</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/member/member/membercenter.jsp" class="nav-link">會員專區</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp" class="nav-link">門診專區</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/Hotel/hotelIndex.jsp" class="nav-link">寵物旅館</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp" class="nav-link">寵物商城</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/adopt/adoptedpets/listAllPets.jsp" class="nav-link">領養專區</a>
-				</li>
-			</ul>
-			<div style="<%=(memNO == null) ? "visibility:hidden" : "visibility:"%>" id="loginFonts">
-				<span class="nav-link">
-				<img alt="" src="<%=request.getContextPath()%>/Puppy/pic.do?memNo=${memNO}" style="height: 50px" id="mempic">
-				 <%=memName%>您好~
-				  </span>
-			</div>
-			<a href="<%=request.getContextPath()%>/front-end/member/member/addMem.jsp">
-				<button class="btn menu-right-btn border" type="button" style="<%=(memNO == null) ? "display:" : "display:none"%>">註冊</button>
-			</a>
-			<a href="<%=request.getContextPath()%>/front-end/member/member/login.jsp">
-				<button class="btn menu-right-btn border" type="submit" id="login" style="<%=(memNO == null) ? "display:" : "display:none"%>">登入</button>
-			</a>
-			<form class="form-inline my-2 my-lg-0" action="<%=request.getContextPath()%>/Puppy/logout.do">
-				<button class="btn menu-right-btn border" type="submit" id="logout" style="<%=(memNO != null) ? "display:" : "display:none"%>">登出</button>
-			</form>
-		</div>
-	</nav>
-</header>
+<body>
 	<main role="main">
 		<nav class="navbar navbar-expand-lg navbar-light navbar-sub-main"
 			style="background-color: #f1f3f3">
@@ -236,7 +186,7 @@ p.text-right {
 				</ul>
 			</div>
 		</nav>
-		<div class="container-fluid">
+		<div class="container">
 			<div class="row justify-content-around">
 				<div class="col-lg-3 mt-5">
 					<form method="post" class="form-signin"
@@ -259,7 +209,7 @@ p.text-right {
 			</div>
 		</div>
 	</main>
-	<footer>
+	<footer class="bg-white footer fixed-bottom">
 		<div class="text-center">
 			<hr>
 			<h5 style="color: lightseagreen;">Cute Family &copy;</h5>

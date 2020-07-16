@@ -332,30 +332,7 @@ div.interactionTime-row {
 			</div>
 		</div>
 	</main>
-	<footer class="bg-white py-2">
-		<div class="contatiner">
-			<div class="section-5 text-center">
-				<h5 class="my-3">最完善的寵物平台</h5>
-				<h5 class="my-3">如果您有需要 請聯絡我們</h5>
-
-				<div class="form-inline justify-content-center ">
-					<input type="text" name="Email" id="email" placeholder="Email"
-						size="40" class="form-control px-4 py-2"> <input
-						type="button" value="Contact US"
-						class="btn btn-danger px-4 py-2 ml-1">
-				</div>
-				<div class="social my-5">
-					<div class="d-flex flex-row justify-content-center">
-						<i class="fab fa-facebook-f m-2"></i> <i
-							class="fab fa-twitter m-2"></i> <i class="fab fa-instagram m-2"></i>
-						<i class="fab fa-youtube m-2"></i>
-					</div>
-				</div>
-				<hr>
-				<h5 style="color: lightseagreen;">Cute Family &copy;</h5>
-			</div>
-		</div>
-	</footer>
+<%@ include file="/front-end/frontEndInclude/footer.jsp"%>
 
 	<script src="<%=request.getContextPath()%>/front-end/adopt/datetimepicker/jquery.js"></script>
 	<script
