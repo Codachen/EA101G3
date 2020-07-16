@@ -260,7 +260,7 @@ main {
 							<i class="flaticon-discuss-issue"></i>
 							
 							 <!-- icon -->
-						</div>DR01 10:00~12:00<h1>早診 Morning</h1>
+						</div><h1>早診 Morning</h1>
 						<h2>張國彬醫師</h2>
 						<div class="morning"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue1.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
 						</div>
@@ -320,7 +320,7 @@ else {
 							<i class="flaticon-discuss-issue"></i>
 							
 							 <!-- icon -->
-						</div>DR01<h1>午診  Afternoon 14:00~17:00</h1>
+						</div><h1>午診  Afternoon 14:00~17:00</h1>
 						<h2>張國彬醫師</h2>
 						<div class="noon"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue1B.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
 						</div>
