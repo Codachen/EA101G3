@@ -1,19 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Pacifico&family=Righteous&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');
+@import
+	url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Pacifico&family=Righteous&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap')
+	;
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap')
+	;
 
 /*naviBar*/
-
-body{
-    padding: 0%;
-    margin: 0%;
-    font-family: 'Lato';
+body {
+	padding: 0%;
+	margin: 0%;
+	font-family: 'Lato';
 }
 
-.navbar-brand{
+.navbar-brand {
 	font-family: 'Pacifico';
-	font-size: 35px; 
+	font-size: 35px;
 	color: lightcoral !important;
-}  
+}
 
 .nav-link {
 	font-size: 20px;
@@ -46,19 +50,20 @@ body{
 }
 
 /*footer*/
-.social i{
-    color: #EF5651;
-    font-size: 20px;
-}
-.section-5{
-    font-family: 'Noto Sans TC';
+.social i {
+	color: #EF5651;
+	font-size: 20px;
 }
 
-	#mempic{
-		border-radius: 50%;
-		border: 0px solid rgba(255,0,0,1.00);
-		
-	}
-	#loginFonts{
+.section-5 {
 	font-family: 'Noto Sans TC';
-	}
+}
+
+#mempic {
+	border-radius: 50%;
+	border: 0px solid rgba(255, 0, 0, 1.00);
+}
+
+#loginFonts {
+	font-family: 'Noto Sans TC';
+}

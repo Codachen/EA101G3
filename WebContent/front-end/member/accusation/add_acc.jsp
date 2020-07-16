@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.accusation.model.*"%>
-<%@ include file="/front-end/frontEndInclude/head.jsp"%>
-<%@ include file="/front-end/frontEndInclude/header.jsp"%>
+
 <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/member/accusation/sockettest.css">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/frontEndInclude/style.css">
+<%@ include file="/front-end/frontEndInclude/head.jsp"%>
+<%@ include file="/front-end/frontEndInclude/header.jsp"%>
 <!DOCTYPE html>
 
 <%
@@ -37,6 +38,22 @@
 	color: white;
 	background-color: #00E8E8;
 }
+
+
+h3 ,td{
+	font-size: 30px;
+	margin: 15px;
+	color: black !important;
+	font-family: 'Noto Sans TC';
+	white-space: nowrap;
+}
+h5{
+	font-size: 50px;
+	margin: 15px;
+	color: black !important;
+	font-family: 'Noto Sans TC';
+	white-space: nowrap;
+}
 </style>
 
 
@@ -60,7 +77,7 @@
 
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Puppy/acc.do" name="">
 				<!-- 上方的圖 -->
-				<h3>客訴新增 - addacc.jsp</h3>
+				<h5>客訴區</h3>
 				</td>
 				<td>
 

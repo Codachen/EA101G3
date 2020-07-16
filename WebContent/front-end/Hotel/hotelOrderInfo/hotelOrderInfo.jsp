@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+<link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/frontEndInclude/style.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/Hotel/hotelOrderInfo/style.css">
 
 <style>
@@ -49,7 +49,7 @@ footer .form-inline {
 
 <body>
 	<header>
-		<nav class="navbar navbar-expand-lg navbar-light ">
+	<nav class="navbar navbar-expand-lg navbar-light ">
 			<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="navbar-brand ml-3">
 				Cute:)
 				<span style="color: #00E8E8;">Family</span>
@@ -107,9 +107,9 @@ footer .form-inline {
 				<form class="form-inline my-2 my-lg-0" action="<%=request.getContextPath()%>/Puppy/logout.do">
 					<button class="btn menu-right-btn border" type="submit" id="logout" style="<%=(memNO != null) ? "display:" : "display:none"%>">登出</button>
 				</form>
-			</div>
-		</nav>
-	</header>
+		</div>
+	</nav>
+</header>
 
 	<div class="section-2">
 		<div class="col-12 mt-5">
