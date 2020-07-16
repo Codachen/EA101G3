@@ -538,20 +538,20 @@ NOMAXVALUE;
 ------------------創建SEQ結束-------------------
 
 --會員假資料--
-INSERT INTO MEMBER VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),'鳴人','DAVID817653','123456','1234123412341234','0927210939','DAVID871484@GMAIL.COM','臺南市關廟區富強路481巷400號32樓','1', load_blob('mem1.jpg'));
-INSERT INTO MEMBER VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),'佐助','JACK321570','993783','4929641269737475','0972413469','JinZhengHong@teleworm.us','南投縣名間鄉河濱街三段583號 ','0', load_blob('mem2.jpg'));
-INSERT INTO MEMBER VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),'小櫻','AMY791792','806955','4916778416017271','0938161581','HongGuHao@dayrep.com','嘉義縣東石鄉棒球三街406巷517號7樓','0', load_blob('mem3.jpg'));
-INSERT INTO MEMBER VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),'卡卡西','GARY691528','984283','5224428005396199','0929272193','DaiYuanRong@dayrep.com','苗栗縣後龍鎮龍華南街478巷948弄364號','0', load_blob('mem4.jpg'));
-INSERT INTO MEMBER VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),'鹿丸','ANDY335911','101197','4539575046304203','0924980540','ZhenDeYi@rhyta.com',' 屏東縣滿州鄉赤崁東路四段422號26樓','0', load_blob('mem5.jpg'));
-INSERT INTO MEMBER VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),'雛田','CHERRY638215','157167','5201590608518474','0924269145','YuanPeiRong@rhyta.com','高雄市永安區東英二街三段8巷444號','0', load_blob('mem6.jpg'));
-INSERT INTO MEMBER VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),'景野','BUTTETFLY508591','116647','5349738432232993','0989297388','LuoYuWen@dayrep.com','臺東縣海端鄉松文路777號60樓','0', load_blob('mem7.jpg'));
-INSERT INTO MEMBER VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),'丁次','BUTY414316','773655','4916119687537822','0936382920','ShiGongYun@armyspy.com','澎湖縣白沙鄉貴林街二段691號54樓','0', load_blob('mem8.jpg'));
-INSERT INTO MEMBER VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),'阿凱','CUTE268814','329037','5222443436591872','0912666860','LuYaWen@rhyta.com',' 臺東縣達仁鄉榮豐街755號 ','0', load_blob('mem9.jpg'));
-INSERT INTO MEMBER VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),'李洛克','JOHN871484','388224','4485105095152164','0927217190','ShiXinYi@teleworm.us','雲林縣斗南鎮榮豐街三段607號','0', load_blob('mem10.jpg'));
+INSERT INTO MEMBER VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),'鳴人','DAVID817653','123456','1234123412341234','0927210939','weiyuwang465@gmail.com','臺南市關廟區富強路481巷400號32樓','1', load_blob('mem1.jpg'));
+INSERT INTO MEMBER VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),'佐助','JACK321570','993783','4929641269737475','0972413469','JinZhengHong@teleworm.us','南投縣名間鄉河濱街三段583號 ','1', load_blob('mem2.jpg'));
+INSERT INTO MEMBER VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),'小櫻','AMY791792','806955','4916778416017271','0938161581','HongGuHao@dayrep.com','嘉義縣東石鄉棒球三街406巷517號7樓','1', load_blob('mem3.jpg'));
+INSERT INTO MEMBER VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),'卡卡西','GARY691528','984283','5224428005396199','0929272193','DaiYuanRong@dayrep.com','苗栗縣後龍鎮龍華南街478巷948弄364號','1', load_blob('mem4.jpg'));
+INSERT INTO MEMBER VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),'鹿丸','ANDY335911','101197','4539575046304203','0924980540','ZhenDeYi@rhyta.com',' 屏東縣滿州鄉赤崁東路四段422號26樓','1', load_blob('mem5.jpg'));
+INSERT INTO MEMBER VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),'雛田','CHERRY638215','157167','5201590608518474','0924269145','YuanPeiRong@rhyta.com','高雄市永安區東英二街三段8巷444號','1', load_blob('mem6.jpg'));
+INSERT INTO MEMBER VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),'景野','BUTTETFLY508591','116647','5349738432232993','0989297388','LuoYuWen@dayrep.com','臺東縣海端鄉松文路777號60樓','1', load_blob('mem7.jpg'));
+INSERT INTO MEMBER VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),'丁次','BUTY414316','773655','4916119687537822','0936382920','ShiGongYun@armyspy.com','澎湖縣白沙鄉貴林街二段691號54樓','1', load_blob('mem8.jpg'));
+INSERT INTO MEMBER VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),'阿凱','CUTE268814','329037','5222443436591872','0912666860','LuYaWen@rhyta.com',' 臺東縣達仁鄉榮豐街755號 ','1', load_blob('mem9.jpg'));
+INSERT INTO MEMBER VALUES ('M'||LPAD(to_char(MEMBER_SEQ.NEXTVAL), 4, '0'),'李洛克','JOHN871484','388224','4485105095152164','0927217190','ShiXinYi@teleworm.us','雲林縣斗南鎮榮豐街三段607號','1', load_blob('mem10.jpg'));
 
 --會員寵物假資料--
 INSERT INTO MEMBERPET VALUES ('P'||LPAD(to_char(MEMBERPET_SEQ.NEXTVAL), 4, '0'),'M0001','哈利','貴賓犬','10','男','0', load_blob('dog1.jpg'));
-INSERT INTO MEMBERPET VALUES ('P'||LPAD(to_char(MEMBERPET_SEQ.NEXTVAL), 4, '0'),'M0001','虎妞','柴犬','5','男','0', load_blob('dog2.jpg'));
+INSERT INTO MEMBERPET VALUES ('P'||LPAD(to_char(MEMBERPET_SEQ.NEXTVAL), 4, '0'),'M0002','虎妞','柴犬','5','男','0', load_blob('dog2.jpg'));
 INSERT INTO MEMBERPET VALUES ('P'||LPAD(to_char(MEMBERPET_SEQ.NEXTVAL), 4, '0'),'M0003','丸子','杜賓犬','3','女','0', load_blob('dog3.jpg'));
 INSERT INTO MEMBERPET VALUES ('P'||LPAD(to_char(MEMBERPET_SEQ.NEXTVAL), 4, '0'),'M0004','酸奶','蝴蝶犬','1','男','0', load_blob('dog4.jpg'));
 INSERT INTO MEMBERPET VALUES ('P'||LPAD(to_char(MEMBERPET_SEQ.NEXTVAL), 4, '0'),'M0005','肥肥','秋田犬','1','女','0', load_blob('dog5.jpg'));
@@ -559,12 +559,8 @@ INSERT INTO MEMBERPET VALUES ('P'||LPAD(to_char(MEMBERPET_SEQ.NEXTVAL), 4, '0'),
 INSERT INTO MEMBERPET VALUES ('P'||LPAD(to_char(MEMBERPET_SEQ.NEXTVAL), 4, '0'),'M0007','格格','鬆獅','7','男','0', load_blob('dog7.jpg'));
 INSERT INTO MEMBERPET VALUES ('P'||LPAD(to_char(MEMBERPET_SEQ.NEXTVAL), 4, '0'),'M0008','甜甜','貴賓犬','11','女','0', load_blob('dog8.jpg'));
 INSERT INTO MEMBERPET VALUES ('P'||LPAD(to_char(MEMBERPET_SEQ.NEXTVAL), 4, '0'),'M0009','花花','藏獒','9','男','0', load_blob('dog9.jpg'));
-INSERT INTO MEMBERPET VALUES ('P'||LPAD(to_char(MEMBERPET_SEQ.NEXTVAL), 4, '0'),'M0010','饅頭','哈士奇','8','男','0', load_blob('dog9.jpg'));
-INSERT INTO MEMBERPET VALUES ('P'||LPAD(to_char(MEMBERPET_SEQ.NEXTVAL), 4, '0'),'M0001','哈利','貴賓犬','10','男','0', load_blob('dog1.jpg'));
-INSERT INTO MEMBERPET VALUES ('P'||LPAD(to_char(MEMBERPET_SEQ.NEXTVAL), 4, '0'),'M0002','虎妞','柴犬','5','男','0', load_blob('dog2.jpg'));
-INSERT INTO MEMBERPET VALUES ('P'||LPAD(to_char(MEMBERPET_SEQ.NEXTVAL), 4, '0'),'M0003','丸子','杜賓犬','3','女','0', load_blob('dog3.jpg'));
-INSERT INTO MEMBERPET VALUES ('P'||LPAD(to_char(MEMBERPET_SEQ.NEXTVAL), 4, '0'),'M0004','酸奶','蝴蝶犬','1','男','0', load_blob('dog4.jpg'));
-INSERT INTO MEMBERPET VALUES ('P'||LPAD(to_char(MEMBERPET_SEQ.NEXTVAL), 4, '0'),'M0005','肥肥','秋田犬','1','女','0', load_blob('dog5.jpg'));
+INSERT INTO MEMBERPET VALUES ('P'||LPAD(to_char(MEMBERPET_SEQ.NEXTVAL), 4, '0'),'M0010','饅頭','柴犬','8','男','0', load_blob('dog10.jpg'));
+
 
 --房型假資料--
 INSERT INTO HOTELROOMTYPE VALUES ('RT'||LPAD(to_char(HOTELROOMTYPE_SEQ.NEXTVAL), 3, '0'),'經典房','基本舒適房型，擁有五組樓梯跳台，垂直奔跑滿足好動細胞。不限貓狗，一天『600』NT(未滿一天以一天計算。)','105cm*150cm*300cm','600','曬太陽時間20分鐘','0',load_blob('roomType1.jpg'));
@@ -582,11 +578,11 @@ INSERT INTO HOTELROOM VALUES (202,'RT002','','0');
 INSERT INTO HOTELROOM VALUES (203,'RT002','P0008','0');
 INSERT INTO HOTELROOM VALUES (204,'RT002','P0009','0');
 INSERT INTO HOTELROOM VALUES (205,'RT002','','0');
-INSERT INTO HOTELROOM VALUES (301,'RT003','P0011','0');
+INSERT INTO HOTELROOM VALUES (301,'RT003','','0');
 INSERT INTO HOTELROOM VALUES (302,'RT003','','0');
-INSERT INTO HOTELROOM VALUES (303,'RT003','P0013','0');
+INSERT INTO HOTELROOM VALUES (303,'RT003','','0');
 INSERT INTO HOTELROOM VALUES (304,'RT003','','0');
-INSERT INTO HOTELROOM VALUES (305,'RT003','P0015','0');
+INSERT INTO HOTELROOM VALUES (305,'RT003','','0');
 
 --旅館訂單假資料--
 INSERT INTO HOTELORDER (ORDERNO,MEMNO,PETNO,ROOMTYPENO,ORDERDATE,ROOMNO,ROOMTYPEPRICE,CHECKINDATE,CHECKOUTDATE,TOTALPRICE,HOTELORDERSTATUS) 
