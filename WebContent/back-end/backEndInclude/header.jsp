@@ -32,7 +32,7 @@
 	<div class="row">
 
 
-		<div class="aside col-xl-2">
+		<div class="aside">
 
 
 			<ul class="nav flex-column">
@@ -200,4 +200,4 @@
 		</div>
 
 
-		<div class="main col-xl-10">
+		<div class="main">
