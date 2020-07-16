@@ -187,7 +187,7 @@ div.uploadimg{
 						<div class="form-group row">
 							<div class="col-3 pl-0">
 								<label for="petPic">收容寵物圖片</label> <input type="file"
-									class="form-control-file" name="petPic" id="petPic">
+									class="form-control-file" name="petPic" id="petPic" required>
 							</div>
 							<div class="col uploadimg">
 								<img id="picPreview"
