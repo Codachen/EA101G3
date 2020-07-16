@@ -53,7 +53,7 @@
 	crossorigin="anonymous"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 
 <!-- bootstrap、FontAwesome、googleFont -->
 
@@ -122,6 +122,15 @@ main {
 
 #pet-search-title, form.pet-search-form, div.pet-sort-row {
 	padding-left: 15px;
+}
+
+#mempic {
+	border-radius: 50%;
+	border: 0px solid rgba(255, 0, 0, 1.00);
+}
+
+#loginFonts {
+	font-family: 'Noto Sans TC';
 }
 </style>
 
