@@ -16,7 +16,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - Course Card UI Design - #094 of #100Days100Projects</title>
+  <title>預約查詢</title>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css'><link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/hospital/appt/style.css">
 
 </head>

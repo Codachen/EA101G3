@@ -35,7 +35,7 @@
 </c:if>
 
 
-<FORM METHOD="post" ACTION="doc.do" name="form1" enctype="multipart/form-data">
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/doc/doc.do" name="form1" enctype="multipart/form-data">
 <table>
 <!-- 	<tr> -->
 <!-- 		<td>科別編號:</td> -->
