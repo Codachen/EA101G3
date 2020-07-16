@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="<%= request.getContextPath()%>/front-end/product/style.css">
 <link rel="stylesheet" href="<%= request.getContextPath()%>/front-end/product/dogindex.css">
 <!-- bootstrap¡BFontAwesome¡BgoogleFont -->
+<!-- bootstrap¡BFontAwesome¡BgoogleFont -->
 <style>
 .myjumbotron {
 	background-image: url("<%=request.getContextPath()%>/front-end/product/img/6.jpg");
