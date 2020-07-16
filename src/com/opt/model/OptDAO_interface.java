@@ -3,6 +3,8 @@ package com.opt.model;
 import java.sql.Date;
 import java.util.*;
 
+import com.appt.model.ApptVO;
+
 public interface OptDAO_interface {
     public void insert(OptVO optVO);
     public void update(OptVO optVO);
@@ -15,5 +17,6 @@ public interface OptDAO_interface {
 //  public List<EmpVO> getAll(Map<String, String[]> map); 
     public List<OptVO> getCalInfo();
     public List<OptVO> getCalInfoByDoc(String docno);
-
+    //看診進度//
+    public List<OptVO> getQueue(Map<String, String[]> map);
 }

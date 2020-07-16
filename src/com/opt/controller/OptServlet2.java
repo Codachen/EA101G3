@@ -20,7 +20,7 @@ import com.opt.model.*;
  * Servlet implementation class OptServlet
  */
 
-public class OptServlet extends HttpServlet {
+public class OptServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

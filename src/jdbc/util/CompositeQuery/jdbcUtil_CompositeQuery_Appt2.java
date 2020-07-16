@@ -17,7 +17,7 @@ public class jdbcUtil_CompositeQuery_Appt2 {
 
 		if ("optstate".equals(columnName)) // �Ω��L
 			aCondition = columnName + "=" + value;
-		else if ("apptno".equals(columnName)|| "memno".equals(columnName)|| "sessionno".equals(columnName)|| "DOCTOR.docno".equals(columnName)) // �Ω�varchar
+		else if ("apptno".equals(columnName)|| "memno".equals(columnName)|| "sessionno".equals(columnName)|| "DOCTOR.docno".equals(columnName)|| "optsession".equals(columnName)) // �Ω�varchar
 			aCondition = columnName + " like '%" + value + "%'";
 
 		return aCondition + " ";

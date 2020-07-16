@@ -9,10 +9,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<%@ include file="/back-end/backEndInclude/head.jsp"%>
 </head>
+
 <body>
-	
+		<%@ include file="/back-end/backEndInclude/header.jsp" %>
 
 	<!-- ****************************以下為實際功能頁變更區域**************************** -->
 
@@ -20,7 +21,7 @@
 
 	<hr class="mainTitlehr">
 
-	<h6><a href="select_page.jsp"><img src="images/back.png" width="32" height="32" border="0">返回管理主頁面</a></h6>
+	<h6><a href="select_page.jsp">返回管理主頁面</a></h6>
 <h3>醫師新增:</h3>
 
 <%-- 錯誤表列 --%>
@@ -132,8 +133,8 @@
 
 
 
-<footer class="Footer">Copyright © 萌寵家族 Cute Family
-</footer>
+<%@ include file="/back-end/backEndInclude/footer.jsp"%>
+
 
 
 </div>
