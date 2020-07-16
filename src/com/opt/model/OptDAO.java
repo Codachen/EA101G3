@@ -471,6 +471,8 @@ public class OptDAO implements OptDAO_interface {
 //		
 				optVO.setTitle(rs.getString("docName"),rs.getInt("currentCount"),rs.getInt("maximum"),rs.getString("optSession"));
 				optVO.setStart(rs.getDate("optDate"));
+				optVO.setcolor(rs.getString("docName"));
+				optVO.setId(rs.getString("sessionNo"));
 				list.add(optVO); // Store the row in the list
 			}
 			
@@ -519,6 +521,7 @@ public class OptDAO implements OptDAO_interface {
 					"FROM OPTSESSION " + 
 					"JOIN DOCTOR ON OPTSESSION.docno = DOCTOR.docno " + 
 					jdbcUtil_CompositeQuery_Opt.get_WhereCondition(map)+
+					"and optDate >= sysdate-1 "+
 					"order by sessionNo";
 			
 			pstmt = con.prepareStatement(finalSQL);
@@ -533,6 +536,7 @@ public class OptDAO implements OptDAO_interface {
 				optVO.setTitle(rs.getString("docName"),rs.getInt("currentCount"),rs.getInt("maximum"),rs.getString("optSession"));
 				optVO.setStart(rs.getDate("optDate"));
 				optVO.setId(rs.getString("sessionNo"));
+				optVO.setcolor(rs.getString("docName"));
 				list.add(optVO); // Store the row in the list
 			}
 			

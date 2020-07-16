@@ -35,6 +35,7 @@
 	src='<%=request.getContextPath()%>/back-end/hospital/fullcalendar/main.js'></script>
 <script
 	src='<%=request.getContextPath()%>/back-end/hospital/fullcalendar/locales-all.js'></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>
 
@@ -53,7 +54,7 @@
       locale: 'zh-tw',
       initialDate: new Date(),
       navLinks: true, // can click day/week names to navigate views
-      selectable: true,
+      selectable: false,
       selectMirror: true,
       select: function(arg) {
         var title = prompt('Event Title:');
@@ -71,10 +72,11 @@
 //           arg.event.remove()
 //         }
 //       },
-//      editable: true,
+     editable: false,
       dayMaxEvents: true, // allow "more" link when too many events
       events: ${list}
-//       events: [{'title':123,'start':'2020-07-02'}]
+//       events: [{'title':123,'start':'2020-07-02','color':'green'}]
+
 
     });
     calendar.render();
@@ -89,12 +91,12 @@
   }
   
   function selectDiv(){
-	  alert("selectDiv");
+	  swal("此功能尚未開放", "(還沒做完)", "info");
 	  
   }
   
   function selectDoctor(){
-	  alert("selectDoctor");
+	  swal("此功能尚未開放", "(還沒做完)", "info");
 	  
   }
   </script>

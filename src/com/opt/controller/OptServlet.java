@@ -150,31 +150,30 @@ public class OptServlet extends HttpServlet {
 			}
 		}
 
-		if ("insert".equals(action)) { // 來自addEmp.jsp的請求
+		if ("insert".equals(action)) { 
 
-//			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
-//			req.setAttribute("errorMsgs", errorMsgs);
+			List<String> errorMsgs = new LinkedList<String>();
+//			 Store this set in the request scope, in case we need to
+//			 send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
 
 			try {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
-				String docNo = req.getParameter("docNo");
+//				String divno = req.getParameter("divno");
+				String docno = req.getParameter("docno");
+//				System.out.println(docno);
+				if (docno == null || docno.trim().length() == 0) {
+					errorMsgs.add("必須選擇一位醫師");
 
+				}
 				String optSession = req.getParameter("optSession");
 				if (optSession == null || optSession.trim().length() == 0) {
-//					errorMsgs.add("請選擇一個時段");
-					out.print("<script language='javascript'>alert('帳號或密碼輸入錯誤，請重新輸入!!');</script>");
+					errorMsgs.add("必須選擇一個時段");
 
 				}
 
-				java.sql.Date optDate = null;
-				try {
-					// 將前端日期字串轉成JAVA Date物件
-					optDate = java.sql.Date.valueOf(req.getParameter("optDate").trim());
-				} catch (IllegalArgumentException e) {
-
-				}
+				java.sql.Date optDate = java.sql.Date.valueOf(req.getParameter("optDate"));
+				
 
 				Integer currentCount = 0;
 
@@ -183,53 +182,88 @@ public class OptServlet extends HttpServlet {
 					maximum = new Integer(req.getParameter("maximum").trim());
 
 				} catch (NumberFormatException e) {
-//					errorMsgs.add("請輸入限制數量");
+					errorMsgs.add("必須輸入限制數量");
 				}
 
 				OptVO optVO = new OptVO();
-				optVO.setDocNo(docNo);
+//				optVO.setDocNo(divno);
+				optVO.setDocNo(docno);
 				optVO.setOptDate(optDate);
 				optVO.setOptSession(optSession);
 				optVO.setMaximum(maximum);
-				System.out.println(docNo);
-				System.out.println(optDate);
-				System.out.println(optSession);
+				optVO.setCurrentCount(currentCount);
+//				System.out.println(docno);
+//				System.out.println(optDate);
+//				System.out.println(optSession);
 
 				// 以下為重複資料處理
 				OptService optSvcCheck = new OptService();
-				OptVO optVO_PK = optSvcCheck.findSession(docNo, optDate, optSession);
+				OptVO optVO_PK = optSvcCheck.findSession(docno, optDate, optSession);
 
 				if (optVO_PK != null) {
-
-//					errorMsgs.add("此時段已新增過");
+//					System.out.println("重複了");
+					errorMsgs.add("此時段已新增過");
 
 				}
 
 				// Send the use back to the form, if there were errors
-//				if (!errorMsgs.isEmpty()) {
-//					req.setAttribute("optVO", optVO); // 含有輸入格式錯誤的empVO物件,也存入req
-//					RequestDispatcher failureView = req
-//							.getRequestDispatcher("/back-end/hospital/opt/addOptSession.jsp");
-//					failureView.forward(req, res);
-//					return;
-//				}
+				if (!errorMsgs.isEmpty()) {
+					req.setAttribute("optVO", optVO); // 含有輸入格式錯誤的empVO物件,也存入req
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/back-end/hospital/opt/selectAll.jsp");
+					failureView.forward(req, res);
+					return;
+				}
 
 				/*************************** 2.開始新增資料 ***************************************/
 				OptService optSvc = new OptService();
-				optVO = optSvc.addOptSession(docNo, optDate, optSession, currentCount, maximum);
+				optVO = optSvc.addOptSession(docno, optDate, optSession, currentCount, maximum);
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 
-				String url = "/back-end/hospital/opt/select_page.jsp";
+				String url = "/back-end/hospital/opt/selectAll.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
-//				errorMsgs.add(e.getMessage() + "其他的錯誤");
-				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/hospital/opt/addOptSession.jsp");
+				errorMsgs.add(e.getMessage() + "未知的錯誤");
+				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/hospital/opt/selectAll.jsp");
 				failureView.forward(req, res);
 			}
+		}
+		
+		if ("delete".equals(action)) { 
+
+
+
+			
+				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
+				PrintWriter wr = res.getWriter();
+				String sessionNo = req.getParameter("sessionNo");
+				OptVO optVO = new OptVO();
+				OptService optSvc = new OptService();
+				optVO = optSvc.getOneOptSession(sessionNo);
+				res.setContentType("text");
+				if(optVO.getCurrentCount()==0) {
+					
+					
+					wr.write("OK");
+					/*************************** 2.開始刪除資料 ***************************************/
+					
+					optSvc.deleteOptSession(sessionNo);
+				}else {
+					wr.write("NG");
+				}
+				
+				
+				
+
+				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
+
+
+				/*************************** 其他可能的錯誤處理 **********************************/
+		
 		}
 
 		// 看診進度查詢

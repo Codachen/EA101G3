@@ -134,7 +134,7 @@ th, td {
 				
 			</div>
 			<div style="width: 100%" align="center">
-				<span style="font-size : 24px;color:black;"> 可隨時至預約查詢查看記錄喔！</span>
+				<span style="font-size : 24px;color:black;"> 可隨時至預約查詢確認預約資料喔！</span>
 				
 			</div>
 
