@@ -6,15 +6,7 @@
 <%@ page import="java.sql.Date"%>
 <%@ page import="com.mem.model.*"%>
 
-<%	
-	MemberVO member = (MemberVO)session.getAttribute("member");
-	String memNO = (String) session.getAttribute("memNO");
-	String memName = (String) session.getAttribute("memName");
 
-	AdoptedPetsService adoptedPetsSvc = new AdoptedPetsService();
-	List<AdoptedPetsVO> list = adoptedPetsSvc.getAll();
-	pageContext.setAttribute("list", list);
-%>
 
 <!DOCTYPE html>
 <html>
@@ -23,7 +15,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>萌寵家族</title>
-
+<%@ include file="/front-end/frontEndInclude/head.jsp"%>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
@@ -50,6 +42,15 @@
 	crossorigin="anonymous"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+<%@ include file="/front-end/frontEndInclude/header.jsp"%>
+
+<%	
+	AdoptedPetsService adoptedPetsSvc = new AdoptedPetsService();
+	List<AdoptedPetsVO> list = adoptedPetsSvc.getAll();
+	pageContext.setAttribute("list", list);
+%>	
 
 <!-- bootstrap、FontAwesome、googleFont -->
 
@@ -124,56 +125,6 @@ main {
 </head>
 
 <body>
-	<header>
-		<nav class="navbar navbar-expand-lg navbar-light ">
-			<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="navbar-brand ml-3">
-				Cute:)
-				<span style="color: #00E8E8;">Family</span>
-			</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle Navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse"></div>
-		<div class="collapse navbar-collapse" id="navbarMenu">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="nav-link">首頁</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/member/member/membercenter.jsp" class="nav-link">會員專區</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp" class="nav-link">門診專區</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/Hotel/hotelIndex.jsp" class="nav-link">寵物旅館</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp" class="nav-link">寵物商城</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/adopt/adoptedpets/listAllPets.jsp" class="nav-link">領養專區</a>
-				</li>
-			</ul>
-			<div style="<%=(memNO == null) ? "visibility:hidden" : "visibility:"%>" id="loginFonts">
-				<span class="nav-link">
-				<img alt="" src="<%=request.getContextPath()%>/Puppy/pic.do?memNo=${memNO}" style="height: 50px" id="mempic">
-				 <%=memName%>您好~
-				  </span>
-			</div>
-			<a href="<%=request.getContextPath()%>/front-end/member/member/addMem.jsp">
-				<button class="btn menu-right-btn border" type="button" style="<%=(memNO == null) ? "display:" : "display:none"%>">註冊</button>
-			</a>
-			<a href="<%=request.getContextPath()%>/front-end/member/member/login.jsp">
-				<button class="btn menu-right-btn border" type="submit" id="login" style="<%=(memNO == null) ? "display:" : "display:none"%>">登入</button>
-			</a>
-			<form class="form-inline my-2 my-lg-0" action="<%=request.getContextPath()%>/Puppy/logout.do">
-				<button class="btn menu-right-btn border" type="submit" id="logout" style="<%=(memNO != null) ? "display:" : "display:none"%>">登出</button>
-			</form>
-		</div>
-	</nav>
-	</header>
 	<main role="main">
 		<nav class="navbar navbar-expand-lg navbar-light navbar-sub-main"
 			style="background-color: #f1f3f3">
@@ -298,27 +249,7 @@ main {
 			</div>
 		</div>
 	</main>
-	<footer>
-		<div class="section-5 text-center">
-			<h4 style="margin-top: 5%;">最完善的寵物平台</h4>
-			<h4 class="my-4">如果您有需要 請聯絡我們</h4>
-
-			<div class="form-inline justify-content-center ">
-				<input type="text" name="Email" id="email" placeholder="Email"
-					size="40" class="form-control px-4 py-2"> <input
-					type="button" value="Contact US"
-					class="btn btn-danger px-4 py-2 ml-1">
-			</div>
-			<div class="social" style="margin: 5%;">
-				<div class="d-flex flex-row justify-content-center">
-					<i class="fab fa-facebook-f m-2"></i> <i class="fab fa-twitter m-2"></i>
-					<i class="fab fa-instagram m-2"></i> <i class="fab fa-youtube m-2"></i>
-				</div>
-			</div>
-			<hr>
-			<h5 style="color: lightseagreen;">Cute Family &copy;</h5>
-		</div>
-	</footer>
+<%@ include file="/front-end/frontEndInclude/footer.jsp"%>
 	<script
 		src="<%=request.getContextPath()%>/front-end/adopt/base64-js-master/base64js.min.js"></script>
 	<%-- 	<script src="<%=request.getContextPath()%>/base64-js-master/index.js"></script> --%>

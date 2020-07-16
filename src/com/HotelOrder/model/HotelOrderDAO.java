@@ -57,7 +57,7 @@ public class HotelOrderDAO implements HotelOrderDAO_interface {
 	// 修改訂單狀態(變成已取消)
 	private static final String STATUS_CANCEL = "UPDATE HOTELORDER SET HOTELORDERSTATUS=2 WHERE ORDERNO=?";
 	// FullCalendar用
-	private static final String GET_FULLCALENDAR_MSG = "SELECT MEMNAME,CHECKINDATE,CHECKOUTDATE,ROOMNO FROM MEMBER M JOIN HOTELORDER H ON M.MEMNO = H.MEMNO";
+	private static final String GET_FULLCALENDAR_MSG = "SELECT MEMNAME,CHECKINDATE,CHECKOUTDATE,ROOMNO,ROOMTYPENO FROM MEMBER M JOIN HOTELORDER H ON M.MEMNO = H.MEMNO";
 	
 
 	@Override
@@ -452,6 +452,7 @@ public class HotelOrderDAO implements HotelOrderDAO_interface {
 				hotelOrderVO.setTitle(rs.getString("memName"),rs.getInt("roomNo"));
 				hotelOrderVO.setStart(rs.getTimestamp("checkInDate"));
 				hotelOrderVO.setEnd(rs.getTimestamp("checkOutDate"));
+				hotelOrderVO.setColor(rs.getString("roomTypeNo"));
 				list.add(hotelOrderVO);
 			}
 

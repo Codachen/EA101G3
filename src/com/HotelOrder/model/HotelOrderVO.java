@@ -21,6 +21,27 @@ public class HotelOrderVO implements java.io.Serializable {
 	private String title;
 	private Timestamp start;
 	private Timestamp end;
+	private String color;
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String roomTypeNo) {
+		
+		if(roomTypeNo.equals("RT001")) {
+			this.color = "blue";
+		}else if(roomTypeNo.equals("RT002")) {
+			this.color = "green";
+		}else if(roomTypeNo.equals("RT003")) {
+			this.color = "orange";
+		}else if(roomTypeNo.equals("RT004")) {
+			this.color = "silver";
+		}else {
+			this.color = "pink";
+		}
+		
+	}
 
 	public String getOrderNo() {
 		return orderNo;
@@ -133,5 +154,6 @@ public class HotelOrderVO implements java.io.Serializable {
 	public void setPetNo(String petNo) {
 		this.petNo = petNo;
 	}
+	
 
 }

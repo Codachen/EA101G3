@@ -7,17 +7,17 @@
 <%@ page import="com.interaction.model.*"%>
 <%@ page import="java.sql.Date"%>
 <%@ page import="com.mem.model.*"%>
-<%	
-	MemberVO member = (MemberVO)session.getAttribute("member");
-	String memNO = (String) session.getAttribute("memNO");
-	String memName = (String) session.getAttribute("memName");
+<%
+	MemberVO member = (MemberVO) session.getAttribute("member");
+String memNO = (String) session.getAttribute("memNO");
+String memName = (String) session.getAttribute("memName");
 %>
 
 <%
 	InteractionService interactionSvc = new InteractionService();
-	String adopterNo = (String)session.getAttribute("adopterNo"); 
-	Set<InteractionVO> set = interactionSvc.getInteractionByAdopterNo(adopterNo);
-	pageContext.setAttribute("set", set);
+String adopterNo = (String) session.getAttribute("adopterNo");
+Set<InteractionVO> set = interactionSvc.getInteractionByAdopterNo(adopterNo);
+pageContext.setAttribute("set", set);
 %>
 
 <!DOCTYPE html>
@@ -153,55 +153,64 @@ div.interactionTime-row {
 </head>
 
 <body class="d-flex flex-column vh-100">
-<header>
-	<nav class="navbar navbar-expand-lg navbar-light ">
-			<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="navbar-brand ml-3">
-				Cute:)
-				<span style="color: #00E8E8;">Family</span>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-light ">
+			<a
+				href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp"
+				class="navbar-brand ml-3"> Cute:) <span style="color: #00E8E8;">Family</span>
 			</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle Navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarMenu" aria-controls="navbarMenu"
+				aria-expanded="false" aria-label="Toggle Navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-		<div class="collapse navbar-collapse"></div>
-		<div class="collapse navbar-collapse" id="navbarMenu">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="nav-link">首頁</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/member/member/membercenter.jsp" class="nav-link">會員專區</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp" class="nav-link">門診專區</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/Hotel/hotelIndex.jsp" class="nav-link">寵物旅館</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp" class="nav-link">寵物商城</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/adopt/adoptedpets/listAllPets.jsp" class="nav-link">領養專區</a>
-				</li>
-			</ul>
-			<div style="<%=(memNO == null) ? "visibility:hidden" : "visibility:"%>" id="loginFonts">
-				<span class="nav-link">
-				<img alt="" src="<%=request.getContextPath()%>/Puppy/pic.do?memNo=${memNO}" style="height: 50px" id="mempic">
-				 <%=memName%>您好~
-				  </span>
+			<div class="collapse navbar-collapse"></div>
+			<div class="collapse navbar-collapse" id="navbarMenu">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a
+						href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp"
+						class="nav-link">首頁</a></li>
+					<li class="nav-item dropdown"><a
+						href="<%=request.getContextPath()%>/front-end/member/member/membercenter.jsp"
+						class="nav-link">會員專區</a></li>
+					<li class="nav-item dropdown"><a
+						href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp"
+						class="nav-link">門診專區</a></li>
+					<li class="nav-item dropdown"><a
+						href="<%=request.getContextPath()%>/front-end/Hotel/hotelIndex.jsp"
+						class="nav-link">寵物旅館</a></li>
+					<li class="nav-item dropdown"><a
+						href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp"
+						class="nav-link">寵物商城</a></li>
+					<li class="nav-item dropdown"><a
+						href="<%=request.getContextPath()%>/front-end/adopt/adoptedpets/listAllPets.jsp"
+						class="nav-link">領養專區</a></li>
+				</ul>
+				<div
+					style="<%=(memNO == null) ? "visibility:hidden" : "visibility:"%>"
+					id="loginFonts">
+					<span class="nav-link"> <img alt=""
+						src="<%=request.getContextPath()%>/Puppy/pic.do?memNo=${memNO}"
+						style="height: 50px" id="mempic"> <%=memName%>您好~
+					</span>
+				</div>
+				<a
+					href="<%=request.getContextPath()%>/front-end/member/member/addMem.jsp">
+					<button class="btn menu-right-btn border" type="button"
+						style="<%=(memNO == null) ? "display:" : "display:none"%>">註冊</button>
+				</a> <a
+					href="<%=request.getContextPath()%>/front-end/member/member/login.jsp">
+					<button class="btn menu-right-btn border" type="submit" id="login"
+						style="<%=(memNO == null) ? "display:" : "display:none"%>">登入</button>
+				</a>
+				<form class="form-inline my-2 my-lg-0"
+					action="<%=request.getContextPath()%>/Puppy/logout.do">
+					<button class="btn menu-right-btn border" type="submit" id="logout"
+						style="<%=(memNO != null) ? "display:" : "display:none"%>">登出</button>
+				</form>
 			</div>
-			<a href="<%=request.getContextPath()%>/front-end/member/member/addMem.jsp">
-				<button class="btn menu-right-btn border" type="button" style="<%=(memNO == null) ? "display:" : "display:none"%>">註冊</button>
-			</a>
-			<a href="<%=request.getContextPath()%>/front-end/member/member/login.jsp">
-				<button class="btn menu-right-btn border" type="submit" id="login" style="<%=(memNO == null) ? "display:" : "display:none"%>">登入</button>
-			</a>
-			<form class="form-inline my-2 my-lg-0" action="<%=request.getContextPath()%>/Puppy/logout.do">
-				<button class="btn menu-right-btn border" type="submit" id="logout" style="<%=(memNO != null) ? "display:" : "display:none"%>">登出</button>
-			</form>
-		</div>
-	</nav>
+		</nav>
 		<nav class="navbar navbar-expand-lg navbar-light navbar-sub-main"
 			style="background-color: #f1f3f3">
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -244,11 +253,9 @@ div.interactionTime-row {
 						<tbody>
 							<c:forEach var="interactionVO" items="${set}" varStatus="loop">
 								<tr>
-									<td class="align-middle">
-									<img
+									<td class="align-middle"><img
 										src="<%=request.getContextPath()%>/adoptedpetspic.do?petNo=${interactionVO.petNo}"
-										class="pet-img rounded">
-									</td>
+										class="pet-img rounded"></td>
 									<td class="align-middle">${interactionVO.petNo}</td>
 									<td class="align-middle"><fmt:formatDate
 											value="${interactionVO.interactionDate}"
@@ -277,31 +284,33 @@ div.interactionTime-row {
 		</div>
 	</main>
 	<footer class="bg-white py-2 mt-auto">
-		<div class="contatiner">
-			<div class="section-5 text-center">
-				<h5 class="my-3">最完善的寵物平台</h5>
-				<h5 class="my-3">如果您有需要 請聯絡我們</h5>
-
-				<div class="form-inline justify-content-center ">
-					<input type="text" name="Email" id="email" placeholder="Email"
-						size="40" class="form-control px-4 py-2"> <input
-						type="button" value="Contact US"
-						class="btn btn-danger px-4 py-2 ml-1">
-				</div>
-				<div class="social my-5">
-					<div class="d-flex flex-row justify-content-center">
-						<i class="fab fa-facebook-f m-2"></i> <i
-							class="fab fa-twitter m-2"></i> <i class="fab fa-instagram m-2"></i>
-						<i class="fab fa-youtube m-2"></i>
-					</div>
-				</div>
-				<hr>
-				<h5 style="color: lightseagreen;">Cute Family &copy;</h5>
+		<div class="section-5 text-center">
+			<h4 style="margin-top: 5%;">最完善的寵物平台</h4>
+			<h4 class="my-4">如果您有需要 請聯絡我們</h4>
+			<div class="form-inline justify-content-center">
+				<input type="text" name="Email" id="email" placeholder="Email"
+					size="40" class="form-control px-4 py-2"> <input
+					type="button" value="Contact US"
+					class="btn btn-danger px-4 py-2 ml-1">
 			</div>
+			<a href="">
+				<button class="btn btn-outline-secondary" style="margin-top: 2%;">
+					<h5>我要客訴</h5>
+				</button>
+			</a>
+			<div class="social" style="margin: 3%;">
+				<div class="d-flex flex-row justify-content-center">
+					<i class="fab fa-facebook-f m-2"></i> <i class="fab fa-twitter m-2"></i>
+					<i class="fab fa-instagram m-2"></i> <i class="fab fa-youtube m-2"></i>
+				</div>
+			</div>
+			<hr>
+			<h5 style="color: lightseagreen;">Cute Family &copy;</h5>
 		</div>
 	</footer>
 
-	<script src="<%=request.getContextPath()%>/front-end/adopt/datetimepicker/jquery.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/front-end/adopt/datetimepicker/jquery.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/front-end/adopt/datetimepicker/jquery.datetimepicker.full.js"></script>
 	<script
