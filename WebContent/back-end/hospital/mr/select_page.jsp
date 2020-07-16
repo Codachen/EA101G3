@@ -34,7 +34,7 @@
 <h3>診療紀錄查詢</h3>
 
 <table>
-  <li><a href='listAllMr.jsp'>全部診療紀錄一覽</a><br></li>
+  <li><a href='<%=request.getContextPath()%>/back-end/hospital/mr/listAllMr.jsp'>全部診療紀錄一覽</a><br></li>
 
 
 <!--   <tr> -->
@@ -92,7 +92,7 @@
 <!--  </td> -->
 <!-- </tr> -->
 
-<!-- </table> -->
+</table>
 
 <!-- <br> -->
 <!-- <h3>診療紀錄管理</h3> -->
@@ -102,20 +102,12 @@
 <!-- </ul> -->
 
 <!-- ****************************以上為實際功能頁變更區域*************************** -->
-</div>
 
-
-
-
-<%@ include file="/back-end/backEndInclude/footer.jsp" %>
-
-
-</div>
-
-</div>
+<%@ include file="/back-end/backEndInclude/footer.jsp"%>
 
 
 </body>
+
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/front-end/hospital/datetimepicker/jquery.datetimepicker.css" />
 <script src="<%=request.getContextPath()%>/front-end/hospital/datetimepicker/jquery.js"></script>
 <script src="<%=request.getContextPath()%>/front-end/hospital/datetimepicker/jquery.datetimepicker.full.js"></script>

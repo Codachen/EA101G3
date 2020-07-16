@@ -336,7 +336,7 @@ public class ApptDAO implements ApptDAO_interface {
 					+ jdbcUtil_CompositeQuery_Appt.get_WhereCondition(map) + " order by seqno";
 
 			pstmt = con.prepareStatement(finalSQL);
-			System.out.println("●●finalSQL(by DAO) = " + finalSQL);
+			
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -402,7 +402,7 @@ public class ApptDAO implements ApptDAO_interface {
 					+ jdbcUtil_CompositeQuery_Appt2.get_WhereCondition(map)
 					+ "order by apptno";
 			pstmt = con.prepareStatement(finalSQL);
-			System.out.println("����finalSQL(by DAO) = " + finalSQL);
+			
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -466,7 +466,7 @@ public class ApptDAO implements ApptDAO_interface {
 					+ jdbcUtil_CompositeQuery_Appt2.get_WhereCondition(map)
 					+ "order by apptno";
 			pstmt = con.prepareStatement(finalSQL);
-			System.out.println("����finalSQL(by DAO) = " + finalSQL);
+			System.out.println("finalSQL(by DAO) = " + finalSQL);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
