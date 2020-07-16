@@ -148,6 +148,15 @@ hr {
 div.interactionTime-row {
 	display: none;
 }
+
+#mempic {
+	border-radius: 50%;
+	border: 0px solid rgba(255, 0, 0, 1.00);
+}
+
+#loginFonts {
+	font-family: 'Noto Sans TC';
+}
 </style>
 
 </head>
