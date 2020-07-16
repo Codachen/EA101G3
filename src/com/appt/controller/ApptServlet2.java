@@ -312,7 +312,7 @@ public class ApptServlet2 extends HttpServlet {
 			/***************************3.修改完成,準備轉交(Send the Success view)*************/
 			req.setAttribute("apptVO", apptVO); // 資料庫update成功後,正確的的docVO物件,存入req
 
-			String url = "/front-end/hospital/appt/select_page.jsp";
+			String url = "/front-end/hospital/appt/relay.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneDoc.jsp
 			successView.forward(req, res);
 

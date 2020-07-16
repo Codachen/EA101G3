@@ -3,8 +3,7 @@
 <html>
 
 <%
-	String memNO = (String) session.getAttribute("memNO");
-	String memName = (String) session.getAttribute("memName");
+	String memNO1 = (String) session.getAttribute("memNO");
 %>
 
 <head>
@@ -14,102 +13,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>萌寵家族</title>
 
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
-	integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
-	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/front-end/frontEndIndex/style.css">
 
-<script src="https://kit.fontawesome.com/a559a578e4.js"
-	crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-	crossorigin="anonymous"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-<!-- bootstrap、FontAwesome、googleFont -->
-
-<style>
-a.nav-link-sub {
-	color: #8a8a90 !important;
-	font-size: 20px;
-	padding: 12.5px 50px !important;
-	margin: 0%;
-	font-family: 'Noto Sans TC';
-	white-space: nowrap;
-}
-
-.fas, .far {
-	font-size: 30px;
-	margin: 0px 5px;
-}
-
-.nav-link-sub:hover {
-	color: white !important;
-}
-
-.navbar-sub-main {
-	padding: 0px 16px;
-}
-
-.subnavli {
-	/* 	border-left: 1px solid #8a8a90; */
-	/* 	border-right: 1px solid #8a8a90; */
-	
-}
-
-#subnavli-last {
-	/* 	border-right: 1px solid #8a8a90; */
-	
-}
-
-.pet-card-img-top {
-	position: relative;
-	width: 100%;
-	height: 225px;
-}
-
-.pet-img {
-	width: auto;
-	height: 100%;
-	max-width: 100%;
-}
-
-.pet-card {
-	height: auto;
-}
-
-ul.info-list {
-	list-style-type: circle;
-	list-style-position: inside;
-}
-
-.list-group-item {
-	display: list-item;
-}
-
-main {
-	font-family: 'Noto Sans TC';
-}
-
-#pet-search-title, form.pet-search-form, div.pet-sort-row {
-	padding-left: 15px;
-}
-</style>
     <!-- Basic -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
@@ -123,9 +28,7 @@ main {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/hospital/appt/css/bootstrap.min.css">
@@ -135,7 +38,7 @@ main {
     <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/hospital/appt/css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/hospital/appt/css/custom.css">
-	<script src="js/modernizr.js"></script> <!-- Modernizr -->
+	<script src="<%=request.getContextPath()%>/front-end/hospital/appt/js/modernizr.js"></script> <!-- Modernizr -->
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -143,69 +46,17 @@ main {
     <![endif]-->
 
 </head>
-<body id="page-top" class="politics_version">
+<body>
 
 <!-- HEADER -->
-<header>
-		<nav class="navbar navbar-expand-lg navbar-light ">
-			<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="navbar-brand ml-3">
-				Cute:)
-				<span style="color: #00E8E8;">Family</span>
-			</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle Navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+<%@ include file="/front-end/frontEndInclude/head.jsp"%>
 
-			<div class="collapse navbar-collapse"></div>
-			<div class="collapse navbar-collapse" id="navbarMenu">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-						<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="nav-link">首頁</a>
-					</li>
-					<li class="nav-item dropdown">
-						<a href="<%=request.getContextPath()%>/front-end/member/member/membercenter.jsp" class="nav-link">會員專區</a>
-					</li>
-					<li class="nav-item dropdown">
-						<a href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp" class="nav-link">門診專區</a>
-					</li>
-					<li class="nav-item dropdown">
-						<a href="<%=request.getContextPath()%>/front-end/Hotel/hotelIndex.jsp" class="nav-link">寵物旅館</a>
-					</li>
-					<li class="nav-item dropdown">
-						<a href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp" class="nav-link">寵物商城</a>
-					</li>
-					<li class="nav-item dropdown">
-						<a href="<%=request.getContextPath()%>/front-end/adopt/adoptedpets/listAllPets.jsp" class="nav-link">領養專區</a>
-					</li>
-				</ul>
-				<div style="<%=(memNO == null) ? "visibility:hidden" : "visibility:"%>">
-					<img alt="" src="<%=request.getContextPath()%>/Puppy/pic.do?memNo=${memNO}" style="height: 50px" id="mempic">
-					<%=memName%>您好~
-				</div>
-				<a href="#">
-					<button class="btn menu-right-btn border" type="button" style="<%=(memNO == null) ? "display:" : "display:none"%>">註冊</button>
-				</a>
-				<a href="<%=request.getContextPath()%>/front-end/member/member/login.jsp">
-					<button class="btn menu-right-btn border" type="submit" id="login" style="<%=(memNO == null) ? "display:" : "display:none"%>">登入</button>
-				</a>
-				<form class="form-inline my-2 my-lg-0" action="<%=request.getContextPath()%>/Puppy/logout.do">
-					<button class="btn menu-right-btn border" type="submit" id="logout" style="<%=(memNO != null) ? "display:" : "display:none"%>">登出</button>
-				</form>
-			</div>
-		</nav>
-	</header>
+<%@ include file="/front-end/frontEndInclude/header.jsp"%>
 <!-- HEADER -->
 
-    <!-- LOADER -->
-    <div id="preloader">
-        <div id="main-ld">
-			<div id="loader"></div>  
-		</div>
-    </div><!-- end loader -->
-    <!-- END LOADER -->
+    
 	
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    
       <div class="container">
   
             </li>
@@ -214,7 +65,7 @@ main {
       </div>
     </nav>
 	
-	<section id="home" class="main-banner parallaxie" style="background: url('uploads/banner-01.jpg')">
+	<section id="home" class="main-banner parallaxie" style="background: url('<%=request.getContextPath()%>/front-end/hospital/appt/uploads/banner-01.jpg')">
 		<div class="heading">
 		
 			<h1>Cute Family </h1>			
@@ -232,7 +83,7 @@ main {
 					<a class="get_btn hvr-bounce-to-top" href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page.jsp">預約門診</a>
 					<table>
 					<FORM id="form1" METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/appt/appt.do" name="form1">
-					<input type="hidden" name="memno" value="${memNO}">
+					<input type="hidden" name="memno" value="${memNO1}">
 					<input type="hidden" name="optstate" value="0">
 					
 					<a class="learn_btn hvr-bounce-to-top" href="javascript:;" onclick="document.getElementById('form1').submit();">預約查詢</a>
@@ -260,7 +111,7 @@ main {
 							<i class="flaticon-discuss-issue"></i>
 							
 							 <!-- icon -->
-						</div><h1>早診 Morning</h1>
+						</div><h1>早診  Afternoon 10:00~12:00</h1>
 						<h2>張國彬醫師</h2>
 						<div class="morning"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue1.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
 						</div>
@@ -336,7 +187,7 @@ else {
 							<i class="flaticon-discuss-issue"></i>
 							
 							 <!-- icon -->
-						</div>DR01<h1>夜診 Evening 18:00~20:00</h1>
+						</div><h1>夜診 Evening 18:00~20:00</h1>
 						<h2>張國彬醫師</h2>
 						<div class="evening"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue1C.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
 						</div>
@@ -352,7 +203,8 @@ else {
 							<i class="flaticon-discuss-issue"></i>
 							
 							 <!-- icon -->
-						</div>DR02<h1>早診</h1>
+												</div><h1>早診  Afternoon 10:00~12:00</h1>
+
 						<h2>李美玲醫師</h2>
 						<div class="morning"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue2.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
 						</div>
@@ -368,7 +220,7 @@ else {
 							<i class="flaticon-discuss-issue"></i>
 							
 							 <!-- icon -->
-						</div>DR02<h1>午診</h1>
+						</div><h1>午診  Afternoon 14:00~17:00</h1>
 						<h2>李美玲醫師</h2>
 						<div class="noon"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue2B.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
 						</div>
@@ -384,7 +236,7 @@ else {
 							<i class="flaticon-discuss-issue"></i>
 							
 							 <!-- icon -->
-						</div>DR02<h1>夜診</h1>
+						</div><h1>夜診 Evening 18:00~20:00</h1>
 						<h2>李美玲醫師</h2>
 						<div class="evening"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue2C.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
 						</div>
@@ -398,7 +250,8 @@ else {
 							<i class="flaticon-discuss-issue"></i>
 							
 							 <!-- icon -->
-						</div>DR03<h1>早診</h1>
+												</div><h1>早診  Afternoon 10:00~12:00</h1>
+
 						<h2>黃昭文醫師</h2>
 						<div class="morning"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue3.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
 						</div>
@@ -414,7 +267,7 @@ else {
 							<i class="flaticon-discuss-issue"></i>
 							
 							 <!-- icon -->
-						</div>DR03<h1>午診</h1>
+						</div><h1>午診  Afternoon 14:00~17:00</h1>
 						<h2>黃昭文醫師</h2>
 						<div class="noon"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue3B.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
 						</div>
@@ -430,7 +283,7 @@ else {
 							<i class="flaticon-discuss-issue"></i>
 							
 							 <!-- icon -->
-						</div>DR03<h1>夜診</h1>
+						</div><h1>夜診 Evening 18:00~20:00</h1>
 						<h2>黃昭文醫師</h2>
 						<div class="evening"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue3C.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
 						</div>
@@ -444,7 +297,8 @@ else {
 							<i class="flaticon-discuss-issue"></i>
 							
 							 <!-- icon -->
-						</div>DR04<h1>早診</h1>
+												</div><h1>早診  Afternoon 10:00~12:00</h1>
+
 						<h2>蔡旻烜醫師</h2>
 						<div class="morning"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue4.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
 						</div>
@@ -460,7 +314,7 @@ else {
 							<i class="flaticon-discuss-issue"></i>
 							
 							 <!-- icon -->
-						</div>DR04<h1>午診</h1>
+						</div><h1>午診  Afternoon 14:00~17:00</h1>
 						<h2>蔡旻烜醫師</h2>
 						<div class="noon"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue4B.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
 						</div>
@@ -476,7 +330,7 @@ else {
 							<i class="flaticon-discuss-issue"></i>
 							
 							 <!-- icon -->
-						</div>DR04<h1>夜診</h1>
+						</div><h1>夜診 Evening 18:00~20:00</h1>
 						<h2>蔡旻烜醫師</h2>
 						<div class="evening"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue4C.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
 						</div>
@@ -490,7 +344,8 @@ else {
 							<i class="flaticon-discuss-issue"></i>
 							
 							 <!-- icon -->
-						</div>DR05<h1>早診</h1>
+												</div><h1>早診  Afternoon 10:00~12:00</h1>
+
 						<h2>鄭柏昕醫師</h2>
 						<div class="morning"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue5.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
 						</div>
@@ -506,7 +361,7 @@ else {
 							<i class="flaticon-discuss-issue"></i>
 							
 							 <!-- icon -->
-						</div>DR05<h1>午診</h1>
+						</div><h1>午診  Afternoon 14:00~17:00</h1>
 						<h2>鄭柏昕醫師</h2>
 						<div class="noon"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue5B.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
 						</div>
@@ -522,7 +377,7 @@ else {
 							<i class="flaticon-discuss-issue"></i>
 							
 							 <!-- icon -->
-						</div>DR05<h1>夜診</h1>
+						</div><h1>夜診 Evening 18:00~20:00</h1>
 						<h2>鄭柏昕醫師</h2>
 						<div class="evening"><iframe src="<%=request.getContextPath()%>/front-end/hospital/appt/queue5C.jsp" frameborder="0" width="100%" height="60px" scrolling="no"></iframe>
 						</div>
