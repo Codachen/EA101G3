@@ -15,26 +15,15 @@
 
 <style type="text/css">
 
-.select{
-/* border-style: solid; */
-/*   border-color: red; */
-  width:900px;
 
-}
-.select td{
-/* border-style: solid; */
-/*   border-color: red; */
-}
-.select th{
-text-align: right;
-/* border-style: solid; */
-/*   border-color: red; */
+
+
+.form-control{
+display:inline;
+width:200px;
 }
 
-/* form{ */
-/* display:inline; */
-/* margin:0px; */
-/* } */
+
 
 </style>
 
@@ -66,10 +55,10 @@ text-align: right;
 	<FORM METHOD="post" ACTION="appt.do">
 
 				日期
-				<input name="optDate" id="f_date1" type="text" autocomplete="off">
+				<input class="form-control" name="optDate" id="f_date1" type="text" autocomplete="off">
 				
 				選擇醫生
-				<select size="1" name="docname">
+				<select class= "form-control" size="1" name="docname">
 						<option value="">未選擇
 							<c:forEach var="docVO" items="${docSvc.all}">
 								<option value="${docVO.docname}">${docVO.docname}
@@ -78,12 +67,14 @@ text-align: right;
 				
 				選擇時段
 				
-				<input type="radio" id="morning" name="optSession"value="10:00~12:00"> 
+				<input type="radio" id="morning" name="optSession"value="10:00~12:00" > 
 				<label for="morning">10:00~12:00</label>
 				<input type="radio" id="afternoon" name="optSession"value="14:00~17:00"> 
 				<label for="afternoon">14:00~17:00</label>
 				<input type="radio" id="night" name="optSession" value="18:00~20:00">
 				<label for="night">18:00~20:00</label>
+				
+				
 				
 
 			

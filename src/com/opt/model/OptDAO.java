@@ -386,64 +386,64 @@ public class OptDAO implements OptDAO_interface {
 		}
 		return list;
 	}
-	
-	@Override
-	public List<OptVO> getCalInfoByDoc(String docno) {
-		List<OptVO> list = new ArrayList<OptVO>();
-		OptVO optVO = null;
-
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		try {
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ALL_BY_DOCNO);
-			pstmt.setString(1, docno);
-			
-			rs = pstmt.executeQuery();
-			
-			
-
-			while (rs.next()) {
-				// empVO 也稱為 Domain objects
-				
-			
-				optVO = new OptVO();
-				optVO.setTitle(rs.getString("docName"),rs.getInt("currentCount"),rs.getInt("maximum"),rs.getString("optSession"));
-				optVO.setStart(rs.getDate("optDate"));
-				optVO.setId(rs.getString("sessionNo"));
-				list.add(optVO); // Store the row in the list
-			}
-			
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-			// Clean up JDBC resources
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
-		return list;
-	}
+	//棄用
+//	@Override
+//	public List<OptVO> getCalInfoByDoc(String docno) {
+//		List<OptVO> list = new ArrayList<OptVO>();
+//		OptVO optVO = null;
+//
+//		Connection con = null;
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//
+//		try {
+//			con = ds.getConnection();
+//			pstmt = con.prepareStatement(GET_ALL_BY_DOCNO);
+//			pstmt.setString(1, docno);
+//			
+//			rs = pstmt.executeQuery();
+//			
+//			
+//
+//			while (rs.next()) {
+//				// empVO 也稱為 Domain objects
+//				
+//			
+//				optVO = new OptVO();
+//				optVO.setTitle(rs.getString("docName"),rs.getInt("currentCount"),rs.getInt("maximum"),rs.getString("optSession"));
+//				optVO.setStart(rs.getDate("optDate"));
+//				optVO.setId(rs.getString("sessionNo"));
+//				list.add(optVO); // Store the row in the list
+//			}
+//			
+//		} catch (SQLException se) {
+//			throw new RuntimeException("A database error occured. " + se.getMessage());
+//			// Clean up JDBC resources
+//		} finally {
+//			if (rs != null) {
+//				try {
+//					rs.close();
+//				} catch (SQLException se) {
+//					se.printStackTrace(System.err);
+//				}
+//			}
+//			if (pstmt != null) {
+//				try {
+//					pstmt.close();
+//				} catch (SQLException se) {
+//					se.printStackTrace(System.err);
+//				}
+//			}
+//			if (con != null) {
+//				try {
+//					con.close();
+//				} catch (Exception e) {
+//					e.printStackTrace(System.err);
+//				}
+//			}
+//		}
+//		return list;
+//	}
 	@Override
 	public List<OptVO> getCalInfo() {
 		List<OptVO> list = new ArrayList<OptVO>();
@@ -498,7 +498,7 @@ public class OptDAO implements OptDAO_interface {
 		}
 		return list;
 	}
-	
+	@Override
 	public List<OptVO> getCalInfo(Map<String, String[]> map) {
 		List<OptVO> list = new ArrayList<OptVO>();
 		OptVO optVO = null;
@@ -510,12 +510,12 @@ public class OptDAO implements OptDAO_interface {
 		try {
 
 			con = ds.getConnection();
-			String finalSQL = "SELECT sessionNo,docName,divNo,to_char(optDate,'yyyy-mm-dd')optDate,"+
-			"optSession,currentCount,currentCount " + 
-			"FROM OPTSESSION " + 
-			"JOIN DOCTOR ON OPTSESSION.DOCNO = DOCTOR.DOCNO " + 
-			jdbcUtil_CompositeQuery_Opt.get_WhereCondition(map)+
-			"order by sessionNo";
+			String finalSQL = "SELECT sessionNo,DOCTOR.docno,docName,divNo,to_char(optDate,'yyyy-mm-dd')optDate,"+
+					"optSession,currentCount,maximum " + 
+					"FROM OPTSESSION " + 
+					"JOIN DOCTOR ON OPTSESSION.docno = DOCTOR.docno " + 
+					jdbcUtil_CompositeQuery_Opt.get_WhereCondition(map)+
+					"order by sessionNo";
 			
 			pstmt = con.prepareStatement(finalSQL);
 			System.out.println("finalSQL(班表複合查) = "+finalSQL);
@@ -528,6 +528,7 @@ public class OptDAO implements OptDAO_interface {
 //		
 				optVO.setTitle(rs.getString("docName"),rs.getInt("currentCount"),rs.getInt("maximum"),rs.getString("optSession"));
 				optVO.setStart(rs.getDate("optDate"));
+				optVO.setId(rs.getString("sessionNo"));
 				list.add(optVO); // Store the row in the list
 			}
 			

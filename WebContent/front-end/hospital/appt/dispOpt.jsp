@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
@@ -13,16 +13,21 @@
 
 
 <%
-String docno = request.getParameter("doc");
-String divno = request.getParameter("divno");
 
-
-pageContext.setAttribute("docno", docno);
-System.out.print(docno);
+request.setCharacterEncoding("UTF-8");
+String divNo = request.getParameter("divNo");
+String docName = request.getParameter("docName");
+//String docno = request.getParameter("doc");
+Map<String, String[]> map = request.getParameterMap();
+// System.out.print(request.getParameter("doc"));
+pageContext.setAttribute("divNo", divNo);
+pageContext.setAttribute("docName", docName);
+// System.out.print(docno);
 
 
 OptService optSvc = new OptService();
-List<OptVO> list = optSvc.getCalInfoByDoc(docno);
+// List<OptVO> list = optSvc.getCalInfoByDoc(docno);
+List<OptVO> list = optSvc.getCalInfo(map);
 Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 String jsonStr = gson.toJson(list);
 
@@ -42,7 +47,7 @@ pageContext.setAttribute("jsonStr", jsonStr);
 <link href='<%=request.getContextPath()%>/front-end/hospital/fullcalendar/main.css' rel='stylesheet'/>
 <script src='<%=request.getContextPath()%>/front-end/hospital/fullcalendar/main.js'></script>
 <script src='<%=request.getContextPath()%>/front-end/hospital/fullcalendar/locales-all.js'></script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>
 	var eventDate = '';
@@ -70,14 +75,23 @@ pageContext.setAttribute("jsonStr", jsonStr);
       
       eventClick: function(arg) {
     	  var str = arg.event.id;
-    	  //JQ post¼gªk¡AµLªk¨Ï¥Î¡A¦ı¥i±µ¦¬«áºİ³B²z¸ê®Æ
+    	  var strTitle = arg.event.title;
+    	  //JQ postå¯«æ³•ï¼Œç„¡æ³•ä½¿ç”¨ï¼Œä½†å¯æ¥æ”¶å¾Œç«¯è™•ç†è³‡æ–™
 //     	  $.post("apptStart.do?action=addAppt&sessionNo="+str+"");
-    	  window.location.href='apptStart.do?action=addAppt&sessionNo='+str+'';
-        
-    	  console.log(arg.event.start);
-    	  console.log(arg.event.title);	  
-    	  console.log(arg.event.id);
-	
+    	  
+           	  console.log(arg.event.start);
+   	     	  console.log(arg.event.title);	  
+   	     	  console.log(arg.event.id);
+
+    	 
+    		  if(strTitle.indexOf('å·²é¡æ»¿')==-1){
+    			  window.location.href='apptStart.do?action=addAppt&sessionNo='+str+'';
+
+    		  }
+    		  else{
+    			  swal("å·²é¡æ»¿", "è«‹é¸æ“‡å…¶ä»–æ™‚æ®µå–”!", "error");
+    		  }
+
       },
       editable: true,
       dayMaxEvents: true, // allow "more" link when too many events
@@ -98,16 +112,28 @@ pageContext.setAttribute("jsonStr", jsonStr);
   #calendar {
 	    max-width: 1000px;
 	    margin: 0 auto;
+	    
+		background-color: rgba(255,255,255,0.70);
+	   
 	    }
   .calendarTitle{
   		text-align:center;
   		font-size:40px;
-  		font-family: 'Noto Sans TC', sans-serif;
   
   }
   .main {
-	width: 80%;
+	width: 90%;
 	margin: 0 auto;
+	font-family: 'Noto Sans TC';
+}
+.myMain{
+min-height:800px;
+ background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+     background-size: cover;
+	
+	background-image: url("../appt/uploads/apptStartImg.png");
 }
 	    
   </style>
@@ -123,19 +149,26 @@ pageContext.setAttribute("jsonStr", jsonStr);
 
 	<div class="calendarTitle">
 		<jsp:useBean id="docSvc" scope="page" class="com.doc.model.DocService" />
+		<jsp:useBean id="divSvc" scope="page" class="com.div.model.DivService" />
+			<c:forEach var="divVO" items="${divSvc.all}">
+				<c:if test="${divNo==divVO.divno}"> 
+ 				${(divVO.divname)}
+ 				</c:if> 		
+			</c:forEach> 	
 			<c:forEach var="docVO" items="${docSvc.all}">
-				<c:if test="${docno==docVO.docno}"> 
- 				${(docVO.docname)} Âå®v ªù¶E­È¯Zªí
- 				</c:if> 
-			</c:forEach> 
-	
+				<c:if test="${docName==docVO.docname}"> 
+ 				${(docVO.docname)} é†«å¸« 
+ 				</c:if> 		
+			</c:forEach> 			
+				é–€è¨ºå€¼ç­è¡¨
 	</div>
-	
 	<hr class="mainTitlehr">
+	<div class="myMain">
 	<div id='calendar'></div>
 
 	</div>
-
+	<hr class="mainTitlehr">
+	</div>
 	
 <%@ include file="/front-end/frontEndInclude/footer.jsp"%>
 </body>
