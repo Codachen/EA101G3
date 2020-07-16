@@ -33,22 +33,22 @@ MemlatestinfoVO mliVO = (MemlatestinfoVO) request.getAttribute("mliVO");
 		<th>訊息修改</th>
 		<th>訊息刪除</th>
 	</tr>
-	</thead">
+	</thead>
 	<tr>
 		<td><%=mliVO.getMemLatestInfoNo()%></td>
 		<td><%=mliVO.getMemNo()%></td>
 		<td><%=mliVO.getInfoContent()%></td>
 		<td>
 			 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Puppy/mli.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="修改">
+			     <input type="submit" value="修改" class="btn btn-primary">
 			     <input type="hidden" name="memliNO"  value="${mliVO.memLatestInfoNo}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 		</td>
 		<td>
 			 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Puppy/mli.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="刪除">
+			     <input type="submit" value="刪除" class="btn btn-primary">
 			     <input type="hidden" name="memLatestInfoNo"  value="${mliVO.memLatestInfoNo}">
-			     <input type="hidden" name="action" value="delete"></FORM>
+			     <input type="hidden" name="action" value="delete_B"></FORM>
 		</td>
 	</tr>
 </table>
