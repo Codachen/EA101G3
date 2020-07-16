@@ -19,7 +19,7 @@
 	Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 	String jsonStr = gson.toJson(list);
 
-	System.out.println("Object to JSON: " + jsonStr);
+// 	System.out.println("Object to JSON: " + jsonStr);
 
 	pageContext.setAttribute("jsonStr", jsonStr);
 %>
@@ -89,7 +89,30 @@
     calendar.render();
   });
   
+	
+  
+	
+	//option發生改變
+	
+// 	divno.onchange=function(){
+		
+		
+// 			str = divno.value;
+// 			if(str==='D01'){
+// 				var obj = JSON.parse(json1);
+// 			$('#doc').html("");
+// 			$('#doc').append("<option value=''>查詢全部</option>");
+// 			$.each(obj, function (index,item) {
+// 	            var docno = obj[index].docno;
+// 	            var docname = obj[index].docname;
+// 	            //構造動態option
+	            
+// 	            $('#doc').append("<option value='"+docname+"'>"+docname+"</option>");
+// 	        });
+// 			}
+	
 
+// 	}
 
   </script>
 
@@ -98,9 +121,21 @@
 	width: 100%;
 	/* 	margin: 0 auto; */
 }
-.modal-header
-{
+.modal *{
+ font-size:24px;
 }
+
+.form-control { 
+ color:#1757A5;
+ } 
+ 
+ #formDate{
+ color:#B32F2F;
+ font-size:30px;
+ }
+
+
+
 </style>
 
 
@@ -131,17 +166,24 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form>
+					<form METHOD="post" ACTION="opt.do">
 						<div class="form-group">
 							日期
 							<p id="formDate"></p>
 						</div>
 						<div class="form-group">
-							科別 <select class="form-control form-control-sm">
+							科別 <select class="form-control form-control-sm" id="divno" >
 								<option value="">未選擇
 									<c:forEach var="divVO" items="${divSvc.all}">
 										<option value="${divVO.divno}">${divVO.divname}
 									</c:forEach>
+							</select>
+							
+						</div>
+						<div class="form-group">
+							醫生
+							<select id="doctor" class="form-control form-control-sm" id="docno">
+								
 							</select>
 						</div>
 						<div class="form-group">
@@ -163,6 +205,12 @@
 									for="inlineRadio3">晚上</label>
 							</div>
 						</div>
+						<div class="form-group">
+							最大人數
+							<input type="text" name="maximum" class="form-control form-control-sm" VALUE="10" >
+						</div>
+						<input type="hidden" name="action" value="insert"> 
+						<button type="submit" class="btn btn-primary">新增</button>
 					</form>
 				</div>
 				<div class="modal-footer">
@@ -174,10 +222,39 @@
 		</div>
 	</div>
 
-
+	<jsp:useBean id="docVO" scope="page" class="com.doc.model.DocService"></jsp:useBean>
 
 	<%@ include file="/back-end/backEndInclude/footer.jsp"%>
 </body>
-
+<script>
+	$(function(){
+		
+// 		var divnoStr = divnoTemp.value;
+		$("#divno").change(function(){
+			$("#doctor").html('');
+			var divnoTemp =  document.getElementById('divno').value;
+			$.ajax({
+		         url: "opt.do",   //後端的URL
+		         type: "POST",   //用POST的方式
+		         dataType: "json",   //response的資料格式
+		         cache: false,   //是否暫存
+		         data: {action : 'getDoclist',divno : divnoTemp}, //傳送給後端的資料
+		         success: function(res) { //成功後回傳的資料
+		        	 for(var i = 0; i < res.length; i++) {
+		        		 var obj = res[i];
+		        		 for (var key in obj) {
+		        			 console.log(key)
+		        			 console.log(obj[key])
+		        			 console.log("===========")
+		        			 $("#doctor").append("<option value='"+key+"'>"+obj[key]+"</option>");
+		        		 }
+		        	 }
+		            
+		         }
+		     });
+		})
+		
+	})
+</script>
 
 </html>
