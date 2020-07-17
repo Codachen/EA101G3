@@ -39,7 +39,10 @@ String jsonStr3 = gson.toJson(d03);
 
 .mainTitle{
 font-size:40px;
-font-family: 'Noto Sans TC', sans-serif;
+font-family: 'Noto Sans TC';
+  		font-weight:bold;
+  		color:#1D5D57;
+  		
 
 }
 
@@ -63,11 +66,12 @@ font-size:24px;
 
 .sel{
 font-size:28px;
+font-weight:bold;
+line-height:64px;
 }
-
 .allsel{
 margin:0px auto;
-padding-top:50px;
+padding-top:16px;
 height:360px;
 background-repeat: no-repeat;
     background-attachment: fixed;

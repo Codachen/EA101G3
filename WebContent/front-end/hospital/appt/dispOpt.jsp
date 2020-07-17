@@ -119,6 +119,8 @@ pageContext.setAttribute("jsonStr", jsonStr);
   .calendarTitle{
   		text-align:center;
   		font-size:40px;
+  		font-weight:bold;
+  		color:#1D5D57;
   
   }
   .main {

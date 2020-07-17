@@ -16,7 +16,7 @@ html, body {
 	background-attachment: fixed;
 	background-position: center;
 }
-
+  
 /*上方導覽列*/
 
 
@@ -24,6 +24,12 @@ html, body {
 	
 	padding-bottom:20px;
 	
+	
+	
+}
+
+.downarrow{
+	padding-bottom:3px;
 	
 	
 }
@@ -41,9 +47,12 @@ html, body {
 .navbar {
 	height: 80px;
 	font-size: 35px;
-	color: lightcoral;
+	color: 	cornsilk;
 	box-shadow: 0px 0px 8px black;
-	background-color: #373737;
+/* 	background-color: #373737; */
+/* background: linear-gradient(to right,black,darkslategray); */
+/* background: linear-gradient(to right,teal,cadetblue); */
+background: linear-gradient(to left,teal,darkslategray);
 }
 
 .logout{
@@ -75,18 +84,8 @@ html, body {
 .navbar .btn{
 	
 	font-size: 22px;
-	color: #00E8E8;
+	color: snow;
 	margin-bottom: 7px;
-	
-}
-
-/*右上角功能選單*/
-.action {
-	font-family: 'Noto Sans TC', sans-serif;
-	color: #00E8E8;
-	padding-bottom: 20px;
-	font-size: 22px;
-	max-width: 75%;
 	
 }
 
@@ -101,15 +100,19 @@ html, body {
 	line-height: 45px;
 	font-size: 22px;
 	/*background-color: #4A78A8;  */
-	padding-top: 15px;
-	/* background-color: rgba(70,70,80,0.5); */
+	padding-top: 5px;
+	background-color: rgba(0,0,0,0.6);
 	text-shadow: 2px 2px 2px black;
 	min-height: 100%;
+	right:20px;
+	
 }
 
+
 /*側邊欄文字靠左*/
-.nav .nav-item {
+.nav{
 	text-align: left;
+	margin-left:20px;
 }
 /*側邊欄內清單*/
 .nav .nav-item .nav-link {
@@ -144,7 +147,8 @@ html, body {
 .nav .nav-item .nav-link:hover {
 	height: 220px;
 	cursor: pointer;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(110, 160, 160, 0.45);
+
 }
 
 /*側邊欄內清單的第二層清單*/
@@ -178,13 +182,13 @@ html, body {
 /*側邊欄內清單(單一功能)連結hover*/
 .nav .nav-item-single a:hover {
 	cursor: pointer;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(110, 160, 160, 0.45);
 }
 
 /*主內容標題*/
 .mainTitle {
 	letter-spacing: 8px;
-	font-family: 'Noto Sans TC', sans-serif;
+	font-family: 'Noto Sans TC';
 	color: #42454C;
 	font-weight: bold;
 	font-size: 28px;
@@ -201,7 +205,7 @@ html, body {
 	padding: 20px 10px 20px 10px;
 	float: left;
 	min-height: 900px;
-	background: rgba(255, 255, 255, 0.90);
+	background: rgba(255, 255, 255, 0.93);
 	text-align: left;
 	border-radius: 7px;
 	margin-top: 8px;
@@ -214,32 +218,114 @@ footer {
 	float: left;
 	height: 100px;
 	width: 100%;
-	background-color: #494646;
-	color: grey;
+/* 	background: linear-gradient(black,darkslategray); */
+/*     background: -webkit-linear-gradient(left,yellow,red); */
+background: linear-gradient(to left,darkslategray,teal);
+	color: cornsilk;
 	text-align: center;
 	padding-top: 40px;
 	position: absolute;
 	bottom: 0;
 }
 
-@media ( max-width : 1800px) {
-	div.aside {
-		min-width: 16%;
-	}
+
+/* // Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) { ... }
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 1228px) { 
+.nav .nav-item .nav-link {
+	letter-spacing: 0px;
+	font-family: 'Noto Sans TC', sans-serif;
+	color: white;
+	opacity: 0.9;
+	border-bottom: dotted;
+	border-width: 2px;
+	border-color: rgba(255, 255, 255, 0.3);
+	height: 60px;
+	padding-top: 10px;
+	overflow: hidden;
+	line-height: 35px;
+	transition: all 0.5s;
+}
+.nav .nav-item-single a{
+	letter-spacing: 0px;
+	font-family: 'Noto Sans TC', sans-serif;
+	color: white;
+	opacity: 0.9;
+	border-bottom: dotted;
+	border-width: 2px;
+	border-color: rgba(255, 255, 255, 0.3);
+	height: 50px;
+	line-height: 35px;
+	padding-top: 5px;
+}
+svg{
+	display:none;
+}
+}
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 1228px) and (max-width: 1379px) { 
+
+.nav .nav-item .nav-link {
+	letter-spacing: 0px;
+	font-family: 'Noto Sans TC', sans-serif;
+	color: white;
+	opacity: 0.9;
+	border-bottom: dotted;
+	border-width: 2px;
+	border-color: rgba(255, 255, 255, 0.3);
+	height: 60px;
+	padding-top: 10px;
+	overflow: hidden;
+	line-height: 35px;
+	transition: all 0.5s;
+}
+.nav .nav-item-single a{
+	letter-spacing: 0px;
+	font-family: 'Noto Sans TC', sans-serif;
+	color: white;
+	opacity: 0.9;
+	border-bottom: dotted;
+	border-width: 2px;
+	border-color: rgba(255, 255, 255, 0.3);
+	height: 50px;
+	line-height: 35px;
+	padding-top: 5px;
+}
+.downarrow{
+	display:none;
 }
 
-/*以下為RWD配置*/
-@media ( max-width : 1700px) {
-	div.aside {
-		white-space: nowrap;
-	}
+	
 }
 
-@media ( max-width : 1200px) {
-	div.aside {
-		background-color: #696161;
-	}
+@media (min-width: 1380px) and (max-width: 1596px){ 
+.nav .nav-item .nav-link {
+	letter-spacing: 2px;
+	font-family: 'Noto Sans TC', sans-serif;
+	color: white;
+	opacity: 0.9;
+	border-bottom: dotted;
+	border-width: 2px;
+	border-color: rgba(255, 255, 255, 0.3);
+	height: 60px;
+	padding-top: 10px;
+	overflow: hidden;
+	line-height: 35px;
+	transition: all 0.5s;
+}
+.nav .nav-item-single a{
+	letter-spacing: 2px;
+	font-family: 'Noto Sans TC', sans-serif;
+	color: white;
+	opacity: 0.9;
+	border-bottom: dotted;
+	border-width: 2px;
+	border-color: rgba(255, 255, 255, 0.3);
+	height: 50px;
+	line-height: 35px;
+	padding-top: 5px;
 }
 
-@media ( max-width : 661px) {
 }

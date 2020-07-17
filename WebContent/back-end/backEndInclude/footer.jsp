@@ -2,7 +2,7 @@
     
 </div>
 
-<footer class="Footer">Copyright © 萌寵家族 Cute Family
+<footer class="Footer">Copyright © EA101G3 TEAM3 萌寵家族
 </footer>
 
 </div>
