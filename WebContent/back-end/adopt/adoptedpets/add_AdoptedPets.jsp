@@ -2,10 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.adoptedpets.model.*"%>
 
-<%
-  AdoptedPetsVO adoptedpetsVO = (AdoptedPetsVO) request.getAttribute("adoptedpetsVO");
-%>
-
 <jsp:useBean id="petShelterSvc" scope="page" class="com.petshelter.model.PetShelterService" />
 <jsp:useBean id="adopterSvc" scope="page" class="com.adopter.model.AdopterService" />    
     
@@ -50,7 +46,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col">
-			<form method="post" enctype="multipart/form-data" action="<%=request.getContextPath()%>//adoptedPets//adoptedPets.do" runat="server">
+			<form method="post" enctype="multipart/form-data" action="<%=request.getContextPath()%>/adoptedpets/adoptedpets.do" runat="server">
 				<fieldset disabled>
 					<div class="form-group row">
 						<label for="petNo">收容寵物編號</label>
