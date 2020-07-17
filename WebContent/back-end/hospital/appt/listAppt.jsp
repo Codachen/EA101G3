@@ -110,10 +110,10 @@ font-weight:bold;
 			<td>${apptVO.optSession}</td>
 			<td>
 			<c:forEach var="petVO" items="${petSvc.all}">
-									<c:if test="${apptVO.petNo==petVO.petNo}">
-	                    ${petVO.petName}(${apptVO.petNo})
-                    </c:if>
-								</c:forEach></td>
+			<c:if test="${apptVO.petNo==petVO.petNo}">
+	         ${petVO.petName}(${apptVO.petNo})
+            </c:if>
+			</c:forEach></td>
 			<td>${apptVO.symdesc}</td>
 			<td style="padding-top:23px"><button type="button" class="btn btn-info" id="${apptVO.apptno}" onclick="getDetail(this)">點我觀看</button>
 		
@@ -128,8 +128,15 @@ font-weight:bold;
                     	<c:if test="${apptVO.optstate !='0'}">
 	                    <button type="submit" class="btn btn-secondary" disabled>看診完畢</button>
                     	</c:if>
-						
+						<jsp:useBean id="docSvc" scope="page" class="com.doc.model.DocService" />
 						<input type="hidden" name="apptno" value="${apptVO.apptno}"> 
+						<c:forEach var="docVO" items="${docSvc.all}">
+						<c:if test="${docVO.docname==apptVO.docname}">
+						<input type="hidden" name="docno" value="${docVO.docno}">
+            			</c:if>
+						</c:forEach>
+<!-- 						<input type="hidden" name="docno" value="DR01">  -->
+						<input type="hidden" name="petno" value="${apptVO.petNo}"> 
 						<input type="hidden" name="action" value="update">
 						<input type="hidden" name="requestURL" value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
 					</FORM></td>	

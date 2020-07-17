@@ -139,7 +139,7 @@ public class OptVO implements java.io.Serializable{
 			break;
 
 		default:
-			this.color = "#378006";
+			this.color = "";
 			break;
 		}
 		
