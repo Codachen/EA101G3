@@ -81,15 +81,7 @@
 				<div class="btn-ber">
 				
 					<a class="get_btn hvr-bounce-to-top" href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page.jsp">預約門診</a>
-					<table>
-					<FORM id="form1" METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/appt/appt.do" name="form1">
-					<input type="hidden" name="memno" value="${memNO1}">
-					<input type="hidden" name="optstate" value="0">
-					
-					<a class="learn_btn hvr-bounce-to-top" href="javascript:;" onclick="document.getElementById('form1').submit();">預約查詢</a>
-        	<input type="hidden" name="action" value="listAppt_ByCompositeQuery2">
-				</FORM>
-				 </table>
+					<a class="learn_btn hvr-bounce-to-top" href="<%=request.getContextPath()%>/front-end/hospital/appt/listAppt.jsp">預約查詢</a>
 				</div>
 			</h3>
 			
@@ -97,7 +89,93 @@
 		
 	</section>
 	
-    <div id="services" class="section lb">
+	<div id="blog" class="section lb">
+		<div class="container">
+			<div class="section-title text-center">
+                <h3>醫師團隊</h3>
+                <p>優質醫師團隊給您的寵物安心照護</p>
+            </div><!-- end title -->
+			
+			<div class="row">
+				<div class="col-md-4 col-sm-6 col-lg-4">
+					<div class="post-box">
+						<div class="post-thumb">
+							<img src="uploads/blog-01.jpg" class="img-fluid" alt="post-img" />
+							
+						</div>
+						<div class="post-info">
+							<h4>門診值班表</h4>
+							<ul>
+                                <li>檢索醫生看診值班時段</li>
+  
+                               
+                            </ul>
+							
+<p><a href='<%=request.getContextPath()%>/front-end/hospital/appt/select_page.jsp' style="text-decoration:none;"><b>點此瀏覽門診班表</b></a></p>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <jsp:useBean id="docSvc" scope="page" class="com.doc.model.DocService" />
+  <jsp:useBean id="divSvc" scope="page" class="com.div.model.DivService" />
+  
+<%--       <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/doc/doc.do" > --%>
+<!--        <b></b> -->
+<!--        <select size="1" name="docno" style="width:130px"> -->
+<%--          <c:forEach var="docVO" items="${docSvc.all}" >  --%>
+<%--           <option value="${docVO.docno}">${docVO.docno}-${docVO.docname} --%>
+<%--          </c:forEach>    --%>
+<!--        </select> -->
+<!--        <input type="hidden" name="action" value="getOne_For_Display"> -->
+<!--        <input type="submit" value="送出"> -->
+<!--     </FORM> -->
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-6 col-lg-4">
+					<div class="post-box">
+						<div class="post-thumb">
+							<img src="uploads/blog-02.jpg" class="img-fluid" alt="post-img" />
+							
+						</div>
+						<div class="post-info">
+							<h4>科別查詢</h4>
+							<ul>
+                               <li>選擇科別以查詢醫師資訊</li>
+                            </ul>
+							<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/div/div.do" >
+       <b><font></font></b>
+       <select size="1" name="divno">
+         <c:forEach var="divVO" items="${divSvc.all}" > 
+          <option value="${divVO.divno}">${divVO.divname}
+         </c:forEach>   
+       </select>
+       <input type="submit" value="送出">
+       <input type="hidden" name="action" value="listDocs_ByDivno_C">
+     </FORM>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-6 col-lg-4">
+					<div class="post-box">
+						<div class="post-thumb">
+							<img src="uploads/blog-03.jpg" class="img-fluid" alt="post-img" />
+							
+						</div>
+						<div class="post-info">
+							<h4>全部醫師一覽</h4>
+							<ul>
+                                <li>查詢全部醫師</li>
+                               
+                            </ul>
+							<p><a href='<%=request.getContextPath()%>/front-end/hospital/doc/listAllDoc.jsp' style="text-decoration:none;"><b>點此瀏覽全部醫師資訊</b></a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	
+	 <div id="services" class="section lb">
         <div class="container">
             <div class="section-title text-center">
                <h3>看診進度</h3>
@@ -390,96 +468,6 @@ else {
             </div><!-- end row -->
         </div><!-- end container -->
     </div><!-- end section -->
-	
-	
-	
-	
-	<div id="blog" class="section lb">
-		<div class="container">
-			<div class="section-title text-center">
-                <h3>Team</h3>
-                <p>優質醫師團隊給您的寵物安心照護</p>
-            </div><!-- end title -->
-			
-			<div class="row">
-				<div class="col-md-4 col-sm-6 col-lg-4">
-					<div class="post-box">
-						<div class="post-thumb">
-							<img src="uploads/blog-01.jpg" class="img-fluid" alt="post-img" />
-							
-						</div>
-						<div class="post-info">
-							<h4>門診值班表</h4>
-							<ul>
-                                <li>檢索醫生看診值班時段</li>
-  
-                               
-                            </ul>
-							
-<p><a href='<%=request.getContextPath()%>/front-end/hospital/appt/select_page.jsp' style="text-decoration:none;"><b>點此瀏覽門診班表</b></a></p>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
- <jsp:useBean id="docSvc" scope="page" class="com.doc.model.DocService" />
-  <jsp:useBean id="divSvc" scope="page" class="com.div.model.DivService" />
-  
-<%--       <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/doc/doc.do" > --%>
-<!--        <b></b> -->
-<!--        <select size="1" name="docno" style="width:130px"> -->
-<%--          <c:forEach var="docVO" items="${docSvc.all}" >  --%>
-<%--           <option value="${docVO.docno}">${docVO.docno}-${docVO.docname} --%>
-<%--          </c:forEach>    --%>
-<!--        </select> -->
-<!--        <input type="hidden" name="action" value="getOne_For_Display"> -->
-<!--        <input type="submit" value="送出"> -->
-<!--     </FORM> -->
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 col-lg-4">
-					<div class="post-box">
-						<div class="post-thumb">
-							<img src="uploads/blog-02.jpg" class="img-fluid" alt="post-img" />
-							
-						</div>
-						<div class="post-info">
-							<h4>科別查詢</h4>
-							<ul>
-                               <li>選擇科別以查詢醫師資訊</li>
-                            </ul>
-							<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/div/div.do" >
-       <b><font></font></b>
-       <select size="1" name="divno">
-         <c:forEach var="divVO" items="${divSvc.all}" > 
-          <option value="${divVO.divno}">${divVO.divname}
-         </c:forEach>   
-       </select>
-       <input type="submit" value="送出">
-       <input type="hidden" name="action" value="listDocs_ByDivno_C">
-     </FORM>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 col-lg-4">
-					<div class="post-box">
-						<div class="post-thumb">
-							<img src="uploads/blog-03.jpg" class="img-fluid" alt="post-img" />
-							
-						</div>
-						<div class="post-info">
-							<h4>全部醫師一覽</h4>
-							<ul>
-                                <li>查詢全部醫師</li>
-                               
-                            </ul>
-							<p><a href='<%=request.getContextPath()%>/front-end/hospital/doc/listAllDoc.jsp' style="text-decoration:none;"><b>點此瀏覽全部醫師資訊</b></a></p>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-		</div>
-	</div>
-	
 	
 
     
