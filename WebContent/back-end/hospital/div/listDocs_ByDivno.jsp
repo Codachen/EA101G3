@@ -5,55 +5,40 @@
 
 <jsp:useBean id="listDocs_ByDivno" scope="request" type="java.util.Set<DocVO>" /> <!-- 於EL此行可省略 -->
 <jsp:useBean id="divSvc" scope="page" class="com.div.model.DivService" />
-
+<%
+String divno = request.getParameter("divno");
+pageContext.setAttribute("divno", divno); 
+%>
+<!DOCTYPE html>
 <html>
-<head>
 <%@ include file="/back-end/backEndInclude/head.jsp"%>
-<style>
-/* table { */
-/* 	width: 100%; */
-/* 	background-color: white; */
-/* 	margin-top: 5px; */
-/* 	margin-bottom: 5px; */
-/* 	border: 1px solid #CCCCFF; */
-/* } */
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+
+<style>
 table {
-	text-align: center;
+	width: 100%;
 	background-color: white;
 	
 }
 
- th { 
-/* 	padding: 5px; */
- 	background-color: lightcoral;
-} 
-
-/* th, td { */
-/* 	padding: 5px; */
-/* 	border-bottom: dotted; */
-/* 	border-width: 1px; */
-/* 	border-color: rgba(0, 0, 0, 0.5); */
-/* } */
-
-td{
-line-height:60px;
-height:60px;
+table, th, td {
+	
 }
 
-.seqno{
-font-size:28px; 
-color:red; 
-font-weight:bold; 
+th {
+	background-color: lightcoral;
 }
 
-#img {
-	max-width: 1800px;
-}
 
-/* .modal-body img{ */
-/* width:800px; */
-/* } */
+
+
+
+
+
+
+
+
 </style>
 </head>
 
@@ -61,11 +46,18 @@ font-weight:bold;
 		<%@ include file="/back-end/backEndInclude/header.jsp" %>
 
 	<!-- ****************************以下為實際功能頁變更區域**************************** -->
-<span class="mainTitle">科別醫師檢索</span>
+<span class="mainTitle">
+
+			<c:forEach var="divVO" items="${divSvc.all}">
+				<c:if test="${divno==divVO.divno}"> 
+ 				 
+ 				</b></h3>${(divVO.divname)}醫師檢索
+ 				</c:if> 
+			</c:forEach>
+ <button type="button" class="btn btn-info" id="addbtn" onclick="location.href='<%=request.getContextPath()%>/back-end/hospital/doc/select_page.jsp'">返回</button></span>
 
 	<hr class="mainTitlehr">
 		 
-	<a href="<%=request.getContextPath()%>/back-end/hospital/doc/select_page.jsp">返回</a></h6>
 
 	</td></tr>
 </table>
@@ -83,28 +75,22 @@ font-weight:bold;
 	</ul>
 </c:if>
 
-<table>
+<table class="table table-striped">
 		
 	<tr>
-		<th>科別</th>
-		<th>醫生編號 </th>
-		<th>醫生姓名</th>
-		<th>診間號碼</th>
-		<th>年資</th>
-		<th>介紹</th>
+		<th width="9%">醫生編號</th>
+		<th width="9%">姓名</th>
+		<th width="9%">診間號碼</th>
+		<th width="9%">年資</th>
+		<th class="text-center" width=>介紹</th>
 		<th>醫生照片</th>
-		<th>醫生在職狀態</th>
+		<th width="9%">在職狀態</th>
 		<th>修改</th>
 	</tr>
 	
 	<c:forEach var="docVO" items="${listDocs_ByDivno}" >
 		<tr>
-			<td><c:forEach var="divVO" items="${divSvc.all}">
-                    <c:if test="${docVO.divno==divVO.divno}">
-	                    ${divVO.divno}${divVO.divname}</font>
-                    </c:if>
-                </c:forEach>
-			</td>
+			
 			<td>${docVO.docno}</td>
 			<td>${docVO.docname}</td>
 			<td>${docVO.roomno}</td>
@@ -116,9 +102,8 @@ font-weight:bold;
 			<td width="5%">${docVO.docstatus}</td>	
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/doc/doc.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="修改">
-			     <input type="hidden" name="docno"  value="${docVO.docno}">
-			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
+			  <input type="image" src="<%=request.getContextPath()%>/back-end/hospital/mr/images/icons/edit.jpg" width="40" height="40">				     <input type="hidden" name="docno"  value="${docVO.docno}">
+			  <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 		</td>		
 		
 		</tr>

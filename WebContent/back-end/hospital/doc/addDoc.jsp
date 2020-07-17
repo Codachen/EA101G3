@@ -17,12 +17,11 @@
 
 	<!-- ****************************以下為實際功能頁變更區域**************************** -->
 
-<span class="mainTitle">醫師管理</span>
+<span class="mainTitle">新增醫師 <button type="button" class="btn btn-info" id="addbtn" onclick="location.href='<%=request.getContextPath()%>/back-end/hospital/doc/select_page.jsp'">返回</button></span>
 
 	<hr class="mainTitlehr">
 
-	<a href="<%=request.getContextPath()%>/back-end/hospital/doc/select_page.jsp">返回</a></h6>
-<h3>醫師新增:</h3>
+	
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -97,7 +96,7 @@
 </table>
 <br>
 <input type="hidden" name="action" value="insert">
-<input type="submit" value="送出新增"></FORM>
+<button type="submit" class="btn btn-primary">送出新增</button></FORM>
 <script>
 	function init(){
 		var display = document.getElementById("display");

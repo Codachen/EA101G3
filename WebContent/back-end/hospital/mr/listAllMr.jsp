@@ -16,27 +16,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<%@ include file="/back-end/backEndInclude/head.jsp"%>
-	<title>Table V04</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/back-end/hospital/mr/css/util.css">
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/back-end/hospital/mr/css/main.css">
-<!--===============================================================================================-->
+
+
+<style>
+/* table { */
+/* 	width: 100%; */
+/* 	background-color: white; */
+/* 	margin-top: 5px; */
+/* 	margin-bottom: 5px; */
+/* 	border: 1px solid #CCCCFF; */
+/* } */
+
+table {
+	text-align: center;
+	background-color: white;
+	
+}
+
+ th { 
+/* 	padding: 5px; */
+ 	background-color: lightcoral;
+} 
+
+/* th, td { */
+/* 	padding: 5px; */
+/* 	border-bottom: dotted; */
+/* 	border-width: 1px; */
+/* 	border-color: rgba(0, 0, 0, 0.5); */
+/* } */
+
+td{
+line-height:60px;
+height:60px;
+}
+
+.seqno{
+font-size:28px; 
+color:red; 
+font-weight:bold; 
+}
+
+#img {
+	max-width: 1100px;
+}
+
+/* .modal-body img{ */
+/* width:800px; */
+/* } */
+
+
+
+
+</style>
+
 </head>
+
 <%@ include file="page1.file" %> 
 <body>
 	<%@ include file="/back-end/backEndInclude/header.jsp" %>

@@ -1,147 +1,118 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
 <%@ page import="java.util.*"%>
 <%@ page import="com.mr.model.*"%>
 
-<%-- ¸U¥Î½Æ¦X¬d¸ß-¥i¥Ñ«È¤áºİselect_page.jspÀH·N¼W´î¥ô¦ó·Q¬d¸ßªºÄæ¦ì --%>
-<%-- ¦¹­¶¥u§@¬°½Æ¦X¬d¸ß®É¤§µ²ªG½m²ß¡A¥iµø»İ­n¦A¼W¥[¤À­¶¡B°e¥X­×§ï¡B§R°£¤§¥\¯à--%>
+<%-- è¬ç”¨è¤‡åˆæŸ¥è©¢-å¯ç”±å®¢æˆ¶ç«¯select_page.jspéš¨æ„å¢æ¸›ä»»ä½•æƒ³æŸ¥è©¢çš„æ¬„ä½ --%>
+<%-- æ­¤é åªä½œç‚ºè¤‡åˆæŸ¥è©¢æ™‚ä¹‹çµæœç·´ç¿’ï¼Œå¯è¦–éœ€è¦å†å¢åŠ åˆ†é ã€é€å‡ºä¿®æ”¹ã€åˆªé™¤ä¹‹åŠŸèƒ½--%>
 
 <jsp:useBean id="listMr_ByCompositeQuery" scope="request" type="java.util.List<MrVO>" />
 <jsp:useBean id="apptSvc" scope="page" class="com.appt.model.ApptService" />
 <jsp:useBean id="optSvc" scope="page" class="com.opt.model.OptService" />
+<jsp:useBean id="docSvc" scope="page" class="com.doc.model.DocService" />
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
 <%@ include file="/back-end/backEndInclude/head.jsp"%>
-	<title>Table V04</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/back-end/hospital/mr/css/util.css">
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/back-end/hospital/mr/css/main.css">
-<!--===============================================================================================-->
-</head>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+
+<style>
+table {
+	width: 100%;
+	background-color: white;
+	
+}
+
+table, th, td {
+	
+}
+
+th {
+	background-color: lightcoral;
+}
+
+
+.form-control{
+display:inline;
+width:200px;
+}
+
+
+
+
+
+
+
+</style>
+
+</head>
 <body>
-	<%@ include file="/back-end/backEndInclude/header.jsp" %>
-	<span class="mainTitle">¶EÀø¬ö¿ıºŞ²z</span> <a href="<%=request.getContextPath()%>/back-end/hospital/mr/select_page.jsp">ªğ¦^</a></h6>
+
+
+	<%@ include file="/back-end/backEndInclude/header.jsp"%>
+	
+	<!-- ****************************ä»¥ä¸‹ç‚ºå¯¦éš›åŠŸèƒ½é è®Šæ›´å€åŸŸ**************************** -->
+
+	<span class="mainTitle">è¨ºç™‚ç´€éŒ„ç®¡ç†</span><button type="button" class="btn btn-info" id="addbtn" onclick="location.href='<%=request.getContextPath()%>/back-end/hospital/mr/select_page.jsp'">è¿”å›</button>
 
 	<hr class="mainTitlehr">
-	<div class="limiter">
-		<div class="container-table100">
-			<div class="wrap-table100">
-
-				<div class="table100 ver5 m-b-110">
-					<div class="table100-head">
-						<table>
-							<thead>
-								<tr class="row100 head">
-									<th class="cell100 column1">¬ö¿ı½s¸¹</th>
-									<th class="cell100 column2">¬ù¶E½s¸¹</th>
-									<th class="cell100 column3">Âå¥Í½s¸¹</th>
-									<th class="cell100 column4">Ãdª«½s¸¹</th>
-									<th class="cell100 column5">¶EÂ_¯gª¬</th>
-									<th class="cell100 column6">¶EÂ_³B¤è</th>
-									<th class="cell100 column7">¹w¬ù¶O¥Î</th>
-									<th class="cell100 column8">ÃÄ«~¶O¥Î</th>
-									<th class="cell100 column9">¤â³N¶O¥Î</th>
-									<th class="cell100 column10"></th>
-									
-									
-								</tr>
-							</thead>
-						</table>
-					</div>
-
-					<div class="table100-body js-pscroll">
-						<table>
-							<tbody>
+	<table class="table table-striped">
+	<tr>
+		<th>å°±è¨ºç´€éŒ„ç·¨è™Ÿ</th>
+		<th>ç´„è¨ºç·¨è™Ÿ</th>
+		<th>é†«ç”Ÿå§“å</th>
+		<th>æœƒå“¡å¯µç‰©ç·¨è™Ÿ</th>
+		<th>è¨ºæ–·ç—‡ç‹€</th>
+		<th>è¨ºæ–·è™•æ–¹</th>
+		<th>é ç´„è²»ç”¨</th>
+		<th>è—¥å“è²»ç”¨</th>
+		<th>æ‰‹è¡“è²»ç”¨</th>
+		<th>ä¿®æ”¹</th>
+		
+	</tr>
 
 	<c:forEach var="mrVO" items="${listMr_ByCompositeQuery}">
 		
-		<tr class="row100 body">
-									<td class="cell100 column1">${mrVO.mrno}</td>
-									<td class="cell100 column2">${mrVO.apptno}</td>
-									<td class="cell100 column3">${mrVO.docno}
-<%-- 							<c:forEach var="apptVO" items="${apptSvc.all}"> --%>
-<%-- 							<c:forEach var="optVO" items="${optSvc.all}"> --%>
-<%--             				<c:if test="${(mrVO.apptno==apptVO.apptno)&&(apptVO.sessionno==optVO.sessionNo)}"> --%>
-<%-- 	           				${optVO.docNo}<br> --%>
-<%--                   			  </c:if> --%>
-<%--                 			</c:forEach> --%>
-<%--                 			</c:forEach> --%>
-                			</td>
-									<td class="cell100 column4"><c:forEach var="apptVO" items="${apptSvc.all}">
-            				<c:if test="${mrVO.apptno==apptVO.apptno}">
-	           				${apptVO.petNo}<br>
-                  			  </c:if>
-                			</c:forEach></td>
-									<td class="cell100 column5">${mrVO.symptom}</td>
-									<td class="cell100 column6">${mrVO.prescription}</td>
-									<td class="cell100 column7">${mrVO.apptfee}</td>
-									<td class="cell100 column8">${mrVO.medfee}</td>
-									<td class="cell100 column9">${mrVO.operfee}</td>
-									<td class="cell100 column10"> 
-									<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/mr/mr.do" style="margin-bottom: 0px;">
-			    					<input type="image" src="<%=request.getContextPath()%>/back-end/hospital/mr/images/icons/edit.jpg" width="20" height="20">
-			     					<input type="hidden" name="mrno"  value="${mrVO.mrno}">
-			     					<input type="hidden" name="action"	value="getOne_For_Update"></FORM></td>
-									
-								</tr>
-								</c:forEach>
-						</table>
-<!-- 							</tbody>
-						
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-<!--===============================================================================================-->	
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-	<script>
-		$('.js-pscroll').each(function(){
-			var ps = new PerfectScrollbar(this);
-
-			$(window).on('resize', function(){
-				ps.update();
-			})
-		});
+		<tr>
+			<td>${mrVO.mrno}</td>
+			<td>${mrVO.apptno}</td>
+			<td>
 			
-		
-	</script>
-<!--===============================================================================================-->
-	<script src="js/main.js"></script>
+			<c:forEach var="docVO" items="${docSvc.all}">
+            <c:if test="${mrVO.docno==docVO.docno}">
+	                   ${docVO.docname}</font>
+            </c:if>
+            </c:forEach>
+			</td>
+			<td>${mrVO.petno}</td>
+			<td>${mrVO.symptom}</td>
+			<td>${mrVO.prescription}</td>
+			<td>${mrVO.apptfee}</td> 
+			<td>${mrVO.medfee}</td>  
+			<td>${mrVO.operfee}</td>   
+			<td>
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/mr/mr.do" style="margin-bottom: 0px;">
+			     <input type="image" src="<%=request.getContextPath()%>/back-end/hospital/mr/images/icons/edit.jpg" width="20" height="20">
+			     <input type="hidden" name="mrno"  value="${mrVO.mrno}">
+			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
+			</td>
+			
+		</tr>
+	</c:forEach>
+</table>
+
 </div>
+
+
+
+
+<footer class="Footer">Copyright Â© èŒå¯µå®¶æ— Cute Family
+</footer>
+
+
 </div>
-
-
-
-
-
 
 </div>
 
