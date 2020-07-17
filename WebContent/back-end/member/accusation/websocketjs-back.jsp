@@ -52,11 +52,11 @@
 			$('.chat-body').slideToggle('fast');
 			if(src == 'https://maxcdn.icons8.com/windows10/PNG/16/Arrows/angle_down-16.png'){
 				arrow.attr('src', 'https://maxcdn.icons8.com/windows10/PNG/16/Arrows/angle_up-16.png');
-				connect();
+// 				connect();
 			}
 			else{
 				arrow.attr('src', 'https://maxcdn.icons8.com/windows10/PNG/16/Arrows/angle_down-16.png');
-				disconnect();
+// 				disconnect();
 				$('.column').hide();
 			}
 		});
@@ -91,7 +91,7 @@
 			var self = '${empVONav.empID}';
 			var webSocket;
 			
-			function connect() {
+			function ShowHello() {
 				// create a websocket
 				webSocket = new WebSocket(endPointURL);
 			
