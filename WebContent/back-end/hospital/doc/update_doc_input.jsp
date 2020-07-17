@@ -9,6 +9,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+img
+{
+  max-width:200px; height:auto;
+  vertical-align: middle;
+}
+
+</style>
 <%@ include file="/back-end/backEndInclude/head.jsp"%>
 </head>
 

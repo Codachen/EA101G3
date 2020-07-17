@@ -21,6 +21,12 @@
 	margin-bottom: 20px;
 }
 
+img
+{
+  max-width:200px; height:auto;
+  vertical-align: middle;
+}
+
 </style>
 
 

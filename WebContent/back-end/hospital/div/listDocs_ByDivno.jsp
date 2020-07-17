@@ -30,7 +30,11 @@ th {
 	background-color: lightcoral;
 }
 
-
+img
+{
+  max-width:200px; height:auto;
+  vertical-align: middle;
+}
 
 
 

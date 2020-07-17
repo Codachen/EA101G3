@@ -41,7 +41,7 @@ th {
 
 img
 {
-  
+  max-width:200px; height:auto;
   vertical-align: middle;
 }
 
