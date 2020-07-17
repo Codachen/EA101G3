@@ -124,7 +124,7 @@ public class MemberServlet extends HttpServlet{
 					if (!errorMsgs.isEmpty()) {
 						req.setAttribute("memVobject", memVO); // 含有輸入格式錯誤的memVO物件,也存入req
 						RequestDispatcher failureView = req
-								.getRequestDispatcher("/front-end/member/member/login.jsp");
+								.getRequestDispatcher("/front-end/member/member/addMem.jsp");
 						failureView.forward(req, res);
 						return;
 					}
