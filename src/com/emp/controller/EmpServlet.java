@@ -135,9 +135,9 @@ public class EmpServlet extends HttpServlet {
 				
 				String empNameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 				if (empName == null || empName.trim().length() == 0) {
-					errorMsgs.add("員工姓名: 請勿空白");
+					errorMsgs.add("員工姓名請勿空白");
 				} else if(!empName.trim().matches(empNameReg)) { //以下練習正則(規)表示式(regular-expression)
-					errorMsgs.add("員工姓名: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
+					errorMsgs.add("員工姓名只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
 	            }
 				
 				
@@ -180,7 +180,7 @@ public class EmpServlet extends HttpServlet {
 				if (empAcc == null || empAcc.trim().length() == 0) {
 					errorMsgs.add("郵件請勿空白");
 				}else if(!empAcc.trim().matches(empAccReg)) { //以下練習正則(規)表示式(regular-expression)
-					errorMsgs.add("郵件地址格式錯誤");
+					errorMsgs.add("Email地址格式錯誤");
 	            }
 				
 				String empPwd = req.getParameter("empPwd").trim();

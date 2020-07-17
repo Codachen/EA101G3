@@ -7,7 +7,7 @@
 <%-- 此頁暫練習採用 Script 的寫法取值 --%>
 
 <%
-	OptVO optVO = (OptVO) request.getAttribute("optVO"); //存入req的optVO物件
+	OptVO optVO = (OptVO) session.getAttribute("optVO"); //存入session的optVO物件
 	// 	String memNO = (String)session.getAttribute("memNO");
 	MemberVO memberVO = (MemberVO) session.getAttribute("member");
 	System.out.println(memberVO.getMemName());

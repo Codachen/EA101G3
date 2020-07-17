@@ -32,12 +32,13 @@ public class ApptServletFront extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		//測試用session
-//		HttpSession session = req.getSession();	
+		HttpSession session = req.getSession();	
 		
 			
 		if ("addAppt".equals(action)) {
 			
-			try {		
+			try {	
+				
 			String sessionNo = req.getParameter("sessionNo");
 			System.out.println(sessionNo);
 			
@@ -47,7 +48,7 @@ public class ApptServletFront extends HttpServlet {
 			OptService optSvc = new OptService();
 			optVO = optSvc.getOneOptSession(sessionNo);
 			
-			req.setAttribute("optVO", optVO);
+			session.setAttribute("optVO", optVO);
 			
 //			//給予假資料
 //			MemberService mSvc = new MemberService();
@@ -70,7 +71,6 @@ public class ApptServletFront extends HttpServlet {
 		if ("insert".equals(action)) { // 來自dispOpt.jsp的請求  
         	
 			
-			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 
@@ -95,12 +95,11 @@ public class ApptServletFront extends HttpServlet {
 				in.read(symphoto);
 				in.close();
 				
-				
-				OptVO optVO = new OptVO();
-				OptService succeess = new OptService();
-				optVO = succeess.getOneOptSession(sessionNo);
-				
-				req.setAttribute("optVO", optVO);
+//				OptVO optVO = new OptVO();
+//				OptService succeess = new OptService();
+//				optVO = succeess.getOneOptSession(sessionNo);
+//				
+//				req.setAttribute("optVO", optVO);
 				
 				
 				ApptVO apptVO = new ApptVO();
@@ -120,10 +119,8 @@ public class ApptServletFront extends HttpServlet {
 				OptService optSvc = new OptService();
 				optSvc.updateCurrentCount(seqNo, sessionNo);
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				
-//				req.removeAttribute("optVO");
-//				String url = "/front-end/hospital/appt/apptStart.do?"+requestPara;
-//				System.out.println(url);
+				//存取在控制器新增預約時所存入的optVO(scope為session)
+				session.getAttribute("optVO");
 				RequestDispatcher successView = req.getRequestDispatcher("apptSuccess.jsp"); // 新增成功後轉交
 				successView.forward(req, res);	
 				
@@ -131,7 +128,6 @@ public class ApptServletFront extends HttpServlet {
 				/***************************其他可能的錯誤處理**********************************/
 			} catch (Exception e) {
 				System.out.println("例外被執行");
-				errorMsgs.add(e.getMessage()+"其他的錯誤");
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("addAppt.jsp");
 				failureView.forward(req, res);
