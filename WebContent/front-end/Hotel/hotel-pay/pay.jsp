@@ -19,12 +19,24 @@
 	font-size: 20px;
 }
 
-body{
-background:linear-gradient(45deg,#00818a,#076394,green) ;
+body {
+	/* background:linear-gradient(45deg,#00818a,#076394,green) ; */
+	background-image:url('<%=request.getContextPath()%>/front-end/Hotel/images/hotelPay1.jpg');
+ 	background-size: Cover; 
+ 	background-repeat: no-repeat;
+ 	width: 100%; 
+ 	height: 100%; 
+	z-index: -999;
+ 	opacity: 0.8; 
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
 }
 
-label,h1{
-color:whitesmoke;
+label, h1 {
+	color: black;
 }
 </style>
 
@@ -167,7 +179,7 @@ color:whitesmoke;
 					<input type="hidden" name="action" value="payMoney">
 					<div class="d-flex justify-content-center">
 						<button type="submit" class="btn btn-primary">確認付款</button>
-						<button id="generatecard" style="display:none;">隨機生成</button>
+						<button id="generatecard" style="display: none;">隨機生成</button>
 					</div>
 				</form>
 				<button class="btn btn-warning" onclick="insertValue();">神奇小按鈕</button>
@@ -185,14 +197,12 @@ color:whitesmoke;
 </body>
 
 <script>
-
-function insertValue(){
-	$('#name').val('鳴人');
-	$('#cardnumber').val('4984014121389556');
-	$('#expirationdate').val('12/11');
-	$('#securitycode').val('750');
-}
-
+	function insertValue() {
+		$('#name').val('鳴人');
+		$('#cardnumber').val('4984014121389556');
+		$('#expirationdate').val('12/11');
+		$('#securitycode').val('750');
+	}
 </script>
 
 
