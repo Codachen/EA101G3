@@ -252,21 +252,13 @@ public class AdopterDAO implements AdopterDAO_interface {
 		List<AdopterVO> list = new ArrayList<AdopterVO>();
 		AdopterVO adopterVO = null;
 
-//		Connection con = null;
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-		
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		}
-		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
+
+			con = ds.getConnection();
 
 //			con = ds.getConnection();
 			con= DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "EA101", "EA101");

@@ -2,6 +2,9 @@ package com.adoptedpets.controller;
 
 import java.io.*;
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.*;
 
@@ -11,6 +14,9 @@ import javax.servlet.http.*;
 
 import com.adoptedpets.model.*;
 import com.google.gson.*;
+import com.interaction.model.InteractionCalendarVO;
+import com.interaction.model.InteractionService;
+import com.interaction.model.InteractionVO;
 
 @MultipartConfig
 public class AdoptedPetsServlet extends HttpServlet {
@@ -41,7 +47,8 @@ public class AdoptedPetsServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/adopt/adoptedpets/listAllAdoptedPets.jsp");
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/back-end/adopt/adoptedpets/listAllAdoptedPets.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -54,7 +61,8 @@ public class AdoptedPetsServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/adopt/adoptedpets/listAllAdoptedPets.jsp");
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/back-end/adopt/adoptedpets/listAllAdoptedPets.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -67,7 +75,8 @@ public class AdoptedPetsServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/adopt/adoptedpets/listAllAdoptedPets.jsp");
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/back-end/adopt/adoptedpets/listAllAdoptedPets.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -81,7 +90,8 @@ public class AdoptedPetsServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/adopt/adoptedpets/listAllAdoptedPets.jsp");
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/back-end/adopt/adoptedpets/listAllAdoptedPets.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -101,7 +111,8 @@ public class AdoptedPetsServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/adopt/adoptedpets/listAllPets.jsp");
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/front-end/adopt/adoptedpets/listAllPets.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -114,7 +125,8 @@ public class AdoptedPetsServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/adopt/adoptedpets/listAllPets.jsp");
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/front-end/adopt/adoptedpets/listAllPets.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -127,7 +139,8 @@ public class AdoptedPetsServlet extends HttpServlet {
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/adopt/adoptedpets/listAllPets.jsp");
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/front-end/adopt/adoptedpets/listAllPets.jsp");
 					failureView.forward(req, res);
 					return;// 程式中斷
 				}
@@ -141,7 +154,8 @@ public class AdoptedPetsServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/adopt/adoptedpets/listAllPets.jsp");
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/front-end/adopt/adoptedpets/listAllPets.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -181,7 +195,8 @@ public class AdoptedPetsServlet extends HttpServlet {
 
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/adopt/adoptedpets/listAllPets.jsp");
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/front-end/adopt/adoptedpets/listAllPets.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -210,11 +225,12 @@ public class AdoptedPetsServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/adopt/adoptedpets/listAllAdoptedPets.jsp");
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/back-end/adopt/adoptedpets/listAllAdoptedPets.jsp");
 				failureView.forward(req, res);
 			}
 		}
-		
+
 		if ("getOneinteractionforAdd_Frontend".equals(action)) { // 來自listAllEmp.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
@@ -230,9 +246,58 @@ public class AdoptedPetsServlet extends HttpServlet {
 				AdoptedPetsService adoptedpetsSvc = new AdoptedPetsService();
 				AdoptedPetsVO adoptedpetsVO = adoptedpetsSvc.getOneAdoptedPets(petNo);
 
+				InteractionService interactionSvc = new InteractionService();
+				Set<InteractionVO> interactionSet = interactionSvc.getInteractionByPetNo(petNo);
+				List<InteractionCalendarVO> interactionList = new LinkedList<InteractionCalendarVO>();
+				System.out.println("Here");
+
+				int i = 0;
+				int j = 1;
+				for (InteractionVO interactionVO : interactionSet) {
+					
+					System.out.println(interactionList.size());
+					InteractionCalendarVO interactionCalendarVO = new InteractionCalendarVO();
+					interactionCalendarVO.setId(interactionVO.getInteractionNo());
+
+					DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					Timestamp interactionTime = interactionVO.getInteractionDate();
+					String dateStr = sdf.format(interactionTime);
+					interactionCalendarVO.setStart(dateStr);
+					interactionCalendarVO.setEnd(dateStr);
+					
+					if (i == 0) {
+						String titleStr = j + "位預約";
+						interactionCalendarVO.setTitle(titleStr);
+						interactionList.add(interactionCalendarVO);
+						j++;
+					} else {
+						if (dateStr.equals(interactionList.get(interactionList.size()-1).getStart())) {
+							String titleStr = j + "位預約";
+							interactionList.get(interactionList.size() - 1).setTitle(titleStr);
+							j++;
+						} else {
+							j = 1;
+							String titleStr = j + "位預約";
+							interactionCalendarVO.setTitle(titleStr);
+							interactionList.add(interactionCalendarVO);
+							j++;
+						}
+					}
+					
+					i++;
+				}
+				
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
 				HttpSession session = req.getSession();
 				session.setAttribute("adoptedpetsVO", adoptedpetsVO);
+
+				Gson gson = new Gson();
+				String jsonstring = gson.toJson(interactionList);
+
+				res.setContentType("application/json");
+				res.setCharacterEncoding("UTF-8");
+				session.setAttribute("interactionList", jsonstring);
+
 				req.setAttribute("adoptedpetsVO", adoptedpetsVO); // 資料庫取出的adoptedpetsVO物件,存入req
 				String url = "/front-end/adopt/interaction/addInteraction.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_AdoptedPets_Input.jsp
@@ -241,7 +306,8 @@ public class AdoptedPetsServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/adopt/adoptedpets/listAllPets.jsp");
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/front-end/adopt/adoptedpets/listAllPets.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -343,7 +409,8 @@ public class AdoptedPetsServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
 				e.printStackTrace();
-				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/adopt/adoptedpets/update_AdoptedPets_Input.jsp");
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/back-end/adopt/adoptedpets/update_AdoptedPets_Input.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -412,7 +479,8 @@ public class AdoptedPetsServlet extends HttpServlet {
 //				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("adoptedpetsVO", adoptedPetsVO); // 含有輸入格式錯誤的adoptedPetsVO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/adopt/adoptedpets/add_AdoptedPets.jsp");
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/back-end/adopt/adoptedpets/add_AdoptedPets.jsp");
 					failureView.forward(req, res);
 					return; // 程式中斷
 				}
@@ -431,7 +499,8 @@ public class AdoptedPetsServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
 				e.printStackTrace();
-				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/adopt/adoptedpets/add_AdoptedPets.jsp");
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/back-end/adopt/adoptedpets/add_AdoptedPets.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -462,7 +531,8 @@ public class AdoptedPetsServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add("刪除資料失敗:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/adopt/adoptedpets/listAllAdoptedPets.jsp");
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/back-end/adopt/adoptedpets/listAllAdoptedPets.jsp");
 				failureView.forward(req, res);
 			}
 		}

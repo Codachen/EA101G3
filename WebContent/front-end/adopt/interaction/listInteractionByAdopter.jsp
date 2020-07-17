@@ -15,9 +15,9 @@ String memName = (String) session.getAttribute("memName");
 
 <%
 	InteractionService interactionSvc = new InteractionService();
-String adopterNo = (String) session.getAttribute("adopterNo");
-Set<InteractionVO> set = interactionSvc.getInteractionByAdopterNo(adopterNo);
-pageContext.setAttribute("set", set);
+	String adopterNo = (String) session.getAttribute("adopterNo");
+	Set<InteractionVO> set = interactionSvc.getInteractionByAdopterNo(adopterNo);
+	pageContext.setAttribute("set", set);
 %>
 
 <!DOCTYPE html>
