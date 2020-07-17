@@ -23,7 +23,8 @@ public class InteractionDAO implements InteractionDAO_interface {
 	private static final String INSERT_STMT = "INSERT INTO INTERACTION (INTERACTIONNO, PETNO, ADOPTERNO, INTERACTIONDATE, INTERACTIONSTATUS, ADOPTDESIRE) VALUES ('IA'||LPAD(to_char(INTERACTIONNO_SEQ.NEXTVAL), 4, '0'), ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT INTERACTIONNO, PETNO, ADOPTERNO, INTERACTIONDATE, INTERACTIONSTATUS, ADOPTDESIRE FROM INTERACTION";
 	private static final String GET_ONE_STMT = "SELECT INTERACTIONNO, PETNO, ADOPTERNO, INTERACTIONDATE, INTERACTIONSTATUS, ADOPTDESIRE FROM INTERACTION WHERE INTERACTIONNO =?";
-	private static final String GET_INTERACTION_BYADOTERNO = "SELECT INTERACTIONNO, PETNO, ADOPTERNO, INTERACTIONDATE, INTERACTIONSTATUS, ADOPTDESIRE FROM INTERACTION WHERE ADOPTERNO =?";
+	private static final String GET_INTERACTION_BYADOTERNO = "SELECT INTERACTIONNO, PETNO, ADOPTERNO, INTERACTIONDATE, INTERACTIONSTATUS, ADOPTDESIRE FROM INTERACTION WHERE ADOPTERNO =? ORDER BY INTERACTIONDATE ASC";
+	private static final String GET_INTERACTION_BYPETNO = "SELECT INTERACTIONNO, PETNO, ADOPTERNO, INTERACTIONDATE, INTERACTIONSTATUS, ADOPTDESIRE FROM INTERACTION WHERE PETNO =? ORDER BY INTERACTIONDATE ASC";
 	
 	private static final String DELETE_INTERACTION = "DELETE FROM INTERACTION WHERE INTERACTIONNO = ?";
 
@@ -303,6 +304,67 @@ public class InteractionDAO implements InteractionDAO_interface {
 
 			pstmt = con.prepareStatement(GET_INTERACTION_BYADOTERNO);
 			pstmt.setString(1, adopterNo);
+			
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				interactionVO = new InteractionVO();
+
+				interactionVO.setInteractionNo(rs.getString("INTERACTIONNO"));
+				interactionVO.setPetNo(rs.getString("PETNO"));
+				interactionVO.setAdopterNo(rs.getString("ADOPTERNO"));
+				interactionVO.setInteractionDate(rs.getTimestamp("INTERACTIONDATE"));
+				interactionVO.setInteractionStatus(rs.getString("INTERACTIONSTATUS"));
+				interactionVO.setAdoptDesire(rs.getInt("ADOPTDESIRE"));
+
+				set.add(interactionVO); // Store the row in the list
+
+			}
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return set;
+	}
+	
+	@Override
+	public Set<InteractionVO> findByPetNo(String petNo){
+		Set<InteractionVO> set = new LinkedHashSet<InteractionVO>();
+		InteractionVO interactionVO = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+
+			pstmt = con.prepareStatement(GET_INTERACTION_BYPETNO);
+			pstmt.setString(1, petNo);
 			
 			rs = pstmt.executeQuery();
 

@@ -10,19 +10,40 @@
 <html>
 <head>
 <%@ include file="/back-end/backEndInclude/head.jsp"%>
+
+<style type="text/css">
+
+
+#addbtn {
+	float: right;
+	font-size: 50px;
+	padding: 5px 20px;
+	margin-bottom: 20px;
+}
+
+img
+{
+  max-width:200px; height:auto;
+  vertical-align: middle;
+}
+
+</style>
+
+
+
 </head>
 
 <body>
+
 		<%@ include file="/back-end/backEndInclude/header.jsp" %>
 
 	<!-- ****************************以下為實際功能頁變更區域**************************** -->
 
-<span class="mainTitle">醫師管理</span>
+<span class="mainTitle">新增醫師<button type="button" class="btn btn-info"  onclick="location.href='<%=request.getContextPath()%>/back-end/hospital/doc/select_page.jsp'">返回</button></span>
 
 	<hr class="mainTitlehr">
 
-	<a href="<%=request.getContextPath()%>/back-end/hospital/doc/select_page.jsp">返回</a></h6>
-<h3>醫師新增:</h3>
+	
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -53,22 +74,22 @@
 	</tr>
 	<tr>
 		<td>醫生姓名:</td>
-		<td><input type="TEXT" name="docname" size="60"
-			 value="<%= (docVO==null)? "張國彬" : docVO.getDocname()%>" /></td>
+		<td><input type="TEXT" id="docname" name="docname" size="60"
+			 value="" /></td>
 	</tr>
 	<tr>
 		<td>診間號碼</td>
-		<td><input type="TEXT" name="roomno" size="60"
-			 value="<%= (docVO==null)? "20" : docVO.getRoomno()%>" /></td>
+		<td><input type="TEXT" id="roomno" name="roomno" size="60"
+			 value="" /></td>
 	</tr>
 	<tr>
 		<td>年資</td>
-		<td><input type="TEXT" name="seniority" size="60"
-			 value="<%= (docVO==null)? "25" : docVO.getSeniority()%>" /></td>
+		<td><input type="TEXT" id="seniority" name="seniority" size="60"
+			 value="" /></td>
 	</tr>
 	<tr>
 		<td>介紹</td>
-		<td><textarea name="intro" rows="5" cols="65"> <%= (docVO==null)? "我是一位獸醫，致力於為毛小孩治病。" : docVO.getIntro()%></textarea></td> 
+		<td><textarea name="intro" id="intro" rows="5" cols="65"></textarea></td> 
 <!-- 		<td><input type="TEXT" name="intro" size="60" -->
 <%-- 			 value="<%= (docVO==null)? "我是一位獸醫，致力於為毛小孩治病。" : docVO.getIntro()%>" /></td> --%>
 	</tr>
@@ -83,11 +104,11 @@
 	</tr>
 	<tr>
 		<td>醫生在職狀態</td>
-		<td><select name="docstatus" size="1">
+		<td><select id="docstatus" name="docstatus" size="1">
+				<option value="" disabled selected></option>
 				<option value="1">1-(在職中)</option>
 				<option value="2">2-(休假中)</option>
 　				<option value="3">3-(已離職)</option>
-				value="<%= (docVO==null)? "1" : docVO.getDocstatus()%>" />
 			</select>
 			 </td>
 <!-- 			 <td><input type="TEXT" name="docstatus" size="60" -->
@@ -97,7 +118,9 @@
 </table>
 <br>
 <input type="hidden" name="action" value="insert">
-<input type="submit" value="送出新增"></FORM>
+<button type="submit" class="btn btn-primary">送出新增</button></FORM>
+<button href="#" class="btn btn-success" id="addbtn" onClick="autoFill(); return false;" >神奇大按鈕</button>
+
 <script>
 	function init(){
 		var display = document.getElementById("display");
@@ -128,6 +151,16 @@
 	window.onload = init;
 
 </script>
+ <script type="text/javascript">
+    function autoFill() {
+    document.getElementById('docname').value = "貓貓醫師";
+    document.getElementById('roomno').value = "2";
+    document.getElementById('seniority').value = "50";
+    document.getElementById('intro').value = "貓咪的疑難雜症都交給我吧喵喵喵喵喵喵喵喵喵喵喵喵";
+    document.getElementById('docstatus').value = "1";
+    }
+    
+  </script>
 	<!-- ****************************以上為實際功能頁變更區域*************************** -->
 </div>
 

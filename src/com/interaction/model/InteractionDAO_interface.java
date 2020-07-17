@@ -12,6 +12,7 @@ public interface InteractionDAO_interface {
 	public void delete(String interactionNo);
 	public InteractionVO findByPrimaryKey(String interactionNo);
 	public Set<InteractionVO> findByAdopterNo(String adopterNo);
+	public Set<InteractionVO> findByPetNo(String petNo);
 	public List<InteractionVO> getAll();
 	
 }

@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="<%= request.getContextPath()%>/front-end/product/style.css">
 	<script src="<%= request.getContextPath()%>/front-end/product/address.js"></script>
 </head>
+
 <body id="mybody">
 	<div class="container"> 
 		<div class="row ">
@@ -70,13 +71,13 @@
 										</div>
 										<div class="col-md-6">
 											<div class="form-group"><label for="form_need">信用卡號</label>
-												<input maxlength="16" type="text" value=""  class="form-control" placeholder="輸入信用卡號" required>
+												<input id="mycard" maxlength="16" type="text" value=""  class="form-control" placeholder="輸入信用卡號" required>
 											</div>
 										</div>
 										<div class="col-md-2">
 											<div class="form-group">
 												<label for="form_need">到期月</label>
-												<select class="form-control" name="cardmonth">
+												<select class="form-control" name="cardmonth" id="mymonth">
 													<option value="1">1</option>
 													<option value="2">2</option>
 													<option value="3">3</option>
@@ -95,7 +96,7 @@
 										<div class="col-md-2">
 											<div class="form-group">
 												<label for="form_need" class="d-flex align-content-lg-center">到期年</label>
-													<select class="form-control" name="cardyear">
+													<select class="form-control" name="cardyear" id="myyear">
 													<option value="2021">2021</option>
 													<option value="2022">2022</option>
 													<option value="2023">2023</option>
@@ -107,17 +108,27 @@
 										</div>
 										<div class="col-md-2">
 											<div class="form-group"><label for="form_need">檢核碼</label>
-												<input  type="text" name="" class="form-control" maxlength="3" required>
+												<input id="mynum"  type="text" name="" class="form-control" maxlength="3" required>
 											</div>
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-md-3"><button type="button" class="btn btn-info btn-send  btn-block ">同會員資料</button></div>
+										<div class="col-md-3"><button id="magic" type="button" class="btn btn-info btn-send  btn-block ">神奇按鈕</button></div>
 										<div class="col-md-9">						
 											<input type="submit" class="btn btn-success btn-send  btn-block " value="送出訂單">
 											<input type="hidden" class="btn btn-success btn-send  btn-block " value="check" name="action">
 										</div>
 									</div>
+									<script>
+										$(function(){
+											$("#magic").click(function(){
+												$("#mycard").val("${member.memCreditCardId}");
+												$("#mymonth").val("12");
+												$("#myyear").val("2024");
+												$("#mynum").val("238");
+											});
+										});
+									</script>
 								</div>
 							</form>
 						</div>

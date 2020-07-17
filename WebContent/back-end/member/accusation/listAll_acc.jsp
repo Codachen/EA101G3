@@ -18,7 +18,9 @@ AccusationService aSvc = new AccusationService();
 <meta charset="UTF-8">
 <%@ include file="/back-end/backEndInclude/head.jsp"%>
 </head>
-<body>
+<body  onload="ShowHello()">   
+<!-- 此方法給聊天室用 -->
+
 <%@ include file="/back-end/backEndInclude/header.jsp"%>
 <%-- <c:if test="${not empty errorMsgs}"> --%>
 <!-- 	<font style="color:red">請修正以下錯誤:</font> -->

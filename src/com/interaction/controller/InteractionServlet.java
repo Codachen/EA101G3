@@ -151,7 +151,7 @@ public class InteractionServlet extends HttpServlet {
 				java.sql.Timestamp interactionDate = null;
 				if (!(req.getParameter("interactionDate").isEmpty())) {
 					String strDate = req.getParameter("interactionDate");
-					String strDateRegI = "^[0-9]{4}-[0-9]{2}-[0-9]{2} [1]{1}[1357]{1}:[0]{2}$";
+					String strDateRegI = "^[0-9]{4}-[0-9]{2}-[0-9]{2} [1]{1}[13579]{1}:[0]{2}$";
 					String strDateRegII = "^[0-9]{4}-[0-9]{2}-[0-9]{2} 09:[0]{2}$";
 					System.out.println(strDate);
 					if (strDate.matches(strDateRegI) || strDate.matches(strDateRegII)) {
@@ -230,7 +230,7 @@ public class InteractionServlet extends HttpServlet {
 				java.sql.Timestamp interactionDate = null;
 				if (!(req.getParameter("interactionDate").isEmpty())) {
 					String strDate = req.getParameter("interactionDate");
-					String strDateRegI = "^[0-9]{4}-[0-9]{2}-[0-9]{2} [1]{1}[1357]{1}:[0]{2}$";
+					String strDateRegI = "^[0-9]{4}-[0-9]{2}-[0-9]{2} [1]{1}[13579]{1}:[0]{2}$";
 					String strDateRegII = "^[0-9]{4}-[0-9]{2}-[0-9]{2} 09:[0]{2}$";
 					System.out.println(strDate);
 					if (strDate.matches(strDateRegI) || strDate.matches(strDateRegII)) {
@@ -308,9 +308,9 @@ public class InteractionServlet extends HttpServlet {
 				String strDay = req.getParameter("interactionDay");
 				String strTime = req.getParameter("interactionTime");
 				String strDate = strDay + " " + strTime;
-				String strDateRegI = "^[0-9]{4}-[0-9]{2}-[0-9]{2} [1]{1}[1357]{1}:[0]{2}$";
+				String strDateRegI = "^[0-9]{4}-[0-9]{2}-[0-9]{2} [1]{1}[13579]{1}:[0]{2}$";
 				String strDateRegII = "^[0-9]{4}-[0-9]{2}-[0-9]{2} 09:[0]{2}$";
-				System.out.println(strDate);
+				
 				if (strDate.matches(strDateRegI) || strDate.matches(strDateRegII)) {
 					DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 					// you can change format of date
