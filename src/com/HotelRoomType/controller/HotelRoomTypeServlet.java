@@ -147,8 +147,7 @@ public class HotelRoomTypeServlet extends HttpServlet {
 					roomTypePrice = new Integer(req.getParameter("roomTypePrice"));
 					System.out.println(roomTypePrice);
 				} catch (NumberFormatException e) {
-					roomTypePrice = 1600;
-					errorMsgs.add("房型價格請填數字.");
+					errorMsgs.add("房型價格:請勿空白");
 				}
 
 				String roomTypeService = req.getParameter("roomTypeService");
