@@ -308,7 +308,7 @@ public class MrDAO implements MrDAO_interface {
 				          + jdbcUtil_CompositeQuery_Mr.get_WhereCondition(map)
 				          + "order by mrno";
 					pstmt = con.prepareStatement(finalSQL);
-					System.out.println("����finalSQL(by DAO) = "+finalSQL);
+					
 					rs = pstmt.executeQuery();
 			
 					while (rs.next()) {
