@@ -20,6 +20,7 @@ public class Notice {
 		Jedis jedis = null;
 		jedis = pool.getResource();
 		jedis.auth("123456");
+		jedis.select(1);
 		Set<String> keys = jedis.keys("*");
 		JSONObject jObj = new JSONObject();
 		for(String key:keys) {
@@ -38,6 +39,7 @@ public class Notice {
 	public static void saveChatMessage(String orderid, String cancelmsg) {
 		Jedis jedis = pool.getResource();
 		jedis.auth("123456");
+		jedis.select(1);
 		jedis.set(orderid, cancelmsg);
 		jedis.close();
 	}

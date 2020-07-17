@@ -192,7 +192,7 @@ public class ProductControler extends HttpServlet {
 				} else if (!productname.trim().matches(Reg)) { // 以下練習正則(規)表示式(regular-expression)
 					errorMsgs.add("商品名稱: 只能是中文, 且長度必需在2到10之間");
 				}
-
+				
 				// 商品價錢***************************************
 				Integer productprice = null;
 

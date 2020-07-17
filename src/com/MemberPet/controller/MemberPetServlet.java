@@ -22,6 +22,7 @@ import com.MemberPet.model.MemberPetService;
 import com.MemberPet.model.MemberPetVO;
 import com.adoptedpets.model.AdoptedPetsService;
 import com.adoptedpets.model.AdoptedPetsVO;
+import com.mem.controller.MailService;
 
 @MultipartConfig
 public class MemberPetServlet extends HttpServlet {
@@ -92,7 +93,7 @@ public class MemberPetServlet extends HttpServlet {
 				MemberPetService memberPetSvc = new MemberPetService();
 				memberPetVO = memberPetSvc.addMemberPet(petNo, memNo, petName, petVariety, petAge, petGender, petStatus,
 						petPic);
-
+				
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				String url = "/front-end/member/memberpet/ListAllPetsByMember.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
