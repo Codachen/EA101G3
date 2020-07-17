@@ -40,7 +40,7 @@ label {
 <body id="mybody">
 		
 <%	
-MemberVO memVO = (MemberVO) request.getAttribute("memVobject");
+	MemberVO memVO = (MemberVO) request.getAttribute("memVobject");
 	String memNO = (String) session.getAttribute("memNO");
 	String memName = (String) session.getAttribute("memName");
 %>
