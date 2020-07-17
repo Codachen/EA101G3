@@ -13,7 +13,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -82,29 +82,29 @@
 					<div class="form-group">			
 					<label class="control-label">產品名稱</label>
 						<div class="">
-							<input type="text" class="form-control" name="productname" value="<%=(proValue == null) ? "" : proValue.getProductname()%>">
+							<input id="proname" type="text" class="form-control" name="productname" value="<%=(proValue == null) ? "" : proValue.getProductname()%>">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label">產品單價</label>
 						<div class="">
-							<input type="text" class="form-control" name="productprice" value="<%=(proValue == null) ? "" : proValue.getProductprice()%>">
+							<input id="proprice" type="text" class="form-control" name="productprice" value="<%=(proValue == null) ? "" : proValue.getProductprice()%>">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label">上架時間</label>
 						<div class="">
-							<input type="Date" class="form-control" name="producton" value="<%=(proValue == null) ? "" : proValue.getProducton()%>">
+							<input id="prodate" type="Date" class="form-control" name="producton" value="<%=(proValue == null) ? "" : proValue.getProducton()%>">
 						</div>
 					</div><div class="form-group">
 						<label class="control-label">產品庫存</label>
 						<div class="" >
-							<input type="text" class="form-control" name="productstock" value="<%=(proValue == null) ? "20" : proValue.getProductstock()%>">
+							<input id="prostock" type="text" class="form-control" name="productstock" value="<%=(proValue == null) ? "20" : proValue.getProductstock()%>">
 						</div>
 					</div><div class="form-group">
 						<label class="control-label">產品安全庫存</label>
 						<div class="">
-							<input type="text" class="form-control" name="productsafe" value="<%=(proValue == null) ? "10" : proValue.getProductsafe()%>">
+							<input id="prosafe" type="text" class="form-control" name="productsafe" value="<%=(proValue == null) ? "10" : proValue.getProductsafe()%>">
 						</div>
 					</div>
 				</div>
@@ -118,13 +118,13 @@
 					<div class="form-group">
 						<label class="control-label">產品介紹</label>
 						<div class="">
-							<input type="text" class="form-control" name="productintro" value="<%=(proValue == null) ? "哈摟" : proValue.getProductintro()%>">
+							<input id="prointro" type="text" class="form-control" name="productintro" value="<%=(proValue == null) ? "哈摟" : proValue.getProductintro()%>">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label">產品狀態</label>
 						<div class="">
-							<select size="1" name="productstatus">
+							<select size="1" name="productstatus" id="prostatus">
 								<option value="1" ${(productVO.productstatus==1)? 'selected':''}>上架	
 								<option value="2" ${(productVO.productstatus==2)? 'selected':''}>補貨
 								<option value="3" ${(productVO.productstatus==3)? 'selected':''}>下架	
@@ -135,7 +135,7 @@
 					<div class="form-group">
 						<label class="control-label">產品種類</label>
 						<div class="">
-						<select size="1" name="kindno">
+						<select size="1" name="kindno" id="kindno">
 							<c:forEach var="kindvo" items="${kindsvc.all}">
 								<option value="${kindvo.kindno}" ${(productVO.kindno==kindvo.kindno)? 'selected':''}>${kindvo.kindname}
 							</c:forEach>
@@ -143,6 +143,7 @@
 						</div>
 					</div>
 					<input type="hidden" name="action" value="addproduct">
+					<button type="button" class="btn btn-secondary" id="magicbtn">神奇按鈕</button>
 					<input type="submit" value="送出新增" class="btn btn-secondary">
 				</div>
 				</form>
@@ -150,5 +151,17 @@
 		</div>
 	</div>
 	<%@include file="/back-end/backEndInclude/footer.jsp" %>
+	<script type="text/javascript">
+		$(function(){
+			$("#magicbtn").click(function(){
+				$("#proname").val("寵物活水機");
+				$("#proprice").val("0");
+				$("#prostock").val("30");
+				$("#prosafe").val("50");
+				$("#prostatus").val("3");
+				$("#prointro").val("貓貓狗狗都適用");
+			});
+		});
+	</script>
 </body>
 </html>

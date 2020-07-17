@@ -125,13 +125,13 @@ label {
 							</div>
 							<div class="form-row mb-4 mt-4">
 								<div class="col">
-									<input class="form-control" type="TEXT" name="memname"
+									<input id="myname" class="form-control" type="TEXT" name="memname"
 										size="45"
 										value="<%=(memVO == null) ? "" : memVO.getMemName()%>"
 										placeholder="會員姓名">
 								</div>
 								<div class="col">
-									<input class="form-control" type="EMAIL" name="mememail"
+									<input id="myemail" class="form-control" type="EMAIL" name="mememail"
 										size="45"
 										value="<%=(memVO == null) ? " " : memVO.getMemEmail()%>"
 										placeholder="E-mail">
@@ -152,7 +152,7 @@ label {
 							</div>
 							<div class="form-row mb-4">
 								<div class="col">
-									<input class=" form form-control" type="password"
+									<input id="mypassword" class=" form form-control" type="password"
 										name="mempassword" size="4"
 										value="<%=(memVO == null) ? "" : memVO.getMemPassword()%>"
 										placeholder="輸入密碼" />
@@ -160,7 +160,7 @@ label {
 							</div>
 							<div class="form-row mb-4">
 								<div class="col">
-									<input onkeyup="value=value.replace(/[^\d]/g,'')"
+									<input id="mycardnum" onkeyup="value=value.replace(/[^\d]/g,'')"
 										maxlength="16" class=" form form-control" type="TEXT"
 										name="memcreditcardid" size="45"
 										value="<%=(memVO == null) ? "" : memVO.getMemCreditCardId()%>"
@@ -169,7 +169,7 @@ label {
 							</div>
 							<div class="form-row mb-4">
 								<div class="col">
-									<input onkeyup="value=value.replace(/[^\d]/g,'')"
+									<input id="mycellphone" onkeyup="value=value.replace(/[^\d]/g,'')"
 										maxlength="10" class=" form form-control" type="TEXT"
 										name="memphone" size="45"
 										value="<%=(memVO == null) ? "" : memVO.getMemPhone()%>"
@@ -178,7 +178,7 @@ label {
 							</div>
 							<div class="form-row mb-4">
 								<div class="col">
-									<input class=" form form-control" type="TEXT" name="memaddress"
+									<input id="myaddress" class=" form form-control" type="TEXT" name="memaddress"
 										size="45"
 										value="<%=(memVO == null) ? "" : memVO.getMemAddress()%>"
 										placeholder="輸入住址" />
@@ -192,7 +192,7 @@ label {
 							<div class="form-row mb-4">
 								<div class="col d-flex justify-content-start">
 									<input type="hidden" name="action" value="insert">
-									<button type="button" class="btn btn-info form-control mr-2">神奇小按鈕</button>
+									<button type="button" class="btn btn-info form-control mr-2" id="magicbtn">神奇小按鈕</button>
 									<input type="submit" value="送出新增"
 										class="btn btn-info form-control">
 								</div>
@@ -253,6 +253,16 @@ label {
 					   }
 				   })
 				  });
+				
+				$("#magicbtn").click(function(){
+					$("#myname").val("小明");
+					$("#myemail").val("xuanjia961121@gmail.com");
+					$("#myaccount").val("ea101g3");
+					$("#mypassword").val("123456");
+					$("#mycardnum").val("5489663521474847");
+					$("#mycellphone").val("0968521456");
+					$("#myaddress").val("桃園市中壢區中央路200號");
+				});
 			});
 		</script>
 </body>
