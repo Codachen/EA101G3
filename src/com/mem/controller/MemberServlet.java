@@ -133,6 +133,7 @@ public class MemberServlet extends HttpServlet{
 					String seq = memSvc.addM(memname, memaccount, mempassword, memcreditcardid,memphone, mememail, memaddress, 0, mempic);
 					MailService svc = new MailService("http://ea101g3.tk"+req.getContextPath()+"/Puppy/mem.do?action=memchecksuccess&memberno="+seq+"&memberstatus=1");
 					svc.start();
+					req.setAttribute("memberjoin","請去信箱收取驗證信!");
 					/***************************3.新增完成,準備轉交(Send the Success view)***********/
 					String url = "/front-end/member/member/login.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp

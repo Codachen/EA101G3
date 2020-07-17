@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/frontEndInclude/style.css">
 <%@ include file="/front-end/frontEndInclude/head.jsp"%>
 <%@ include file="/front-end/frontEndInclude/header.jsp"%>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
 .navbar-brand {
 	font-family: 'Pacifico';
@@ -27,6 +27,11 @@
 	background-color: #00E8E8;
 }
 </style>
+	<c:if test="${not empty memberjoin}">
+		<script>
+			swal("註冊成功","${memberjoin}");
+		</script>
+	</c:if>
 <body background="<%= request.getContextPath()%>/front-end/member/member/images/534557.jpg" style="background-size:Cover;" >
 
 		<div class="login-box">
