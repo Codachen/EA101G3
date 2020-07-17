@@ -46,11 +46,12 @@ text-align: right;
 	<%@ include file="/back-end/backEndInclude/header.jsp"%>
 
 	<!-- ****************************以下為實際功能頁變更區域**************************** -->
-<span class="mainTitle">紀錄管理</span>
+<span class="mainTitle">診療紀錄修改 <button type="button" class="btn btn-info" id="addbtn" onclick="location.href='<%=request.getContextPath()%>/back-end/hospital/mr/select_page.jsp'">返回</button>	
+</span>
 
 	<hr class="mainTitlehr">
-		 
-	<a href="<%=request.getContextPath()%>/back-end/hospital/mr/select_page.jsp">返回</a></h6>
+	
+
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -71,14 +72,15 @@ text-align: right;
 <!-- 	</tr> -->
 
 	<tr>
-		<td>約診編號:</td>
-		<td><input type="TEXT" name="apptno" size="60"
-			 value="<%= (mrVO==null)? "20200727-000001" : mrVO.getApptno()%>" /></td>
+		
+			<input type="hidden" name="apptno" size="60"
+			 value="<%=mrVO.getApptno()%>" />
+			 
 			 <input type="hidden" name="docno" size="60"
-			 value="DR04" />
+			 value="<%=mrVO.getDocno()%>" />
 			 
 			 <input type="hidden" name="petno" size="60"
-			 value="P0001" />
+			 value="<%=mrVO.getPetno()%>" />
 <!-- 		<input name="apptno" type="text" id="apptno" /> -->
 <!-- 		<script type="text/javascript"> -->
 <!-- 		window.onload = function(){ -->
@@ -129,7 +131,7 @@ text-align: right;
 <br>
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="mrno" value="<%=mrVO.getMrno()%>">
-<input type="submit" value="送出修改"></FORM>
+<button type="submit" class="btn btn-primary">送出修改</button></FORM>
 
 	<!-- ****************************以上為實際功能頁變更區域*************************** -->
 <%@ include file="/back-end/backEndInclude/footer.jsp"%>

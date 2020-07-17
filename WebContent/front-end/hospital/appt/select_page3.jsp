@@ -89,6 +89,9 @@
 		
 	</section>
 	
+	
+	
+	
 	<div id="blog" class="section lb">
 		<div class="container">
 			<div class="section-title text-center">
@@ -111,7 +114,7 @@
                                
                             </ul>
 							
-<p><a href='<%=request.getContextPath()%>/front-end/hospital/appt/select_page.jsp' style="text-decoration:none;"><b>點此瀏覽門診班表</b></a></p>
+<p><a href='<%=request.getContextPath()%>/front-end/hospital/appt/dispOpt.jsp' style="text-decoration:none;"><b>點此瀏覽門診班表</b></a></p>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  <jsp:useBean id="docSvc" scope="page" class="com.doc.model.DocService" />

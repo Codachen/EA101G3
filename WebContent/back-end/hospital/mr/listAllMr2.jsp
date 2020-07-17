@@ -88,7 +88,7 @@ width:200px;
           <option value="${docVO.docno}">${docVO.docname}
          </c:forEach>   
        </select>        
-        <button type="submit" class="btn btn-primary">查詢</button>
+        <input type="submit" value="送出">
         <input type="hidden" name="action" value="listMr_ByCompositeQuery">
      </FORM>
 	<table class="table table-striped">
@@ -103,7 +103,7 @@ width:200px;
 		<th>藥品費用</th>
 		<th>手術費用</th>
 		<th>修改</th>
-		
+		<th>刪除</th>
 	</tr>
 	<%@ include file="page1.file" %> 
 	<c:forEach var="mrVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
@@ -127,11 +127,16 @@ width:200px;
 			<td>${mrVO.operfee}</td>   
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/mr/mr.do" style="margin-bottom: 0px;">
-			     <input type="image" src="<%=request.getContextPath()%>/back-end/hospital/mr/images/icons/edit.jpg" width="20" height="20">
+			     <input type="submit" value="修改">
 			     <input type="hidden" name="mrno"  value="${mrVO.mrno}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
-			
+			<td>
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/mr/mr.do" style="margin-bottom: 0px;">
+			     <input type="submit" value="刪除">
+			     <input type="hidden" name="mrno"  value="${mrVO.mrno}">
+			     <input type="hidden" name="action" value="delete"></FORM>
+			</td>
 		</tr>
 	</c:forEach>
 </table>
