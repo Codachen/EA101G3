@@ -158,6 +158,13 @@ public class ProductControler extends HttpServlet {
 				provo = prosvc.updatePro(kindno, productname, productprice, producton, productstock, productsafe,
 						productpic, productintro, productstatus, productid);
 //				req.setAttribute("success", "修改成功");
+				if(productstatus==1) {
+					JSONArray jObj = new JSONArray();
+					jObj.put(String.valueOf(productid));
+					jObj.put(productname);
+					jObj.put(productprice);
+					SocketforClient.sendmessage(jObj.toString());
+				}
 				RequestDispatcher failureView = req.getRequestDispatcher(url);
 				failureView.forward(req, res);
 
@@ -265,12 +272,12 @@ public class ProductControler extends HttpServlet {
 						productpic, productintro, productstatus);
 				
 //				req.setAttribute("update", "新增成功");
-				ProVO newprovo = prosvc.getOneproduct(seq);
-				JSONArray jObj = new JSONArray();
-				jObj.put(String.valueOf(seq));
-				jObj.put(newprovo.getProductname());
-				jObj.put(newprovo.getProductprice());
-				SocketforClient.sendmessage(jObj.toString());
+//				ProVO newprovo = prosvc.getOneproduct(seq);
+//				JSONArray jObj = new JSONArray();
+//				jObj.put(String.valueOf(seq));
+//				jObj.put(newprovo.getProductname());
+//				jObj.put(newprovo.getProductprice());
+//				SocketforClient.sendmessage(jObj.toString());
 				String url = "/back-end/product/listAllproduct.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交addProduct.jsp
 				successView.forward(req, res);
