@@ -18,8 +18,6 @@
 <body>
 <%@ include file="/back-end/backEndInclude/header.jsp"%>
 
-<div class="container">
-<div class="row justify-content-center align-items-center">
 
 
 <%-- 錯誤表列 --%>
@@ -31,6 +29,17 @@
 		</c:forEach>
 	</ul>
 </c:if>
+
+
+
+
+
+
+<div class="container">
+<div class="row justify-content-center align-items-center">
+
+
+
 
 <jsp:useBean id="memSvc" scope="page" class="com.mem.model.MemberService" />
 

@@ -45,7 +45,6 @@ MemberVO memVO = (MemberVO) request.getAttribute("memVobject");
 	String memName = (String) session.getAttribute("memName");
 %>
 
-
 <header>
 	<nav class="navbar navbar-expand-lg navbar-light ">
 			<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="navbar-brand ml-3">

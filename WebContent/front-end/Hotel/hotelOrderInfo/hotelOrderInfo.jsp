@@ -175,7 +175,7 @@ footer .form-inline {
 					<input type="button" value="Contact US" class="btn btn-danger px-4 py-2 ml-1">
 				</div>
 				<a href="<%=request.getContextPath()%>//front-end/member/accusation/add_acc.jsp">
-					<button class="btn btn-outline-secondary" style="margin-top: 2%;">
+					<button class="btn btn-outline-secondary" style="margin-top: 5%;">
 						<h5>我要客訴</h5>
 					</button>
 				</a>

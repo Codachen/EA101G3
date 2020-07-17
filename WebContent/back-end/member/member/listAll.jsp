@@ -80,7 +80,7 @@
 			</td>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Puppy/mem.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="刪除" class="btn btn-primary form form-control">
+			     <input type="submit" value="停權" class="btn btn-primary form form-control">
 			     <input type="hidden" name="memNO"  value="${memVO.memNo}">
 			     <input type="hidden" name="action" value="delete"></FORM>
 			</td>
@@ -104,7 +104,7 @@
     
     
     
-    	<b><font color=blue>萬用複合查詢:</font></b> <br>
+    	<b><font color=blue>會員查詢:</font></b> <br>
         <b>輸入會員編號:</b>
         <input type ="text" name= "memNo"><br>
         

@@ -75,8 +75,11 @@ public class login extends HttpServlet {
 				errorMsgs.add("會員帳密錯誤");
 			}
 			if(memberVO !=null) {
-				if(mSvc.getOneEmp(memberVO.getMemNo()).getMemStatus()!=1) {
+				if(mSvc.getOneEmp(memberVO.getMemNo()).getMemStatus()==0) {
 					errorMsgs.add("會員尚未驗證");
+				}
+				if(mSvc.getOneEmp(memberVO.getMemNo()).getMemStatus()==2) {
+					errorMsgs.add("會員已被停權");
 				}
 			}
 			if (!errorMsgs.isEmpty()) {
