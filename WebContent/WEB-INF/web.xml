@@ -35,6 +35,7 @@
 		<url-pattern>/front-end/member/memberpet/*</url-pattern>
 		<url-pattern>/front-end/hospital/appt/addAppt.jsp</url-pattern>
 		<url-pattern>/front-end/hospital/appt/apptSuccess.jsp</url-pattern>
+		<url-pattern>/front-end/hospital/appt/listAppt.jsp</url-pattern>
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
         <dispatcher>INCLUDE</dispatcher>

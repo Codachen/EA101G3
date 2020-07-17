@@ -63,7 +63,18 @@
 						<div class="pic">
 							<img src="<%=request.getContextPath()%>/back-end/doc/ShowDocPic.do?docno=${docVO.docno}" height=200px width=200px; alt="meow">
 							<div class="date">
-								<h4>  <b>醫師編號</b> ${docVO.docno} <br> <b>診間號碼</b> ${docVO.roomno}</h4>
+								<h4>  <b>醫師科別</b> 
+								
+								<c:forEach var="divVO" items="${divSvc.all}">
+				<c:if test="${docVO.divno==divVO.divno}"> 
+ 				${divVO.divname}
+ 				
+ 				</c:if> 
+			</c:forEach>
+								
+								
+								 <br> 
+								<b>診間號碼</b> ${docVO.roomno}</h4>
 							</div>
 						</div>
 						<div class="team-content">

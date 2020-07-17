@@ -91,7 +91,9 @@
 	<a href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp" style="color:white;">回門診首頁</a>
 </button>
 
-
+<div class="floating-text">
+	 <a href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page.jsp">前往預約門診</a>
+</div>
 </div>
 
 <!-- partial -->
