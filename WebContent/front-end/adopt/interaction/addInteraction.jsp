@@ -5,8 +5,8 @@
 <%@ page import="com.adoptedpets.model.*"%>
 <%@ page import="java.sql.Date"%>
 <%@ page import="com.mem.model.*"%>
-<%	
-	MemberVO member = (MemberVO)session.getAttribute("member");
+<%
+	MemberVO member = (MemberVO) session.getAttribute("member");
 	String memNO = (String) session.getAttribute("memNO");
 	String memName = (String) session.getAttribute("memName");
 %>
@@ -64,7 +64,24 @@
 	document.addEventListener('DOMContentLoaded', function() {
 		var calendarEl = document.getElementById('calendar');
 		var calendar = new FullCalendar.Calendar(calendarEl, {
-			initialView : 'dayGridMonth'
+			
+			initialView : 'dayGridMonth',
+			events:${interactionList},
+			dateClick: function(info) { 
+				$('#btn-modal').click();
+				$('#interactionDay').val(info.dateStr);
+				if ($('#interactionDay').val() === '') {
+					$('div.interactionTime-row').attr("style", "display:none");
+				} else {
+					$('div.interactionTime-row').attr("style", "display:flex");
+				}
+				$('button.interactionTime-btn').click(function() {
+					var timeStr = $(this).text();
+					console.log(timeStr);
+					$('#interactionTime-input').val(timeStr)
+				});
+					
+			},
 		});
 		calendar.render();
 	});
@@ -163,60 +180,156 @@ div.interactionTime-row {
 #loginFonts {
 	font-family: 'Noto Sans TC';
 }
+
+.modal-body {
+	font-family: 'Noto Sans TC';
+}
 </style>
 
 </head>
 
 <body class="d-flex flex-column vh-100">
-<header>
-		<nav class="navbar navbar-expand-lg navbar-light ">
-			<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="navbar-brand ml-3">
-				Cute:)
-				<span style="color: #00E8E8;">Family</span>
-			</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle Navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
 
-		<div class="collapse navbar-collapse"></div>
-		<div class="collapse navbar-collapse" id="navbarMenu">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="nav-link">首頁</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/member/member/membercenter.jsp" class="nav-link">會員專區</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp" class="nav-link">門診專區</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/Hotel/hotelIndex.jsp" class="nav-link">寵物旅館</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp" class="nav-link">寵物商城</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/adopt/adoptedpets/listAllPets.jsp" class="nav-link">領養專區</a>
-				</li>
-			</ul>
-			<div style="<%=(memNO == null) ? "visibility:hidden" : "visibility:"%>" id="loginFonts">
-				<span class="nav-link">
-				<img alt="" src="<%=request.getContextPath()%>/Puppy/pic.do?memNo=${memNO}" style="height: 50px" id="mempic">
-				 <%=memName%>您好~
-				  </span>
+	<div class="container">
+		<button type="button" class="btn btn-info btn-lg d-none"
+			id="btn-modal" data-toggle="modal" data-target="#myModal">Open
+			Modal</button>
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog modal-lg">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+
+					<div class="modal-body">
+						<form method="get"
+							action="<%=request.getContextPath()%>/interaction/interaction.do">
+							<div class="form-group row ">
+
+								<label for="interactionDay" class="col-sm-4 col-form-label">預約日期</label>
+
+								<div class="col-sm-8 align-self-center">
+									<input type="text" class="form-control" name="interactionDay"
+										id="interactionDay" value="">
+								</div>
+							</div>
+							<div class="form-group row interactionTime-row">
+
+								<label for="interactionTime" class="col-sm-4 col-form-label">預約時段</label>
+								<div class="col-sm-8 align-self-center">
+									<div class="btn-toolbar" role="toolbar"
+										aria-label="Toolbar with button groups">
+										<div class="btn-group mr-2" role="group"
+											aria-label="First group">
+											<button type="button" class="btn btn-warning">9:00</button>
+										</div>
+										<div class="btn-group mr-2" role="group"
+											aria-label="Second group">
+											<button type="button"
+												class="btn btn-warning interactionTime-btn ">11:00</button>
+										</div>
+										<div class="btn-group mr-2 interactionTime-btn " role="group"
+											aria-label="Second group">
+											<button type="button"
+												class="btn btn-warning interactionTime-btn ">13:00</button>
+										</div>
+										<div class="btn-group mr-2" role="group"
+											aria-label="Second group">
+											<button type="button"
+												class="btn btn-warning interactionTime-btn ">15:00</button>
+										</div>
+										<div class="btn-group mr-2" role="group"
+											aria-label="Second group">
+											<button type="button"
+												class="btn btn-warning interactionTime-btn ">17:00</button>
+										</div>
+										<div class="btn-group" role="group" aria-label="Third group">
+											<button type="button"
+												class="btn btn-warning interactionTime-btn ">19:00</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<input type="hidden" name="interactionTime"
+								id="interactionTime-input" value="">
+							<div class="form-group row">
+								<div class="col text-center">
+									<button type="submit" class="btn btn-primary mt-2 ">送出</button>
+								</div>
+
+								<input type="hidden" name="action" value="insert_Frontend">
+								<input type="hidden" name="petNo" id="petNo"
+									value="${adoptedpetsVO.petNo}"> <input type="hidden"
+									name="adopterName" id="adopterName" value="${adopterName}">
+								<input type="hidden" name="adopterNo" id="adopterNo"
+									value="${adopterNo}">
+
+							</div>
+						</form>
+					</div>
+				</div>
 			</div>
-			<a href="<%=request.getContextPath()%>/front-end/member/member/addMem.jsp">
-				<button class="btn menu-right-btn border" type="button" style="<%=(memNO == null) ? "display:" : "display:none"%>">註冊</button>
-			</a>
-			<a href="<%=request.getContextPath()%>/front-end/member/member/login.jsp">
-				<button class="btn menu-right-btn border" type="submit" id="login" style="<%=(memNO == null) ? "display:" : "display:none"%>">登入</button>
-			</a>
-			<form class="form-inline my-2 my-lg-0" action="<%=request.getContextPath()%>/Puppy/logout.do">
-				<button class="btn menu-right-btn border" type="submit" id="logout" style="<%=(memNO != null) ? "display:" : "display:none"%>">登出</button>
-			</form>
+
 		</div>
-	</nav>
+	</div>
+
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-light ">
+			<a
+				href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp"
+				class="navbar-brand ml-3"> Cute:) <span style="color: #00E8E8;">Family</span>
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarMenu" aria-controls="navbarMenu"
+				aria-expanded="false" aria-label="Toggle Navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse"></div>
+			<div class="collapse navbar-collapse" id="navbarMenu">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a
+						href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp"
+						class="nav-link">首頁</a></li>
+					<li class="nav-item dropdown"><a
+						href="<%=request.getContextPath()%>/front-end/member/member/membercenter.jsp"
+						class="nav-link">會員專區</a></li>
+					<li class="nav-item dropdown"><a
+						href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp"
+						class="nav-link">門診專區</a></li>
+					<li class="nav-item dropdown"><a
+						href="<%=request.getContextPath()%>/front-end/Hotel/hotelIndex.jsp"
+						class="nav-link">寵物旅館</a></li>
+					<li class="nav-item dropdown"><a
+						href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp"
+						class="nav-link">寵物商城</a></li>
+					<li class="nav-item dropdown"><a
+						href="<%=request.getContextPath()%>/front-end/adopt/adoptedpets/listAllPets.jsp"
+						class="nav-link">領養專區</a></li>
+				</ul>
+				<div
+					style="<%=(memNO == null) ? "visibility:hidden" : "visibility:"%>"
+					id="loginFonts">
+					<span class="nav-link"> <img alt=""
+						src="<%=request.getContextPath()%>/Puppy/pic.do?memNo=${memNO}"
+						style="height: 50px" id="mempic"> <%=memName%>您好~
+					</span>
+				</div>
+				<a
+					href="<%=request.getContextPath()%>/front-end/member/member/addMem.jsp">
+					<button class="btn menu-right-btn border" type="button"
+						style="<%=(memNO == null) ? "display:" : "display:none"%>">註冊</button>
+				</a> <a
+					href="<%=request.getContextPath()%>/front-end/member/member/login.jsp">
+					<button class="btn menu-right-btn border" type="submit" id="login"
+						style="<%=(memNO == null) ? "display:" : "display:none"%>">登入</button>
+				</a>
+				<form class="form-inline my-2 my-lg-0"
+					action="<%=request.getContextPath()%>/Puppy/logout.do">
+					<button class="btn menu-right-btn border" type="submit" id="logout"
+						style="<%=(memNO != null) ? "display:" : "display:none"%>">登出</button>
+				</form>
+			</div>
+		</nav>
 		<nav class="navbar navbar-expand-lg navbar-light navbar-sub-main"
 			style="background-color: #f1f3f3">
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -246,104 +359,48 @@ div.interactionTime-row {
 	<main role="main" class="mt-auto bg-light">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-6">
-					<form method="get" action="<%=request.getContextPath()%>/interaction/interaction.do">
-						<div class="form-group row justify-content-center my-3">
-							<img
-								src="<%=request.getContextPath()%>/adoptedpetspic.do?petNo=${adoptedpetsVO.petNo}"
-								class="pet-img">
-						</div>
-						<div class="form-group row ">
-							<div class="col-sm-4"></div>
-							<label for="petNo" class="col-sm-2 col-form-label">收容寵物編號</label>
-							<fieldset disabled>
-								<div class="col-sm-6 align-self-center">
-									<input type="text" class="form-control-plaintext" id="petNo"
-										name="petNo" value="${adoptedpetsVO.petNo}">
+				<div class="col-4 mt-5">
+					<div class="form-group row justify-content-end my-3">
+						<img
+							src="<%=request.getContextPath()%>/adoptedpetspic.do?petNo=${adoptedpetsVO.petNo}"
+							class="pet-img rounded mr-5">
+					</div>
+					<div class="form-group row justify-content-end ">
 
-								</div>
-							</fieldset>
-							<input type="hidden" name="petNo" id="petNo"
-								value="${adoptedpetsVO.petNo}">
+						<label for="petNo" class="col-sm-3 col-form-label">收容寵物編號</label>
+
+						<div class="col-sm-4">
+							<input type="text" class="form-control-plaintext" id="petNo"
+								name="petNo" readonly value="${adoptedpetsVO.petNo}">
+
 						</div>
-						<div class="form-group row">
-							<div class="col-sm-4"></div>
-							<label for="adopterName" class="col-sm-2 col-form-label">預約領養人姓名</label>
-							<fieldset disabled>
-								<div class="col-sm-6 align-self-center">
-									<input type="text" class="form-control-plaintext"
-										id="adopterName" name="adopterName" value="${adopterName}">
-								</div>
-							</fieldset>
-							<input type="hidden" name="adopterName" id="adopterName"
-								value="${adopterName}"> 
-							<input type="hidden" name="adopterNo" id="adopterNo" 
-								value="${adopterNo}">
+
+
+					</div>
+					<div class="form-group row justify-content-end">
+
+						<label for="adopterName" class="col-sm-3 col-form-label">預約領養人姓名</label>
+
+						<div class="col-sm-4">
+							<input type="text" class="form-control-plaintext"
+								id="adopterName" name="adopterName" readonly
+								value="${adopterName}">
 						</div>
-						<div class="form-group row ">
-							<div class="col-sm-4"></div>
-							<label for="interactionDay" class="col-sm-2 col-form-label">預約日期</label>
-							<div class="col-sm-3 align-self-center">
-								<input type="text" class="form-control" name="interactionDay"
-									id="interactionDay" value="">
-							</div>
-						</div>
-						<div class="form-group row interactionTime-row">
-							<div class="col-sm-4"></div>
-							<label for="interactionTime" class="col-sm-2 col-form-label">預約時段</label>
-							<div class="col-sm-6 align-self-center">
-								<div class="btn-toolbar" role="toolbar"
-									aria-label="Toolbar with button groups">
-									<div class="btn-group mr-2" role="group"
-										aria-label="First group">
-										<button type="button" class="btn btn-warning">9:00</button>
-									</div>
-									<div class="btn-group mr-2" role="group"
-										aria-label="Second group">
-										<button type="button"
-											class="btn btn-warning interactionTime-btn ">11:00</button>
-									</div>
-									<div class="btn-group mr-2 interactionTime-btn " role="group"
-										aria-label="Second group">
-										<button type="button"
-											class="btn btn-warning interactionTime-btn ">13:00</button>
-									</div>
-									<div class="btn-group mr-2" role="group"
-										aria-label="Second group">
-										<button type="button"
-											class="btn btn-warning interactionTime-btn ">15:00</button>
-									</div>
-									<div class="btn-group mr-2" role="group"
-										aria-label="Second group">
-										<button type="button"
-											class="btn btn-warning interactionTime-btn ">17:00</button>
-									</div>
-									<div class="btn-group" role="group" aria-label="Third group">
-										<button type="button"
-											class="btn btn-warning interactionTime-btn ">19:00</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<input type="hidden" name="interactionTime"
-							id="interactionTime-input" value="">
-						<div class="form-group row">
-							<div class="col text-center">
-								<button type="submit" class="btn btn-primary mt-2 ">送出</button>
-							</div>
-						</div>
-						<input type="hidden" name="action" value="insert_Frontend">
-					</form>
+
+
+					</div>
 				</div>
-				<div class="col-6">
+				<div class="col-6 mt-3">
 					<div id="calendar"></div>
 				</div>
+				<div class="col-2"></div>
 			</div>
 		</div>
 	</main>
-<%@ include file="/front-end/frontEndInclude/footer.jsp"%>
+	<%@ include file="/front-end/frontEndInclude/footer.jsp"%>
 
-	<script src="<%=request.getContextPath()%>/front-end/adopt/datetimepicker/jquery.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/front-end/adopt/datetimepicker/jquery.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/front-end/adopt/datetimepicker/jquery.datetimepicker.full.js"></script>
 	<script
@@ -413,20 +470,6 @@ div.interactionTime-row {
 					$(this).find("a").attr("style", "color: #8a8a90 !important");
 				}
 
-			});
-			$('#interactionDay').change(function() {
-				console.log($(this).val());
-				if ($(this).val() === '') {
-					$('div.interactionTime-row').attr("style", "display:none");
-				} else {
-					$('div.interactionTime-row').attr("style", "display:flex");
-				}
-			});
-
-			$('button.interactionTime-btn').click(function() {
-				var timeStr = $(this).text();
-				console.log(timeStr);
-				$('#interactionTime-input').val(timeStr)
 			});
 		});
 	</script>
