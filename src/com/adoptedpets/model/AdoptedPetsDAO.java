@@ -51,18 +51,13 @@ public class AdoptedPetsDAO implements AdoptedPetsDAO_interface {
 	@Override
 	public void insert(AdoptedPetsVO adoptedpetsVO) {
 
-//		try {
-//			Class.forName("oracle.jdbc.driver.OracleDriver");
-//		} catch (ClassNotFoundException e1) {
-//			e1.printStackTrace();
-//		}
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
 
-//			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "EA101", "EA101");
-
+//			
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
@@ -106,18 +101,13 @@ public class AdoptedPetsDAO implements AdoptedPetsDAO_interface {
 	@Override
 	public void update(AdoptedPetsVO adoptedpetsVO) {
 
-//		try {
-//			Class.forName("oracle.jdbc.driver.OracleDriver");
-//		} catch (ClassNotFoundException e1) {
-//			e1.printStackTrace();
-//		}
+
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
 			con = ds.getConnection();
-//			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "EA101", "EA101");
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setString(1, adoptedpetsVO.getAdopterNo());
@@ -177,18 +167,14 @@ public class AdoptedPetsDAO implements AdoptedPetsDAO_interface {
 	@Override
 	public void delete(String petNo) {
 
-//		try {
-//			Class.forName("oracle.jdbc.driver.OracleDriver");
-//		} catch (ClassNotFoundException e1) {
-//			e1.printStackTrace();
-//		}
+
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
 			con = ds.getConnection();
-//			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "EA101", "EA101");
+
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setString(1, petNo);
@@ -223,11 +209,6 @@ public class AdoptedPetsDAO implements AdoptedPetsDAO_interface {
 		AdoptedPetsVO adoptedpetsVO = null;
 		ResultSet rs = null;
 
-//		try {
-//			Class.forName("oracle.jdbc.driver.OracleDriver");
-//		} catch (ClassNotFoundException e1) {
-//			e1.printStackTrace();
-//		}
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -235,7 +216,7 @@ public class AdoptedPetsDAO implements AdoptedPetsDAO_interface {
 		try {
 
 			con = ds.getConnection();
-//			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "EA101", "EA101");
+
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setString(1, petNo);

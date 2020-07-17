@@ -7,8 +7,8 @@
 <%@ page import="com.mem.model.*"%>
 <%
 	MemberVO member = (MemberVO) session.getAttribute("member");
-	String memNO = (String) session.getAttribute("memNO");
-	String memName = (String) session.getAttribute("memName");
+String memNO = (String) session.getAttribute("memNO");
+String memName = (String) session.getAttribute("memName");
 %>
 
 <%
@@ -56,7 +56,9 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
+<script
+	src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>	
+	
 <!-- FullCalendar -->
 <script
 	src="<%=request.getContextPath()%>/front-end/adopt/fullcalendar-scheduler-5.1.0/lib/main.js"></script>
@@ -66,8 +68,18 @@
 		var calendar = new FullCalendar.Calendar(calendarEl, {
 			
 			initialView : 'dayGridMonth',
+			selectable: true,
 			events:${interactionList},
-			dateClick: function(info) { 
+			dateClick: function(info) {
+				
+				var nowStr = moment().format('yyyy-MM-DD');
+				var nowDate = moment(nowStr, 'yyyy-MM-DD');
+				var clickDate = moment(info.dateStr, 'yyyy-MM-DD');
+					
+				if(clickDate.isBefore(nowDate)){
+					return false;
+				}else{
+				
 				$('#btn-modal').click();
 				$('#interactionDay').val(info.dateStr);
 				if ($('#interactionDay').val() === '') {
@@ -77,11 +89,10 @@
 				}
 				$('button.interactionTime-btn').click(function() {
 					var timeStr = $(this).text();
-					console.log(timeStr);
 					$('#interactionTime-input').val(timeStr)
 				});
-					
-			},
+				}
+			},		
 		});
 		calendar.render();
 	});
@@ -184,6 +195,13 @@ div.interactionTime-row {
 .modal-body {
 	font-family: 'Noto Sans TC';
 }
+
+.m-5 {
+    margin-top: 10rem !important;
+    margin-right: auto !important;
+    margin-bottom: 10rem !important;
+    margin-left: auto !important;
+}
 </style>
 
 </head>
@@ -195,7 +213,7 @@ div.interactionTime-row {
 			id="btn-modal" data-toggle="modal" data-target="#myModal">Open
 			Modal</button>
 		<div class="modal fade" id="myModal" role="dialog">
-			<div class="modal-dialog modal-lg">
+			<div class="modal-dialog modal-lg m-5">
 
 				<!-- Modal content-->
 				<div class="modal-content">
@@ -359,7 +377,7 @@ div.interactionTime-row {
 	<main role="main" class="mt-auto bg-light">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-4 mt-5">
+				<div class="col-lg-4 mt-5">
 					<div class="form-group row justify-content-end my-3">
 						<img
 							src="<%=request.getContextPath()%>/adoptedpetspic.do?petNo=${adoptedpetsVO.petNo}"
@@ -367,9 +385,9 @@ div.interactionTime-row {
 					</div>
 					<div class="form-group row justify-content-end ">
 
-						<label for="petNo" class="col-sm-3 col-form-label">收容寵物編號</label>
+						<label for="petNo" class="col-lg-3 col-form-label">收容寵物編號</label>
 
-						<div class="col-sm-4">
+						<div class="col-lg-4">
 							<input type="text" class="form-control-plaintext" id="petNo"
 								name="petNo" readonly value="${adoptedpetsVO.petNo}">
 
@@ -379,9 +397,9 @@ div.interactionTime-row {
 					</div>
 					<div class="form-group row justify-content-end">
 
-						<label for="adopterName" class="col-sm-3 col-form-label">預約領養人姓名</label>
+						<label for="adopterName" class="col-lg-3 col-form-label">預約領養人姓名</label>
 
-						<div class="col-sm-4">
+						<div class="col-lg-4">
 							<input type="text" class="form-control-plaintext"
 								id="adopterName" name="adopterName" readonly
 								value="${adopterName}">
@@ -390,7 +408,7 @@ div.interactionTime-row {
 
 					</div>
 				</div>
-				<div class="col-6 mt-3">
+				<div class="col-lg-6 mt-3">
 					<div id="calendar"></div>
 				</div>
 				<div class="col-2"></div>

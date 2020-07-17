@@ -259,9 +259,6 @@ public class AdopterDAO implements AdopterDAO_interface {
 		try {
 
 			con = ds.getConnection();
-
-//			con = ds.getConnection();
-			con= DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "EA101", "EA101");
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
