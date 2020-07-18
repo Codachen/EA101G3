@@ -122,6 +122,7 @@
 				<div class="col-12">
 					<div class="text-center">
 						<h1>- 寄宿服務 -</h1>
+						<h3 style="font-family: 'Noto Sans TC';margin-top: 1%;color: whitesmoke;">點選『住房趣』可得知目前可入住的空房間喔~</h3>
 					</div>
 				</div>
 			</div>

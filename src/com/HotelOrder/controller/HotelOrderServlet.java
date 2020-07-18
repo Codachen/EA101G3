@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.HotelOrder.model.HotelMail;
 import com.HotelOrder.model.HotelOrderService;
 import com.HotelOrder.model.HotelOrderVO;
 import com.HotelRoom.model.HotelRoomService;
@@ -205,9 +206,7 @@ public class HotelOrderServlet extends HttpServlet {
 				// For JavaMail
 				/*--------------------------------------------------------------------------------------------*/
 				String memName = req.getParameter("memName"); // 會員姓名
-				System.out.println(memName);
 				String memEmail = req.getParameter("memEmail"); // 會員信箱
-				System.out.println(memEmail);
 				String subject = "訂房成功通知(萌寵家族)!"; // 信件主旨
 				String messageText = "Hi~!" + "『" + memName + "』" + "您好~您預定的寵物旅館日期為" + "『" + checkInDateForMail + "』"
 						+ "至" + "『" + checkOutDateForMail + "』" + "共" + "『" + totalDays + "』" + "天，費用總共為" + "『"
@@ -249,7 +248,8 @@ public class HotelOrderServlet extends HttpServlet {
 				hotelRoomVO = hotelRoomSvc.updateHotelRoom(roomNo, roomTypeNo, petNo, 0);
 
 				/*************************** 2.1 開始寄信 ***************************************/
-				hotelOrderSvc.sendMail(to, subject, messageText);
+				HotelMail hotelSvc = new HotelMail(to,subject,messageText); //使用Thread寄信
+				hotelSvc.start(); //執行續開始跑
 				/*************************** 2.2 開始新增會員最新資料 ***************************************/
 				MemlatestinfoService memlatestinfoSvc = new MemlatestinfoService();
 				
