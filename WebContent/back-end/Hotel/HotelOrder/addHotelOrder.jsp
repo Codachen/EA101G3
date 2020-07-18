@@ -1,11 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.HotelOrder.model.*"%>
-
 <%
 	HotelOrderVO hotelOrderVO = (HotelOrderVO) request.getAttribute("hotelOrderVO");
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,13 +13,13 @@
 	position: relative;
 	top: -10px;
 }
+
 1
 .back_to_index {
 	margin-left: 30%;
 }
 </style>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-
 <style>
 .xdsoft_datetimepicker .xdsoft_datepicker {
 	width: 300px; /* width:  300px; */
@@ -46,7 +44,6 @@
 				</h1>
 			</div>
 		</div>
-
 		<div class="row">
 			<div class="col-3"></div>
 			<div class="col-6">
@@ -61,7 +58,6 @@
 				</c:if>
 			</div>
 		</div>
-
 		<div class="row">
 			<div class="col-4"></div>
 			<div class="col-4">
@@ -71,19 +67,19 @@
 					</div>
 					<div class="form-group font-weight-bold" id="select3">
 						<label>會員編號:</label>
-						<input type="text" class="form-control" name="memNo" value="${hotelOrderVO.memNo}" />
+						<input type="text" class="form-control" id="memNo" name="memNo" value="${hotelOrderVO.memNo}" />
 					</div>
 					<div class="form-group font-weight-bold" id="select3">
 						<label>寵物編號:</label>
-						<input type="text" class="form-control" name="petNo" value="${hotelOrderVO.petNo}" />
+						<input type="text" class="form-control" id="petNo" name="petNo" value="${hotelOrderVO.petNo}" />
 					</div>
 					<div class="form-group font-weight-bold" id="select3">
 						<label>房型編號: </label>
-						<input type="text" class="form-control" name="roomTypeNo" value="${hotelOrderVO.roomTypeNo}" />
+						<input type="text" class="form-control" id="roomTypeNo" name="roomTypeNo" value="${hotelOrderVO.roomTypeNo}" />
 					</div>
 					<div class="form-group font-weight-bold" id="select3">
 						<label>房間編號: </label>
-						<input type="text" class="form-control" name="roomNo" value="${hotelOrderVO.roomNo}" />
+						<input type="text" class="form-control" id="roomNo" name="roomNo" value="${hotelOrderVO.roomNo}" />
 					</div>
 					<div class="form-group font-weight-bold" id="select3">
 						<label>房型價格: </label>
@@ -115,6 +111,7 @@
 						<input type="submit" class="btn btn-primary" value="送出新增">
 					</div>
 				</form>
+				<button class="btn btn-warning" onclick="insertValue();">神奇小按鈕</button>
 			</div>
 		</div>
 	</div>
@@ -122,6 +119,15 @@
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/back-end/Hotel/datetimepicker/jquery.datetimepicker.css" />
 	<script src="<%=request.getContextPath()%>/back-end/Hotel/datetimepicker/jquery.js"></script>
 	<script src="<%=request.getContextPath()%>/back-end/Hotel/datetimepicker/jquery.datetimepicker.full.js"></script>
+	<script>
+		function insertValue() {
+			$('#memNo').val('M0001');
+			$('#petNo').val('P0001');
+			$('#roomTypeNo').val('RT003');
+			$('#roomTypePrice').val('800');
+			$('#roomNo').val('303');
+		}
+	</script>
 	<script>
 		$.datetimepicker.setLocale('zh'); // kr ko ja en
 		$(function() {
@@ -137,6 +143,28 @@
 						timepicker : true,
 						step : 60
 					});
+			//系統日期之前不能選擇(過去時間)
+			var somedate1 = new Date();
+			$('#start_dateTime')
+					.datetimepicker(
+							{
+								beforeShowDay : function(date) {
+									if (date.getYear() < somedate1.getYear()
+											|| (date.getYear() == somedate1
+													.getYear() && date
+													.getMonth() < somedate1
+													.getMonth())
+											|| (date.getYear() == somedate1
+													.getYear()
+													&& date.getMonth() == somedate1
+															.getMonth() && date
+													.getDate() < somedate1
+													.getDate())) {
+										return [ false, "" ]
+									}
+									return [ true, "" ];
+								}
+							});
 
 			$('#end_dateTime').datetimepicker(
 					{

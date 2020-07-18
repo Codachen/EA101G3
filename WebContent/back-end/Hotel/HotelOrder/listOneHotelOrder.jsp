@@ -2,8 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="com.HotelOrder.model.*"%>
-<%-- 此頁暫練習採用 Script 的寫法取值 --%>
-
+<%@ page import="com.mem.model.*"%>
+<%@ page import="com.MemberPet.model.*"%>
+<%@ page import="com.HotelRoomType.model.*"%>
 <%
 	HotelOrderVO hotelOrderVO = (HotelOrderVO) request.getAttribute("hotelOrderVO");
 %>
@@ -26,10 +27,11 @@
 #table {
 	margin-top: 1%;
 }
+
 #table td, #table th {
-    padding: .65rem; 
-    vertical-align: middle;
-    border-top: 1px solid #dee2e6;
+	padding: .65rem;
+	vertical-align: middle;
+	border-top: 1px solid #dee2e6;
 }
 </style>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -47,17 +49,15 @@
 				</h1>
 			</div>
 		</div>
-
-
 		<div class="row">
 			<div class="col-12">
 				<table class="table table-striped text-center" id="table">
 					<thead>
 						<tr>
 							<th scope="col">訂單編號</th>
-							<th scope="col">會員編號</th>
-							<th scope="col">寵物編號</th>
-							<th scope="col">房型編號</th>
+							<th scope="col">會員姓名</th>
+							<th scope="col">寵物姓名</th>
+							<th scope="col">房型名稱</th>
 							<th scope="col">房間編號</th>
 							<th scope="col">房型價格</th>
 							<th scope="col">訂單時間</th>
@@ -70,13 +70,15 @@
 							<th scope="col">訂單取消</th>
 						</tr>
 					</thead>
-
+					<jsp:useBean id="memberSVC" scope="page" class="com.mem.model.MemberService" />
+					<jsp:useBean id="memberPetSVC" scope="page" class="com.MemberPet.model.MemberPetService" />
+					<jsp:useBean id="roomTypeSVC" scope="page" class="com.HotelRoomType.model.HotelRoomTypeService" />
 					<tbody>
 						<tr>
 							<td>${hotelOrderVO.orderNo}</td>
-							<td>${hotelOrderVO.memNo}</td>
-							<td>${hotelOrderVO.petNo}</td>
-							<td>${hotelOrderVO.roomTypeNo}</td>
+							<td>${memberSVC.getOneEmp(hotelOrderVO.memNo).memName}</td>
+							<td>${memberPetSVC.getOneMemberPet(hotelOrderVO.petNo).petName}</td>
+							<td>${roomTypeSVC.getOneHotelRoomType(hotelOrderVO.roomTypeNo).roomTypeName}</td>
 							<td>${hotelOrderVO.roomNo}</td>
 							<td>${hotelOrderVO.roomTypePrice}</td>
 							<td>
@@ -123,25 +125,19 @@
 								</FORM>
 							</td>
 						</tr>
-
 					</tbody>
-
 				</table>
 			</div>
 		</div>
 	</div>
-
 	<c:if test="${not empty updateOk}">
 		<script>
 			swal("更新成功", "", "success");
 		</script>
 	</c:if>
-
-
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-
 	<%@ include file="/back-end/backEndInclude/footer.jsp"%>
 </body>
 </html>

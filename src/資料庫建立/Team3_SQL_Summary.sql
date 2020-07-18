@@ -587,34 +587,34 @@ INSERT INTO HOTELROOM VALUES (305,'RT003','','0');
 --旅館訂單假資料--
 INSERT INTO HOTELORDER (ORDERNO,MEMNO,PETNO,ROOMTYPENO,ORDERDATE,ROOMNO,ROOMTYPEPRICE,CHECKINDATE,CHECKOUTDATE,TOTALPRICE,HOTELORDERSTATUS) 
 VALUES
-(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(HOTELORDER_SEQ.NEXTVAL), 6, '0'),'M0001','P0001','RT001',TO_DATE('2020-05-01 20:00:00','yyyy-mm-dd hh24:mi:ss'),101,'600',TO_DATE('2020-07-01 21:00:00','yyyy-mm-dd hh24:mi:ss'),TO_DATE('2020-07-02 21:00:00','yyyy-mm-dd hh24:mi:ss'),'600','0');
+(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(HOTELORDER_SEQ.NEXTVAL), 6, '0'),'M0001','P0001','RT001',TO_DATE('2020-05-01 20:00:00','yyyy-mm-dd hh24:mi:ss'),101,'600',TO_DATE('2020-07-01 21:00:00','yyyy-mm-dd hh24:mi:ss'),TO_DATE('2020-07-02 21:00:00','yyyy-mm-dd hh24:mi:ss'),'600','1');
 INSERT INTO HOTELORDER (ORDERNO,MEMNO,PETNO,ROOMTYPENO,ORDERDATE,ROOMNO,ROOMTYPEPRICE,CHECKINDATE,CHECKOUTDATE,TOTALPRICE,HOTELORDERSTATUS) 
 VALUES
-(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(HOTELORDER_SEQ.NEXTVAL), 6, '0'),'M0002','P0012','RT001',TO_DATE('2020-06-02 21:00:00','yyyy-mm-dd hh24:mi:ss'),102,'600',TO_DATE('2020-07-03 21:00:00','yyyy-mm-dd hh24:mi:ss'),TO_DATE('2020-07-04 21:00:00','yyyy-mm-dd hh24:mi:ss'),'600','0');
+(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(HOTELORDER_SEQ.NEXTVAL), 6, '0'),'M0002','P0002','RT001',TO_DATE('2020-06-02 21:00:00','yyyy-mm-dd hh24:mi:ss'),102,'600',TO_DATE('2020-07-03 21:00:00','yyyy-mm-dd hh24:mi:ss'),TO_DATE('2020-07-04 21:00:00','yyyy-mm-dd hh24:mi:ss'),'600','1');
 INSERT INTO HOTELORDER (ORDERNO,MEMNO,PETNO,ROOMTYPENO,ORDERDATE,ROOMNO,ROOMTYPEPRICE,CHECKINDATE,CHECKOUTDATE,TOTALPRICE,HOTELORDERSTATUS) 
 VALUES
-(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(HOTELORDER_SEQ.NEXTVAL), 6, '0'),'M0003','P0003','RT001',TO_DATE('2020-05-03 21:00:00','yyyy-mm-dd hh24:mi:ss'),103,'600',TO_DATE('2020-07-05 21:00:00','yyyy-mm-dd hh24:mi:ss'),TO_DATE('2020-07-06 21:00:00','yyyy-mm-dd hh24:mi:ss'),'600','0');
+(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(HOTELORDER_SEQ.NEXTVAL), 6, '0'),'M0003','P0003','RT001',TO_DATE('2020-05-03 21:00:00','yyyy-mm-dd hh24:mi:ss'),103,'600',TO_DATE('2020-07-05 21:00:00','yyyy-mm-dd hh24:mi:ss'),TO_DATE('2020-07-06 21:00:00','yyyy-mm-dd hh24:mi:ss'),'600','1');
 INSERT INTO HOTELORDER (ORDERNO,MEMNO,PETNO,ROOMTYPENO,ORDERDATE,ROOMNO,ROOMTYPEPRICE,CHECKINDATE,CHECKOUTDATE,TOTALPRICE,HOTELORDERSTATUS) 
 VALUES
-(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(HOTELORDER_SEQ.NEXTVAL), 6, '0'),'M0004','P0004','RT002',TO_DATE('2020-06-04 21:00:00','yyyy-mm-dd hh24:mi:ss'),201,'700',TO_DATE('2020-07-07 21:00:00','yyyy-mm-dd hh24:mi:ss'),TO_DATE('2020-07-08 21:00:00','yyyy-mm-dd hh24:mi:ss'),'700','0');
+(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(HOTELORDER_SEQ.NEXTVAL), 6, '0'),'M0004','P0004','RT002',TO_DATE('2020-06-04 21:00:00','yyyy-mm-dd hh24:mi:ss'),201,'700',TO_DATE('2020-07-07 21:00:00','yyyy-mm-dd hh24:mi:ss'),TO_DATE('2020-07-08 21:00:00','yyyy-mm-dd hh24:mi:ss'),'700','1');
 INSERT INTO HOTELORDER (ORDERNO,MEMNO,PETNO,ROOMTYPENO,ORDERDATE,ROOMNO,ROOMTYPEPRICE,CHECKINDATE,CHECKOUTDATE,TOTALPRICE,HOTELORDERSTATUS) 
 VALUES
-(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(HOTELORDER_SEQ.NEXTVAL), 6, '0'),'M0005','P0005','RT002',TO_DATE('2020-05-05 21:00:00','yyyy-mm-dd hh24:mi:ss'),202,'700',TO_DATE('2020-07-09 21:00:00','yyyy-mm-dd hh24:mi:ss'),TO_DATE('2020-07-10 21:00:00','yyyy-mm-dd hh24:mi:ss'),'700','0');
+(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(HOTELORDER_SEQ.NEXTVAL), 6, '0'),'M0005','P0005','RT002',TO_DATE('2020-05-05 21:00:00','yyyy-mm-dd hh24:mi:ss'),202,'700',TO_DATE('2020-07-09 21:00:00','yyyy-mm-dd hh24:mi:ss'),TO_DATE('2020-07-10 21:00:00','yyyy-mm-dd hh24:mi:ss'),'700','1');
 INSERT INTO HOTELORDER (ORDERNO,MEMNO,PETNO,ROOMTYPENO,ORDERDATE,ROOMNO,ROOMTYPEPRICE,CHECKINDATE,CHECKOUTDATE,TOTALPRICE,HOTELORDERSTATUS) 
 VALUES
-(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(HOTELORDER_SEQ.NEXTVAL), 6, '0'),'M0005','P0005','RT002',TO_DATE('2020-06-06 21:00:00','yyyy-mm-dd hh24:mi:ss'),203,'700',TO_DATE('2020-07-11 21:00:00','yyyy-mm-dd hh24:mi:ss'),TO_DATE('2020-07-12 21:00:00','yyyy-mm-dd hh24:mi:ss'),'700','0');
+(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(HOTELORDER_SEQ.NEXTVAL), 6, '0'),'M0005','P0005','RT002',TO_DATE('2020-06-06 21:00:00','yyyy-mm-dd hh24:mi:ss'),203,'700',TO_DATE('2020-07-11 21:00:00','yyyy-mm-dd hh24:mi:ss'),TO_DATE('2020-07-12 21:00:00','yyyy-mm-dd hh24:mi:ss'),'700','1');
 INSERT INTO HOTELORDER (ORDERNO,MEMNO,PETNO,ROOMTYPENO,ORDERDATE,ROOMNO,ROOMTYPEPRICE,CHECKINDATE,CHECKOUTDATE,TOTALPRICE,HOTELORDERSTATUS) 
 VALUES
-(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(HOTELORDER_SEQ.NEXTVAL), 6, '0'),'M0005','P0005','RT003',TO_DATE('2020-05-07 21:00:00','yyyy-mm-dd hh24:mi:ss'),301,'800',TO_DATE('2020-07-13 21:00:00','yyyy-mm-dd hh24:mi:ss'),TO_DATE('2020-07-14 21:00:00','yyyy-mm-dd hh24:mi:ss'),'800','0');
+(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(HOTELORDER_SEQ.NEXTVAL), 6, '0'),'M0005','P0005','RT003',TO_DATE('2020-05-07 21:00:00','yyyy-mm-dd hh24:mi:ss'),301,'800',TO_DATE('2020-07-13 21:00:00','yyyy-mm-dd hh24:mi:ss'),TO_DATE('2020-07-14 21:00:00','yyyy-mm-dd hh24:mi:ss'),'800','1');
 INSERT INTO HOTELORDER (ORDERNO,MEMNO,PETNO,ROOMTYPENO,ORDERDATE,ROOMNO,ROOMTYPEPRICE,CHECKINDATE,CHECKOUTDATE,TOTALPRICE,HOTELORDERSTATUS) 
 VALUES
-(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(HOTELORDER_SEQ.NEXTVAL), 6, '0'),'M0005','P0005','RT003',TO_DATE('2020-06-08 21:00:00','yyyy-mm-dd hh24:mi:ss'),302,'800',TO_DATE('2020-07-15 21:00:00','yyyy-mm-dd hh24:mi:ss'),TO_DATE('2020-07-16 21:00:00','yyyy-mm-dd hh24:mi:ss'),'800','0');
+(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(HOTELORDER_SEQ.NEXTVAL), 6, '0'),'M0005','P0005','RT003',TO_DATE('2020-06-08 21:00:00','yyyy-mm-dd hh24:mi:ss'),302,'800',TO_DATE('2020-07-15 21:00:00','yyyy-mm-dd hh24:mi:ss'),TO_DATE('2020-07-16 21:00:00','yyyy-mm-dd hh24:mi:ss'),'800','1');
 INSERT INTO HOTELORDER (ORDERNO,MEMNO,PETNO,ROOMTYPENO,ORDERDATE,ROOMNO,ROOMTYPEPRICE,CHECKINDATE,CHECKOUTDATE,TOTALPRICE,HOTELORDERSTATUS)
 VALUES
-(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(HOTELORDER_SEQ.NEXTVAL), 6, '0'),'M0005','P0005','RT003',TO_DATE('2020-05-09 21:00:00','yyyy-mm-dd hh24:mi:ss'),303,'800',TO_DATE('2020-07-17 21:00:00','yyyy-mm-dd hh24:mi:ss'),TO_DATE('2020-07-18 21:00:00','yyyy-mm-dd hh24:mi:ss'),'800','0');
+(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(HOTELORDER_SEQ.NEXTVAL), 6, '0'),'M0005','P0005','RT003',TO_DATE('2020-05-09 21:00:00','yyyy-mm-dd hh24:mi:ss'),303,'800',TO_DATE('2020-07-17 21:00:00','yyyy-mm-dd hh24:mi:ss'),TO_DATE('2020-07-18 21:00:00','yyyy-mm-dd hh24:mi:ss'),'800','1');
 INSERT INTO HOTELORDER (ORDERNO,MEMNO,PETNO,ROOMTYPENO,ORDERDATE,ROOMNO,ROOMTYPEPRICE,CHECKINDATE,CHECKOUTDATE,TOTALPRICE,HOTELORDERSTATUS) 
 VALUES
-(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(HOTELORDER_SEQ.NEXTVAL), 6, '0'),'M0005','P0005','RT003',TO_DATE('2020-06-10 21:00:00','yyyy-mm-dd hh24:mi:ss'),304,'800',TO_DATE('2020-07-19 21:00:00','yyyy-mm-dd hh24:mi:ss'),TO_DATE('2020-07-20 21:00:00','yyyy-mm-dd hh24:mi:ss'),'800','0');
+(to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(HOTELORDER_SEQ.NEXTVAL), 6, '0'),'M0005','P0005','RT003',TO_DATE('2020-06-10 21:00:00','yyyy-mm-dd hh24:mi:ss'),304,'800',TO_DATE('2020-07-19 21:00:00','yyyy-mm-dd hh24:mi:ss'),TO_DATE('2020-07-20 21:00:00','yyyy-mm-dd hh24:mi:ss'),'800','1');
 
 
 ------會員最新資料---------------

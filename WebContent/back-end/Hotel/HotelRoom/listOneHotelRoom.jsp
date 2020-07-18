@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.HotelRoom.model.*"%>
+<%@ page import="com.HotelRoomType.model.*"%>
+<%@ page import="com.MemberPet.model.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
@@ -32,14 +34,19 @@
 				</h1>
 			</div>
 		</div>
+		
+		<jsp:useBean id="roomTypeSVC" scope="page" class="com.HotelRoomType.model.HotelRoomTypeService" />
+		<jsp:useBean id="memberPetSVC" scope="page" class="com.MemberPet.model.MemberPetService" />
+		
 		<div class="row">
 			<div class="col-12">
 				<table class="table table-striped text-center">
 					<thead>
 						<tr>
 							<th scope="col">房間編號</th>
-							<th scope="col">房型編號</th>
+							<th scope="col">房型名稱</th>
 							<th scope="col">寵物編號</th>
+							<th scope="col">寵物姓名</th>
 							<th scope="col">房間狀態</th>
 							<th scope="col">房間修改</th>
 						</tr>
@@ -47,15 +54,20 @@
 					<tbody>
 						<tr>
 							<td>${hotelRoomVO.roomNo}</td>
-							<td>${hotelRoomVO.roomTypeNo}</td>
+							<td>${roomTypeSVC.getOneHotelRoomType(hotelRoomVO.roomTypeNo).roomTypeName}</td>
 							<td>${hotelRoomVO.petNo}</td>
+							<td>${memberPetSVC.getOneMemberPet(hotelRoomVO.petNo).petName}</td>
 							<td>
+								<font style="color:blue;">
 								<c:if test="${hotelRoomVO.roomStatus == 0}">
 									<c:out value="已存在"></c:out>
 								</c:if>
+								</font>
+								<font style="color:red;">
 								<c:if test="${hotelRoomVO.roomStatus == 1}">
 									<c:out value="已移除"></c:out>
 								</c:if>
+								</font>
 							</td>
 							<td>
 								<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/HotelRoom/HotelRoom.do" style="margin-bottom: 0px;">

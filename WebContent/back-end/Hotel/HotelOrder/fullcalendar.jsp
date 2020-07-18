@@ -42,7 +42,11 @@ document.addEventListener('DOMContentLoaded', function() {
     now: '${time}' ,
     locale: 'zh-tw',
     editable: true, // enable draggable events
+    selectable:true,
+    selectHelper:true,
+    eventLimit:true,
     aspectRatio: 2.3,
+    handleWindowResize:true,
     scrollTime: '00:00', // undo default 6am scrollTime
     headerToolbar: {
       left: 'today prev,next',
