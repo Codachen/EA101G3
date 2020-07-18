@@ -82,7 +82,7 @@
     <div class="form-group row  ">
     <label for="inputPassword3" class="col-sm-2 col-form-label">會員密碼:</label>
     <div class="col-sm-10">
-      <input type="TEXT" class="form-control col-sm-7" id="" placeholder="密碼"  name="password"	 value="<%=memVO.getMemPassword()%>">
+      <input type="password" class="form-control col-sm-7" id="" placeholder="密碼"  name="password"	 value="<%=memVO.getMemPassword()%>">
     </div>
     </div>
     
