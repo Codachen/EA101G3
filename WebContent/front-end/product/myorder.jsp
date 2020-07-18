@@ -206,7 +206,7 @@
 	</div>
 	</c:if>
 	
-			<div class="toast" data-autohide="true" style="position:fixed; left: 10px; bottom: 20px; width:250px " data-delay="2000">
+			<div class="toast" data-autohide="true" style="position:fixed; left: 10px; bottom: 20px; width:250px " data-delay="3000">
 		    <div class="toast-header">
 		      <svg class=" rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
 		                    <rect fill="#007aff" width="100%" height="100%" /></svg>
