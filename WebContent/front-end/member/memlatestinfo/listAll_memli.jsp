@@ -45,7 +45,7 @@
 <div class="container">
 <div class="row justify-content-center align-items-center">
 <table class="table table-hover text-nowrap ">
-		 <h3>最新消息 - ListALLmli.jsp</h3>
+		 <h3>最新消息</h3>
 	<tr>
 		<th>訊息編號</th>
 		<th>會員編號</th>
