@@ -42,7 +42,13 @@ th, td {
 	
 	padding: 5px;
 }
-
+.mainTitlehr{
+	background-color:#E1F5FF;
+	color:#E1F5FF;
+	
+	height:2px;
+	
+}
 .submit {
 	/* margin-left:45%; */
 	font-size: 24px;
@@ -56,6 +62,7 @@ th, td {
 
 .mainTitle {
 	font-size: 32px;
+	font-weight:bold;
 }
 </style>
 
@@ -76,26 +83,14 @@ th, td {
 
 
 		<hr class="mainTitlehr">
-
-		<!-- 	<div>時段編號</div> -->
-		<!-- 	<div>醫生編號</div> -->
-		<!-- 	<div>門診日期</div> -->
-		<!-- 	<div>門診時段</div> -->
-		<!-- 	<div>預約</div> -->
-		<!-- 	<div></div> -->
-		
-
 			<table>
 				<tr>
-
-					<!-- <th>時段編號</th> -->
 					<th>門診日期</th>
 					<th>門診時段</th>
 					<th>科別</th>
 					<th>獸醫師</th>
 					<th>診間</th>
 					<th>預約號碼</th>
-					<!-- 			<th>最大預約數</th> -->
 				</tr>
 				<tr>
 
@@ -122,7 +117,13 @@ th, td {
 	                    ${docVO.roomno}診
                     </c:if>
 						</c:forEach></td>
-					<td><span style="font-size : 24px;color:red;">${optVO.currentCount+1}</span></td>
+<%-- 						<jsp:useBean id="optSvc" scope="page" class="com.opt.model.OptService" /> --%>
+<%-- 						<c:forEach var="docVO" items="${docSvc.all}"> --%>
+<%-- 							<c:if test="${optVO.docNo==docVO.docno}"> --%>
+<%-- 	                    		${docVO.roomno}診 --%>
+<%--                     		</c:if> --%>
+<%-- 						</c:forEach> --%>
+					<td><span style="font-size : 24px;color:red;font-weight:bold;">${optVO.currentCount+1}</span></td>
 					<%-- 			<td>${optVO.maximum}</td> --%>
 
 				
@@ -130,11 +131,11 @@ th, td {
 			</table>
 			<br>
 			<div style="width: 100%" align="center">
-				<span style="font-size : 36px;color:#0E923A;"> 預約成功</span>
+				<span style="font-size : 36px;color:#0E923A;font-weight:bold;">預約掛號成功</span>
 				
 			</div>
 			<div style="width: 100%" align="center">
-				<span style="font-size : 24px;color:black;"> 可隨時至預約查詢確認預約資料喔！</span>
+				<span style="font-size : 24px;color:black;">可隨時至預約查詢確認預約資料喔！</span>
 				
 			</div>
 

@@ -53,6 +53,15 @@ img {
 
 .mainTitle {
 	font-size: 32px;
+	font-weight:bold;
+}
+
+.mainTitlehr{
+	background-color:#E1F5FF;
+	color:#E1F5FF;
+	
+	height:2px;
+	
 }
 .memTable{
 	width: 100%;
@@ -154,6 +163,7 @@ color:red;
 
 
 		<br> <span class="mainTitle">確認會員資料</span>
+		<hr class="mainTitlehr">
 		<FORM METHOD="post" ACTION="apptStart.do" name="form1" id="form1"
 			enctype="multipart/form-data">
 

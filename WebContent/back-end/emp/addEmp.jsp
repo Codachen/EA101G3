@@ -68,7 +68,7 @@ th, td {
 }
 
 .mainTitlehr {
-	border: 2px solid lightcoral;
+/* 	border: 2px solid lightcoral; */
 }
 .errorMsgs{
  width:100%;
@@ -82,6 +82,18 @@ th, td {
  font-size: 14px;
 }
 }
+
+/* footer { */
+/* 	float: left; */
+/* 	height: 100px; */
+/* 	width: 100%; */
+/* 	background: linear-gradient(yellow,red); */
+/* 	color: grey; */
+/* 	text-align: center; */
+/* 	padding-top: 40px; */
+/* 	position: absolute; */
+/* 	bottom: 0; */
+/* } */
 </style>
 
 </head>
