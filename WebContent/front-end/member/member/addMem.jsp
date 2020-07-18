@@ -255,7 +255,7 @@ label {
 				  });
 				
 				$("#magicbtn").click(function(){
-					$("#myname").val("小明");
+					$("#myname").val("小傑");
 					$("#myemail").val("xuanjia961121@gmail.com");
 					$("#myaccount").val("ea101g3");
 					$("#mypassword").val("123456");
