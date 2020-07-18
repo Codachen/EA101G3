@@ -49,20 +49,21 @@
 		</div>
 
 
-
+		<jsp:useBean id="roomTypeSVC" scope="page" class="com.HotelRoomType.model.HotelRoomTypeService" />
+		
 		<div class="row">
 			<div class="col-4"></div>
 			<div class="col-4">
 				<form METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/HotelRoom/HotelRoom.do" name="form1">
 					<div class="form-group font-weight-bold" id="select3">
 						<label for="exampleInputEmail1"> 房間編號 : </label>
-						<%=(hotelRoomVO == null) ? "" : hotelRoomVO.getRoomNo()%>
-						<input type="hidden" name="roomNo" size="45" value="<%=(hotelRoomVO == null) ? "RT004" : hotelRoomVO.getRoomNo()%>" />
+						${hotelRoomVO.roomNo}
+						<input type="hidden" name="roomNo" size="45" value="${hotelRoomVO.roomNo}" />
 					</div>
 					<div class="form-group font-weight-bold" id="select3">
 						<label for="exampleInputEmail1"> 房型編號 : </label>
-						<%=(hotelRoomVO == null) ? "" : hotelRoomVO.getRoomTypeNo()%>
-						<input type="hidden" name="roomTypeNo" size="45" value="<%=(hotelRoomVO == null) ? "RT004" : hotelRoomVO.getRoomTypeNo()%>" />
+						${roomTypeSVC.getOneHotelRoomType(hotelRoomVO.roomTypeNo).roomTypeName}
+						<input type="hidden" name="roomTypeNo" size="45" value="${hotelRoomVO.roomTypeNo}" />
 					</div>
 					<div class="form-group font-weight-bold" id="select3">
 						<label for="exampleInputEmail1">寵物編號 :</label>

@@ -3,8 +3,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.HotelOrder.model.*"%>
-
-<%-- 此頁練習採用 EL 的寫法取值 --%>
+<%@ page import="com.mem.model.*"%>
+<%@ page import="com.MemberPet.model.*"%>
+<%@ page import="com.HotelRoomType.model.*"%>
 
 <%
 	HotelOrderService hotelOrderSvc = new HotelOrderService();
@@ -66,9 +67,9 @@
 					<thead>
 						<tr>
 							<th scope="col">訂單編號</th>
-							<th scope="col">會員編號</th>
-							<th scope="col">寵物編號</th>
-							<th scope="col">房型編號</th>
+							<th scope="col">會員姓名</th>
+							<th scope="col">寵物姓名</th>
+							<th scope="col">房型名稱</th>
 							<th scope="col">房間編號</th>
 							<th scope="col">房型價格</th>
 							<th scope="col">訂單時間</th>
@@ -83,12 +84,15 @@
 					</thead>
 					<tbody>
 						<%@ include file="page1.file"%>
+						<jsp:useBean id="memberSVC" scope="page" class="com.mem.model.MemberService" />
+						<jsp:useBean id="memberPetSVC" scope="page" class="com.MemberPet.model.MemberPetService" />
+						<jsp:useBean id="roomTypeSVC" scope="page" class="com.HotelRoomType.model.HotelRoomTypeService" />
 						<c:forEach var="hotelOrderVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 							<tr>
 								<td>${hotelOrderVO.orderNo}</td>
-								<td>${hotelOrderVO.memNo}</td>
-								<td>${hotelOrderVO.petNo}</td>
-								<td>${hotelOrderVO.roomTypeNo}</td>
+								<td>${memberSVC.getOneEmp(hotelOrderVO.memNo).memName}</td>
+								<td>${memberPetSVC.getOneMemberPet(hotelOrderVO.petNo).petName}</td>
+								<td>${roomTypeSVC.getOneHotelRoomType(hotelOrderVO.roomTypeNo).roomTypeName}</td>
 								<td>${hotelOrderVO.roomNo}</td>
 								<td>${hotelOrderVO.roomTypePrice}</td>
 								<td>

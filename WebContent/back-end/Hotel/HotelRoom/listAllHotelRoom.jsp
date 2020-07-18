@@ -73,7 +73,7 @@
 					<thead>
 						<tr>
 							<th scope="col">房間編號</th>
-							<th scope="col">房型編號</th>
+							<th scope="col">房型名稱</th>
 							<th scope="col">寵物編號</th>
 							<th scope="col">寵物名稱</th>
 							<th scope="col">寵物圖片</th>
@@ -82,12 +82,13 @@
 					</thead>
 					<tbody>
 						<%@ include file="page1.file"%>
+						<jsp:useBean id="roomTypeSVC" scope="page" class="com.HotelRoomType.model.HotelRoomTypeService" />
 						<jsp:useBean id="memberPetSVC" scope="page" class="com.MemberPet.model.MemberPetService" />
 						<c:forEach var="hotelRoomVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 
 							<tr>
 								<td>${hotelRoomVO.roomNo}</td>
-								<td>${hotelRoomVO.roomTypeNo}</td>
+								<td>${roomTypeSVC.getOneHotelRoomType(hotelRoomVO.roomTypeNo).roomTypeName}</td>
 								<td>${hotelRoomVO.petNo}</td>
 								<td>${memberPetSVC.getOneMemberPet(hotelRoomVO.petNo).petName}</td>
 								<td><img alt="寵物圖片" class="images" src="<%=request.getContextPath()%>/back-end/HotelRoom/HotelRoomPic2.do?petNo=${hotelRoomVO.petNo}" onerror="this.src='<%=request.getContextPath()%>/back-end/Hotel/HotelRoom/images/NOPIC2.jpg'"></td>

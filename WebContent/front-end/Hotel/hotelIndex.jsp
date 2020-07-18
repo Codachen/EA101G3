@@ -389,6 +389,19 @@
 					timepicker : true,
 					step : 60
 				});
+			//系統日期之前不能選擇(過去時間)
+             var somedate1 = new Date();
+             $('#start_dateTime${s.count}').datetimepicker({
+                 beforeShowDay: function(date) {
+               	  if (  date.getYear() <  somedate1.getYear() || 
+        		           (date.getYear() == somedate1.getYear() && date.getMonth() <  somedate1.getMonth()) || 
+        		           (date.getYear() == somedate1.getYear() && date.getMonth() == somedate1.getMonth() && date.getDate() < somedate1.getDate())
+                     ) {
+                          return [false, ""]
+                     }
+                     return [true, ""];
+             }});
+
 
 		$('#end_dateTime${s.count}').datetimepicker(
 				{
