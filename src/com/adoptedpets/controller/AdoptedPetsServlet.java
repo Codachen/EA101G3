@@ -1,4 +1,4 @@
-package com.adoptedpets.controller;
+ package com.adoptedpets.controller;
 
 import java.io.*;
 import java.sql.Date;
@@ -329,6 +329,13 @@ public class AdoptedPetsServlet extends HttpServlet {
 				String adopterNo = req.getParameter("adopterNo");
 
 				String shelterNo = req.getParameter("shelterNo");
+				
+				String nullStr = "";
+				if (adopterNo.equals(nullStr) && shelterNo.equals(nullStr)) {
+					errorMsgs.add("領養人編號與住所編號: 請勿同時空白");
+				}else if (!(adopterNo.equals(nullStr)) && !(shelterNo.equals(nullStr))) {
+					errorMsgs.add("領養人編號與住所編號: 請勿同時填寫");
+				}
 
 				String petBreed = req.getParameter("petBreed");
 				if (petBreed == null || petBreed.trim().length() == 0) {
@@ -338,6 +345,9 @@ public class AdoptedPetsServlet extends HttpServlet {
 				java.sql.Date adoptedDate = null;
 				if (!(req.getParameter("adoptedDate").isEmpty())) {
 					adoptedDate = java.sql.Date.valueOf(req.getParameter("adoptedDate"));
+				}
+				if (adoptedDate == null) {
+					errorMsgs.add("收容日期: 請勿空白");
 				}
 
 				byte[] petPic = null;
@@ -357,6 +367,9 @@ public class AdoptedPetsServlet extends HttpServlet {
 				if (!(req.getParameter("adoptDate").isEmpty())) {
 					adoptDate = java.sql.Date.valueOf(req.getParameter("adoptDate"));
 				}
+				if(!(adopterNo.isEmpty()) && adoptDate == null) {
+					errorMsgs.add("領養日期: 請勿空白");
+				}
 
 				java.sql.Date interviewDate = null;
 				if (!(req.getParameter("interviewDate").isEmpty())) {
@@ -370,6 +383,9 @@ public class AdoptedPetsServlet extends HttpServlet {
 				String petGender = req.getParameter("petGender");
 
 				Integer adoptStatus = new Integer(req.getParameter("adoptStatus"));
+				if (!(adopterNo.equals(nullStr)) && adoptStatus != 1) {
+					errorMsgs.add("領養狀態: 請改為已領養");
+				}
 
 				AdoptedPetsVO adoptedPetsVO = new AdoptedPetsVO();
 				adoptedPetsVO.setPetNo(petNo);
@@ -427,7 +443,10 @@ public class AdoptedPetsServlet extends HttpServlet {
 				String adopterNo = req.getParameter("adopterNo");
 
 				String shelterNo = req.getParameter("shelterNo");
-
+				if (shelterNo == null || shelterNo.trim().length() == 0) {
+					errorMsgs.add("住所編號: 請勿空白");
+				}
+				
 				String petBreed = req.getParameter("petBreed");
 				if (petBreed == null || petBreed.trim().length() == 0) {
 					errorMsgs.add("寵物品種: 請勿空白");
@@ -437,13 +456,20 @@ public class AdoptedPetsServlet extends HttpServlet {
 				if (!(req.getParameter("adoptedDate").isEmpty())) {
 					adoptedDate = java.sql.Date.valueOf(req.getParameter("adoptedDate"));
 				}
+				if (adoptedDate == null) {
+					errorMsgs.add("收容日期: 請勿空白");
+				}
 
 				byte[] petPic = null;
+				
 				Part petPicPart = req.getPart("petPic");
 				InputStream petPicIn = petPicPart.getInputStream();
 				petPic = new byte[petPicIn.available()];
 				petPicIn.read(petPic);
 				petPicIn.close();
+								if(petPicPart.getSize() == 0) {
+					errorMsgs.add("收容寵物圖片: 請勿空白");
+				}
 
 				java.sql.Date adoptDate = null;
 				if (!(req.getParameter("adoptDate").isEmpty())) {
@@ -461,7 +487,13 @@ public class AdoptedPetsServlet extends HttpServlet {
 
 				String petGender = req.getParameter("petGender");
 
-				Integer adoptStatus = new Integer(req.getParameter("adoptStatus"));
+				String adoptStatusStr = null;
+				if(req.getParameter("adoptStatus").isEmpty()) {
+					adoptStatusStr = "0";	
+				}else {
+					adoptStatusStr = req.getParameter("adoptStatus");
+				}
+				Integer adoptStatus = new Integer(adoptStatusStr);
 
 				AdoptedPetsVO adoptedPetsVO = new AdoptedPetsVO();
 				adoptedPetsVO.setAdopterNo(adopterNo);
@@ -478,7 +510,7 @@ public class AdoptedPetsServlet extends HttpServlet {
 
 //				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("adoptedpetsVO", adoptedPetsVO); // 含有輸入格式錯誤的adoptedPetsVO物件,也存入req
+					req.setAttribute("adoptedpetsVO", adoptedPetsVO); // 含有輸入格式錯誤的adoptedPetsVO物件,也存入req				
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/back-end/adopt/adoptedpets/add_AdoptedPets.jsp");
 					failureView.forward(req, res);
