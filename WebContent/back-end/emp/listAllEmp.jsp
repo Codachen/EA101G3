@@ -27,6 +27,7 @@
 table {
 	width: 100%;
 	background-color: white;
+		border-radius:5px;
 	
 }
 
@@ -37,6 +38,8 @@ table, th, td {
 th {
 	padding: 5px;
 	background-color: lightcoral;
+	box-shadow: 0px 2px 0px gray;
+
 }
 
 td {
@@ -56,6 +59,10 @@ img {
 	font-size: 26px;
 	padding: 5px 20px;
 	margin-bottom: 20px;
+	box-shadow: 0 2px 1px 1px dimgray;
+}
+.btn{
+box-shadow: 0 1px 1px 1px dimgray;
 }
 
 
@@ -87,7 +94,7 @@ img {
 		</ul>
 	</c:if>
 	<c:if test="${not empty sweet}">
-		<script>swal("員工新增成功!", "已提交驗證信至員工信箱", "success");</script>
+		<script>swal("員工新增成功!", "已寄送密碼信至員工信箱", "success");</script>
 	</c:if>
 	
 
@@ -111,9 +118,9 @@ img {
 			<th>詳細資料</th>
 
 		</tr>
-
+		
 		<%@ include file="page1.file"%>
-
+		
 		<button type="button" class="btn btn-success" id="addbtn" onclick="location.href='addEmp.jsp'">新增員工</button>	
 			
 		<c:forEach var="empVO" items="${list}" begin="<%=pageIndex%>"
@@ -232,9 +239,9 @@ img {
   </div>
 </div>
 </c:if>
-	
+	<div style="width:100%;text-align:center;">
 	<%@ include file="page2.file"%>
-
+	</div>
 	<%@ include file="/back-end/backEndInclude/footer.jsp"%>
 
 	<script type="text/javascript">

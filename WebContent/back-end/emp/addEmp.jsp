@@ -1,9 +1,16 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.emp.model.*"%>
-
+<%@ page import="com.auth.model.*"%>
 <%
 	EmpVO empVO = (EmpVO) request.getAttribute("empVO");
+	AuthVO authO = (AuthVO) request.getAttribute("authO");
+	AuthVO authH = (AuthVO) request.getAttribute("authH");
+	AuthVO authA = (AuthVO) request.getAttribute("authA");
+	AuthVO authS = (AuthVO) request.getAttribute("authS");
+	AuthVO authT = (AuthVO) request.getAttribute("authT");
+	AuthVO authM = (AuthVO) request.getAttribute("authM");
+	AuthVO authE = (AuthVO) request.getAttribute("authE");
 %>
 
 
@@ -23,40 +30,33 @@
 %>
 
 <style>
-
 table {
-	width:100%;
+	width: 100%;
 	margin-top: 5px;
 	margin-bottom: 5px;
 	border: 7px solid;
-	border-color:rgb(100,100,100,0.2);
-	
+	border-color: rgb(100, 100, 100, 1);
 }
-.leftmain{
 
-float:left;
-	
+.leftmain {
+	float: left;
 }
-.rightmain{
-margin-top: 5px;
-float:left;
 
-	border-color:rgb(100,100,100,0.2);
-
+.rightmain {
+	margin-top: 5px;
+	float: left;
+	border-color: rgb(100, 100, 100, 0.2);
 }
 
 th {
-
-
-	text-align: right;
-	width:100px;
+	text-align: left;
+	width: 120px;
 }
 
 th, td {
-
 	padding: 5px;
-/* 	border: 1px solid black; */
-	height:40px;
+	/* 	border: 1px solid black; */
+	height: 40px;
 }
 
 .mainTitle {
@@ -68,19 +68,42 @@ th, td {
 }
 
 .mainTitlehr {
-/* 	border: 2px solid lightcoral; */
-}
-.errorMsgs{
- width:100%;
- text-align:center;
- background-color:rgba(240,50,30,0.9);
- color:white;
- box-shadow: 0px 0px 1px black;
+	/* 	border: 2px solid lightcoral; */
+	
 }
 
-.errorMsgs *{
- font-size: 14px;
+.errorMsgs {
+	text-align: center;
+	width: 100%;
+	background-color: rgba(240, 50, 30, 0.9);
+	color: white;
+	box-shadow: 0px 0px 1px black;
 }
+
+.errorMsgs * {
+	font-size: 16px;
+}
+
+.spinner-border {
+	display: none;
+}
+
+.star {
+	color: red;
+}
+
+.preview {
+	border-radius: 20px;
+}
+.modal-content{
+top:100px;
+}
+.modal-body{
+	width:100%;
+	letter-spacing: 5px;
+	text-align:center;
+	font-size:20px;
+	color:teal;
 }
 
 /* footer { */
@@ -101,137 +124,228 @@ th, td {
 
 <body>
 
-<%@ include file="/back-end/backEndInclude/header.jsp"%>
+	<%@ include file="/back-end/backEndInclude/header.jsp"%>
 
 	<span class="mainTitle">員工資料新增</span>
 
 	<a href="listAllEmp.jsp">返回員工資料</a>
 
 	<hr class="mainTitlehr">
-	
+
 	<%-- 錯誤表列 --%>
-	
+
 	<c:if test="${not empty errorMsgs}">
-		<div class="errorMsgs">	
-		<p>請修正以下錯誤:</p>
-	
+		<div class="errorMsgs">
+			<p>請修正以下錯誤:</p>
+
 			<c:forEach var="message" items="${errorMsgs}">
 				<p>${message}</p>
 			</c:forEach>
 
-		
+
 		</div>
 	</c:if>
 	<div class="leftmain col-6">
-	<FORM METHOD="post" ACTION="emp.do" name="form1" id="form1"
-		enctype="multipart/form-data">
-		<table class="table table-striped">
-			
+		<FORM METHOD="post" ACTION="emp.do" name="form1" id="form1"
+			enctype="multipart/form-data">
+			<table class="table table-striped">
 
-<!-- 密碼不該讓管理者輸入 -->
-<!-- 			<tr> -->
-<!-- 				<th>密碼</th> -->
-<!-- 				<td><input type="password" name="empPwd" size="20" -->
-<%-- 					value="<%=(empVO == null) ? "" : empVO.getEmpPwd()%>" /></td> --%>
-<!-- 			</tr> -->
-		
-		
-			<tr>
-				<th>員工姓名</th>
-				<td><input type="TEXT" name="empName" size="20" maxlength="20"
-					value="<%=(empVO == null) ? "" : empVO.getEmpName()%>" /></td>
-			</tr>
 
-			<tr>
-				<th>性別</th>
-				<td><input type="radio" id="male" name="empGender" value="男"
-					${(empVO.empGender=='男')?'checked':'' }> <label for="male">男</label>
-					<input type="radio" id="female" name="empGender" value="女"
-					${(empVO.empGender=='女')?'checked':'' }> <label
-					for="female">女</label><br> 
-					
-					<!-- 欲使用下面寫法要先判斷empVO == null -->
+				<!-- 密碼不該讓管理者輸入 -->
+				<!-- 			<tr> -->
+				<!-- 				<th>密碼</th> -->
+				<!-- 				<td><input type="password" name="empPwd" size="20" -->
+				<%-- 					value="<%=(empVO == null) ? "" : empVO.getEmpPwd()%>" /></td> --%>
+				<!-- 			</tr> -->
 
-					<%-- 				<input type="radio" id="male" name="empGender" value="男" <%=(empVO.getEmpGender()=="男")?"checked":""%> />  --%>
-					<!-- 				<label for="male">男生</label>  --> <%-- 	<input type="radio" id="male" name="empGender" value="女" <%=(empVO.getEmpGender()=="女")?"checked":""%> />  --%>
-					<!-- 				<label for="female">女</label><br> -->
+
+				<tr>
+					<th><span class="star">*</span>員工姓名</th>
+					<td><input type="TEXT" class="form-control" name="empName"
+						size="10" maxlength="20"
+						value="<%=(empVO == null) ? "" : empVO.getEmpName()%>" /></td>
+				</tr>
+
+				<tr>
+					<th><span class="star">*</span>性別</th>
+					<td>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" id="male"
+								name="empGender" value="男"
+								${(empVO.empGender=='男')?'checked':'' }> <label
+								for="male">男</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" id="female"
+								name="empGender" value="女"
+								${(empVO.empGender=='女')?'checked':'' }> <label
+								for="female">女</label><br>
+						</div> <!-- 欲使用下面寫法要先判斷empVO == null --> <%-- 				<input type="radio" id="male" name="empGender" value="男" <%=(empVO.getEmpGender()=="男")?"checked":""%> />  --%>
+						<!-- 				<label for="male">男生</label>  --> <%-- 	<input type="radio" id="male" name="empGender" value="女" <%=(empVO.getEmpGender()=="女")?"checked":""%> />  --%>
+						<!-- 				<label for="female">女</label><br> -->
 					</td>
-			</tr>
+				</tr>
 
-			<tr>
-				<th>Email</th>
-				<td><input type="email" name="empAcc" size="20" maxlength="30"
-					value="<%=(empVO == null) ? "" : empVO.getEmpAcc()%>" /></td>
-			</tr>
-			<tr>
-				<th>生日</th>
-				<td><input name="empBirth" id="f_date1" type="text" autocomplete="off" 
-				value="<%=(empVO == null) ? "" : ((empVO.getEmpBirth() == null) ? "" : empVO.getEmpBirth())%>" /></td>
-			</tr>
+				<tr>
+					<th><span class="star">*</span>帳號(Email)</th>
+					<td><input type="email" class="form-control" name="empAcc"
+						size="20" maxlength="30"
+						value="<%=(empVO == null) ? "" : empVO.getEmpAcc()%>" /></td>
+				</tr>
+				<tr>
+					<th><span class="star">*</span>生日</th>
+					<td><input name="empBirth" id="f_date1" class="form-control"
+						type="text" autocomplete="off"
+						value="<%=(empVO == null) ? "" : ((empVO.getEmpBirth() == null) ? "" : empVO.getEmpBirth())%>" /></td>
+				</tr>
 
-			<tr>
-				<th>職位</th>
-				<td><input type="TEXT" name="empJob" size="20" maxlength="6"
-					value="<%=(empVO == null) ? "" : empVO.getEmpJob()%>" /></td>
-			</tr>
-
-			<tr>
-				<th>電話</th>
-				<td><input type="TEXT" name="empPhone" size="20" maxlength="11"
-					value="<%=(empVO == null) ? "" : empVO.getEmpPhone()%>" /></td>
-			</tr>
-			<tr>
-				<th>地址</th>
-				<td><input type="TEXT" name="empAddress" size="40"
-					value="<%=(empVO == null) ? "" : empVO.getEmpAddress()%>" /></td>
-			</tr>
-
-			
-
-			<tr>
-				<th>到職日</th>
-				<td><input name="hiredate" id="f_date2" type="text"></td>
-			</tr>
+				<tr>
+					<th><span class="star">*</span>職位</th>
+					<td>
+						<!-- 					<input type="TEXT" class="form-control" name="empJob" size="20" maxlength="6" -->
+						<%-- 					value="<%=(empVO == null) ? "" : empVO.getEmpJob()%>" /> --%>
+						<select class="form-control" name="empJob">
+							<option value="未選擇">未選擇</option>
+							<option value="獸醫" ${(empVO.empJob=='獸醫')? 'selected':''}>獸醫</option>
+							<option value="診所助理" ${(empVO.empJob=='診所助理')? 'selected':''}>診所助理</option>
+							<option value="商城管理員" ${(empVO.empJob=='商城管理員')? 'selected':''}>商城管理員</option>
+							<option value="旅館管理員" ${(empVO.empJob=='旅館管理員')? 'selected':''}>旅館管理員</option>
+							<option value="旅館助理" ${(empVO.empJob=='旅館助理')? 'selected':''}>旅館助理</option>
+							<option value="領養管理員" ${(empVO.empJob=='領養管理員')? 'selected':''}>領養管理員</option>
+							<option value="領養照護員" ${(empVO.empJob=='領養照護員')? 'selected':''}>領養照護員</option>
+							<option value="行政人員" ${(empVO.empJob=='行政人員')? 'selected':''}>行政人員</option>
+							<option value="客服人員" ${(empVO.empJob=='客服人員')? 'selected':''}>客服人員</option>
+							<option value="系統管理員" ${(empVO.empJob=='系統管理員')? 'selected':''}>系統管理員</option>
+					</select>
 
 
+					</td>
+				</tr>
 
-			<tr>
-				<th>員工狀態</th>
-				<td>
-<!-- 				<input type="text" name="empStatus" size="4" -->
-<%-- 					value="<%=(empVO == null) ? "1" : empVO.getEmpStatus()%>" /> --%>
-					<select name="empStatus">
-　						<option value="1" ${(empVO.empStatus=='1')? 'selected':''}>在職中</option>
-　						<option value="2" ${(empVO.empStatus=='2')? 'selected':''}>休假中</option>
-　						<option value="3" ${(empVO.empStatus=='3')? 'selected':''}>已離職</option>
+				<tr>
+					<th><span class="star">*</span>電話</th>
+					<td><input type="TEXT" class="form-control" name="empPhone"
+						size="20" maxlength="11"
+						value="<%=(empVO == null) ? "" : empVO.getEmpPhone()%>" /></td>
+				</tr>
+				<tr>
+					<th><span class="star">*</span>地址</th>
+					<td><input type="TEXT" class="form-control" name="empAddress"
+						size="40"
+						value="<%=(empVO == null) ? "" : empVO.getEmpAddress()%>" /></td>
+				</tr>
+
+
+
+				<tr>
+					<th><span class="star">*</span>到職日</th>
+					<td><input name="hiredate" class="form-control" id="f_date2"
+						type="text"></td>
+				</tr>
+
+
+
+				<tr>
+					<th>員工狀態</th>
+					<td>
+						<!-- 				<input type="text" name="empStatus" size="4" --> <%-- 					value="<%=(empVO == null) ? "1" : empVO.getEmpStatus()%>" /> --%>
+						<select name="empStatus" class="form-control">
+							<option value="1" ${(empVO.empStatus=='1')? 'selected':''}>在職中</option>
+							<option value="2" ${(empVO.empStatus=='2')? 'selected':''}>休假中</option>
+							<option value="3" ${(empVO.empStatus=='3')? 'selected':''}>已離職</option>
 
 					</select>
-					
+
 					</td>
-			</tr>
+				</tr>
 
-			<tr>
-				<th>員工照片</th>
-				<td><input type="file" name="empPic" class="upl">
+				<tr>
+					<th>員工照片</th>
+					<td><input type="file" name="empPic" class="upl"></td>
+				</tr>
+				<tr>
+					<th>權限設定</th>
+					<td>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="optManage" id="optManage"
+								value="O" ${(authO.bgFuncNo=='O')? 'checked':''}> <label class="form-check-label"
+								for="optManage">門診管理</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="shopManage" id="shopManage"
+								value="S" ${(authS.bgFuncNo=='S')? 'checked':''}> <label class="form-check-label"
+								for="shopManage">商城管理</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="hotelManage" id="hotelManage"
+								value="H" ${(authH.bgFuncNo=='H')? 'checked':''}> <label class="form-check-label"
+								for="hotelManage">旅館管理</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="adopterManage"
+								id="adopterManage" value="A" ${(authA.bgFuncNo=='A')? 'checked':''}> <label
+								class="form-check-label" for="adopterManage">領養管理</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="memManage" name="memManage"
+								value="M" ${(authM.bgFuncNo=='M')? 'checked':''}> <label class="form-check-label"
+								for="memManage">會員管理</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="accuManage" id="accuManage"
+								value="T" ${(authT.bgFuncNo=='T')? 'checked':''}> <label class="form-check-label"
+								for="accuManage">客訴管理</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="empManage" id="empManage"
+								value="E" ${(authE.bgFuncNo=='E')? 'checked':''}> <label class="form-check-label"
+								for="empManage">員工管理</label>
+						</div>
 					</td>
-			</tr>
+				</tr>
 
 
 
-
-		</table>
-		<br> <input type="hidden" name="action" value="insert"> 
-		
-		<button type="submit" class="btn btn-primary">送出新增</button>
-	</FORM>
-	</div><div class="rightmain col-6">
-	<div style="width:100%;text-align:center;">
-						<img class="preview" style="max-height: 500px;max-width: 660px;" src="https://icon-library.com/images/person-image-icon/person-image-icon-6.jpg">
-					</div>
+			</table>
+			<br> <input type="hidden" name="action" value="insert">
+			<button type="submit" class="btn btn-primary">送出新增</button>
+			
+<!-- 			<button type="button" class="btn btn-primary" data-toggle="modal" -->
+<!-- 				data-target="#exampleModal">Launch demo modal</button> -->
+		</FORM>
 	</div>
-	 <span id="lblMsg"></span>
-	 
-	
+	<div class="rightmain col-6">
+		<div style="width: 100%; text-align: center;">
+			<img class="preview" style="max-height: 500px; max-width: 660px;"
+				src="https://icon-library.com/images/person-image-icon/person-image-icon-6.jpg">
+		</div>
+	</div>
+	<span id="lblMsg">
+
+
+
+	</span>
+
+
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				
+				<div class="modal-body">
+				<span class="sendMsg" >系統通知</span> 
+					<img
+						src="https://miro.medium.com/max/882/1*9EBHIOzhE1XfMYoKz1JcsQ.gif">
+						<span class="sendMsg" >正在寄送員工密碼信，請稍後...</span> 
+
+					
+				</div>
+
+				
+			</div>
+
+		</div>
+	</div>
 	<%@ include file="/back-end/backEndInclude/footer.jsp"%>
 </body>
 
@@ -377,22 +491,20 @@ $(function (){
 	//              return [true, ""];
 	//      }});
 
+	$(function() {
+		$(":submit").click(function() {
+			$('#exampleModal').modal('show');
+
+			$("#form1").submit();
+
+		});
+	});
+
+	// 	        $("#send").click(function(){
+	// 	        	$("#send").attr("disabled", true);
+	// 	            $("#form1").submit();
+	// 	        });
 	
-	
-	 	 $(function () {
-            $(":submit").click(function () {
-                $("#lblMsg").text("處理中，請稍候...");
-                $(this).prop("disabled", true);
-                $("#form1").submit();
-             
-            });
-        });
-	    
-// 	        $("#send").click(function(){
-// 	        	$("#send").attr("disabled", true);
-// 	            $("#form1").submit();
-// 	        });
-	
-	
-	</script>
+	$('#exampleModal').modal({backdrop:'static',show:false});
+</script>
 </html>

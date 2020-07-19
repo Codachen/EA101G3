@@ -2,6 +2,9 @@ package com.emp.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -10,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.auth.model.AuthService;
+import com.auth.model.AuthVO;
 import com.emp.model.*;
 
 public class LoginHandler extends HttpServlet {
@@ -34,6 +39,8 @@ public class LoginHandler extends HttpServlet {
 
 			EmpService empSvc = new EmpService();
 			EmpVO empVO =  empSvc.getEmpInfo(account, password);
+			AuthService authService = new AuthService();
+			Set<AuthVO> set = new LinkedHashSet<AuthVO>();
 			
 			
 
@@ -42,6 +49,8 @@ public class LoginHandler extends HttpServlet {
 			String empID = null;
 			try {
 			empID = empVO.getEmpID();//把查詢的ID結果放入empID
+			
+			set = authService.getAll(empID);
 
 			}catch (Exception e) {
 				if (empID == null) { //看查詢結果是不是空值
@@ -53,6 +62,7 @@ public class LoginHandler extends HttpServlet {
 					session = req.getSession();
 					session.setAttribute("account", account); // *工作1: 才在session內做已經登入過的標識
 					session.setAttribute("empVONav",empVO); // *工作2: 把員工編號 姓名 照片放入empVONav物件
+					session.setAttribute("set", set);// *工作3: 把權限物件放入session
 
 					try {
 						String location = (String) session.getAttribute("location");

@@ -25,7 +25,6 @@ html, body {
 	padding-bottom:20px;
 	
 	
-	
 }
 
 .downarrow{
@@ -41,6 +40,13 @@ html, body {
 	font-size: 38px;
 	color: lightcoral !important;
 	text-shadow: 1px 0px 2px black;
+	
+	
+}
+
+.icon a:hover {
+	
+	text-decoration:none;
 	
 }
 
@@ -64,6 +70,12 @@ background: linear-gradient(to left,teal,darkslategray);
 	
 }
 
+#logoutbtn{
+	text-decoration:none;
+	
+	
+}
+
 .container-fluid {
 	position: relative;
 	top: 80px;
@@ -79,13 +91,19 @@ background: linear-gradient(to left,teal,darkslategray);
 
 }
 
+.mem-name{
+	text-shadow: black 1px 1px 0px;
+	font-size: 26px;
+}
+
 
 
 .navbar .btn{
 	
-	font-size: 22px;
+	font-size: 20px;
 	color: snow;
 	margin-bottom: 7px;
+	box-shadow: 0 2px 1px 1px black;
 	
 }
 
@@ -102,7 +120,7 @@ background: linear-gradient(to left,teal,darkslategray);
 	/*background-color: #4A78A8;  */
 	padding-top: 5px;
 	background-color: rgba(0,0,0,0.6);
-	text-shadow: 2px 2px 2px black;
+	text-shadow: 2px 1px 1px black;
 	min-height: 100%;
 	right:20px;
 	
@@ -129,6 +147,12 @@ background: linear-gradient(to left,teal,darkslategray);
 	line-height: 35px;
 	transition: all 0.5s;
 }
+.nav .nav-item .nav-link a{
+text-decoration:none;
+}
+
+
+
 /*側邊欄內清單(單一功能)*/
 .nav .nav-item-single a {
 	letter-spacing: 8px;
@@ -148,16 +172,24 @@ background: linear-gradient(to left,teal,darkslategray);
 	height: 220px;
 	cursor: pointer;
 	background-color: rgba(110, 160, 160, 0.45);
+	
 
 }
 
 /*側邊欄內清單的第二層清單*/
 .nav-link ul li {
 	padding-top: 5px;
+	right:5px;
 	display: block;
 	font-size: 17px;
 	letter-spacing: 1px;
 	transition: all 0.8s;
+}
+
+.nav-link ul li a:hover {
+	display: block;
+	font-size: 17px;
+	color:lightcoral;
 }
 
 /*側邊欄內清單的第二層清單連結*/
@@ -183,6 +215,7 @@ background: linear-gradient(to left,teal,darkslategray);
 .nav .nav-item-single a:hover {
 	cursor: pointer;
 	background-color: rgba(110, 160, 160, 0.45);
+	
 }
 
 /*主內容標題*/

@@ -1,5 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.auth.model.*"%>
 <nav class="navbar fixed-top">
 	<div class="icon">
 		<a href="<%=request.getContextPath()%>/back-end/backEndIndex/index.jsp">Cute:)<span
@@ -15,7 +18,7 @@
 			<span class="mem-name">${empVONav.empName}</span> 
 		<FORM METHOD="post"
 			ACTION="<%=request.getContextPath()%>/back-end/backEndLogin/login.do" class="logoutForm">
-			<button type="submit" class="btn btn-link">登出</button>
+			<button type="submit" class="btn btn-link" id="logoutbtn">登出</button>
 
 			<input type="hidden" name="action" value="logout">
 		</FORM>
@@ -23,8 +26,7 @@
 
 
 </nav>
-
-
+	
 <div class="container-fluid">
 
 
@@ -33,10 +35,11 @@
 
 
 		<div class="aside col-xl-2">
-
+<jsp:useBean id="set" scope="session" type="java.util.LinkedHashSet<AuthVO>" />
 
 			<ul class="nav flex-column">
-
+<c:forEach var="authVO" items="${set}" varStatus="authContent">
+<c:if test="${authVO.bgFuncNo=='O'}">
 				<li class="nav-item">
 					<div class="nav-link active" href="#">
 						<svg class="bi bi-calendar3" width="1em" height="1em"
@@ -66,7 +69,11 @@
 
 				</li>
 
+</c:if>
+</c:forEach>
 
+<c:forEach var="authVO" items="${set}" varStatus="authContent">
+<c:if test="${authVO.bgFuncNo=='S'}">
 				<li class="nav-item">
 					<div class="nav-link" href="#">
 						<svg class="bi bi-basket" width="1em" height="1em"
@@ -96,6 +103,11 @@
 
 					</div>
 				</li>
+
+</c:if>
+</c:forEach>
+<c:forEach var="authVO" items="${set}" varStatus="authContent">
+<c:if test="${authVO.bgFuncNo=='H'}">
 				<li class="nav-item">
 					<div class="nav-link" href="#">
 						<svg class="bi bi-shop" width="1em" height="1em"
@@ -129,6 +141,11 @@
 
 					</div>
 				</li>
+				
+</c:if>
+</c:forEach>
+<c:forEach var="authVO" items="${set}" varStatus="authContent">
+<c:if test="${authVO.bgFuncNo=='A'}">
 				<li class="nav-item">
 					<div class="nav-link" href="#">
 						<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -151,7 +168,10 @@
 
 					</div>
 				</li>
-									
+</c:if>
+</c:forEach>
+<c:forEach var="authVO" items="${set}" varStatus="authContent">
+<c:if test="${authVO.bgFuncNo=='M'}">									
 				<li class="nav-item">
 					<div class="nav-link" href="#">
 						<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-people-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -170,8 +190,11 @@
 
 					</div>
 				</li>
-				
-				
+
+</c:if>
+</c:forEach>				
+<c:forEach var="authVO" items="${set}" varStatus="authContent">
+<c:if test="${authVO.bgFuncNo=='T'}">				
 				
 
 				<li class="nav-item-single"><a class="nav-link"
@@ -186,6 +209,11 @@
 			<path
 								d="M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z" />
 		</svg> 客訴管理</a></li>
+
+</c:if>
+</c:forEach>
+<c:forEach var="authVO" items="${set}" varStatus="authContent">
+<c:if test="${authVO.bgFuncNo=='E'}">
 				<li class="nav-item-single"><a class="nav-link" href="<%=request.getContextPath()%>/back-end/emp/listAllEmp.jsp"><svg
 							class="bi bi-unlock" width="1em" height="1em" viewBox="0 0 16 16"
 							fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -193,6 +221,8 @@
 								d="M9.655 8H2.333c-.264 0-.398.068-.471.121a.73.73 0 0 0-.224.296 1.626 1.626 0 0 0-.138.59V14c0 .342.076.531.14.635.064.106.151.18.256.237a1.122 1.122 0 0 0 .436.127l.013.001h7.322c.264 0 .398-.068.471-.121a.73.73 0 0 0 .224-.296 1.627 1.627 0 0 0 .138-.59V9c0-.342-.076-.531-.14-.635a.658.658 0 0 0-.255-.237A1.122 1.122 0 0 0 9.655 8zm.012-1H2.333C.5 7 .5 9 .5 9v5c0 2 1.833 2 1.833 2h7.334c1.833 0 1.833-2 1.833-2V9c0-2-1.833-2-1.833-2zM8.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z" />
 		</svg> 員工管理</a></li>
 
+</c:if>
+</c:forEach>
 
 
 

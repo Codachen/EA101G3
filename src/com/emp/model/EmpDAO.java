@@ -36,7 +36,7 @@ public class EmpDAO implements EmpDAO_interface {
 	private static final String UPDATE = "UPDATE EMPLOYEE set empName=?,empGender=?,empBirth=?,empJob=?,empPhone=?,empAddress=?,empAcc=?,"
 			+ "empPwd=?,empPic=?,hiredate=?,quitdate=?,empStatus=? where empID = ?";
 
-	private static final String GET_EMP_INFO = "SELECT empID,empName,empPic FROM EMPLOYEE where empacc = ? AND empPwd = ?";
+	private static final String GET_EMP_INFO = "SELECT empID,empName,empPic,empJob FROM EMPLOYEE where empacc = ? AND empPwd = ?";
 
 	@Override
 	public void insert(EmpVO empVO) {
@@ -259,6 +259,7 @@ public class EmpDAO implements EmpDAO_interface {
 				empVO.setEmpID(rs.getString("empID"));
 				empVO.setEmpName(rs.getString("empName"));
 				empVO.setEmpPic(rs.getBytes("empPic"));
+				empVO.setEmpJob(rs.getString("empJob"));
 			}
 
 		

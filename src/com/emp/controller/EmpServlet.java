@@ -6,6 +6,9 @@ import java.util.*;
 import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
+
+import com.auth.model.AuthService;
+import com.auth.model.AuthVO;
 import com.emp.model.*;
 import com.mail.MailService;
 
@@ -133,7 +136,7 @@ public class EmpServlet extends HttpServlet {
 				
 				String empName = req.getParameter("empName");
 				
-				String empNameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
+				String empNameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,6}$";
 				if (empName == null || empName.trim().length() == 0) {
 					errorMsgs.add("員工姓名請勿空白");
 				} else if(!empName.trim().matches(empNameReg)) { //以下練習正則(規)表示式(regular-expression)
@@ -158,9 +161,11 @@ public class EmpServlet extends HttpServlet {
 				
 				
 				String empJob = req.getParameter("empJob").trim();
-				if (empJob == null || empJob.trim().length() == 0) {
+				if (empJob == "1"|| empJob.trim().length() == 0) {
 					errorMsgs.add("職位請勿空白");
 				}
+				
+				
 				
 				String empPhone = req.getParameter("empPhone").trim();
 				String empPhoneReg = "^[(0-9)]{9,11}$";
@@ -290,9 +295,10 @@ public class EmpServlet extends HttpServlet {
 				String empName = req.getParameter("empName");
 				String empNameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 				if (empName == null || empName.trim().length() == 0) {
-					errorMsgs.add("員工姓名: 請勿空白");
+					errorMsgs.add("員工姓名請勿空白");
 				} else if(!empName.trim().matches(empNameReg)) { //以下練習正則(規)表示式(regular-expression)
-					errorMsgs.add("員工姓名: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
+//					errorMsgs.add("員工姓名: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
+					errorMsgs.add("姓名格式不正確");
 	            }
 				
 				
@@ -315,8 +321,8 @@ public class EmpServlet extends HttpServlet {
 				
 				
 				String empJob = req.getParameter("empJob").trim();
-				if (empJob == null || empJob.trim().length() == 0) {
-					errorMsgs.add("職位請勿空白");
+				if ("未選擇".equals(empJob)) {
+					errorMsgs.add("必須選擇一個職位");
 				}
 				
 				String empPhone = req.getParameter("empPhone").trim();
@@ -383,6 +389,52 @@ public class EmpServlet extends HttpServlet {
 					empStatus = 1;
 					errorMsgs.add("狀態請填數字1~3");
 				}
+				
+				AuthVO authO = new AuthVO();
+				AuthVO authS = new AuthVO();
+				AuthVO authH = new AuthVO();
+				AuthVO authA = new AuthVO();
+				AuthVO authT = new AuthVO();
+				AuthVO authE = new AuthVO();
+				AuthVO authM = new AuthVO();
+				String empFunc[] = new String[7];
+				empFunc[0] = req.getParameter("optManage");
+				empFunc[1] = req.getParameter("hotelManage");
+				empFunc[2] = req.getParameter("shopManage");
+				empFunc[3] = req.getParameter("adopterManage");
+				empFunc[4] = req.getParameter("accuManage");
+				empFunc[5] = req.getParameter("empManage");
+				empFunc[6] = req.getParameter("memManage");
+				
+			    	if(empFunc[0]!=null) {
+			    		authO.setBgFuncNo(empFunc[0]);
+//			    		System.out.println(authO.getBgFuncNo());
+			    	}
+			    	if(empFunc[1]!=null) {
+			    		authH.setBgFuncNo(empFunc[1]);
+//			    		System.out.println(authS.getBgFuncNo());
+			    	}
+			    	if(empFunc[2]!=null) {
+			    		authS.setBgFuncNo(empFunc[2]);
+//			    		System.out.println(authH.getBgFuncNo());
+			    	}
+			    	if(empFunc[3]!=null) {
+			    		authA.setBgFuncNo(empFunc[3]);
+//			    		System.out.println(authA.getBgFuncNo());
+			    	}
+			    	if(empFunc[4]!=null) {
+			    		authT.setBgFuncNo(empFunc[4]);
+//			    		System.out.println(authT.getBgFuncNo());
+			    	}
+			    	if(empFunc[5]!=null) {
+			    		authE.setBgFuncNo(empFunc[5]);
+//			    		System.out.println(authE.getBgFuncNo());
+			    	}
+			    	if(empFunc[6]!=null) {
+			    		authM.setBgFuncNo(empFunc[6]);
+//			    		System.out.println(authM.getBgFuncNo());
+			    	}
+			    	
 
 				EmpVO empVO = new EmpVO();
 				empVO.setEmpName(empName);
@@ -397,10 +449,20 @@ public class EmpServlet extends HttpServlet {
 				empVO.setHiredate(hiredate);
 				empVO.setQuitdate(quitdate);
 				empVO.setEmpStatus(empStatus);
+				
+				
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-req.setAttribute("empVO", empVO); // 含有輸入格式錯誤的empVO物件,也存入req
+					req.setAttribute("empVO", empVO); // 含有輸入格式錯誤的VO物件,也存入req
+					req.setAttribute("authO", authO); // 含有輸入格式錯誤的VO物件,也存入req
+					req.setAttribute("authS", authS); // 含有輸入格式錯誤的VO物件,也存入req
+					req.setAttribute("authH", authH); // 含有輸入格式錯誤的VO物件,也存入req				
+					req.setAttribute("authA", authA); // 含有輸入格式錯誤的VO物件,也存入req				
+					req.setAttribute("authT", authT); // 含有輸入格式錯誤的VO物件,也存入req
+					req.setAttribute("authM", authM); // 含有輸入格式錯誤的VO物件,也存入req
+					req.setAttribute("authE", authE); // 含有輸入格式錯誤的VO物件,也存入req
+					
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/back-end/emp/addEmp.jsp");
 					failureView.forward(req, res);
@@ -409,9 +471,34 @@ req.setAttribute("empVO", empVO); // 含有輸入格式錯誤的empVO物件,也�
 				
 				/***************************2.開始新增資料***************************************/
 				EmpService empSvc = new EmpService();
+				String empID = null;
 				empVO = empSvc.addEmp(empName,empGender,empBirth,
 						 empJob,  empPhone, empAddress,  empAcc,  empPwd,
 						 empPic, hiredate, quitdate,  empStatus);
+				List<EmpVO> emplist = empSvc.getAll();
+				
+				for (EmpVO empVO2 : emplist) {
+					if(empVO2.getEmpPwd().equals(empPwd)) {
+						empID = empVO2.getEmpID();
+						System.out.println(empID);
+					}
+				}
+				
+				AuthService authSvc = new AuthService();
+				for (int i = 0; i < empFunc.length; i++) {
+					if (empFunc[i] != null) {
+						authSvc.addAuth(empID, empFunc[i]);
+					}
+				}
+//				StringBuffer str = new StringBuffer();
+//				Set <AuthVO>set = new LinkedHashSet<AuthVO>();
+//				set = authSvc.getAll(empID);
+//				for (AuthVO authVO2 : set) {
+//					
+//					str.append(authVO2.getBgFuncNo());
+//					
+//				}
+//				System.out.print(str);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
 					String to = empAcc;
@@ -435,6 +522,7 @@ req.setAttribute("empVO", empVO); // 含有輸入格式錯誤的empVO物件,也�
 				
 				/***************************其他可能的錯誤處理**********************************/
 			} catch (Exception e) {
+				e.printStackTrace();
 				errorMsgs.add(e.getMessage()+"其他的錯誤");
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/back-end/emp/addEmp.jsp");

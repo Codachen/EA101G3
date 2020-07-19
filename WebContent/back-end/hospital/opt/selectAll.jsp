@@ -163,6 +163,9 @@
 	max-width: 80%;
 	margin: 0 auto;
 }
+/* .modal{ */
+/* background-color: rgba(0,0,0,0); */
+/* } */
 
 .modal * {
 	font-size: 24px;
@@ -170,10 +173,13 @@
 }
 .modal-header{
 box-shadow: 0px 0px 4px black;
-background: linear-gradient(#DCDCDC,grey);
+background:linear-gradient(teal,darkslategray);
 border-color:black;
+color:white;
 
 }
+
+
 .modal-footer{
 box-shadow: 0px 0px 2px black;
 }
@@ -192,11 +198,11 @@ box-shadow: 0px 0px 2px black;
  text-align:center;
  background-color:#B52B2B;
  color:white;
- box-shadow: 0px 0px 1px black;
+ box-shadow: 0px 0px 1px grey;
 }
 
 .errorMsgs *{
- font-size: 18px;
+ font-size: 16px;
 }
 </style>
 
