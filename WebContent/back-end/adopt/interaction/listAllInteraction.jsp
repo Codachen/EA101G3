@@ -8,8 +8,8 @@
 
 <%
 	InteractionService interactionSvc = new InteractionService();
-	List<InteractionVO> list = interactionSvc.getAll();
-	pageContext.setAttribute("list", list);	
+List<InteractionVO> list = interactionSvc.getAll();
+pageContext.setAttribute("list", list);
 %>
 
 
@@ -79,14 +79,14 @@ th, td, .pageSelect2 {
 
 
 <body>
-<c:if test="${not empty errorMsgs}">
-	<font style="color:red">請修正以下錯誤:</font>
-	<ul>
-		<c:forEach var="message" items="${errorMsgs}">
-			<li style="color:red">${message}</li>
-		</c:forEach>
-	</ul>
-</c:if>
+	<c:if test="${not empty errorMsgs}">
+		<font style="color: red">請修正以下錯誤:</font>
+		<ul>
+			<c:forEach var="message" items="${errorMsgs}">
+				<li style="color: red">${message}</li>
+			</c:forEach>
+		</ul>
+	</c:if>
 	<%@ include file="/back-end/backEndInclude/header.jsp"%>
 	<div class="container-fluid adopter-container">
 		<div class="row">
@@ -96,8 +96,8 @@ th, td, .pageSelect2 {
 					<div class="form-row align-items-cent er">
 						<div class="col-sm-5 my-1">
 							<input class="form-control form-control-sm" type="text"
-								name="interactionNo" placeholder="輸入互動編號">
-							<input type="hidden" name="action" value="getOne_For_Display">
+								name="interactionNo" placeholder="輸入互動編號"> <input
+								type="hidden" name="action" value="getOne_For_Display">
 						</div>
 						<div class="col-auto my-1">
 							<button type="submit" class="btn btn-primary ">搜尋</button>
@@ -124,22 +124,24 @@ th, td, .pageSelect2 {
 							<th scope="col">領養人編號</th>
 							<th scope="col">互動時段</th>
 							<th scope="col">互動模式</th>
-							<th scope="col">領養意願</th>					
+							<th scope="col">領養意願</th>
 							<th scope="col">修改</th>
-<!-- 							<th scope="col">刪除</th> -->
+							<!-- 							<th scope="col">刪除</th> -->
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="interactionVO" items="${list}" varStatus="loop"
 							begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-							
+
 							<tr>
 								<td>${interactionVO.interactionNo}</td>
 								<td>${interactionVO.petNo}</td>
-								<td>${interactionVO.adopterNo}</td>								
-								<td><fmt:formatDate value="${interactionVO.interactionDate}" pattern="yyyy-MM-dd HH:mm" /></td>
+								<td>${interactionVO.adopterNo}</td>
+								<td><fmt:formatDate
+										value="${interactionVO.interactionDate}"
+										pattern="yyyy-MM-dd HH:mm" /></td>
 								<td>${interactionVO.interactionStatus}</td>
-								<td>${interactionVO.adoptDesire}</td>								
+								<td id="adoptDesire-${loop.index}">${interactionVO.adoptDesire}</td>
 								<td>
 									<FORM METHOD="post"
 										ACTION="<%=request.getContextPath()%>/interaction/interaction.do">
@@ -148,27 +150,36 @@ th, td, .pageSelect2 {
 												<button class="btn btn-warning" type="submit"
 													id="button-addon1">修改</button>
 											</div>
-											<input type="hidden" class="form-control" name="interactionNo"
-												value="${interactionVO.interactionNo}"> <input type="hidden"
-												class="form-control" name="action" value="getOne_For_Update">
+											<input type="hidden" class="form-control"
+												name="interactionNo" value="${interactionVO.interactionNo}">
+											<input type="hidden" class="form-control" name="action"
+												value="getOne_For_Update">
 										</div>
 									</FORM>
 								</td>
-<!-- 								<td> -->
-<!-- 									<FORM METHOD="post" -->
-<%-- 										ACTION="<%=request.getContextPath()%>/interaction/interaction.do"> --%>
-<!-- 										<div class="input-group"> -->
-<!-- 											<div> -->
-<!-- 												<button class="btn btn-danger" type="submit" -->
-<!-- 													id="button-addon1">刪除</button> -->
-<!-- 											</div> -->
-<!-- 											<input type="hidden" class="form-control" name="interactionNo" -->
-<%-- 												value="${interactionVO.interactionNo}"> <input type="hidden" --%>
-<!-- 												class="form-control" name="action" value="delete"> -->
-<!-- 										</div> -->
-<!-- 									</FORM> -->
-<!-- 								</td> -->
+								<!-- 								<td> -->
+								<!-- 									<FORM METHOD="post" -->
+								<%-- 										ACTION="<%=request.getContextPath()%>/interaction/interaction.do"> --%>
+								<!-- 										<div class="input-group"> -->
+								<!-- 											<div> -->
+								<!-- 												<button class="btn btn-danger" type="submit" -->
+								<!-- 													id="button-addon1">刪除</button> -->
+								<!-- 											</div> -->
+								<!-- 											<input type="hidden" class="form-control" name="interactionNo" -->
+								<%-- 												value="${interactionVO.interactionNo}"> <input type="hidden" --%>
+								<!-- 												class="form-control" name="action" value="delete"> -->
+								<!-- 										</div> -->
+								<!-- 									</FORM> -->
+								<!-- 								</td> -->
 							</tr>
+							<script type="text/javascript">
+								if ('${interactionVO.adoptDesire}' === '0')
+									$('#adoptDesire-${loop.index}').text('');
+								else if ('${interactionVO.adoptDesire}' === '1')
+									$('#adoptDesire-${loop.index}').text('有意願');
+								else if ('${interactionVO.adoptDesire}' === '2')
+									$('#adoptDesire-${loop.index}').text('無意願');
+							</script>
 						</c:forEach>
 					</tbody>
 				</table>
@@ -178,6 +189,4 @@ th, td, .pageSelect2 {
 	</div>
 	<%@ include file="/back-end/backEndInclude/footer.jsp"%>
 </body>
-
-
 </html>

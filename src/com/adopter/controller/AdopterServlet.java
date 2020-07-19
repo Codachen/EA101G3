@@ -146,7 +146,7 @@ public class AdopterServlet extends HttpServlet {
 
 				String adopterMail = req.getParameter("adopterMail").toUpperCase();
 				if (adopterMail == null || adopterMail.trim().length() == 0) {
-					errorMsgs.add("職業: 請勿空白");
+					errorMsgs.add("信箱: 請勿空白");
 				}
 
 				AdopterVO adopterVO = new AdopterVO();
