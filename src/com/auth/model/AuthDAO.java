@@ -45,7 +45,7 @@ public class AuthDAO implements AuthDAO_interface{
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
-			pstmt.setInt(1, authVO.getEmpID());
+			pstmt.setString(1, authVO.getEmpID());
 			pstmt.setString(2, authVO.getBgFuncNo());
 
 			pstmt.executeUpdate();
@@ -84,13 +84,13 @@ public class AuthDAO implements AuthDAO_interface{
 	
 
 	@Override
-	public void delete(Integer empID) {
+	public void delete(String empID) {
 		
 		
 	}
 	
 	@Override
-	public void deleteAuth(Integer empID, String bgFuncNo) {
+	public void deleteAuth(String empID, String bgFuncNo) {
 		// TODO Auto-generated method stub
 		
 		Connection con = null;
@@ -101,7 +101,7 @@ public class AuthDAO implements AuthDAO_interface{
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETEAUTH);
 
-			pstmt.setInt(1, empID);
+			pstmt.setString(1, empID);
 			pstmt.setString(2, bgFuncNo);
 
 			pstmt.executeUpdate();
@@ -130,7 +130,7 @@ public class AuthDAO implements AuthDAO_interface{
 	}
 
 	@Override
-	public AuthVO findByPrimaryKey(Integer empID) {
+	public AuthVO findByPrimaryKey(String empID) {
 		AuthVO authVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -141,14 +141,14 @@ public class AuthDAO implements AuthDAO_interface{
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
-			pstmt.setInt(1, empID);
+			pstmt.setString(1, empID);
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				// empVo 也稱為 Domain objects
 				authVO = new AuthVO();
-				authVO.setEmpID(rs.getInt("empID"));
+				authVO.setEmpID(rs.getString("empID"));
 				authVO.setBgFuncNo(rs.getString("bgFuncNo"));
 			
 			}
@@ -200,7 +200,7 @@ public class AuthDAO implements AuthDAO_interface{
 			while (rs.next()) {
 				// empVO 也稱為 Domain objects
 				authVO = new AuthVO();
-				authVO.setEmpID(rs.getInt("empID"));
+				authVO.setEmpID(rs.getString("empID"));
 				authVO.setBgFuncNo(rs.getString("bgFuncNo"));
 				
 				list.add(authVO); // Store the row in the list
@@ -236,7 +236,7 @@ public class AuthDAO implements AuthDAO_interface{
 	}
 	
 	@Override
-	public Set<AuthVO> getAuthsByEmp(Integer empID) {
+	public Set<AuthVO> getAuthsByEmp(String empID) {
 		Set<AuthVO> set = new LinkedHashSet<AuthVO>();
 		AuthVO authVO = null;
 	
@@ -248,12 +248,12 @@ public class AuthDAO implements AuthDAO_interface{
 	
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_BY_EMPID);
-			pstmt.setInt(1, empID);
+			pstmt.setString(1, empID);
 			rs = pstmt.executeQuery();
 	
 			while (rs.next()) {
 				authVO = new AuthVO();
-				authVO.setEmpID(rs.getInt("empID"));
+				authVO.setEmpID(rs.getString("empID"));
 				authVO.setBgFuncNo(rs.getString("bgFuncNo"));
 				set.add(authVO); // Store the row in the vector
 			}

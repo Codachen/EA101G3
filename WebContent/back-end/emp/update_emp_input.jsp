@@ -11,20 +11,33 @@
 <%@ include file="/back-end/backEndInclude/head.jsp"%>
 
 <style>
+
 table {
 	width:100%;
 	margin-top: 5px;
 	margin-bottom: 5px;
 	border: 7px solid;
-	border-color:rgb(100,100,100,0.2);
+	border-color:rgb(100,100,100,1);
 	
+}
+.leftmain{
+
+float:left;
+	
+}
+.rightmain{
+margin-top: 5px;
+float:left;
+
+	border-color:rgb(100,100,100,0.2);
+
 }
 
 th {
 
 
-	text-align: right;
-	width:100px;
+	text-align:left;
+	width:120px;
 }
 
 th, td {
@@ -43,7 +56,32 @@ th, td {
 }
 
 .mainTitlehr {
-	border: 2px solid lightcoral;
+/* 	border: 2px solid lightcoral; */
+}
+.errorMsgs{
+ width:100%;
+ text-align:center;
+ background-color:rgba(240,50,30,0.9);
+ color:white;
+ box-shadow: 0px 0px 1px black;
+}
+
+.errorMsgs *{
+ font-size: 14px;
+}
+
+.spinner-border{
+display:none;
+}
+
+.star{
+color:red;
+}
+
+.preview{
+border-radius:20px;
+max-height: 500px;
+max-width: 660px;
 }
 </style>
 
@@ -68,7 +106,7 @@ th, td {
 			</c:forEach>
 		</ul>
 	</c:if>
-
+	<div class="leftmain col-6">
 	<FORM METHOD="post" ACTION="emp.do" name="form1" enctype="multipart/form-data">
 		<table class="table table-striped">
 
@@ -78,7 +116,7 @@ th, td {
 			</tr>
 			<tr>
 				<th>員工姓名</th>
-				<td><input type="TEXT" name="empName" size="10" maxlength="20"
+				<td><input type="TEXT" class="form-control" name="empName" size="10" maxlength="20"
 					value="<%=empVO.getEmpName()%>" /></td>
 			</tr>
 
@@ -94,36 +132,36 @@ th, td {
 			
 			<tr>
 				<th>Email</th>
-				<td><input type="email" name="empAcc" size="20" maxlength="30"
+				<td><input type="email" class="form-control" name="empAcc" size="20" maxlength="30"
 					value="<%=empVO.getEmpAcc()%>" /></td>
 			</tr>
 
 			<tr>
 				<th>密碼:</th>
-				<td><input type="password" name="empPwd" size="20"
+				<td><input type="password" class="form-control" name="empPwd" size="20"
 					value="<%=empVO.getEmpPwd()%>" /></td>
 			</tr>
 
 			<tr>
 				<th>生日</th>
-				<td><input name="empBirth" id="f_date1" type="text"
+				<td><input name="empBirth" class="form-control" id="f_date1" type="text"
 					value="<%=empVO.getEmpBirth()%>" /></td>
 			</tr>
 
 			<tr>
 				<th>職位</th>
-				<td><input type="TEXT" name="empJob" size="10" maxlength="6"
+				<td><input type="TEXT" class="form-control" name="empJob" size="10" maxlength="6"
 					value="<%=empVO.getEmpJob()%>" /></td>
 			</tr>
 
 			<tr>
 				<th>電話</th>
-				<td><input type="TEXT" name="empPhone" size="11" maxlength="11"
+				<td><input type="TEXT" class="form-control" name="empPhone" size="11" maxlength="11"
 					value="<%=empVO.getEmpPhone()%>" /></td>
 			</tr>
 			<tr>
 				<th>地址</th>
-				<td><input type="TEXT" name="empAddress" size="40"
+				<td><input type="TEXT" class="form-control" name="empAddress" size="40"
 					value="<%=empVO.getEmpAddress()%>" /></td>
 			</tr>
 
@@ -131,13 +169,13 @@ th, td {
 
 			<tr>
 				<th>到職日</th>
-				<td><input name="hiredate" id="f_date2" type="text"
+				<td><input name="hiredate" class="form-control" id="f_date2" type="text"
 					value="<%=empVO.getHiredate()%>" /></td>
 			</tr>
 
 			<tr>
 				<th>離職日</th>
-				<td><input name="quitdate" id="f_date3" type="text" autocomplete="off"
+				<td><input name="quitdate" class="form-control" id="f_date3" type="text" autocomplete="off"
 					value="<%=(empVO.getQuitdate()==null)?"" : empVO.getQuitdate()%>" /></td>
 			</tr>
 
@@ -145,7 +183,7 @@ th, td {
 
 			<tr>
 				<th>員工狀態</th>
-				<td><select name="empStatus">
+				<td><select name="empStatus" class="form-control">
 　						<option value="1" ${(empVO.empStatus=='1')? 'selected':''}>在職中</option>
 　						<option value="2" ${(empVO.empStatus=='2')? 'selected':''}>休假中</option>
 　						<option value="3" ${(empVO.empStatus=='3')? 'selected':''}>已離職</option>
@@ -157,11 +195,7 @@ th, td {
 			<tr>
 				<th>員工照片</th>
 				<td><input type="file" name="empPic" class="upl">
-					<div>
-						<img class="preview" style="max-width: 150px; max-height: 150px;">
-						<div class="size"></div>
-					</div>
-				<td>
+				</td>
 			</tr>
 
 		</table>
@@ -169,6 +203,14 @@ th, td {
 		<input type="hidden" name="empID" value="<%=empVO.getEmpID()%>"> 
 		<button type="submit" class="btn btn-primary">送出修改</button>
 	</FORM>
+	
+	</div>
+	
+	<div class="rightmain col-6">
+	<div style="width:100%;text-align:center;">
+						<img class="preview" style="max-height: 500px;max-width: 660px;" src="<%= request.getContextPath()%>/back-end/emp/img.do?empID=${empVO.empID}">
+						</div>
+					</div>
 	
 	
 	<%@ include file="/back-end/backEndInclude/footer.jsp"%>

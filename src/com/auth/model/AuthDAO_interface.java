@@ -9,16 +9,16 @@ public interface AuthDAO_interface {
 
 	public void update(AuthVO empVO);
 
-	public void delete(Integer empID);
+	public void delete(String empID);
 	
-	public void deleteAuth(Integer empID,String bgFuncNo);
+	public void deleteAuth(String empID,String bgFuncNo);
 
-	public AuthVO findByPrimaryKey(Integer empID);
+	public AuthVO findByPrimaryKey(String empID);
 
 	public List<AuthVO> getAll();
 	// 萬用複合查詢(傳入參數型態Map)(回傳 List)
 //  public List<EmpVO> getAll(Map<String, String[]> map); 
 	 //查詢某員工的權限(一對多)(回傳 Set)
-	public Set<AuthVO> getAuthsByEmp(Integer empID);
+	public Set<AuthVO> getAuthsByEmp(String empID);
 
 }

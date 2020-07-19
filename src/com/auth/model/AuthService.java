@@ -1,6 +1,5 @@
 package com.auth.model;
 
-import java.util.List;
 import java.util.Set;
 
 
@@ -13,7 +12,7 @@ public class AuthService {
 		dao = new AuthDAO();
 	}
 
-	public AuthVO addAuth(Integer empID,String bgFuncNo) {
+	public AuthVO addAuth(String empID,String bgFuncNo) {
 
 		AuthVO authVO = new AuthVO();
 
@@ -26,13 +25,13 @@ public class AuthService {
 
 	
 
-	public void deleteAuth(Integer empID, String bgFuncNo) {
+	public void deleteAuth(String empID, String bgFuncNo) {
 		dao.deleteAuth(empID,bgFuncNo);
 	}
 
 
 
-	public Set<AuthVO> getAll(Integer empID) {
+	public Set<AuthVO> getAll(String empID) {
 		return dao.getAuthsByEmp(empID);
 	}
 

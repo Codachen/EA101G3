@@ -140,9 +140,10 @@ font-weight:bold;
             			</c:if>
 						</c:forEach>
 <!-- 						<input type="hidden" name="docno" value="DR01">  -->
-						<input type="hidden" name="petno" value="${(apptVO.petNo==null)?'P0000':'${apptVO.petNo}'}"> 
-						<input type="hidden" name="action" value="update">
+						<input type="hidden" name="petno" value="${apptVO.petNo}"> 
 						<input type="hidden" name="requestURL" value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
+						<input type="hidden" name="action" value="update">
+						
 					</FORM></td>	
 		</tr>
 		</c:forEach>

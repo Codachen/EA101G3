@@ -2,13 +2,13 @@ package com.auth.model;
 
 public class AuthVO implements java.io.Serializable{
 	
-	private Integer empID;
+	private String empID;
 	private String bgFuncNo;
 	
-	public Integer getEmpID() {
+	public String getEmpID() {
 		return empID;
 	}
-	public void setEmpID(Integer empID) {
+	public void setEmpID(String empID) {
 		this.empID = empID;
 	}
 	public String getBgFuncNo() {
