@@ -50,16 +50,18 @@
 </style>
 </head>
 <body>
-<%@ include file="/back-end/backEndInclude/header.jsp"%>
-	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">請修正以下錯誤:</font>
-		<ul>
-			<c:forEach var="message" items="${errorMsgs}">
-				<li style="color: red">${message}</li>
-			</c:forEach>
-		</ul>
-	</c:if>
+	<%@ include file="/back-end/backEndInclude/header.jsp"%>
 	<div class="container">
+		<div class="row errorMsgs">
+			<c:if test="${not empty errorMsgs}">
+				<font style="color: red">請修正以下錯誤:</font>
+				<ul>
+					<c:forEach var="message" items="${errorMsgs}">
+						<li style="color: red">${message}</li>
+					</c:forEach>
+				</ul>
+			</c:if>
+		</div>
 		<div class="row">
 			<div class="col">
 				<form method="post"
@@ -113,12 +115,13 @@
 			</div>
 		</div>
 	</div>
-<%@ include file="/back-end/backEndInclude/footer.jsp"%>
+	<%@ include file="/back-end/backEndInclude/footer.jsp"%>
 </body>
 
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/back-end/adopt/datetimepicker/jquery.datetimepicker.css" />
-<script src="<%=request.getContextPath()%>/back-end/adopt/datetimepicker/jquery.js"></script>
+<script
+	src="<%=request.getContextPath()%>/back-end/adopt/datetimepicker/jquery.js"></script>
 <script
 	src="<%=request.getContextPath()%>/back-end/adopt/datetimepicker/jquery.datetimepicker.full.js"></script>
 

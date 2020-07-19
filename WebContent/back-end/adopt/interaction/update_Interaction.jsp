@@ -52,16 +52,19 @@
 </style>
 </head>
 <body>
-<%@ include file="/back-end/backEndInclude/header.jsp"%>
-	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">請修正以下錯誤:</font>
-		<ul>
-			<c:forEach var="message" items="${errorMsgs}">
-				<li style="color: red">${message}</li>
-			</c:forEach>
-		</ul>
-	</c:if>
+	<%@ include file="/back-end/backEndInclude/header.jsp"%>
+
 	<div class="container">
+		<div class="row errorMsgs">
+			<c:if test="${not empty errorMsgs}">
+				<font style="color: red">請修正以下錯誤:</font>
+				<ul>
+					<c:forEach var="message" items="${errorMsgs}">
+						<li style="color: red">${message}</li>
+					</c:forEach>
+				</ul>
+			</c:if>
+		</div>
 		<div class="row">
 			<div class="col">
 				<form method="post"
@@ -102,7 +105,9 @@
 					<div class="form-group row">
 						<label for="interactionDate">互動時段</label> <input type="text"
 							class="form-control" name="interactionDate" id="interactionDate"
-							value="${interactionVO.interactionDate}">
+							value='<fmt:formatDate
+										value="${interactionVO.interactionDate}"
+										pattern="yyyy-MM-dd HH:mm" />'>
 					</div>
 
 					<div class="form-group row">
@@ -115,28 +120,28 @@
 						<div class="col-2">領養狀態</div>
 						<div class="col">
 							<select class="custom-select" name="adoptDesire" id="adoptDesire">
-								<option selected id="adoptDesired4"></option>
-								<option value="0">有意願</option>
-								<option value="1">無意願</option>
-								<option value="2"></option>
+								<option selected id="adoptDesired4" value="${interactionVO.adoptDesire}"></option>
+								<option value="1">有意願</option>
+								<option value="2">無意願</option>
+								<option value="0"></option>
 							</select>
 						</div>
 						<script>
-							if ('${interactionVO.adoptDesire}' === '0') {
-								$('#adoptDesired4').attr("value", "0");
-								$('#adoptDesired4').text("有意願");
-							} else if ('${interactionVO.adoptDesire}' === '1') {
-								$('#adoptDesired4').attr("value", "1");
-								$('#adoptDesired4').text("有意願");
-							} else if ('${interactionVO.adoptDesire}' === '') {
-								$('#adoptDesired4').attr("value", "2");
-							}
+						if ('${interactionVO.adoptDesire}' === '1') {
+							$('#adoptDesired4').attr("value", "1");
+							$('#adoptDesired4').text("有意願");
+						} else if ('${interactionVO.adoptDesire}' === '2') {
+							$('#adoptDesired4').attr("value", "2");
+							$('#adoptDesired4').text("有意願");
+						} else if ('${interactionVO.adoptDesire}' === '0') {
+							$('#adoptDesired4').text("");
+						}
 						</script>
 					</div>
 					<input type="hidden" name="interactionNo"
 						value="${interactionVO.interactionNo}"> <input
 						type="hidden" name="action" value="update">
-					<div class="form-group row">
+					<div class="form-group row justify-content-center">
 						<div class="col-auto justify-content-center">
 							<button type="submit" class="btn btn-primary ">送出</button>
 						</div>
@@ -150,7 +155,8 @@
 
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/back-end/adopt/datetimepicker/jquery.datetimepicker.css" />
-<script src="<%=request.getContextPath()%>/back-end/adopt/datetimepicker/jquery.js"></script>
+<script
+	src="<%=request.getContextPath()%>/back-end/adopt/datetimepicker/jquery.js"></script>
 <script
 	src="<%=request.getContextPath()%>/back-end/adopt/datetimepicker/jquery.datetimepicker.full.js"></script>
 
@@ -178,21 +184,13 @@
 	});
 
 	var somedate1 = new Date();
-	$('#interactionDate')
-			.datetimepicker(
-					{
-						beforeShowDay : function(date) {
-							if (date.getYear() < somedate1.getYear()
-									|| (date.getYear() == somedate1.getYear() && date
-											.getMonth() < somedate1.getMonth())
-									|| (date.getYear() == somedate1.getYear()
-											&& date.getMonth() == somedate1
-													.getMonth() && date
-											.getDate() < somedate1.getDate())) {
-								return [ false, "" ]
-							}
-							return [ true, "" ];
-						}
-					});
+	$('#interactionDate').datetimepicker({
+		beforeShowDay : function(date) {
+			if (date.getYear() < somedate1.getYear() || (date.getYear() == somedate1.getYear() && date.getMonth() < somedate1.getMonth()) || (date.getYear() == somedate1.getYear() && date.getMonth() == somedate1.getMonth() && date.getDate() < somedate1.getDate())) {
+				return [ false, "" ]
+			}
+			return [ true, "" ];
+		}
+	});
 </script>
 </html>

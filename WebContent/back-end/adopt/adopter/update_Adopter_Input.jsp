@@ -53,16 +53,18 @@
 </style>
 </head>
 <body>
-<%@ include file="/back-end/backEndInclude/header.jsp"%>
-	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">請修正以下錯誤:</font>
-		<ul>
-			<c:forEach var="message" items="${errorMsgs}">
-				<li style="color: red">${message}</li>
-			</c:forEach>
-		</ul>
-	</c:if>
+	<%@ include file="/back-end/backEndInclude/header.jsp"%>
 	<div class="container">
+		<div class="row errorMsgs">
+			<c:if test="${not empty errorMsgs}">
+				<font style="color: red">請修正以下錯誤:</font>
+				<ul>
+					<c:forEach var="message" items="${errorMsgs}">
+						<li style="color: red">${message}</li>
+					</c:forEach>
+				</ul>
+			</c:if>
+		</div>
 		<div class="row">
 			<div class="col">
 				<form method="post" enctype="multipart/form-data"
@@ -96,16 +98,17 @@
 					</div>
 					<div class="form-group row">
 						<label for="adopterOccupation">職業</label> <input type="text"
-							class="form-control" name="adopterOccupation" id="adopterOccupation"
-							value="${adopterVO.adopterOccupation}">
+							class="form-control" name="adopterOccupation"
+							id="adopterOccupation" value="${adopterVO.adopterOccupation}">
 					</div>
 					<div class="form-group row">
 						<label for="adopterMail">信箱</label> <input type="email"
 							class="form-control" name="adopterMail" id="adopterMail"
 							value="${adopterVO.adopterMail}">
 					</div>
-					<input type="hidden" name="adopterNo" value="${adopterVO.adopterNo}">
-					<input type="hidden" name="action" value="update">
+					<input type="hidden" name="adopterNo"
+						value="${adopterVO.adopterNo}"> <input type="hidden"
+						name="action" value="update">
 					<div class="form-group row">
 						<div class="col text-center">
 							<button type="submit" class="btn btn-primary ">送出</button>

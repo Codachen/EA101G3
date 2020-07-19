@@ -163,7 +163,10 @@ public class InteractionServlet extends HttpServlet {
 					} else {
 						errorMsgs.add("預約時段錯誤");
 					}
+				}else {
+					errorMsgs.add("互動時段: 請勿空白");
 				}
+
 
 				String interactionStatus = req.getParameter("interactionStatus");
 
@@ -240,8 +243,10 @@ public class InteractionServlet extends HttpServlet {
 						interactionDate = new Timestamp(date.getTime());
 //						interactionDate = java.sql.Timestamp.valueOf(req.getParameter("interactionDate"));
 					} else {
-						errorMsgs.add("預約時段錯誤");
+						errorMsgs.add("互動時段錯誤");
 					}
+				}else {
+						errorMsgs.add("互動時段: 請勿空白");
 				}
 
 				String interactionStatus = req.getParameter("interactionStatus");

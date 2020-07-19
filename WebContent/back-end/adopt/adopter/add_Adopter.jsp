@@ -53,16 +53,18 @@
 </style>
 </head>
 <body>
-<%@ include file="/back-end/backEndInclude/header.jsp"%>
-	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">請修正以下錯誤:</font>
-		<ul>
-			<c:forEach var="message" items="${errorMsgs}">
-				<li style="color: red">${message}</li>
-			</c:forEach>
-		</ul>
-	</c:if>
+	<%@ include file="/back-end/backEndInclude/header.jsp"%>
 	<div class="container">
+		<div class="row errorMsgs">
+			<c:if test="${not empty errorMsgs}">
+				<font style="color: red">請修正以下錯誤:</font>
+				<ul>
+					<c:forEach var="message" items="${errorMsgs}">
+						<li style="color: red">${message}</li>
+					</c:forEach>
+				</ul>
+			</c:if>
+		</div>
 		<div class="row">
 			<div class="col">
 				<form method="post" enctype="multipart/form-data"
@@ -84,7 +86,7 @@
 						<div class="col">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="adopterGender" id="adopterGender1" value="男"> <label
+									name="adopterGender" id="adopterGender1" value="男" checked> <label
 									class="form-check-label" for="adopterGender1">男</label>
 							</div>
 							<div class="form-check form-check-inline">
@@ -96,8 +98,8 @@
 					</div>
 					<div class="form-group row">
 						<label for="adopterOccupation">職業</label> <input type="text"
-							class="form-control" name="adopterOccupation" id="adopterOccupation"
-							value="${adopterVO.adopterOccupation}">
+							class="form-control" name="adopterOccupation"
+							id="adopterOccupation" value="${adopterVO.adopterOccupation}">
 					</div>
 					<div class="form-group row">
 						<label for="adopterMail">信箱</label> <input type="text"
@@ -116,12 +118,5 @@
 	</div>
 	<%@ include file="/back-end/backEndInclude/footer.jsp"%>
 </body>
-<script>
-	var gender = '${adopterVO.adopterGender}';
-	if (gender === "男") {
-		$('#adopterGender1').attr("checked", "checked");
-	} else {
-		$('#adopterGender2').attr("checked", "checked");
-	}
-</script>
+
 </html>
