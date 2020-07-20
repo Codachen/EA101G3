@@ -19,19 +19,20 @@ public class HotelRoomPic extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-		ServletOutputStream out = res.getOutputStream();
-		res.setContentType("image/gif");
-		String petNo = req.getParameter("petNo");
-//		HttpSession session = req.getSession();
-		System.out.println("123123");
-		
-		if(req.getAttribute(petNo)==null) {
-			MemberPetService memberPetSvc = new MemberPetService();
-			MemberPetVO memberPetVO = memberPetSvc.getOneMemberPet(petNo);
-			req.setAttribute(petNo,memberPetVO.getPetPic());
+		try {
+			ServletOutputStream out = res.getOutputStream();
+			res.setContentType("image/gif");
+			String petNo = req.getParameter("petNo");
+			
+			
+			if (petNo != null) {
+				MemberPetService memberPetSvc = new MemberPetService();
+				MemberPetVO memberPetVO = memberPetSvc.getOneMemberPet(petNo);
+				out.write(memberPetVO.getPetPic());
+			}
+			
+		} catch (Exception e) {
+			System.out.println("旅館房間內無寵物");
 		}
-		out.write((byte[])req.getAttribute(petNo));
-
 	}
-
 }
