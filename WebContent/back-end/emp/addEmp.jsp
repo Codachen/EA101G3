@@ -161,7 +161,7 @@ top:100px;
 
 				<tr>
 					<th><span class="star">*</span>員工姓名</th>
-					<td><input type="TEXT" class="form-control" name="empName"
+					<td><input type="TEXT" class="form-control" name="empName" id="empName"
 						size="10" maxlength="20"
 						value="<%=(empVO == null) ? "" : empVO.getEmpName()%>" /></td>
 				</tr>
@@ -188,13 +188,13 @@ top:100px;
 
 				<tr>
 					<th><span class="star">*</span>帳號(Email)</th>
-					<td><input type="email" class="form-control" name="empAcc"
+					<td><input type="email" class="form-control" name="empAcc" id="empAcc"
 						size="20" maxlength="30"
 						value="<%=(empVO == null) ? "" : empVO.getEmpAcc()%>" /></td>
 				</tr>
 				<tr>
 					<th><span class="star">*</span>生日</th>
-					<td><input name="empBirth" id="f_date1" class="form-control"
+					<td><input name="empBirth" id="f_date1" class="form-control" 
 						type="text" autocomplete="off"
 						value="<%=(empVO == null) ? "" : ((empVO.getEmpBirth() == null) ? "" : empVO.getEmpBirth())%>" /></td>
 				</tr>
@@ -204,7 +204,7 @@ top:100px;
 					<td>
 						<!-- 					<input type="TEXT" class="form-control" name="empJob" size="20" maxlength="6" -->
 						<%-- 					value="<%=(empVO == null) ? "" : empVO.getEmpJob()%>" /> --%>
-						<select class="form-control" name="empJob">
+						<select class="form-control" name="empJob" id="empJob">
 							<option value="未選擇">未選擇</option>
 							<option value="獸醫" ${(empVO.empJob=='獸醫')? 'selected':''}>獸醫</option>
 							<option value="診所助理" ${(empVO.empJob=='診所助理')? 'selected':''}>診所助理</option>
@@ -224,13 +224,13 @@ top:100px;
 
 				<tr>
 					<th><span class="star">*</span>電話</th>
-					<td><input type="TEXT" class="form-control" name="empPhone"
+					<td><input type="TEXT" class="form-control" name="empPhone" id="empPhone"
 						size="20" maxlength="11"
 						value="<%=(empVO == null) ? "" : empVO.getEmpPhone()%>" /></td>
 				</tr>
 				<tr>
 					<th><span class="star">*</span>地址</th>
-					<td><input type="TEXT" class="form-control" name="empAddress"
+					<td><input type="TEXT" class="form-control" name="empAddress" id="empAddress"
 						size="40"
 						value="<%=(empVO == null) ? "" : empVO.getEmpAddress()%>" /></td>
 				</tr>
@@ -239,7 +239,7 @@ top:100px;
 
 				<tr>
 					<th><span class="star">*</span>到職日</th>
-					<td><input name="hiredate" class="form-control" id="f_date2"
+					<td><input name="hiredate" class="form-control" id="f_date2" 
 						type="text"></td>
 				</tr>
 
@@ -249,7 +249,7 @@ top:100px;
 					<th>員工狀態</th>
 					<td>
 						<!-- 				<input type="text" name="empStatus" size="4" --> <%-- 					value="<%=(empVO == null) ? "1" : empVO.getEmpStatus()%>" /> --%>
-						<select name="empStatus" class="form-control">
+						<select name="empStatus" class="form-control" id="empStatus">
 							<option value="1" ${(empVO.empStatus=='1')? 'selected':''}>在職中</option>
 							<option value="2" ${(empVO.empStatus=='2')? 'selected':''}>休假中</option>
 							<option value="3" ${(empVO.empStatus=='3')? 'selected':''}>已離職</option>
@@ -308,7 +308,12 @@ top:100px;
 
 			</table>
 			<br> <input type="hidden" name="action" value="insert">
-			<button type="submit" class="btn btn-primary">送出新增</button>
+			<div style="width: 100%;">
+			<button style="font-size: 20px;" type="button" id="magicBtn" class="btn btn-danger">神奇小按鈕</button>
+			<button type="submit" style="float: right;font-size: 20px;" class="btn btn-primary">送出新增</button>
+			
+			</div>
+			
 			
 <!-- 			<button type="button" class="btn btn-primary" data-toggle="modal" -->
 <!-- 				data-target="#exampleModal">Launch demo modal</button> -->
@@ -498,6 +503,16 @@ $(function (){
 			$("#form1").submit();
 
 		});
+		$('#magicBtn').click(function() {
+			$('#empName').val('喬巴');
+			$('#male').prop('checked', true);
+			$('#empAcc').val('xuanjia961121@gmail.com');
+			$('#f_date1').val('1990-12-13');
+			$('#empPhone').val('0912456789');
+			$('#empAddress').val('中壢區中央路216巷8號');
+			
+			
+		})
 	});
 
 	// 	        $("#send").click(function(){
