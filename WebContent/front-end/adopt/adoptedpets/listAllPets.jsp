@@ -264,6 +264,7 @@ main {
 				<div class="row pet-list">
 					<c:forEach var="adoptedpetsVO" items="${list}" varStatus="loop"
 						begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+						<c:if test="${adoptedpetsVO.adoptStatus == '0'}">
 						<div class="col-md-4">
 							<div class="card mb-4 shadow-sm pet-card">
 								<div
@@ -304,6 +305,7 @@ main {
 								</div>
 							</div>
 						</div>
+						</c:if>
 					</c:forEach>
 				</div>
 				<%@ include file="page2.file"%>

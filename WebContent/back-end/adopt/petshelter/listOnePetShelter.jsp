@@ -91,15 +91,14 @@ th, td, .pageSelect2 {
 						<div class="col-auto my-1">
 							<button type="submit" class="btn btn-primary ">搜尋</button>
 						</div>
-						<div class="col-auto my-1">
-							<a class="btn btn-success"
-								href="<%=request.getContextPath()%>/back-end/petshelter/add_PetShelter.jsp"
-								role="button">新增</a>
-						</div>
 					</div>
 				</form>
 			</div>
-			<div class="col-2 align-self-end"></div>
+			<div class="col-2 d-flex justify-content-end align-items-center">
+				<a class="btn btn-sm btn-outline-secondary"
+					href="<%=request.getContextPath()%>/back-end/adopt/petshelter/listAllPetShelter.jsp"
+					role="button">回管理首頁</a>
+			</div>
 		</div>
 		<div class="row">
 			<div class="col">

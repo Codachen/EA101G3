@@ -35,8 +35,9 @@
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-	crossorigin="anonymous"></script>	
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	crossorigin="anonymous"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <%@ include file="/front-end/frontEndInclude/header.jsp"%>
 
@@ -69,12 +70,14 @@ a.nav-link-sub {
 }
 
 .subnavli {
-/* 	border-left: 1px solid #8a8a90; */
+	/* 	border-left: 1px solid #8a8a90; */
 	/* 	border-right: 1px solid #8a8a90; */
+	
 }
 
 #subnavli-last {
-/* 	border-right: 1px solid #8a8a90; */
+	/* 	border-right: 1px solid #8a8a90; */
+	
 }
 
 .pet-card-img-top {
@@ -154,21 +157,30 @@ main {
 					</figure>
 				</div>
 				<div class="col-lg-3">
+					<div class="row">
 					<ul class="list-group list-group-flush text-left">
 						<li class="list-group-item">編號：${adoptedpetsVO.petNo}</li>
 						<li class="list-group-item">類型：${adoptedpetsVO.petSpecies}</li>
 						<li class="list-group-item">品種：${adoptedpetsVO.petBreed}</li>
 						<li class="list-group-item">性別：${adoptedpetsVO.petGender}</li>
 						<li class="list-group-item">收容日期：${adoptedpetsVO.adoptedDate}</li>
-
 					</ul>
+					</div>
+					<div class="row mt-5 justify-content-center">
+					<FORM METHOD="post"
+						ACTION="<%=request.getContextPath()%>/adoptedpets/adoptedpets.do">
+						<button type="submit" class="btn btn-sm btn-outline-primary">互動預約</button>
+						<input type="hidden" class="form-control" name="petNo"
+							value="${adoptedpetsVO.petNo}"><input type="hidden"
+							class="form-control" name="action"
+							value="getOneinteractionforAdd_Frontend">
+					</FORM>
+					</div>
 				</div>
 			</div>
 		</div>
-		</div>
-
 	</main>
-<%@ include file="/front-end/frontEndInclude/footer.jsp"%>
+	<%@ include file="/front-end/frontEndInclude/footer.jsp"%>
 	<script>
 		$(document).ready(
 				function() {
@@ -195,7 +207,6 @@ main {
 											"color: white !important");
 
 								}
-								
 
 							}).mouseleave(
 							function() {

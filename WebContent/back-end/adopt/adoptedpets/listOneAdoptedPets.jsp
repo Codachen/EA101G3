@@ -20,7 +20,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/back-end/backEndInclude/style.css">
-	
+
 <title>List One Adopted Pets</title>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -56,8 +56,30 @@ th, td {
 
 </head>
 <body>
-<%@ include file="/back-end/backEndInclude/header.jsp"%>
+	<%@ include file="/back-end/backEndInclude/header.jsp"%>
 	<div class="container-fluid adoptedpets-container">
+		<div class="row">
+			<div class="col-10">
+				<form method="post"
+					action="<%=request.getContextPath()%>/adoptedpets/adoptedpets.do">
+					<div class="form-row align-items-cent er">
+						<div class="col-sm-5 my-1">
+							<input class="form-control form-control-sm" type="text"
+								name="petNo" placeholder="輸入收容寵物編號"> <input
+								type="hidden" name="action" value="getOne_For_Display">
+						</div>
+						<div class="col-auto my-1">
+							<button type="submit" class="btn btn-primary ">搜尋</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="col-2 d-flex justify-content-end align-items-center">
+					<a class="btn btn-sm btn-outline-secondary"
+						href="<%=request.getContextPath()%>/back-end/adopt/adoptedpets/listAllAdoptedPets.jsp"
+						role="button">回管理首頁</a>		
+			</div>
+		</div>
 		<div class="row">
 			<div class="col">
 				<table class="table table-bordered">
