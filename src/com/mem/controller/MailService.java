@@ -14,10 +14,12 @@ import javax.mail.internet.MimeMessage;
 
 public class MailService extends Thread{
 	private String url;
+	private String text;
 	// 設定傳送郵件:至收信人的Email信箱,Email主旨,Email內容
 	
-	public MailService(String url) {
+	public MailService(String url,String text) {
 		this.url=url;
+		this.text=text;
 	}
 	
 	
@@ -48,11 +50,11 @@ public class MailService extends Thread{
 
 		   Message message = new MimeMessage(session);
 		   message.setFrom(new InternetAddress(myGmail));
-		   message.setRecipients(Message.RecipientType.TO,InternetAddress.parse("xuanjia961121@gmail.com"));	  	  
+		   message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(url));	  	  
 		   //設定信中的主旨  
 		   message.setSubject("歡迎加入萌寵家族的會員");
 		   //設定信中的內容 
-		   message.setText(url);
+		   message.setText(text);
 
 		   Transport.send(message);
 		   System.out.println("傳送成功!");
