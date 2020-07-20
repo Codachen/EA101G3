@@ -26,7 +26,7 @@
 
 
     <c:when test="${fn:length(listQueue1C)==0}">
-       <i class="fas fa-exclamation-circle"></i>今日已結束看診
+       <i class="fas fa-exclamation-circle"></i>夜診已結束
     </c:when>
     <c:otherwise>
     <c:forEach var="optVO" items="${listQueue1C}">
