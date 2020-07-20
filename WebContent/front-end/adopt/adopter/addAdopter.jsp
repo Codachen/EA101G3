@@ -6,12 +6,14 @@
 <%@ page import="java.sql.Date"%>
 <%@ page import="com.adopter.model.*"%>
 <%@ page import="com.mem.model.*"%>
-<%	
-	MemberVO member = (MemberVO)session.getAttribute("member");
-	String memNO = (String) session.getAttribute("memNO");
-	String memName = (String) session.getAttribute("memName");
-	
-	AdopterVO adoptetVO = (AdopterVO) request.getAttribute("adopterVO");
+<%
+	MemberVO member = (MemberVO) session.getAttribute("member");
+String memNO = (String) session.getAttribute("memNO");
+String memName = (String) session.getAttribute("memName");
+
+AdopterService adopterSvc = new AdopterService();
+List<AdopterVO> list = adopterSvc.getAll();
+pageContext.setAttribute("list", list);
 %>
 
 <!DOCTYPE html>
@@ -33,6 +35,7 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/front-end/frontEndIndex/style.css">
 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://kit.fontawesome.com/a559a578e4.js"
 	crossorigin="anonymous"></script>
 <script
@@ -42,8 +45,9 @@
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-	crossorigin="anonymous"></script>	
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	crossorigin="anonymous"></script>
+
+
 
 
 <!-- bootstrap、FontAwesome、googleFont -->
@@ -72,12 +76,14 @@ a.nav-link-sub {
 }
 
 .subnavli {
-/* 	border-left: 1px solid #8a8a90; */
+	/* 	border-left: 1px solid #8a8a90; */
 	/* 	border-right: 1px solid #8a8a90; */
+	
 }
 
 #subnavli-last {
-/* 	border-right: 1px solid #8a8a90; */
+	/* 	border-right: 1px solid #8a8a90; */
+	
 }
 
 .pet-card-img-top {
@@ -109,9 +115,9 @@ ul.info-list {
 	padding: 0px;
 }
 
-body{
+body {
 	font-family: 'Noto Sans TC';
-	height: 100%;	
+	height: 100%;
 	background-image: url("images/addAdopterbg2.jpg");
 	/* The image used */
 	background-color: #cccccc; /* Used if the image is unavailable */
@@ -134,61 +140,73 @@ hr {
 	font-family: 'Noto Sans TC';
 }
 
+#mailSpan {
+	display: none;
+}
 </style>
 
 </head>
 
 <body>
-<header class="bg-white">
+	<header class="bg-white">
 		<nav class="navbar navbar-expand-lg navbar-light ">
-			<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="navbar-brand ml-3">
-				Cute:)
-				<span style="color: #00E8E8;">Family</span>
+			<a
+				href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp"
+				class="navbar-brand ml-3"> Cute:) <span style="color: #00E8E8;">Family</span>
 			</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle Navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarMenu" aria-controls="navbarMenu"
+				aria-expanded="false" aria-label="Toggle Navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-		<div class="collapse navbar-collapse"></div>
-		<div class="collapse navbar-collapse" id="navbarMenu">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp" class="nav-link">首頁</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/member/member/membercenter.jsp" class="nav-link">會員專區</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp" class="nav-link">門診專區</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/Hotel/hotelIndex.jsp" class="nav-link">寵物旅館</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp" class="nav-link">寵物商城</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a href="<%=request.getContextPath()%>/front-end/adopt/adoptedpets/listAllPets.jsp" class="nav-link">領養專區</a>
-				</li>
-			</ul>
-			<div style="<%=(memNO == null) ? "visibility:hidden" : "visibility:"%>" id="loginFonts">
-				<span class="nav-link">
-				<img alt="" src="<%=request.getContextPath()%>/Puppy/pic.do?memNo=${memNO}" style="height: 50px" id="mempic">
-				 <%=memName%>您好~
-				  </span>
+			<div class="collapse navbar-collapse"></div>
+			<div class="collapse navbar-collapse" id="navbarMenu">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a
+						href="<%=request.getContextPath()%>/front-end/frontEndIndex/index.jsp"
+						class="nav-link">首頁</a></li>
+					<li class="nav-item dropdown"><a
+						href="<%=request.getContextPath()%>/front-end/member/member/membercenter.jsp"
+						class="nav-link">會員專區</a></li>
+					<li class="nav-item dropdown"><a
+						href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp"
+						class="nav-link">門診專區</a></li>
+					<li class="nav-item dropdown"><a
+						href="<%=request.getContextPath()%>/front-end/Hotel/hotelIndex.jsp"
+						class="nav-link">寵物旅館</a></li>
+					<li class="nav-item dropdown"><a
+						href="<%=request.getContextPath()%>/front-end/product/shopindex.jsp"
+						class="nav-link">寵物商城</a></li>
+					<li class="nav-item dropdown"><a
+						href="<%=request.getContextPath()%>/front-end/adopt/adoptedpets/listAllPets.jsp"
+						class="nav-link">領養專區</a></li>
+				</ul>
+				<div
+					style="<%=(memNO == null) ? "visibility:hidden" : "visibility:"%>"
+					id="loginFonts">
+					<span class="nav-link"> <img alt=""
+						src="<%=request.getContextPath()%>/Puppy/pic.do?memNo=${memNO}"
+						style="height: 50px" id="mempic"> <%=memName%>您好~
+					</span>
+				</div>
+				<a
+					href="<%=request.getContextPath()%>/front-end/member/member/addMem.jsp">
+					<button class="btn menu-right-btn border" type="button"
+						style="<%=(memNO == null) ? "display:" : "display:none"%>">註冊</button>
+				</a> <a
+					href="<%=request.getContextPath()%>/front-end/member/member/login.jsp">
+					<button class="btn menu-right-btn border" type="submit" id="login"
+						style="<%=(memNO == null) ? "display:" : "display:none"%>">登入</button>
+				</a>
+				<form class="form-inline my-2 my-lg-0"
+					action="<%=request.getContextPath()%>/Puppy/logout.do">
+					<button class="btn menu-right-btn border" type="submit" id="logout"
+						style="<%=(memNO != null) ? "display:" : "display:none"%>">登出</button>
+				</form>
 			</div>
-			<a href="<%=request.getContextPath()%>/front-end/member/member/addMem.jsp">
-				<button class="btn menu-right-btn border" type="button" style="<%=(memNO == null) ? "display:" : "display:none"%>">註冊</button>
-			</a>
-			<a href="<%=request.getContextPath()%>/front-end/member/member/login.jsp">
-				<button class="btn menu-right-btn border" type="submit" id="login" style="<%=(memNO == null) ? "display:" : "display:none"%>">登入</button>
-			</a>
-			<form class="form-inline my-2 my-lg-0" action="<%=request.getContextPath()%>/Puppy/logout.do">
-				<button class="btn menu-right-btn border" type="submit" id="logout" style="<%=(memNO != null) ? "display:" : "display:none"%>">登出</button>
-			</form>
-		</div>
-	</nav>
-</header>
+		</nav>
+	</header>
 	<main role="main">
 		<nav class="navbar navbar-expand-lg navbar-light navbar-sub-main"
 			style="background-color: #f1f3f3">
@@ -197,21 +215,22 @@ hr {
 				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div
-				class="justify-content-center collapse navbar-collapse" id="navbarNavDropdown">				
-					<ul class="navbar-nav">
-						<li class="nav-item subnavli"><a
-							class="d-flex nav-link nav-link-sub align-items-center"
-							href="<%=request.getContextPath()%>/front-end/adopt/adoptedpets/listAllPets.jsp"><i
-								class="fas fa-house-damage"></i>尋找浪浪</a></li>
-						<li class="nav-item subnavli"><a
-							class="d-flex nav-link nav-link-sub align-items-center" href="<%=request.getContextPath()%>/front-end/adopt/interaction/listInteractionByAdopter.jsp"><i
-								class="fas fa-search-plus"></i>領養互動查詢</a></li>
-						<li class="nav-item subnavli" id="subnavli-last"><a
-							class="d-flex nav-link nav-link-sub align-items-center"
-							href="<%=request.getContextPath()%>/front-end/adopt/adopter/addAdopter.jsp"><i
-								class="fas fa-user-edit"></i>領養人登記</a></li>
-					</ul>				
+			<div class="justify-content-center collapse navbar-collapse"
+				id="navbarNavDropdown">
+				<ul class="navbar-nav">
+					<li class="nav-item subnavli"><a
+						class="d-flex nav-link nav-link-sub align-items-center"
+						href="<%=request.getContextPath()%>/front-end/adopt/adoptedpets/listAllPets.jsp"><i
+							class="fas fa-house-damage"></i>尋找浪浪</a></li>
+					<li class="nav-item subnavli"><a
+						class="d-flex nav-link nav-link-sub align-items-center"
+						href="<%=request.getContextPath()%>/front-end/adopt/interaction/listInteractionByAdopter.jsp"><i
+							class="fas fa-search-plus"></i>領養互動查詢</a></li>
+					<li class="nav-item subnavli" id="subnavli-last"><a
+						class="d-flex nav-link nav-link-sub align-items-center"
+						href="<%=request.getContextPath()%>/front-end/adopt/adopter/addAdopter.jsp"><i
+							class="fas fa-user-edit"></i>領養人登記</a></li>
+				</ul>
 			</div>
 		</nav>
 		<div class="container">
@@ -246,14 +265,14 @@ hr {
 								required>
 						</div>
 						<div class="form-group row">
-							<label for="adopterMail">信箱</label> <input type="text"
+							<label for="adopterMail">信箱</label> <input type="email"
 								class="form-control" name="adopterMail" id="adopterMail"
-								value="${adopterVO.adopterMail}" required>
+								value="" required><span id="mailSpan">信箱已存在!!!</span>
 						</div>
-						<input type="hidden" name="action" value="frontendInsert" >
+						<input type="hidden" name="action" value="frontendInsert">
 						<div class="form-group row">
 							<div class="col text-center">
-								<button type="submit" class="btn btn-primary ">送出</button>
+								<button type="submit" class="btn btn-primary" id="btn-submit">送出</button>
 							</div>
 						</div>
 					</form>
@@ -267,64 +286,88 @@ hr {
 			<h5 style="color: lightseagreen;">Cute Family &copy;</h5>
 		</div>
 	</footer>
+	<div class="d-none">
+		<c:forEach var="adopterVO" items="${list}" varStatus="loop">
+			<div class="mailList" id="${adopterVO.adopterNo}">${adopterVO.adopterMail}</div>
+		</c:forEach>
+	</div>
 	<script>
-		$(document).ready(
-				function() {
-					$('li.subnavli').mouseenter(
-							function() {
+		$(document).ready(function() {
+			$('li.subnavli').mouseenter(function() {
 
-								if ($(this).index() !== 2) {
-									$(this).css({
-										"background-color" : "#fd9742c9",
-										"border-left" : "1px solid white"
-									});
-									$(this).next().css({
-										"border-left" : "1px solid white",
-									});
-									$(this).find("a").attr("style",
-											"color: white !important");
-								} else {
-									$(this).css({
-										"background-color" : "#fd9742c9",
-										"border-left" : "1px solid white",
-										"border-right" : "1px solid white"
-									});
-									$(this).find("a").attr("style",
-											"color: white !important");
+				if ($(this).index() !== 2) {
+					$(this).css({
+						"background-color" : "#fd9742c9",
+						"border-left" : "1px solid white"
+					});
+					$(this).next().css({
+						"border-left" : "1px solid white",
+					});
+					$(this).find("a").attr("style", "color: white !important");
+				} else {
+					$(this).css({
+						"background-color" : "#fd9742c9",
+						"border-left" : "1px solid white",
+						"border-right" : "1px solid white"
+					});
+					$(this).find("a").attr("style", "color: white !important");
 
-								}
+				}
 
-							}).mouseleave(
-							function() {
+			}).mouseleave(function() {
 
-								if ($(this).index() !== 2) {
-									$(this).css({
-										"background-color" : "#f1f3f3",
-										"border-left" : ""
-									});
-									$(this).next().css({
-										"border-left" : "",
-									});
-									$(this).find("a").attr("style",
-											"color: #8a8a90 !important");
-								} else {
-									$(this).css({
-										"background-color" : "#f1f3f3",
-										"border-left" : "",
-										"border-right" : ""
-									});
-									$(this).find("a").attr("style",
-											"color: #8a8a90 !important");
-								}
+				if ($(this).index() !== 2) {
+					$(this).css({
+						"background-color" : "#f1f3f3",
+						"border-left" : ""
+					});
+					$(this).next().css({
+						"border-left" : "",
+					});
+					$(this).find("a").attr("style", "color: #8a8a90 !important");
+				} else {
+					$(this).css({
+						"background-color" : "#f1f3f3",
+						"border-left" : "",
+						"border-right" : ""
+					});
+					$(this).find("a").attr("style", "color: #8a8a90 !important");
+				}
 
-							});
-					var gender = '${adopterVO.adopterGender}';
-					if (gender === "男") {
-						$('#adopterGender1').attr("checked", "checked");
+			});
+			var gender = '${adopterVO.adopterGender}';
+			if (gender === "男") {
+				$('#adopterGender1').attr("checked", "checked");
+			} else {
+				$('#adopterGender2').attr("checked", "checked");
+			}
+
+			var adopterVOArr = [];
+			var mail;
+
+			$('div.mailList').each(function(index, value) {
+				adopterVOArr[index] = $(this).text();
+			});
+
+			console.log(adopterVOArr);
+
+			$('#adopterMail').change(function() {
+				mail = $(this).val();
+				console.log(mail);
+				$.each(adopterVOArr, function(index, value) {
+					console.log(value);
+					if (mail.toUpperCase() === value) {
+						$('#mailSpan').css('display', 'inline-block');
+						$('#mailSpan').css('color', 'red');
+						$('#btn-submit').prop("disabled", true);
+						return;
 					} else {
-						$('#adopterGender2').attr("checked", "checked");
+						$('#mailSpan').css('display', 'none');
+						$('#btn-submit').prop("disabled", false);
 					}
 				});
+			});
+		});
 	</script>
 </body>
 </html>
