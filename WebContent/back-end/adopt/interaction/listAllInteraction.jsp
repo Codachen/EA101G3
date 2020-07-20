@@ -8,8 +8,8 @@
 
 <%
 	InteractionService interactionSvc = new InteractionService();
-List<InteractionVO> list = interactionSvc.getAll();
-pageContext.setAttribute("list", list);
+	List<InteractionVO> list = interactionSvc.getAll();
+	pageContext.setAttribute("list", list);
 %>
 
 
@@ -89,6 +89,16 @@ th, td, .pageSelect2 {
 	</c:if>
 	<%@ include file="/back-end/backEndInclude/header.jsp"%>
 	<div class="container-fluid adopter-container">
+		<div class="row errorMsgs">
+			<c:if test="${not empty errorMsgs}">
+				<font style="color: red">請修正以下錯誤:</font>
+				<ul>
+					<c:forEach var="message" items="${errorMsgs}">
+						<li style="color: red">${message}</li>
+					</c:forEach>
+				</ul>
+			</c:if>
+		</div>
 		<div class="row">
 			<div class="col-10">
 				<form method="post"

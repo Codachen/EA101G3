@@ -8,7 +8,12 @@
 %>
 
 <%  
-    rowNumber=list.size();
+    for(AdoptedPetsVO adoptedPetsVO: list){
+    	if(adoptedPetsVO.getAdoptStatus() == 0){
+    		rowNumber++ ;
+    	}
+    }
+    
     if (rowNumber%rowsPerPage !=0)
          pageNumber=rowNumber/rowsPerPage + 1;
     else pageNumber=rowNumber/rowsPerPage;    
