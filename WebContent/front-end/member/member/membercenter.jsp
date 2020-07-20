@@ -74,6 +74,7 @@ opacity:0.4;
 				</a>
 			</div>
 			<div class="member">
+				<a href="<%=request.getContextPath()%>/front-end/hospital/appt/listAppt.jsp">
 				<img class="centerpic" src="<%=request.getContextPath()%>/front-end/member/member/images/hosiptal.png">
 				<h2 class="member-name">診所預約</h2>
 				<span class="member-role">Clinic appointment</span>
