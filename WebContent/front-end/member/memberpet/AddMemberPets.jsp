@@ -202,8 +202,7 @@ div.uploadimg{
 							type="hidden" name="action" value="insert">
 						<div class="form-group row">
 							<div class="col-auto mx-auto input-group justify-content-center">
-								<button type="submit" class="btn btn-primary " style="margin-right:3px;">送出</button>
-								<button type="button" class="btn btn-primary" id="magicbtn"  >神奇小按鈕</button>
+								<button type="submit" class="btn btn-primary ">送出</button>
 							</div>
 							
 						</div>
@@ -240,14 +239,6 @@ div.uploadimg{
 		}
 		
 		
-		$(function(){
-		
-		$("#magicbtn").click(function(){
-			$("#petName").val("赤丸");
-			$("#petVariety").val("忍犬");
-			$("#petAge").val("2");
-		});
-	});
 	</script>
 	
 </body>
