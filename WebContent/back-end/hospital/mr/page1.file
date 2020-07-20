@@ -34,4 +34,4 @@
 
 
 
-<b>目前員工資料共<font color=lightcoral>&nbsp;<%=rowNumber%></font>筆</b>
+<b>目前診療紀錄共<font color=lightcoral>&nbsp;<%=rowNumber%></font>筆</b>
