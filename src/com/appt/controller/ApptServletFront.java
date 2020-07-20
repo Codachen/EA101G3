@@ -37,6 +37,8 @@ public class ApptServletFront extends HttpServlet {
 			
 		if ("addAppt".equals(action)) {
 			
+			
+			
 			try {	
 				
 			String sessionNo = req.getParameter("sessionNo");
@@ -70,7 +72,10 @@ public class ApptServletFront extends HttpServlet {
 	}
 		if ("insert".equals(action)) { // 來自dispOpt.jsp的請求  
         	
-			
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 
@@ -78,8 +83,14 @@ public class ApptServletFront extends HttpServlet {
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
 				String memNo = req.getParameter("memNo");
 				
-				String petNo = req.getParameter("petNo");
-							
+				String petNo = "nodata";
+				
+					petNo = req.getParameter("petNo");
+				
+					if("nodata".equals(petNo)){
+						
+					errorMsgs.add("寵物未選擇");
+				}	
 				Integer seqNo = new Integer(req.getParameter("seqNo"));
 				
 				String sessionNo = req.getParameter("sessionNo");
@@ -110,6 +121,14 @@ public class ApptServletFront extends HttpServlet {
 				apptVO.setSymdesc(symdesc);;
 				apptVO.setSymphoto(symphoto);
 				apptVO.setOptstate(optState);
+				
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("addAppt.jsp");
+					failureView.forward(req, res);
+					return;//程式中斷
+					
+				}
 				
 				/***************************2.開始新增資料***************************************/
 				ApptService apptSvc = new ApptService();
