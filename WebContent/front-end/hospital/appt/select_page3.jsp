@@ -181,11 +181,11 @@
 	 <div id="services" class="section lb">
         <div class="container">
             <div class="section-title text-center">
-               <h3>看診進度</h3>
+               <h3>看診進度 </h3>
+              <h4> 
+              早診  Afternoon 10:00~12:00 • 午診  Noon 14:00~17:00 • 夜診  Afternoon 18:00~20:00 </h4>
                 <p>為您即時顯示目前看診進度</p>
-                <p>早診  Afternoon 10:00~12:00</p>
-				<p>午診  Noon 14:00~17:00</p>
-				<p>夜診  Afternoon 18:00~20:00</p>
+                
                 	 <div id="display">
                      
                 	    </div>
