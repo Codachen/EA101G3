@@ -152,7 +152,7 @@ public class InteractionServlet extends HttpServlet {
 				if (!(req.getParameter("interactionDate").isEmpty())) {
 					String strDate = req.getParameter("interactionDate");
 					String strDateRegI = "^[0-9]{4}-[0-9]{2}-[0-9]{2} [1]{1}[13579]{1}:[0]{2}$";
-					String strDateRegII = "^[0-9]{4}-[0-9]{2}-[0-9]{2} 09:[0]{2}$";
+					String strDateRegII = "^[0-9]{4}-[0-9]{2}-[0-9]{2} [0]{1}[9]{1}:[0]{2}$";
 					System.out.println(strDate);
 					if (strDate.matches(strDateRegI) || strDate.matches(strDateRegII)) {
 						DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -234,7 +234,7 @@ public class InteractionServlet extends HttpServlet {
 				if (!(req.getParameter("interactionDate").isEmpty())) {
 					String strDate = req.getParameter("interactionDate");
 					String strDateRegI = "^[0-9]{4}-[0-9]{2}-[0-9]{2} [1]{1}[13579]{1}:[0]{2}$";
-					String strDateRegII = "^[0-9]{4}-[0-9]{2}-[0-9]{2} 09:[0]{2}$";
+					String strDateRegII = "^[0-9]{4}-[0-9]{2}-[0-9]{2} [0]{1}[9]{1}:[0]{2}$";
 					System.out.println(strDate);
 					if (strDate.matches(strDateRegI) || strDate.matches(strDateRegII)) {
 						DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -314,15 +314,21 @@ public class InteractionServlet extends HttpServlet {
 				String strTime = req.getParameter("interactionTime");
 				String strDate = strDay + " " + strTime;
 				String strDateRegI = "^[0-9]{4}-[0-9]{2}-[0-9]{2} [1]{1}[13579]{1}:[0]{2}$";
-				String strDateRegII = "^[0-9]{4}-[0-9]{2}-[0-9]{2} 09:[0]{2}$";
+				String strDateRegII = "^[0-9]{4}-[0-9]{2}-[0-9]{2} [0]{1}[9]{1}:[0]{2}$";
+				System.out.println(strDate);
+				
+				Date nowDate = new Date();
 				
 				if (strDate.matches(strDateRegI) || strDate.matches(strDateRegII)) {
 					DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-					// you can change format of date
+					// you can change format of date					
 					Date date = formatter.parse(strDate);
-					interactionDate = new Timestamp(date.getTime());
-//						interactionDate = java.sql.Timestamp.valueOf(req.getParameter("interactionDate"));
-				} else {
+					if(date.compareTo(nowDate) <= 0) {
+						errorMsgs.add("請勿選擇過去的時間");
+					}else {					
+						interactionDate = new Timestamp(date.getTime());
+					}	
+				}else {
 					errorMsgs.add("預約時段錯誤");
 				}
 

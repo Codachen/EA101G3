@@ -121,19 +121,19 @@
 						<div class="col">
 							<select class="custom-select" name="adoptDesire" id="adoptDesire">
 								<option selected id="adoptDesired4" value="${interactionVO.adoptDesire}"></option>
-								<option value="1">有意願</option>
-								<option value="2">無意願</option>
-								<option value="0"></option>
+								<option value="0">有意願</option>
+								<option value="1">無意願</option>
+								<option value="2"></option>
 							</select>
 						</div>
 						<script>
-						if ('${interactionVO.adoptDesire}' === '1') {
+						if ('${interactionVO.adoptDesire}' === '0') {
+							$('#adoptDesired4').attr("value", "0");
+							$('#adoptDesired4').text("有意願");
+						} else if ('${interactionVO.adoptDesire}' === '1') {
 							$('#adoptDesired4').attr("value", "1");
-							$('#adoptDesired4').text("有意願");
+							$('#adoptDesired4').text("無意願");
 						} else if ('${interactionVO.adoptDesire}' === '2') {
-							$('#adoptDesired4').attr("value", "2");
-							$('#adoptDesired4').text("有意願");
-						} else if ('${interactionVO.adoptDesire}' === '0') {
 							$('#adoptDesired4').text("");
 						}
 						</script>

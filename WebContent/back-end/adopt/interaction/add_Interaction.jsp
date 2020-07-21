@@ -120,7 +120,7 @@
 							class="form-control" name="adoptDesireText" id="adoptDesireText"
 							value="" readonly> <input type="hidden"
 							class="form-control" name="adoptDesire" id="adoptDesire"
-							value="0">
+							value="2">
 					</div>
 
 					<input type="hidden" name="action" value="insert">

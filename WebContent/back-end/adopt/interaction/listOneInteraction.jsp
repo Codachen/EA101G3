@@ -3,13 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.interaction.model.*"%>
+<%@ page import="com.adopter.model.*"%>
 <%@ page import="java.sql.Timestamp"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%
 	InteractionVO interactionVO = (InteractionVO) request.getAttribute("interactionVO");
 %>
-
+<jsp:useBean id="adopterSvc" scope="page" class="com.adopter.model.AdopterService" />
 
 
 <!DOCTYPE html>
@@ -120,7 +121,7 @@ th, td, .pageSelect2 {
 						<tr>
 							<td>${interactionVO.interactionNo}</td>
 							<td>${interactionVO.petNo}</td>
-							<td>${interactionVO.adopterNo}</td>
+							<td>${interactionVO.adopterNo} 【${adopterSvc.getOneAdopter(interactionVO.adopterNo).adopterName}】</td>
 							<td><fmt:formatDate value="${interactionVO.interactionDate}"
 									pattern="yyyy-MM-dd HH:mm" /></td>
 							<td>${interactionVO.interactionStatus}</td>
@@ -148,11 +149,11 @@ th, td, .pageSelect2 {
 	</div>
 	<%@ include file="/back-end/backEndInclude/footer.jsp"%>
 	<script type="text/javascript">
-		if ('${interactionVO.adoptDesire}' === '0')
+		if ('${interactionVO.adoptDesire}' === '2')
 			$('#adoptDesire').text('');
-		else if ('${interactionVO.adoptDesire}' === '1')
+		else if ('${interactionVO.adoptDesire}' === '0')
 			$('#adoptDesire').text('有意願');
-		else if ('${interactionVO.adoptDesire}' === '2')
+		else if ('${interactionVO.adoptDesire}' === '1')
 			$('#adoptDesire').text('無意願');
 	</script>
 </body>
