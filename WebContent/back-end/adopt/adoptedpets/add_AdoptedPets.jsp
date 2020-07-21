@@ -83,7 +83,9 @@
 							<select class="custom-select" name="shelterNo" id="shelterNo">
 								<option selected value="${adoptedpetsVO.shelterNo}">${adoptedpetsVO.shelterNo}</option>
 								<c:forEach var="petShelterVO" items="${petShelterSvc.all}">
-									<option value="${petShelterVO.shelterNo}"}>${petShelterVO.shelterNo}</option>
+									<c:if test="${petShelterVO.shelterStatus != '2'}">
+										<option value="${petShelterVO.shelterNo}"}>${petShelterVO.shelterNo} 有空間</option>
+									</c:if>											
 								</c:forEach>
 								<option value=""></option>
 							</select>
@@ -112,8 +114,7 @@
 						</div>
 					</div>
 					<input type="hidden" class="form-control" name="adoptDate"
-						id="adoptDate" value='${adoptedpetsVO.adoptDate}'> 
-					<input
+						id="adoptDate" value='${adoptedpetsVO.adoptDate}'> <input
 						type="hidden" class="form-control" name="interviewDate"
 						id="interviewDate" value='${adoptedpetsVO.interviewDate}'>
 					<input type="hidden" class="form-control" name="interviewInfo"
@@ -162,8 +163,11 @@
 							value="0">
 					</div>
 					<input type="hidden" name="action" value="insert">
-					<div class="form-group row">
-						<div class="col-auto mx-auto input-group justify-content-center">
+					<div class="form-group row justify-content-center">
+						<div class="col-3 mx-1 input-group justify-content-center">
+							<button type="button" class="btn btn-outline-success" id="text-btn">快速填寫</button>
+						</div>
+						<div class="col-3 mx-1 input-group justify-content-center">
 							<button type="submit" class="btn btn-primary" id="submit-btn">送出</button>
 						</div>
 					</div>
@@ -236,4 +240,10 @@
 	$("#petPic").change(function() {
 		readURL(this);
 	});
+	
+	$(document).ready(function(){
+		$('#text-btn').click(function(){
+			$('#petBreed').val('忍犬')
+		});
+	})
 </script>
