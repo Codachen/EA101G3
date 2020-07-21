@@ -234,7 +234,6 @@ box-shadow: 0px 0px 2px black;
 					</button>
 				</div>
 				<div class="modal-body">
-					<form METHOD="post" ACTION="opt.do" id="form1">
 						<div class="form-group">
 							日期
 							<p id="formDate">${optVO.optDate}</p>
@@ -250,8 +249,7 @@ box-shadow: 0px 0px 2px black;
 
 						</div>
 						<div class="form-group">
-							醫生 <select id="doctor" class="form-control form-control-sm"
-								id="docno" name="docno">
+							醫生 <select id="doctor" class="form-control form-control-sm" name="docno">
 
 							</select>
 						</div>
@@ -277,9 +275,8 @@ box-shadow: 0px 0px 2px black;
 							最大人數 <input type="text" name="maximum"
 								class="form-control form-control-sm" value="10">
 						</div>
-						<input type="hidden" name="action" value="insert"> <input
+						<input
 							type="hidden" name="optDate" value="" id="optDate">
-					</form>
 				</div>
 				<div class="errorMsgs" id="errorMsgs">
 				<%-- 錯誤表列 --%>
@@ -297,8 +294,7 @@ box-shadow: 0px 0px 2px black;
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">取消</button>
-					<button type="button" class="btn btn-primary"
-						onclick="document.getElementById('form1').submit()">新增</button>
+					<button type="button" class="btn btn-primary" id ="insertBtn">新增</button>
 				</div>
 			</div>
 		</div>
@@ -337,9 +333,55 @@ box-shadow: 0px 0px 2px black;
 		})
 		
 	})
-	$('#exampleModal').on('hidden.bs.modal', function (e) {
-		$('#errorMsgs').html('');
-	})
+// 	$('#exampleModal').on('hidden.bs.modal', function (e) {
+// 		$('#errorMsgs').html('');
+// 	})
+$('#insertBtn').click(function() {
+  alert( "Handler for .click() called." );
+		var insertDate = $('#optDate').val();
+		var insertDocno = $('#doctor').val();
+		var insertSession = '';
+		
+		$("input[type=radio]:checked").each(function () {
+			insertSession = $(this).val() ;
+		});
+		var insertMaximum = $("input[name='maximum']").val()  
+	
+// 		var tdid = 'TD'+e.id;
+// 		var docnotemp = 'docno'+e.id;
+// 		var petnotemp = 'petno'+e.id;
+
+// 		var docstr = $('#'+docnotemp).val();
+// 		var petstr = $('#'+petnotemp).val();
+		
+		console.log(insertDate);
+		console.log(insertDocno);
+		console.log(insertSession);
+		console.log(insertMaximum);
+		$.ajax({
+	        url: "opt.do",   //後端的URL
+	        type: "POST",   //用POST的方式
+	        dataType: "text",   //response的資料格式
+	        cache: false,   //是否暫存
+	        data: {action : 'insertByAjax',optDate : insertDate , docno : insertDocno , 
+	        	optSession : insertSession , maximum : insertMaximum}, //傳送給後端的資料
+	        success: function(response) {
+	        	if(response==='OK'){
+	        		console.log(response);  //成功後回傳的資料
+	        		$('#exampleModal').modal('hide');
+
+	        	}else {
+	        		console.log(response);
+	        		
+	        	}
+	            
+	            
+	        }
+	    });
+		
+});
+
+	
 </script>
 
 </html>
