@@ -164,6 +164,7 @@
 		allowTimes : [ '09:00', '11:00', '13:00', '15:00', '17:00', '19:00' ], // 設定timepicker顯示的時間   如：allowTimes:['09:00','11:00','12:00','21:00'],
 		opened : false,
 		closeOnWithoutClick : false,
+		scrollMonth : false
 	});
 
 	var somedate1 = new Date();

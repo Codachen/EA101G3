@@ -29,7 +29,7 @@
 
 <c:choose>
     <c:when test="${fn:length(listQueue3)==0}">
-       <i class="fas fa-exclamation-circle"></i>今日已結束看診
+       <i class="fas fa-exclamation-circle"></i>早診已結束
     </c:when>
     <c:otherwise>
     <c:forEach var="optVO" items="${listQueue3}">

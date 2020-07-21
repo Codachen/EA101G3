@@ -79,30 +79,17 @@
 							class="form-control" name="cleanDate" id="cleanDate"
 							value="${petShelterVO.cleanDate}">
 					</div>
+					
 					<div class="form-group row">
-						<div class="col-2">收容住所狀態</div>
-						<div class="col">
-							<select class="custom-select" name="shelterStatus"
-								id="shelterStatus">
-								<option selected id="shelterStatusd4"></option>
-								<option value="0">空住所</option>
-								<option value="1">未滿</option>
-								<option value="2">已滿</option>
-							</select>
-						</div>
-						<script>
-							if ('${petShelterVO.shelterStatus}' === '0') {
-								$('#shelterStatusd4').attr("value", "0");
-								$('#shelterStatusd4').text("空住所");
-							} else if ('${petShelterVO.shelterStatus}' === '1') {
-								$('#shelterStatusd4').attr("value", "1");
-								$('#shelterStatusd4').text("未滿");
-							} else if ('${petShelterVO.shelterStatus}' === '2') {
-								$('#shelterStatusd4').attr("value", "2");
-								$('#shelterStatusd4').text("已滿");
-							}
-						</script>
+						<label for="shelterStatusT">消毒日期</label> 
+						<input type="text"
+							class="form-control" name="shelterStatusT" id="shelterStatus"
+							value="空住所" readonly>
+						<input type="hidden"
+							class="form-control" name="shelterStatus" id="shelterStatus"
+							value="0">
 					</div>
+
 					<input type="hidden" name="shelterNo"
 						value="${petShelterVO.shelterNo}"> <input type="hidden"
 						name="action" value="insert">
@@ -142,7 +129,8 @@
 		theme : '', //theme: 'dark',
 		timepicker : false, //timepicker:true,
 		step : 1, //step: 60 (這是timepicker的預設間隔60分鐘)
-		format : 'Y-m-d', //format:'Y-m-d H:i:s',		   
+		format : 'Y-m-d', //format:'Y-m-d H:i:s',
+		scrollMonth : false
 	});
 </script>
 </html>

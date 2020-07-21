@@ -7,7 +7,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%
-	InteractionVO interactionVO= (InteractionVO) request.getAttribute("interactionVO");
+	InteractionVO interactionVO = (InteractionVO) request.getAttribute("interactionVO");
 %>
 
 
@@ -86,21 +86,19 @@ th, td, .pageSelect2 {
 					<div class="form-row align-items-cent er">
 						<div class="col-sm-5 my-1">
 							<input class="form-control form-control-sm" type="text"
-								name="interactionNo" placeholder="輸入互動編號">
-							<input type="hidden" name="action" value="getOne_For_Display">
+								name="interactionNo" placeholder="輸入互動編號"> <input
+								type="hidden" name="action" value="getOne_For_Display">
 						</div>
 						<div class="col-auto my-1">
 							<button type="submit" class="btn btn-primary ">搜尋</button>
 						</div>
-						<div class="col-auto my-1">
-							<a class="btn btn-success"
-								href="<%=request.getContextPath()%>/back-end/adopt/interaction/interaction.do"
-								role="button">新增</a>
-						</div>
 					</div>
 				</form>
 			</div>
-			<div class="col-2 align-self-end">
+			<div class="col-2 d-flex justify-content-end align-items-center">
+				<a class="btn btn-sm btn-outline-secondary"
+					href="<%=request.getContextPath()%>/back-end/adopt/interaction/listAllInteraction.jsp"
+					role="button">回管理首頁</a>
 			</div>
 		</div>
 		<div class="row">
@@ -113,48 +111,50 @@ th, td, .pageSelect2 {
 							<th scope="col">領養人編號</th>
 							<th scope="col">互動時段</th>
 							<th scope="col">互動模式</th>
-							<th scope="col">領養意願</th>					
+							<th scope="col">領養意願</th>
 							<th scope="col">修改</th>
-<!-- 							<th scope="col">刪除</th> -->
+							<!-- 							<th scope="col">刪除</th> -->
 						</tr>
 					</thead>
 					<tbody>
-							<tr>
-								<td>${interactionVO.interactionNo}</td>
-								<td>${interactionVO.petNo}</td>
-								<td>${interactionVO.adopterNo}</td>
-								<td><fmt:formatDate value="${interactionVO.interactionDate}" pattern="yyyy-MM-dd HH:mm" /></td>
-								<td>${interactionVO.interactionStatus}</td>
-								<td>${interactionVO.adoptDesire}</td>								
-								<td>
-									<FORM METHOD="post"
-										ACTION="<%=request.getContextPath()%>/interaction/interaction.do">
-										<div class="input-group">
-											<div>
-												<button class="btn btn-warning" type="submit"
-													id="button-addon1">修改</button>
-											</div>
-											<input type="hidden" class="form-control" name="interactionNo"
-												value="${interactionVO.interactionNo}"> <input type="hidden"
-												class="form-control" name="action" value="getOne_For_Update">
+						<tr>
+							<td>${interactionVO.interactionNo}</td>
+							<td>${interactionVO.petNo}</td>
+							<td>${interactionVO.adopterNo}</td>
+							<td><fmt:formatDate value="${interactionVO.interactionDate}"
+									pattern="yyyy-MM-dd HH:mm" /></td>
+							<td>${interactionVO.interactionStatus}</td>
+							<td>${interactionVO.adoptDesire}</td>
+							<td>
+								<FORM METHOD="post"
+									ACTION="<%=request.getContextPath()%>/interaction/interaction.do">
+									<div class="input-group">
+										<div>
+											<button class="btn btn-warning" type="submit"
+												id="button-addon1">修改</button>
 										</div>
-									</FORM>
-								</td>
-<!-- 								<td> -->
-<!-- 									<FORM METHOD="post" -->
-<%-- 										ACTION="<%=request.getContextPath()%>/interaction/interaction.do"> --%>
-<!-- 										<div class="input-group"> -->
-<!-- 											<div> -->
-<!-- 												<button class="btn btn-danger" type="submit" -->
-<!-- 													id="button-addon1">刪除</button> -->
-<!-- 											</div> -->
-<!-- 											<input type="hidden" class="form-control" name="interactionNo" -->
-<%-- 												value="${interactionVO.interactionNo}"> <input type="hidden" --%>
-<!-- 												class="form-control" name="action" value="delete"> -->
-<!-- 										</div> -->
-<!-- 									</FORM> -->
-<!-- 								</td> -->
-							</tr>
+										<input type="hidden" class="form-control" name="interactionNo"
+											value="${interactionVO.interactionNo}"> <input
+											type="hidden" class="form-control" name="action"
+											value="getOne_For_Update">
+									</div>
+								</FORM>
+							</td>
+							<!-- 								<td> -->
+							<!-- 									<FORM METHOD="post" -->
+							<%-- 										ACTION="<%=request.getContextPath()%>/interaction/interaction.do"> --%>
+							<!-- 										<div class="input-group"> -->
+							<!-- 											<div> -->
+							<!-- 												<button class="btn btn-danger" type="submit" -->
+							<!-- 													id="button-addon1">刪除</button> -->
+							<!-- 											</div> -->
+							<!-- 											<input type="hidden" class="form-control" name="interactionNo" -->
+							<%-- 												value="${interactionVO.interactionNo}"> <input type="hidden" --%>
+							<!-- 												class="form-control" name="action" value="delete"> -->
+							<!-- 										</div> -->
+							<!-- 									</FORM> -->
+							<!-- 								</td> -->
+						</tr>
 					</tbody>
 				</table>
 			</div>

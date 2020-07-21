@@ -80,6 +80,16 @@ th, td, .pageSelect2 {
 <body>
 	<%@ include file="/back-end/backEndInclude/header.jsp"%>
 	<div class="container-fluid adopter-container">
+		<div class="row errorMsgs">
+			<c:if test="${not empty errorMsgs}">
+				<font style="color: red">請修正以下錯誤:</font>
+				<ul>
+					<c:forEach var="message" items="${errorMsgs}">
+						<li style="color: red">${message}</li>
+					</c:forEach>
+				</ul>
+			</c:if>
+		</div>
 		<div class="row">
 			<div class="col-10">
 				<form method="post"
@@ -87,8 +97,8 @@ th, td, .pageSelect2 {
 					<div class="form-row align-items-cent er">
 						<div class="col-sm-5 my-1">
 							<input class="form-control form-control-sm" type="text"
-								name="adopterNo" placeholder="輸入領養人編號">
-							<input type="hidden" name="action" value="getOne_For_Display">
+								name="adopterNo" placeholder="輸入領養人編號"> <input
+								type="hidden" name="action" value="getOne_For_Display">
 						</div>
 						<div class="col-auto my-1">
 							<button type="submit" class="btn btn-primary ">搜尋</button>
@@ -114,9 +124,9 @@ th, td, .pageSelect2 {
 							<th scope="col">姓名</th>
 							<th scope="col">性別</th>
 							<th scope="col">職業</th>
-							<th scope="col">信箱</th>					
+							<th scope="col">信箱</th>
 							<th scope="col">修改</th>
-<!-- 							<th scope="col">刪除</th> -->
+							<!-- 							<th scope="col">刪除</th> -->
 						</tr>
 					</thead>
 					<tbody>
@@ -142,20 +152,20 @@ th, td, .pageSelect2 {
 										</div>
 									</FORM>
 								</td>
-<!-- 								<td> -->
-<!-- 									<FORM METHOD="post" -->
-<%-- 										ACTION="<%=request.getContextPath()%>/adopter/adopter.do"> --%>
-<!-- 										<div class="input-group"> -->
-<!-- 											<div> -->
-<!-- 												<button class="btn btn-danger" type="submit" -->
-<!-- 													id="button-addon1">刪除</button> -->
-<!-- 											</div> -->
-<!-- 											<input type="hidden" class="form-control" name="adopterNo" -->
-<%-- 												value="${adopterVO.adopterNo}"> <input type="hidden" --%>
-<!-- 												class="form-control" name="action" value="delete"> -->
-<!-- 										</div> -->
-<!-- 									</FORM> -->
-<!-- 								</td> -->
+								<!-- 								<td> -->
+								<!-- 									<FORM METHOD="post" -->
+								<%-- 										ACTION="<%=request.getContextPath()%>/adopter/adopter.do"> --%>
+								<!-- 										<div class="input-group"> -->
+								<!-- 											<div> -->
+								<!-- 												<button class="btn btn-danger" type="submit" -->
+								<!-- 													id="button-addon1">刪除</button> -->
+								<!-- 											</div> -->
+								<!-- 											<input type="hidden" class="form-control" name="adopterNo" -->
+								<%-- 												value="${adopterVO.adopterNo}"> <input type="hidden" --%>
+								<!-- 												class="form-control" name="action" value="delete"> -->
+								<!-- 										</div> -->
+								<!-- 									</FORM> -->
+								<!-- 								</td> -->
 							</tr>
 						</c:forEach>
 					</tbody>

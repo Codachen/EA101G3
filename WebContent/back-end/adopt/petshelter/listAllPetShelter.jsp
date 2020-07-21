@@ -7,8 +7,8 @@
 
 <%
 	PetShelterService petShelterSvc = new PetShelterService();
-List<PetShelterVO> list = petShelterSvc.getAll();
-pageContext.setAttribute("list", list);
+	List<PetShelterVO> list = petShelterSvc.getAll();
+	pageContext.setAttribute("list", list);
 %>
 
 
@@ -80,6 +80,16 @@ th, td, .pageSelect2 {
 <body>
 	<%@ include file="/back-end/backEndInclude/header.jsp"%>
 	<div class="container-fluid adopter-container">
+		<div class="row errorMsgs">
+			<c:if test="${not empty errorMsgs}">
+				<font style="color: red">請修正以下錯誤:</font>
+				<ul>
+					<c:forEach var="message" items="${errorMsgs}">
+						<li style="color: red">${message}</li>
+					</c:forEach>
+				</ul>
+			</c:if>
+		</div>
 		<div class="row">
 			<div class="col-10">
 				<form method="post"
@@ -114,7 +124,7 @@ th, td, .pageSelect2 {
 							<th scope="col">消毒日期</th>
 							<th scope="col">住所狀態</th>
 							<th scope="col">修改</th>
-<!-- 							<th scope="col">刪除</th> -->
+							<!-- 							<th scope="col">刪除</th> -->
 						</tr>
 					</thead>
 					<tbody>
@@ -139,29 +149,32 @@ th, td, .pageSelect2 {
 										</div>
 									</FORM>
 								</td>
-<!-- 								<td> -->
-<!-- 									<FORM METHOD="post" -->
-<%-- 										ACTION="<%=request.getContextPath()%>/petshelter/petshelter.do"> --%>
-<!-- 										<div class="input-group"> -->
-<!-- 											<div> -->
-<!-- 												<button class="btn btn-danger" type="submit" -->
-<!-- 													id="button-addon1">刪除</button> -->
-<!-- 											</div> -->
-<!-- 											<input type="hidden" class="form-control" name="shelterNo" -->
-<%-- 												value="${petShelterVO.shelterNo}"> <input --%>
-<!-- 												type="hidden" class="form-control" name="action" -->
-<!-- 												value="delete"> -->
-<!-- 										</div> -->
-<!-- 									</FORM> -->
-<!-- 								</td> -->
+								<!-- 								<td> -->
+								<!-- 									<FORM METHOD="post" -->
+								<%-- 										ACTION="<%=request.getContextPath()%>/petshelter/petshelter.do"> --%>
+								<!-- 										<div class="input-group"> -->
+								<!-- 											<div> -->
+								<!-- 												<button class="btn btn-danger" type="submit" -->
+								<!-- 													id="button-addon1">刪除</button> -->
+								<!-- 											</div> -->
+								<!-- 											<input type="hidden" class="form-control" name="shelterNo" -->
+								<%-- 												value="${petShelterVO.shelterNo}"> <input --%>
+								<!-- 												type="hidden" class="form-control" name="action" -->
+								<!-- 												value="delete"> -->
+								<!-- 										</div> -->
+								<!-- 									</FORM> -->
+								<!-- 								</td> -->
 							</tr>
 							<script type="text/javascript">
 								if ('${petShelterVO.shelterStatus}' === '0')
-									$('#shelterStatus-${loop.index}').text('空住所');
+									$('#shelterStatus-${loop.index}').text(
+											'空住所');
 								else if ('${petShelterVO.shelterStatus}' === '1')
-									$('#shelterStatus-${loop.index}').text('未滿');
+									$('#shelterStatus-${loop.index}')
+											.text('未滿');
 								else if ('${petShelterVO.shelterStatus}' === '2')
-									$('#shelterStatus-${loop.index}').text('已滿');
+									$('#shelterStatus-${loop.index}')
+											.text('已滿');
 							</script>
 						</c:forEach>
 					</tbody>

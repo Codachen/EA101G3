@@ -62,7 +62,7 @@ public class PetShelterServlet extends HttpServlet {
 				/*************************** 2.開始查詢資料 *****************************************/
 				PetShelterService petShelterSvc = new PetShelterService();
 				PetShelterVO petShelterVO = petShelterSvc.getOnePetShelter(shelterNo);
-				if (shelterNo == null) {
+				if (petShelterVO == null) {
 					errorMsgs.add("查無資料");
 				}
 				// Send the use back to the form, if there were errors
@@ -134,6 +134,9 @@ public class PetShelterServlet extends HttpServlet {
 				if (!(req.getParameter("cleanDate").isEmpty())) {
 					cleanDate = java.sql.Date.valueOf(req.getParameter("cleanDate"));
 				}
+				if (req.getParameter("cleanDate").isEmpty()) {
+					errorMsgs.add("消毒日期: 請勿空白");
+				}
 
 				Integer shelterStatus = new Integer(req.getParameter("shelterStatus"));
 
@@ -156,7 +159,7 @@ public class PetShelterServlet extends HttpServlet {
 
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("petShelterVO", petShelterVO); // 資料庫update成功後,正確的的petShelterVO物件,存入req
-				String url = "/back-end/adopt/petshelter/listOnePetShelter.jsp";
+				String url = "/back-end/adopt/petshelter/listAllPetShelter.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交/back-end/adopt/petshelter/listOnePetShelter.jsp
 				successView.forward(req, res);
 
@@ -184,7 +187,7 @@ public class PetShelterServlet extends HttpServlet {
 					cleanDate = java.sql.Date.valueOf(req.getParameter("cleanDate"));
 				}
 
-				Integer shelterStatus = new Integer(req.getParameter("shelterStatus"));
+				Integer shelterStatus = new Integer("0");
 
 				PetShelterVO petShelterVO = new PetShelterVO();
 				petShelterVO.setCleanDate(cleanDate);

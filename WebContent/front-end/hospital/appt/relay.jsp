@@ -31,7 +31,7 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-<meta http-equiv="refresh" content="5;url=<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp">
+<meta http-equiv="refresh" content="5;url=<%=request.getContextPath()%>/front-end/hospital/appt/listAppt.jsp">
 </head>
 <body onload="run()">
 
@@ -50,12 +50,12 @@
 			<h1>預約已成功取消!</h1>		
 			
 			<h3 class="cd-headline clip is-full-width">
-				<span><span id="spanId">5</span>秒後自動跳轉回門診主頁 </span>
+				<span><span id="spanId">5</span>秒後自動跳轉回預約查詢頁面 </span>
 				
 
 				<div class="btn-ber">
 					<a class="get_btn hvr-bounce-to-top" href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page.jsp">預約門診</a>
-					<a class="learn_btn hvr-bounce-to-top" href="<%=request.getContextPath()%>/front-end/hospital/appt/select_page3.jsp">返回首頁</a>
+					<a class="learn_btn hvr-bounce-to-top" href="<%=request.getContextPath()%>/front-end/hospital/appt/listAppt.jsp">預約查詢</a>
 				</div>
 			</h3>
 		</div>

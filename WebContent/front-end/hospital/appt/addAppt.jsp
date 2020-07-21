@@ -138,7 +138,7 @@ color:red;
 					<!-- 			暫時寫死3個科別(整合後修改) --> <c:forEach var="docVO"
 						items="${docSvc.all}">
 						<c:if test="${optVO.docNo==docVO.docno}">
-	                    ${(docVO.divno == 'D01')?'犬科':(docVO.divno == 'D02')?'貓科':'其他科'}
+	                    ${(docVO.divno == 'D01')?'貓科':(docVO.divno == 'D02')?'犬科':'其他科'}
                     </c:if>
 					</c:forEach>
 
@@ -197,14 +197,22 @@ color:red;
 					<th>選擇寵物<span class="star">*</span></th>
 					<td><select size="1" name="petNo" style="width: 247px;">
 							<%-- 					下方member.memNo的member是一個MemberVO，在原本session裡面--%>
-							<option value="">未選擇
+							<option value="nodata">未選擇
 								<c:forEach var="petVO"
 									items="${petSvc.getPetsFromThisMember(member.memNo)}">
 									<%-- 						<c:forEach var="petVO" items="${petSvc.getPetsFromThisMember('M0005')}"> --%>
 
 									<option value="${petVO.petNo}">${petVO.petName}
 								</c:forEach>
-					</select></td>
+								
+					</select>
+					<c:if test="${not empty errorMsgs}">
+
+		<c:forEach var="message" items="${errorMsgs}">
+			<span style="color:red">${message}</span>
+		</c:forEach>
+
+</c:if></td>
 				</tr>
 
 

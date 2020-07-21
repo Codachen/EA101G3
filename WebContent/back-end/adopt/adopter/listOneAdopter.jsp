@@ -90,15 +90,13 @@ th, td, .pageSelect2 {
 						<div class="col-auto my-1">
 							<button type="submit" class="btn btn-primary ">搜尋</button>
 						</div>
-						<div class="col-auto my-1">
-							<a class="btn btn-success"
-								href="<%=request.getContextPath()%>/back-end/adopter/add_Adopter.jsp"
-								role="button">新增</a>
-						</div>
 					</div>
 				</form>
 			</div>
-			<div class="col-2 align-self-end">
+			<div class="col-2 d-flex justify-content-end align-items-center">
+				<a class="btn btn-sm btn-outline-secondary"
+					href="<%=request.getContextPath()%>/back-end/adopt/adopter/listAllAdopter.jsp"
+					role="button">回管理首頁</a>
 			</div>
 		</div>
 		<div class="row">
@@ -109,48 +107,48 @@ th, td, .pageSelect2 {
 							<th scope="col">領養人編號</th>
 							<th scope="col">姓名</th>
 							<th scope="col">性別</th>
-							<th scope="col">職業</th>	
+							<th scope="col">職業</th>
 							<th scope="col">信箱</th>
 							<th scope="col">修改</th>
-<!-- 							<th scope="col">刪除</th> -->
+							<!-- 							<th scope="col">刪除</th> -->
 						</tr>
 					</thead>
 					<tbody>
-							<tr>
-								<td>${adopterVO.adopterNo}</td>
-								<td>${adopterVO.adopterName}</td>
-								<td>${adopterVO.adopterGender}</td>
-								<td>${adopterVO.adopterOccupation}</td>
-								<td>${adopterVO.adopterMail}</td>
-								<td>
-									<FORM METHOD="post"
-										ACTION="<%=request.getContextPath()%>/adopter/adopter.do">
-										<div class="input-group">
-											<div>
-												<button class="btn btn-warning" type="submit"
-													id="button-addon1">修改</button>
-											</div>
-											<input type="hidden" class="form-control" name="adopterNo"
-												value="${adopterVO.adopterNo}"> <input type="hidden"
-												class="form-control" name="action" value="getOne_For_Update">
+						<tr>
+							<td>${adopterVO.adopterNo}</td>
+							<td>${adopterVO.adopterName}</td>
+							<td>${adopterVO.adopterGender}</td>
+							<td>${adopterVO.adopterOccupation}</td>
+							<td>${adopterVO.adopterMail}</td>
+							<td>
+								<FORM METHOD="post"
+									ACTION="<%=request.getContextPath()%>/adopter/adopter.do">
+									<div class="input-group">
+										<div>
+											<button class="btn btn-warning" type="submit"
+												id="button-addon1">修改</button>
 										</div>
-									</FORM>
-								</td>
-<!-- 								<td> -->
-<!-- 									<FORM METHOD="post" -->
-<%-- 										ACTION="<%=request.getContextPath()%>/adopter/adopter.do"> --%>
-<!-- 										<div class="input-group"> -->
-<!-- 											<div> -->
-<!-- 												<button class="btn btn-danger" type="submit" -->
-<!-- 													id="button-addon1">刪除</button> -->
-<!-- 											</div> -->
-<!-- 											<input type="hidden" class="form-control" name="adopterNo" -->
-<%-- 												value="${adopterVO.adopterNo}"> <input type="hidden" --%>
-<!-- 												class="form-control" name="action" value="delete"> -->
-<!-- 										</div> -->
-<!-- 									</FORM> -->
-<!-- 								</td> -->
-							</tr>
+										<input type="hidden" class="form-control" name="adopterNo"
+											value="${adopterVO.adopterNo}"> <input type="hidden"
+											class="form-control" name="action" value="getOne_For_Update">
+									</div>
+								</FORM>
+							</td>
+							<!-- 								<td> -->
+							<!-- 									<FORM METHOD="post" -->
+							<%-- 										ACTION="<%=request.getContextPath()%>/adopter/adopter.do"> --%>
+							<!-- 										<div class="input-group"> -->
+							<!-- 											<div> -->
+							<!-- 												<button class="btn btn-danger" type="submit" -->
+							<!-- 													id="button-addon1">刪除</button> -->
+							<!-- 											</div> -->
+							<!-- 											<input type="hidden" class="form-control" name="adopterNo" -->
+							<%-- 												value="${adopterVO.adopterNo}"> <input type="hidden" --%>
+							<!-- 												class="form-control" name="action" value="delete"> -->
+							<!-- 										</div> -->
+							<!-- 									</FORM> -->
+							<!-- 								</td> -->
+						</tr>
 					</tbody>
 				</table>
 			</div>
