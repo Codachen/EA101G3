@@ -66,7 +66,7 @@
 			</td>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/Puppy/mem.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="刪除" class="btn btn-primary">
+			     <input type="submit" value="停權" class="btn btn-primary">
 			     <input type="hidden" name="memNO"  value="${memVO.memNo}">
 			     <input type="hidden" name="action" value="delete"></FORM>
 			</td>
