@@ -131,6 +131,10 @@ main {
 #loginFonts {
 	font-family: 'Noto Sans TC';
 }
+
+#login-adopter{
+	display: none;
+}
 </style>
 
 </head>
@@ -213,11 +217,16 @@ main {
 			</div>
 		</nav>
 		<div class="pet-album py-2 bg-light">
-			<div class="container">
+			<div class="container">				
 				<div class="row pet-sort-row pb-1">
+					<div class="col">
 					<a class="btn btn-outline-secondary" data-toggle="collapse"
 						href="#collapseExample" role="button" aria-expanded="false"
 						aria-controls="collapseExample">快速篩選 </a>
+						</div>
+						<div class="col-3 text-right" id="login-adopter">
+						目前領養人: ${adopterName}
+						</div>
 				</div>
 				<div class="collapse" id="collapseExample">
 					<div class="row py-3 pet-sort-row">
@@ -428,7 +437,13 @@ main {
 							
 						});
 					});
-				
+					
+					var name = '${adopterName}'; 
+					if( name == ""){
+						$('#login-adopter').css("display", "none");
+					}else{
+						$('#login-adopter').css("display", "block");
+					}
 				});
 	</script>
 
