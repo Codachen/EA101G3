@@ -124,7 +124,7 @@ th, td, .pageSelect2 {
 							<td><fmt:formatDate value="${interactionVO.interactionDate}"
 									pattern="yyyy-MM-dd HH:mm" /></td>
 							<td>${interactionVO.interactionStatus}</td>
-							<td>${interactionVO.adoptDesire}</td>
+							<td id="adoptDesire">${interactionVO.adoptDesire}</td>
 							<td>
 								<FORM METHOD="post"
 									ACTION="<%=request.getContextPath()%>/interaction/interaction.do">
@@ -140,20 +140,6 @@ th, td, .pageSelect2 {
 									</div>
 								</FORM>
 							</td>
-							<!-- 								<td> -->
-							<!-- 									<FORM METHOD="post" -->
-							<%-- 										ACTION="<%=request.getContextPath()%>/interaction/interaction.do"> --%>
-							<!-- 										<div class="input-group"> -->
-							<!-- 											<div> -->
-							<!-- 												<button class="btn btn-danger" type="submit" -->
-							<!-- 													id="button-addon1">刪除</button> -->
-							<!-- 											</div> -->
-							<!-- 											<input type="hidden" class="form-control" name="interactionNo" -->
-							<%-- 												value="${interactionVO.interactionNo}"> <input type="hidden" --%>
-							<!-- 												class="form-control" name="action" value="delete"> -->
-							<!-- 										</div> -->
-							<!-- 									</FORM> -->
-							<!-- 								</td> -->
 						</tr>
 					</tbody>
 				</table>
@@ -161,6 +147,13 @@ th, td, .pageSelect2 {
 		</div>
 	</div>
 	<%@ include file="/back-end/backEndInclude/footer.jsp"%>
-
+	<script type="text/javascript">
+		if ('${interactionVO.adoptDesire}' === '0')
+			$('#adoptDesire').text('');
+		else if ('${interactionVO.adoptDesire}' === '1')
+			$('#adoptDesire').text('有意願');
+		else if ('${interactionVO.adoptDesire}' === '2')
+			$('#adoptDesire').text('無意願');
+	</script>
 </body>
 </html>

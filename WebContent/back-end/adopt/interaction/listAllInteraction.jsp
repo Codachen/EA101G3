@@ -167,20 +167,6 @@ th, td, .pageSelect2 {
 										</div>
 									</FORM>
 								</td>
-								<!-- 								<td> -->
-								<!-- 									<FORM METHOD="post" -->
-								<%-- 										ACTION="<%=request.getContextPath()%>/interaction/interaction.do"> --%>
-								<!-- 										<div class="input-group"> -->
-								<!-- 											<div> -->
-								<!-- 												<button class="btn btn-danger" type="submit" -->
-								<!-- 													id="button-addon1">刪除</button> -->
-								<!-- 											</div> -->
-								<!-- 											<input type="hidden" class="form-control" name="interactionNo" -->
-								<%-- 												value="${interactionVO.interactionNo}"> <input type="hidden" --%>
-								<!-- 												class="form-control" name="action" value="delete"> -->
-								<!-- 										</div> -->
-								<!-- 									</FORM> -->
-								<!-- 								</td> -->
 							</tr>
 							<script type="text/javascript">
 								if ('${interactionVO.adoptDesire}' === '0')
