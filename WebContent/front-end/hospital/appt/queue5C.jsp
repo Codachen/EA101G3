@@ -19,7 +19,7 @@
         
            
 <!--        <b>設定編號日期:</b> -->
-       <input type="hidden" name="apptno" id="f_date1" type="text" autocomplete="off"><br>
+       <input type="hidden" name="optdate" id="f_date1" type="text" autocomplete="off"><br>
 
 <!--        <b>設定醫師編號:</b> -->      
   <input type="hidden" name="DOCTOR.docno" value="5">
@@ -48,7 +48,7 @@
  	       theme: '',              //theme: 'dark',
 	       timepicker:false,       //timepicker:true,
 	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
-	       format:'Ymd',         //format:'Y-m-d H:i:s',
+	       format:'Y-m-d',         //format:'Y-m-d H:i:s',
 		   value: 'new Date()',              // value:   new Date(),
            //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
            //startDate:	            '2017/07/10',  // 起始日

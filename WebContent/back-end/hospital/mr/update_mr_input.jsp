@@ -101,29 +101,29 @@ text-align: right;
 <!-- 	</tr> -->
 	<tr>
 		<td>診斷症狀</td>
-		<td><textarea name="symptom" rows="5" cols="65"><%=(mrVO==null)? "診斷症狀" : mrVO.getSymptom()%></textarea></td> 
+		<td><textarea name="symptom" id="symptom" rows="5" cols="65"><%=(mrVO.getSymptom()==null)? "請填診斷症狀" : mrVO.getSymptom()%></textarea></td> 
 	</tr>
 	<tr>
 		<td>診斷處方</td>
-		<td><textarea name="prescription" rows="5" cols="65"><%=(mrVO==null)? "診斷處方" : mrVO.getPrescription()%></textarea>
+		<td><textarea name="prescription" id="prescription"  rows="5" cols="65"><%=(mrVO.getPrescription()==null)? "請填診斷處方" : mrVO.getPrescription()%></textarea>
 		</td> 
 	</tr>
 	
 	<tr>
 		<td>預約費用</td>
-		<td><input type="TEXT" name="apptfee" size="60"
+		<td><input type="TEXT" name="apptfee" id="apptfee" size="60"
 			 value="<%=(mrVO==null)? "" : mrVO.getApptfee()%>" /></td>
 	</tr>
 	
 	<tr>
 		<td>藥品費用</td>
-		<td><input type="TEXT" name="medfee" size="60"
+		<td><input type="TEXT" name="medfee" id="medfee" size="60"
 			 value="<%=(mrVO==null)? "" : mrVO.getMedfee()%>" /></td>
 	</tr>
 	
 	<tr>
 		<td>手術費用</td>
-		<td><input type="TEXT" name="operfee" size="60"
+		<td><input type="TEXT" name="operfee" id="operfee" size="60"
 			 value="<%=(mrVO==null)? "" : mrVO.getOperfee()%>" /></td>
 	</tr>
 
@@ -132,7 +132,19 @@ text-align: right;
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="mrno" value="<%=mrVO.getMrno()%>">
 <button type="submit" class="btn btn-primary">送出修改</button></FORM>
+<button href="#" class="btn btn-success" id="addbtn" onClick="autoFill(); return false;" >神奇小按鈕</button>
 
+	
+<script type="text/javascript">
+    function autoFill() {
+    document.getElementById('symptom').value = "急性腸胃炎";
+    document.getElementById('prescription').value = "寵物益生菌、處方飼料";
+    document.getElementById('apptfee').value = "250";
+    document.getElementById('medfee').value = "800";
+    document.getElementById('operfee').value = "0";
+    }
+    
+  </script>
 	<!-- ****************************以上為實際功能頁變更區域*************************** -->
 <%@ include file="/back-end/backEndInclude/footer.jsp"%>
 
