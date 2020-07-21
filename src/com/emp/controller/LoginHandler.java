@@ -65,10 +65,10 @@ public class LoginHandler extends HttpServlet {
 					session.setAttribute("set", set);// *工作3: 把權限物件放入session
 
 					try {
-						String location = (String) session.getAttribute("location");
-						if (location != null) {
-							session.removeAttribute("location"); // *工作2: 看看有無來源網頁 (-->如有來源網頁:則重導至來源網頁)
-							res.sendRedirect(location);
+						String locationB = (String) session.getAttribute("locationB");
+						if (locationB != null) {
+							session.removeAttribute("locationB"); // *工作2: 看看有無來源網頁 (-->如有來源網頁:則重導至來源網頁)
+							res.sendRedirect(locationB);
 							return;
 						}
 					} catch (Exception ignored) {

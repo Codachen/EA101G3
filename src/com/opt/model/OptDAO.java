@@ -525,7 +525,7 @@ public class OptDAO implements OptDAO_interface {
 					"order by sessionNo";
 			
 			pstmt = con.prepareStatement(finalSQL);
-			System.out.println("finalSQL(班表複合查) = "+finalSQL);
+//			System.out.println("finalSQL(班表複合查) = "+finalSQL);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {

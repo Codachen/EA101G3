@@ -72,6 +72,62 @@
 		  var optDate =  document.getElementById('optDate');
 		  $('#optDate').val(dateStr);
     	  $('#exampleModal').modal('show');
+    	  
+    	  $('#insertBtn').click(function() {
+  			var insertDate = $('#optDate').val();
+  			var insertDocno = $('#doctor').val();
+  			var insertSession = '';
+  			
+  			$("input[type=radio]:checked").each(function () {
+  				insertSession = $(this).val() ;
+  			});
+  			var insertMaximum = $("input[name='maximum']").val()  
+  		
+  			
+  			console.log(insertDate);
+  			console.log(insertDocno);
+  			console.log(insertSession);
+  			console.log(insertMaximum);
+  			
+  			var optSession ='';
+  			if(insertSession==='10:00~12:00'){
+  				optSession = '上午';
+  			}else if(insertSession==='14:00~17:00'){
+  				optSession = '下午';
+  			}else{
+  				optSession = '晚上';
+  			}
+  			
+  			$.ajax({
+  		        url: "opt.do",   //後端的URL
+  		        type: "POST",   //用POST的方式
+  		        dataType: "text",   //response的資料格式
+  		        cache: false,   //是否暫存
+  		        data: {action : 'insertByAjax',optDate : insertDate , docno : insertDocno , 
+  		        	optSession : insertSession , maximum : insertMaximum}, //傳送給後端的資料
+  		        success: function(response) {
+  		        	if(response!=='NG'){
+  		        		console.log(response);  //成功後回傳的資料
+  		        		calendar.addEvent({
+  		        			id:response,
+  		                    title: insertDocno+' 醫師 '+optSession+' (0/'+insertMaximum+')',
+  		                    start:dateStr,
+  		                    allDay: true,
+  		                    
+  		                  });
+  		        		console.log('TEST');
+  		        		$('#exampleModal').modal('hide');
+
+  		        	}else {
+  		        		console.log(response);
+  		        		
+  		        	}
+  		            
+  		            
+  		        }
+  		    });
+  			
+  	});
 //           var title = prompt('Event Title:');
 //           if (title) {
 //             calendar.addEvent({
@@ -81,6 +137,8 @@
 //             })
 //           }
 //           calendar.unselect()
+
+
         },
         eventClick: function(arg) {
         	swal({
@@ -117,7 +175,7 @@
         		  }
         		});
         	
-        	
+
         	 
             
           },
@@ -128,6 +186,7 @@
 //       events: [{'title':123,'start':'2020-07-02'}]
 
     });
+	 
     calendar.render();
   });
   
@@ -336,50 +395,6 @@ box-shadow: 0px 0px 2px black;
 // 	$('#exampleModal').on('hidden.bs.modal', function (e) {
 // 		$('#errorMsgs').html('');
 // 	})
-$('#insertBtn').click(function() {
-  alert( "Handler for .click() called." );
-		var insertDate = $('#optDate').val();
-		var insertDocno = $('#doctor').val();
-		var insertSession = '';
-		
-		$("input[type=radio]:checked").each(function () {
-			insertSession = $(this).val() ;
-		});
-		var insertMaximum = $("input[name='maximum']").val()  
-	
-// 		var tdid = 'TD'+e.id;
-// 		var docnotemp = 'docno'+e.id;
-// 		var petnotemp = 'petno'+e.id;
-
-// 		var docstr = $('#'+docnotemp).val();
-// 		var petstr = $('#'+petnotemp).val();
-		
-		console.log(insertDate);
-		console.log(insertDocno);
-		console.log(insertSession);
-		console.log(insertMaximum);
-		$.ajax({
-	        url: "opt.do",   //後端的URL
-	        type: "POST",   //用POST的方式
-	        dataType: "text",   //response的資料格式
-	        cache: false,   //是否暫存
-	        data: {action : 'insertByAjax',optDate : insertDate , docno : insertDocno , 
-	        	optSession : insertSession , maximum : insertMaximum}, //傳送給後端的資料
-	        success: function(response) {
-	        	if(response==='OK'){
-	        		console.log(response);  //成功後回傳的資料
-	        		$('#exampleModal').modal('hide');
-
-	        	}else {
-	        		console.log(response);
-	        		
-	        	}
-	            
-	            
-	        }
-	    });
-		
-});
 
 	
 </script>
