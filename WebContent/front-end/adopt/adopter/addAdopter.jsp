@@ -8,12 +8,12 @@
 <%@ page import="com.mem.model.*"%>
 <%
 	MemberVO member = (MemberVO) session.getAttribute("member");
-String memNO = (String) session.getAttribute("memNO");
-String memName = (String) session.getAttribute("memName");
+	String memNO = (String) session.getAttribute("memNO");
+	String memName = (String) session.getAttribute("memName");
 
-AdopterService adopterSvc = new AdopterService();
-List<AdopterVO> list = adopterSvc.getAll();
-pageContext.setAttribute("list", list);
+	AdopterService adopterSvc = new AdopterService();
+	List<AdopterVO> list = adopterSvc.getAll();
+	pageContext.setAttribute("list", list);
 %>
 
 <!DOCTYPE html>
@@ -234,6 +234,16 @@ hr {
 			</div>
 		</nav>
 		<div class="container">
+			<div class="row errorMsgs">
+				<c:if test="${not empty errorMsgs}">
+					<font style="color: red">請修正以下錯誤:</font>
+					<ul>
+						<c:forEach var="message" items="${errorMsgs}">
+							<li style="color: red">${message}</li>
+						</c:forEach>
+					</ul>
+				</c:if>
+			</div>
 			<div class="row justify-content-center pb-auto">
 				<div class="col-5 d-flex justify-content-center mt-5">
 					<form method="post" enctype="multipart/form-data"
@@ -272,6 +282,10 @@ hr {
 						<input type="hidden" name="action" value="frontendInsert">
 						<div class="form-group row">
 							<div class="col text-center">
+								<button type="button" class="btn btn-outline-success"
+									id="btn-text">秒填資料</button>
+							</div>
+							<div class="col text-center">
 								<button type="submit" class="btn btn-primary" id="btn-submit">送出</button>
 							</div>
 						</div>
@@ -292,82 +306,95 @@ hr {
 		</c:forEach>
 	</div>
 	<script>
-		$(document).ready(function() {
-			$('li.subnavli').mouseenter(function() {
+		$(document).ready(
+				function() {
+					$('li.subnavli').mouseenter(
+							function() {
 
-				if ($(this).index() !== 2) {
-					$(this).css({
-						"background-color" : "#fd9742c9",
-						"border-left" : "1px solid white"
-					});
-					$(this).next().css({
-						"border-left" : "1px solid white",
-					});
-					$(this).find("a").attr("style", "color: white !important");
-				} else {
-					$(this).css({
-						"background-color" : "#fd9742c9",
-						"border-left" : "1px solid white",
-						"border-right" : "1px solid white"
-					});
-					$(this).find("a").attr("style", "color: white !important");
+								if ($(this).index() !== 2) {
+									$(this).css({
+										"background-color" : "#fd9742c9",
+										"border-left" : "1px solid white"
+									});
+									$(this).next().css({
+										"border-left" : "1px solid white",
+									});
+									$(this).find("a").attr("style",
+											"color: white !important");
+								} else {
+									$(this).css({
+										"background-color" : "#fd9742c9",
+										"border-left" : "1px solid white",
+										"border-right" : "1px solid white"
+									});
+									$(this).find("a").attr("style",
+											"color: white !important");
 
-				}
+								}
 
-			}).mouseleave(function() {
+							}).mouseleave(
+							function() {
 
-				if ($(this).index() !== 2) {
-					$(this).css({
-						"background-color" : "#f1f3f3",
-						"border-left" : ""
-					});
-					$(this).next().css({
-						"border-left" : "",
-					});
-					$(this).find("a").attr("style", "color: #8a8a90 !important");
-				} else {
-					$(this).css({
-						"background-color" : "#f1f3f3",
-						"border-left" : "",
-						"border-right" : ""
-					});
-					$(this).find("a").attr("style", "color: #8a8a90 !important");
-				}
+								if ($(this).index() !== 2) {
+									$(this).css({
+										"background-color" : "#f1f3f3",
+										"border-left" : ""
+									});
+									$(this).next().css({
+										"border-left" : "",
+									});
+									$(this).find("a").attr("style",
+											"color: #8a8a90 !important");
+								} else {
+									$(this).css({
+										"background-color" : "#f1f3f3",
+										"border-left" : "",
+										"border-right" : ""
+									});
+									$(this).find("a").attr("style",
+											"color: #8a8a90 !important");
+								}
 
-			});
-			var gender = '${adopterVO.adopterGender}';
-			if (gender === "男") {
-				$('#adopterGender1').attr("checked", "checked");
-			} else {
-				$('#adopterGender2').attr("checked", "checked");
-			}
-
-			var adopterVOArr = [];
-			var mail;
-
-			$('div.mailList').each(function(index, value) {
-				adopterVOArr[index] = $(this).text();
-			});
-
-			console.log(adopterVOArr);
-
-			$('#adopterMail').change(function() {
-				mail = $(this).val();
-				console.log(mail);
-				$.each(adopterVOArr, function(index, value) {
-					console.log(value);
-					if (mail.toUpperCase() === value) {
-						$('#mailSpan').css('display', 'inline-block');
-						$('#mailSpan').css('color', 'red');
-						$('#btn-submit').prop("disabled", true);
-						return;
+							});
+					var gender = '${adopterVO.adopterGender}';
+					if (gender === "男") {
+						$('#adopterGender1').attr("checked", "checked");
 					} else {
-						$('#mailSpan').css('display', 'none');
-						$('#btn-submit').prop("disabled", false);
+						$('#adopterGender2').attr("checked", "checked");
 					}
+
+					var adopterVOArr = [];
+					var mail;
+
+					$('div.mailList').each(function(index, value) {
+						adopterVOArr[index] = $(this).text();
+					});
+
+					console.log(adopterVOArr);
+
+					$('#adopterMail').change(function() {
+						mail = $(this).val();
+						console.log(mail);
+						$.each(adopterVOArr, function(index, value) {
+							console.log(value);
+							if (mail.toUpperCase() === value) {
+								$('#mailSpan').css('display', 'inline-block');
+								$('#mailSpan').css('color', 'red');
+								$('#btn-submit').prop("disabled", true);
+								return;
+							} else {
+								$('#mailSpan').css('display', 'none');
+								$('#btn-submit').prop("disabled", false);
+							}
+						});
+					});
+					
+					$('#btn-text').click(function(){
+						$('#adopterName').val('小傑');
+						$('#adopterOccupation').val('獵人');
+						$('#adopterMail').val('xuanjia961121@gmail.com');
+					});
 				});
-			});
-		});
 	</script>
 </body>
 </html>

@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.interaction.model.*"%>
+<%@ page import="com.adopter.model.*"%>
 <%@ page import="java.sql.Timestamp"%>
 
 <%
@@ -11,7 +12,7 @@
 	List<InteractionVO> list = interactionSvc.getAll();
 	pageContext.setAttribute("list", list);
 %>
-
+<jsp:useBean id="adopterSvc" scope="page" class="com.adopter.model.AdopterService" />
 
 
 <!DOCTYPE html>
@@ -79,14 +80,6 @@ th, td, .pageSelect2 {
 
 
 <body>
-	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">請修正以下錯誤:</font>
-		<ul>
-			<c:forEach var="message" items="${errorMsgs}">
-				<li style="color: red">${message}</li>
-			</c:forEach>
-		</ul>
-	</c:if>
 	<%@ include file="/back-end/backEndInclude/header.jsp"%>
 	<div class="container-fluid adopter-container">
 		<div class="row errorMsgs">
@@ -136,7 +129,6 @@ th, td, .pageSelect2 {
 							<th scope="col">互動模式</th>
 							<th scope="col">領養意願</th>
 							<th scope="col">修改</th>
-							<!-- 							<th scope="col">刪除</th> -->
 						</tr>
 					</thead>
 					<tbody>
@@ -146,7 +138,7 @@ th, td, .pageSelect2 {
 							<tr>
 								<td>${interactionVO.interactionNo}</td>
 								<td>${interactionVO.petNo}</td>
-								<td>${interactionVO.adopterNo}</td>
+								<td>${interactionVO.adopterNo} 【${adopterSvc.getOneAdopter(interactionVO.adopterNo).adopterName}】</td>
 								<td><fmt:formatDate
 										value="${interactionVO.interactionDate}"
 										pattern="yyyy-MM-dd HH:mm" /></td>
@@ -169,11 +161,11 @@ th, td, .pageSelect2 {
 								</td>
 							</tr>
 							<script type="text/javascript">
-								if ('${interactionVO.adoptDesire}' === '0')
+								if ('${interactionVO.adoptDesire}' === '2')
 									$('#adoptDesire-${loop.index}').text('');
-								else if ('${interactionVO.adoptDesire}' === '1')
+								else if ('${interactionVO.adoptDesire}' === '0')
 									$('#adoptDesire-${loop.index}').text('有意願');
-								else if ('${interactionVO.adoptDesire}' === '2')
+								else if ('${interactionVO.adoptDesire}' === '1')
 									$('#adoptDesire-${loop.index}').text('無意願');
 							</script>
 						</c:forEach>

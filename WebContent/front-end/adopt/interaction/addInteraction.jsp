@@ -7,8 +7,8 @@
 <%@ page import="com.mem.model.*"%>
 <%
 	MemberVO member = (MemberVO) session.getAttribute("member");
-String memNO = (String) session.getAttribute("memNO");
-String memName = (String) session.getAttribute("memName");
+	String memNO = (String) session.getAttribute("memNO");
+	String memName = (String) session.getAttribute("memName");
 %>
 
 <%
@@ -56,9 +56,8 @@ String memName = (String) session.getAttribute("memName");
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>	
-	
+<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
+
 <!-- FullCalendar -->
 <script
 	src="<%=request.getContextPath()%>/front-end/adopt/fullcalendar-scheduler-5.1.0/lib/main.js"></script>
@@ -77,6 +76,7 @@ String memName = (String) session.getAttribute("memName");
 				var clickDate = moment(info.dateStr, 'yyyy-MM-DD');
 					
 				if(clickDate.isBefore(nowDate)){
+					alert('時間不能倒退，請選擇未來的時段吧！')
 					return false;
 				}else{
 				
@@ -197,10 +197,10 @@ div.interactionTime-row {
 }
 
 .m-5 {
-    margin-top: 10rem !important;
-    margin-right: auto !important;
-    margin-bottom: 10rem !important;
-    margin-left: auto !important;
+	margin-top: 10rem !important;
+	margin-right: auto !important;
+	margin-bottom: 10rem !important;
+	margin-left: auto !important;
 }
 </style>
 
@@ -238,7 +238,7 @@ div.interactionTime-row {
 										aria-label="Toolbar with button groups">
 										<div class="btn-group mr-2" role="group"
 											aria-label="First group">
-											<button type="button" class="btn btn-warning">9:00</button>
+											<button type="button" class="btn btn-warning interactionTime-btn">09:00</button>
 										</div>
 										<div class="btn-group mr-2" role="group"
 											aria-label="Second group">
@@ -406,6 +406,16 @@ div.interactionTime-row {
 						</div>
 
 
+					</div>
+					<div class="row errorMsgs justify-content-center">
+						<c:if test="${not empty errorMsgs}">
+							<font style="color: red">請修正以下錯誤:</font>
+							<ul>
+								<c:forEach var="message" items="${errorMsgs}">
+									<li style="color: red">${message}</li>
+								</c:forEach>
+							</ul>
+						</c:if>
 					</div>
 				</div>
 				<div class="col-lg-6 mt-3">
