@@ -66,7 +66,7 @@
 										</div>
 										<div class="col-md-4">
 											<div class="form-group"><label for="form_need">地址</label> 
-											<input type="text" class="form-control" placeholder="輸入地址" name="road" required>
+											<input  id="road" type="text" class="form-control" placeholder="輸入地址" name="road" required>
 											</div>
 										</div>
 										<div class="col-md-6">
@@ -126,6 +126,7 @@
 												$("#mymonth").val("12");
 												$("#myyear").val("2024");
 												$("#mynum").val("238");
+												$("#road").val("中大路2000號");
 											});
 										});
 									</script>
