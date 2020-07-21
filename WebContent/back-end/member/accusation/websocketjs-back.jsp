@@ -11,8 +11,8 @@
 			</div>
 			<div class="chat-body" style="display:none;">
 				<div class="msg-insert" id="messagesArea">
-  <div class="msg-send" id="msgsend"> Send message </div>
-  <div class="msg-receive" id="msgrec"> Received message </div>
+  <div class="msg-send" id="msgsend">  </div>
+  <div class="msg-receive" id="msgrec">  </div>
 </div>
 				<div class="chat-text" >
 					<textarea placeholder="Send" id="message" onkeydown="if (event.keyCode == 13) sendMessage();"></textarea>

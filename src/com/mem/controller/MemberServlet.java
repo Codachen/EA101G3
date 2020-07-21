@@ -433,9 +433,14 @@ public class MemberServlet extends HttpServlet{
 				}
 				
 				String phone = req.getParameter("phone").trim();
-				if (phone == null || phone.trim().length() == 0) {
+				if (phone == null || phone.trim().length() == 0 ) {
 					errorMsgs.add("手機號碼請勿空白");
 				}
+				
+				if (phone.length() > 10 ) {
+					errorMsgs.add("手機號碼不能超過10位數");
+				}
+				
 				
 				String email = req.getParameter("email").trim();
 				if (email == null || email.trim().length() == 0) {

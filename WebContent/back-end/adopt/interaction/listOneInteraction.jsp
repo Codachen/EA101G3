@@ -125,6 +125,7 @@ th, td, .pageSelect2 {
 									pattern="yyyy-MM-dd HH:mm" /></td>
 							<td>${interactionVO.interactionStatus}</td>
 							<td id="adoptDesire">${interactionVO.adoptDesire}</td>
+
 							<td>
 								<FORM METHOD="post"
 									ACTION="<%=request.getContextPath()%>/interaction/interaction.do">
@@ -140,7 +141,6 @@ th, td, .pageSelect2 {
 									</div>
 								</FORM>
 							</td>
-						</tr>
 					</tbody>
 				</table>
 			</div>
