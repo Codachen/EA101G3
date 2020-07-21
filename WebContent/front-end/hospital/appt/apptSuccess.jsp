@@ -102,7 +102,7 @@ th, td {
 						<!-- 			暫時寫死3個科別(整合後修改) --> <c:forEach var="docVO"
 							items="${docSvc.all}">
 							<c:if test="${optVO.docNo==docVO.docno}">
-	                    ${(docVO.divno == 'D01')?'犬科':(docVO.divno == 'D02')?'貓科':'其他科'}
+	                    ${(docVO.divno == 'D01')?'貓科':(docVO.divno == 'D02')?'犬科':'其他科'}
                     </c:if>
 						</c:forEach>
 

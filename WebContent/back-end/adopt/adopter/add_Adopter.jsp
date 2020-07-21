@@ -3,13 +3,10 @@
 <%@ page import="com.adopter.model.*"%>
 
 <%
-	AdopterVO adoptetVO = (AdopterVO) request.getAttribute("adopterVO");
+	AdopterService adopterSvc = new AdopterService();
+List<AdopterVO> list = adopterSvc.getAll();
+pageContext.setAttribute("list", list);
 %>
-
-<jsp:useBean id="petShelterSvc" scope="page"
-	class="com.petshelter.model.PetShelterService" />
-<jsp:useBean id="adopterSvc" scope="page"
-	class="com.adopter.model.AdopterService" />
 
 <!DOCTYPE html>
 <html>
@@ -50,6 +47,9 @@
 .col-2, .col-3 {
 	padding-left: 0px;
 }
+#mailSpan{
+	display: none;
+}
 </style>
 </head>
 <body>
@@ -86,8 +86,8 @@
 						<div class="col">
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
-									name="adopterGender" id="adopterGender1" value="男" checked> <label
-									class="form-check-label" for="adopterGender1">男</label>
+									name="adopterGender" id="adopterGender1" value="男" checked>
+								<label class="form-check-label" for="adopterGender1">男</label>
 							</div>
 							<div class="form-check form-check-inline">
 								<input class="form-check-input" type="radio"
@@ -104,12 +104,12 @@
 					<div class="form-group row">
 						<label for="adopterMail">信箱</label> <input type="text"
 							class="form-control" name="adopterMail" id="adopterMail"
-							value="${adopterVO.adopterMail}">
+							value=""><span id="mailSpan">信箱已存在!!!</span>
 					</div>
 					<input type="hidden" name="action" value="insert">
 					<div class="form-group row">
 						<div class="col text-center">
-							<button type="submit" class="btn btn-primary ">送出</button>
+							<button type="submit" class="btn btn-primary" id="btn-submit">送出</button>
 						</div>
 					</div>
 				</form>
@@ -117,6 +117,42 @@
 		</div>
 	</div>
 	<%@ include file="/back-end/backEndInclude/footer.jsp"%>
+	<div class="d-none">
+		<c:forEach var="adopterVO" items="${list}" varStatus="loop">
+			<div class="mailList" id="${adopterVO.adopterNo}">${adopterVO.adopterMail}</div>
+		</c:forEach>
+	</div>
 </body>
 
+<script>
+	$(document).ready(function() {
+		var adopterVOArr = [];
+		var mail;
+		
+		$('div.mailList').each(function(index, value) {
+			adopterVOArr[index] = $(this).text();
+		});
+		
+		console.log(adopterVOArr);
+		
+		$('#adopterMail').change(function() {
+			mail = $(this).val();
+			console.log(mail);
+			$.each(adopterVOArr, function(index, value) {
+				console.log(value);
+				if (mail.toUpperCase() === value) {					
+					$('#mailSpan').css('display', 'inline-block');
+					$('#mailSpan').css('color', 'red');
+					$('#btn-submit').prop("disabled", true);
+					return;
+				}else{
+					$('#mailSpan').css('display', 'none');
+					$('#btn-submit').prop("disabled", false);
+				}
+			});
+		});
+		
+
+	})
+</script>
 </html>

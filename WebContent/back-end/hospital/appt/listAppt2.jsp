@@ -124,26 +124,28 @@ font-weight:bold;
 		
 <%-- 			<img src="<%= request.getContextPath()%>/back-end/hospital/appt/img.do?apptno=${apptVO.apptno}"> --%>
 			</td>
-			<td id="TD${apptVO.apptno}">${(apptVO.optstate =='0')?'<font color="goldenrod">未看診':(apptVO.optstate =='1')?'<font color="green">已看診':'<font color="red">已取消'}</td>
-			<td style="padding-top:23px">
-				
+			<td>${(apptVO.optstate =='0')?'<font color="goldenrod">未看診':(apptVO.optstate =='1')?'<font color="green">已看診':'<font color="red">已取消'}</td>
+			<td style="padding-top:23px"><FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/hospital/appt/appt.do"
+						style="margin-bottom: 0px;">
 						<c:if test="${apptVO.optstate =='0'}">
-						<button type="button" class="btn btn-success" onclick="update(this)" id='${apptVO.apptno}'>看診完畢</button>
+						<button type="submit" class="btn btn-success">看診完畢</button>
                     	</c:if>
                     	<c:if test="${apptVO.optstate !='0'}">
-	                    <button type="button" class="btn btn-secondary" disabled>看診完畢</button>
+	                    <button type="submit" class="btn btn-secondary" disabled>看診完畢</button>
                     	</c:if>
 						<jsp:useBean id="docSvc" scope="page" class="com.doc.model.DocService" />
 						<input type="hidden" name="apptno" value="${apptVO.apptno}"> 
 						<c:forEach var="docVO" items="${docSvc.all}">
 						<c:if test="${docVO.docname==apptVO.docname}">
-						<input type="hidden" name="docno" value="${docVO.docno}" id='docno${apptVO.apptno}'>
+						<input type="hidden" name="docno" value="${docVO.docno}">
             			</c:if>
 						</c:forEach>
 <!-- 						<input type="hidden" name="docno" value="DR01">  -->
-						<input type="hidden" name="petno" value="${apptVO.petNo}" id='petno${apptVO.apptno}'> 
+						<input type="hidden" name="petno" value="${apptVO.petNo}"> 
+						<input type="hidden" name="requestURL" value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
+						<input type="hidden" name="action" value="update">
 						
-					</td>	
+					</FORM></td>	
 		</tr>
 		</c:forEach>
 	</table>
@@ -165,18 +167,17 @@ font-weight:bold;
 	
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearImg()">Close</button>
       </div>
     </div>
   </div>
 </div>
 
 
-<%-- ACTION="<%=request.getContextPath()%>/back-end/hospital/appt/appt.do" --%>
+
 </body>
 
 <script type="text/javascript">
-
 function getDetail(get){
 	var temp = get.id;
 	
@@ -201,43 +202,11 @@ xhr.onload = function() {
 xhr.send();
 }
 
-function update(e) {
-// 	alert(e.id)
-	var temp = e.id;
-	var tdid = 'TD'+e.id;
-	var docnotemp = 'docno'+e.id;
-	var petnotemp = 'petno'+e.id;
 
-	var docstr = $('#'+docnotemp).val();
-	var petstr = $('#'+petnotemp).val();
 	
-	console.log(tdid);
-	console.log(docstr);
-	console.log(petstr);
-	$.ajax({
-        url: "appt.do",   //後端的URL
-        type: "POST",   //用POST的方式
-        dataType: "text",   //response的資料格式
-        cache: false,   //是否暫存
-        data: {action : 'updateAjax',apptno : temp , docno : docstr , petno : petstr}, //傳送給後端的資料
-        success: function(response) {
-        	if(response==='OK'){
-        		console.log(response);  //成功後回傳的資料
-        		$(e).attr('disabled', true);
-        		$(e).removeClass("btn btn-success" ).addClass("btn btn-secondary");//改變按鈕狀太，改變CLASS
-        		$('#'+tdid).html('');//清除看診狀態
-        		$('#'+tdid).append('<font color="green">已看診');//替換看診狀態
-        	}
-            
-//         	alert(response);
-//             $('#demo').html(response);
-            
-        }
-    });
-	
-}
-	
+// 	function clearImg(){
 
+// 		var img = document.getElementsByClassName('test');
 		
 		$('#exampleModal').on('hidden.bs.modal', function (e) {
 			document.getElementById('modal-body').removeChild(document.getElementById('img'));

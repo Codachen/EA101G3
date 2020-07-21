@@ -198,7 +198,7 @@ label, h1 {
 
 <script>
 	function insertValue() {
-		$('#name').val('鳴人');
+		$('#name').val('小傑');
 		$('#cardnumber').val('4984014121389556');
 		$('#expirationdate').val('12/11');
 		$('#securitycode').val('750');
