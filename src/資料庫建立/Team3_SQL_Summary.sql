@@ -708,14 +708,14 @@ INSERT INTO OPTSESSION VALUES (OPTSESSION_SEQ.NEXTVAL,'DR04',TO_DATE('2020-07-31
 
 ----------for 預約門診假資料------------
 INSERT INTO APPOINTMENT VALUES (to_char('20200723')||'-'||LPAD(to_char(APPOINTMENT_SEQ.NEXTVAL),6,'0'),'M0002','P0002','28','1','嘔吐、腹瀉',load_blob('appt1.jpg'),'1');
-INSERT INTO APPOINTMENT VALUES (to_char('20200723')||'-'||LPAD(to_char(APPOINTMENT_SEQ.NEXTVAL),6,'0'),'M0003','P0003','28','2','食慾不振',load_blob('appt2.jpg'),'1');
-INSERT INTO APPOINTMENT VALUES (to_char('20200723')||'-'||LPAD(to_char(APPOINTMENT_SEQ.NEXTVAL),6,'0'),'M0005','P0005','28','3','呼吸急促',load_blob('appt3.jpg'),'1');
-INSERT INTO APPOINTMENT VALUES (to_char('20200723')||'-'||LPAD(to_char(APPOINTMENT_SEQ.NEXTVAL),6,'0'),'M0007','P0007','28','4','精神萎靡',load_blob('appt4.jpg'),'1');
-INSERT INTO APPOINTMENT VALUES (to_char('20200723')||'-'||LPAD(to_char(APPOINTMENT_SEQ.NEXTVAL),6,'0'),'M0004','P0004','28','5','擦傷',load_blob('appt5.jpg'),'1');
-INSERT INTO APPOINTMENT VALUES (to_char('20200723')||'-'||LPAD(to_char(APPOINTMENT_SEQ.NEXTVAL),6,'0'),'M0002','P0002','28','6','嘔吐、腹瀉',load_blob('appt1.jpg'),'1');
-INSERT INTO APPOINTMENT VALUES (to_char('20200723')||'-'||LPAD(to_char(APPOINTMENT_SEQ.NEXTVAL),6,'0'),'M0003','P0003','28','7','食慾不振',load_blob('appt2.jpg'),'1');
-INSERT INTO APPOINTMENT VALUES (to_char('20200723')||'-'||LPAD(to_char(APPOINTMENT_SEQ.NEXTVAL),6,'0'),'M0005','P0005','28','8','呼吸急促',load_blob('appt3.jpg'),'1');
-INSERT INTO APPOINTMENT VALUES (to_char('20200723')||'-'||LPAD(to_char(APPOINTMENT_SEQ.NEXTVAL),6,'0'),'M0007','P0007','28','9','精神萎靡',load_blob('appt4.jpg'),'1');
+INSERT INTO APPOINTMENT VALUES (to_char('20200723')||'-'||LPAD(to_char(APPOINTMENT_SEQ.NEXTVAL),6,'0'),'M0003','P0003','28','2','食慾不振',load_blob('appt2.jpg'),'0');
+INSERT INTO APPOINTMENT VALUES (to_char('20200723')||'-'||LPAD(to_char(APPOINTMENT_SEQ.NEXTVAL),6,'0'),'M0005','P0005','28','3','呼吸急促',load_blob('appt3.jpg'),'0');
+INSERT INTO APPOINTMENT VALUES (to_char('20200723')||'-'||LPAD(to_char(APPOINTMENT_SEQ.NEXTVAL),6,'0'),'M0007','P0007','28','4','精神萎靡',load_blob('appt4.jpg'),'0');
+INSERT INTO APPOINTMENT VALUES (to_char('20200723')||'-'||LPAD(to_char(APPOINTMENT_SEQ.NEXTVAL),6,'0'),'M0004','P0004','28','5','擦傷',load_blob('appt5.jpg'),'0');
+INSERT INTO APPOINTMENT VALUES (to_char('20200723')||'-'||LPAD(to_char(APPOINTMENT_SEQ.NEXTVAL),6,'0'),'M0002','P0002','28','6','嘔吐、腹瀉',load_blob('appt1.jpg'),'0');
+INSERT INTO APPOINTMENT VALUES (to_char('20200723')||'-'||LPAD(to_char(APPOINTMENT_SEQ.NEXTVAL),6,'0'),'M0003','P0003','28','7','食慾不振',load_blob('appt2.jpg'),'0');
+INSERT INTO APPOINTMENT VALUES (to_char('20200723')||'-'||LPAD(to_char(APPOINTMENT_SEQ.NEXTVAL),6,'0'),'M0005','P0005','28','8','呼吸急促',load_blob('appt3.jpg'),'0');
+INSERT INTO APPOINTMENT VALUES (to_char('20200723')||'-'||LPAD(to_char(APPOINTMENT_SEQ.NEXTVAL),6,'0'),'M0007','P0007','28','9','精神萎靡',load_blob('appt4.jpg'),'0');
 
 INSERT INTO APPOINTMENT VALUES (to_char('20200723')||'-'||LPAD(to_char(APPOINTMENT_SEQ.NEXTVAL),6,'0'),'M0002','P0002','30','1','嘔吐、腹瀉',load_blob('appt1.jpg'),'1');
 INSERT INTO APPOINTMENT VALUES (to_char('20200723')||'-'||LPAD(to_char(APPOINTMENT_SEQ.NEXTVAL),6,'0'),'M0003','P0003','30','2','食慾不振',load_blob('appt2.jpg'),'1');
