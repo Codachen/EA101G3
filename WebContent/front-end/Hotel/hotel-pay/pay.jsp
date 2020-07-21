@@ -63,13 +63,13 @@ label, h1 {
                     </g>
                     <path class="darkcolor greydark" d="M750,431V193.2c-217.6-57.5-556.4-13.5-750,24.9V431c0,22.1,17.9,40,40,40h670C732.1,471,750,453.1,750,431z" />
                 </g>
-                <text transform="matrix(1 0 0 1 60.106 295.0121)" id="svgnumber" class="st2 st3 st4">0123 4567 8910 1112</text>
-                <text transform="matrix(1 0 0 1 54.1064 428.1723)" id="svgname" class="st2 st5 st6">JOHN DOE</text>
+                <text transform="matrix(1 0 0 1 60.106 295.0121)" id="svgnumber" class="st2 st3 st4">4984 0141 2138 9556</text>
+                <text transform="matrix(1 0 0 1 54.1064 428.1723)" id="svgname" class="st2 st5 st6">小傑</text>
                 <text transform="matrix(1 0 0 1 54.1074 389.8793)" class="st7 st5 st8">cardholder name</text>
                 <text transform="matrix(1 0 0 1 479.7754 388.8793)" class="st7 st5 st8">expiration</text>
                 <text transform="matrix(1 0 0 1 65.1054 241.5)" class="st7 st5 st8">card number</text>
                 <g>
-                    <text transform="matrix(1 0 0 1 574.4219 433.8095)" id="svgexpire" class="st2 st5 st9">01/23</text>
+                    <text transform="matrix(1 0 0 1 574.4219 433.8095)" id="svgexpire" class="st2 st5 st9">12/25</text>
                     <text transform="matrix(1 0 0 1 479.3848 417.0097)" class="st2 st10 st11">VALID</text>
                     <text transform="matrix(1 0 0 1 479.3848 435.6762)" class="st2 st10 st11">THRU</text>
                     <polygon class="st2" points="554.5,421 540.4,414.2 540.4,427.9 		" />
@@ -138,7 +138,7 @@ label, h1 {
             </g>
             <rect x="58.1" y="378.6" class="st11" width="375.5" height="13.5" />
             <rect x="58.1" y="405.6" class="st11" width="421.7" height="13.5" />
-            <text transform="matrix(1 0 0 1 59.5073 228.6099)" id="svgnameback" class="st12 st13">John Doe</text>
+            <text transform="matrix(1 0 0 1 59.5073 228.6099)" id="svgnameback" class="st12 st13">小傑</text>
         </g>
     </svg>
 					</div>
@@ -178,7 +178,7 @@ label, h1 {
 					</div>
 					<input type="hidden" name="action" value="payMoney">
 					<div class="d-flex justify-content-center">
-						<button type="submit" class="btn btn-primary">確認付款</button>
+						<button type="submit" class="btn btn-primary mt-2">確認付款</button>
 						<button id="generatecard" style="display: none;">隨機生成</button>
 					</div>
 				</form>
@@ -199,8 +199,8 @@ label, h1 {
 <script>
 	function insertValue() {
 		$('#name').val('小傑');
-		$('#cardnumber').val('4984014121389556');
-		$('#expirationdate').val('12/11');
+		$('#cardnumber').val('4984 0141 2138 9556');
+		$('#expirationdate').val('12/25');
 		$('#securitycode').val('750');
 	}
 </script>
