@@ -135,8 +135,9 @@ width:200px;
 		</tr>
 	</c:forEach>
 </table>
+<div style="width:100%;text-align:center;">
 <%@ include file="page2.file" %>
-
+</div>
 	<!-- ****************************以上為實際功能頁變更區域*************************** -->
 </div>
 

@@ -333,7 +333,7 @@ public class ApptDAO implements ApptDAO_interface {
 					+ "FROM APPOINTMENT " + "JOIN OPTSESSION ON APPOINTMENT.sessionNo = OPTSESSION.sessionNo "
 					+ "JOIN MEMBER ON APPOINTMENT.MEMNO = MEMBER.MEMNO "
 					+ "JOIN DOCTOR ON OPTSESSION.DOCNO = DOCTOR.DOCNO "
-					+ jdbcUtil_CompositeQuery_Appt.get_WhereCondition(map) + " order by seqno";
+					+ jdbcUtil_CompositeQuery_Appt.get_WhereCondition(map) + " order by optSession,seqno";
 
 			pstmt = con.prepareStatement(finalSQL);
 			

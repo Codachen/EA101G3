@@ -1,8 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%  int rowsPerPage = 10;  //�C��������    
-    int rowNumber=0;      //�`����
-    int pageNumber=0;     //�`����      
-    int whichPage=1;      //�ĴX��
+<%  int rowsPerPage = 7;  //每頁的筆數    
+    int rowNumber=0;      //總筆數
+    int pageNumber=0;     //總頁數      
+    int whichPage=1;      //第幾頁
     int pageIndexArray[]=null;
     int pageIndex=0; 
 %>
@@ -21,10 +21,10 @@
 <%  try {
        whichPage = Integer.parseInt(request.getParameter("whichPage"));
        pageIndex=pageIndexArray[whichPage-1];
-    } catch (NumberFormatException e) { //�Ĥ@�����檺�ɭ�
+    } catch (NumberFormatException e) { //第一次執行的時候
        whichPage=1;
        pageIndex=0;
-    } catch (ArrayIndexOutOfBoundsException e) { //�`���Ƥ��~�����~����
+    } catch (ArrayIndexOutOfBoundsException e) { //總頁數之外的錯誤頁數
          if (pageNumber>0){
               whichPage=pageNumber;
               pageIndex=pageIndexArray[pageNumber-1];
@@ -32,8 +32,6 @@
     } 
 %>
 
-<%if (pageNumber>0){%>
-  <b><font color=#00AEAE>第<%=whichPage%>/<%=pageNumber%>頁</font></b>
-<%}%>
 
-<b>共找到: <font color=#00AEAE><%=rowNumber%></font>筆資料</b>
+
+<b>目前診療紀錄共<font color=lightcoral>&nbsp;<%=rowNumber%></font>筆</b>

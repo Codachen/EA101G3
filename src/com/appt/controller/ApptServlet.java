@@ -168,6 +168,56 @@ public class ApptServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
+		if ("updateAjax".equals(action)) { // 來自listAppt的請求
+//			List<String> errorMsgs = new LinkedList<String>();
+//			// Store this set in the request scope, in case we need to
+//			// send the ErrorPage view.
+//			req.setAttribute("errorMsgs", errorMsgs);
+
+			PrintWriter wr = res.getWriter();
+			try {
+				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+
+				String apptno = req.getParameter("apptno").trim();
+				String docno = req.getParameter("docno").trim();
+				String petno = req.getParameter("petno").trim();
+
+				Integer optstate = 1;
+
+				ApptVO apptVO = new ApptVO();
+				apptVO.setApptno(apptno);
+				apptVO.setOptstate(optstate);
+
+				// Send the use back to the form, if there were errors
+//				if (!errorMsgs.isEmpty()) {
+//					req.setAttribute("apptVO", apptVO); // 含有輸入格式錯誤的empVO物件,也存入req
+//					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/hospital/appt/select_page.jsp");
+//					failureView.forward(req, res);
+//					return; // 程式中斷
+//				}
+
+				/*************************** 2.1開始修改資料 *****************************************/
+				ApptService apptSvc = new ApptService();
+				apptVO = apptSvc.updateState(apptno, optstate);
+				/*************************** 2.2開始新增診療資料 *****************************************/
+				MrService mrSvc = new MrService();
+				mrSvc.addMr(apptno, docno, petno, "", "", 0, 0, 0);
+
+				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
+
+				
+				wr.write("OK");
+
+				
+
+
+				/*************************** 其他可能的錯誤處理 *************************************/
+			} catch (Exception e) {
+				wr.write("NG");
+				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/hospital/appt/listAppt.jsp");
+				failureView.forward(req, res);
+			}
+		}
 
 	}
 	

@@ -148,11 +148,33 @@ max-width: 660px;
 					value="<%=empVO.getEmpBirth()%>" /></td>
 			</tr>
 
+<!-- 			<tr> -->
+<!-- 				<th>職位</th> -->
+<!-- 				<td><input type="TEXT" class="form-control" name="empJob" size="10" maxlength="6" -->
+<%-- 					value="<%=empVO.getEmpJob()%>" /></td> --%>
+<!-- 			</tr> -->
 			<tr>
-				<th>職位</th>
-				<td><input type="TEXT" class="form-control" name="empJob" size="10" maxlength="6"
-					value="<%=empVO.getEmpJob()%>" /></td>
-			</tr>
+					<th>職位</th>
+					<td>
+						<!-- 					<input type="TEXT" class="form-control" name="empJob" size="20" maxlength="6" -->
+						<%-- 					value="<%=(empVO == null) ? "" : empVO.getEmpJob()%>" /> --%>
+						<select class="form-control" name="empJob" id="empJob">
+							<option value="未選擇">未選擇</option>
+							<option value="獸醫" ${(empVO.empJob=='獸醫')? 'selected':''}>獸醫</option>
+							<option value="診所助理" ${(empVO.empJob=='診所助理')? 'selected':''}>診所助理</option>
+							<option value="商城管理員" ${(empVO.empJob=='商城管理員')? 'selected':''}>商城管理員</option>
+							<option value="旅館管理員" ${(empVO.empJob=='旅館管理員')? 'selected':''}>旅館管理員</option>
+							<option value="旅館助理" ${(empVO.empJob=='旅館助理')? 'selected':''}>旅館助理</option>
+							<option value="領養管理員" ${(empVO.empJob=='領養管理員')? 'selected':''}>領養管理員</option>
+							<option value="領養照護員" ${(empVO.empJob=='領養照護員')? 'selected':''}>領養照護員</option>
+							<option value="行政人員" ${(empVO.empJob=='行政人員')? 'selected':''}>行政人員</option>
+							<option value="客服人員" ${(empVO.empJob=='客服人員')? 'selected':''}>客服人員</option>
+							<option value="系統管理員" ${(empVO.empJob=='系統管理員')? 'selected':''}>系統管理員</option>
+					</select>
+
+
+					</td>
+				</tr>
 
 			<tr>
 				<th>電話</th>
@@ -197,6 +219,46 @@ max-width: 660px;
 				<td><input type="file" name="empPic" class="upl">
 				</td>
 			</tr>
+			<tr>
+					<th>權限設定</th>
+					<td>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="optManage" id="optManage"
+								value="O" ${(authO.bgFuncNo=='O')? 'checked':''}> <label class="form-check-label"
+								for="optManage">門診管理</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="shopManage" id="shopManage"
+								value="S" ${(authS.bgFuncNo=='S')? 'checked':''}> <label class="form-check-label"
+								for="shopManage">商城管理</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="hotelManage" id="hotelManage"
+								value="H" ${(authH.bgFuncNo=='H')? 'checked':''}> <label class="form-check-label"
+								for="hotelManage">旅館管理</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="adopterManage"
+								id="adopterManage" value="A" ${(authA.bgFuncNo=='A')? 'checked':''}> <label
+								class="form-check-label" for="adopterManage">領養管理</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="memManage" name="memManage"
+								value="M" ${(authM.bgFuncNo=='M')? 'checked':''}> <label class="form-check-label"
+								for="memManage">會員管理</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="accuManage" id="accuManage"
+								value="T" ${(authT.bgFuncNo=='T')? 'checked':''}> <label class="form-check-label"
+								for="accuManage">客訴管理</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" name="empManage" id="empManage"
+								value="E" ${(authE.bgFuncNo=='E')? 'checked':''}> <label class="form-check-label"
+								for="empManage">員工管理</label>
+						</div>
+					</td>
+				</tr>
 
 		</table>
 		<input type="hidden" name="action" value="update"> 
