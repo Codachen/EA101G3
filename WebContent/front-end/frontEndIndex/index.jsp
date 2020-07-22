@@ -77,7 +77,7 @@
 	<main >
 		<div class="container-fluid p-0">
 			<div class="site-content">
-				<img src="images/cat_Index_1.jpg">
+				<img src="images/cat_Index_1.jpg" style=" width: 100%;height: 100%;object-fit:cover;">
 			</div>
 		</div>
 		<div class="section-1">
