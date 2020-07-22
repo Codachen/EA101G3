@@ -12,8 +12,11 @@
   <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
 
   <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" ></script>
 
 
 
@@ -37,7 +40,8 @@
   <!-- Custom styles for this template -->
   <link href="login.css" rel="stylesheet">
 </head>
-<body class="text-center">
+<body>
+<div style="width:100%;text-align: center;padding-top: 100px;">
   <form class="form-signin" METHOD="post" ACTION="login.do">
         <h1 class="loginTitle">Cute:)<span style="color:#00E8E8;">Family</span></h1>
     <h1 class="h3 mb-3 font-weight-normal">後台管理系統</h1>
@@ -54,5 +58,14 @@
     <button class="btn btn-lg btn-primary btn-block" type="submit">登入</button>
 
   </form>
+  </div>
+  <div style="width:100%;text-align: right;padding-top: 200px;"><button class="btn btn-danger" id='magicBtn' type="button">神奇小按鈕</button></div>
 </body>
+<script type="text/javascript">
+$('#magicBtn').click(function() {
+	$('#account').val('luffy@gmail.com');
+	$('#inputPassword').val('123456');
+	
+})
+</script>
 </html>

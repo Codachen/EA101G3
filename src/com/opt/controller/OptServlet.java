@@ -110,14 +110,14 @@ public class OptServlet extends HttpServlet {
 				/*************************** 2.開始查詢資料 *****************************************/
 				DivService divSvc = new DivService();
 				Set<DocVO> set = divSvc.getDocsByDivno(divno);
-				System.out.println(divno);
-				System.out.println(set);
+//				System.out.println(divno);
+//				System.out.println(set);
 				Map<String, String> map = new HashMap<String, String>();
 				for (DocVO vo : set) {
 					map.put(vo.getDocno(), vo.getDocname());
 
 				}
-				System.out.println(map);
+//				System.out.println(map);
 
 				JSONArray arr = new JSONArray();
 				for (String key : map.keySet()) {
@@ -232,6 +232,73 @@ public class OptServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
+		
+//		if ("insertByAjax".equals(action)) { 
+//
+//			PrintWriter wr = res.getWriter();
+//			res.setContentType("text");
+//			try {
+//				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
+//				String docno = req.getParameter("docno");
+//				if (docno == null || docno.trim().length() == 0) {
+//					wr.write("必須選擇一位醫師");
+//					return;
+//
+//				}
+//				String optSession = req.getParameter("optSession");
+//				if (optSession == null || optSession.trim().length() == 0) {
+//					wr.write("必須選擇一個時段");
+//					return;
+//				}
+//
+//				java.sql.Date optDate = java.sql.Date.valueOf(req.getParameter("optDate"));
+//				
+//
+//				Integer currentCount = 0;
+//
+//				Integer maximum = null;
+//				try {
+//					maximum = new Integer(req.getParameter("maximum").trim());
+//
+//				} catch (NumberFormatException e) {
+//					wr.write("必須輸入最大人數");
+//					return;
+//				}
+//
+//				OptVO optVO = new OptVO();
+//				optVO.setDocNo(docno);
+//				optVO.setOptDate(optDate);
+//				optVO.setOptSession(optSession);
+//				optVO.setMaximum(maximum);
+//				optVO.setCurrentCount(currentCount);
+//
+//				// 以下為重複資料處理
+//				OptService optSvcCheck = new OptService();
+//				OptVO optVO_PK = optSvcCheck.findSession(docno, optDate, optSession);
+//
+//				if (optVO_PK != null) {
+//					wr.write("重複了");
+//					return;
+//
+//				}
+//
+//				
+//
+//				/*************************** 2.開始新增資料 ***************************************/
+//				OptService optSvc = new OptService();
+//				optVO = optSvc.addOptSession(docno, optDate, optSession, currentCount, maximum);
+//				OptVO optVO_ID = optSvcCheck.findSession(docno, optDate, optSession);
+//				System.out.println(optVO_ID.getSessionNo());
+//				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
+//
+//				wr.write(optVO_ID.getSessionNo());
+//
+//				/*************************** 其他可能的錯誤處理 **********************************/
+//			} catch (Exception e) {
+//				wr.write("NG");
+//				return;
+//			}
+//		}
 		
 		if ("delete".equals(action)) { 
 

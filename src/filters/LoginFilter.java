@@ -26,7 +26,7 @@ public class LoginFilter implements Filter {
 		// 【從 session 判斷此user是否登入過】
 		Object account = session.getAttribute("account");
 		if (account == null) {
-			session.setAttribute("location", req.getRequestURI());
+			session.setAttribute("locationB", req.getRequestURI());
 			res.sendRedirect(req.getContextPath() + "/back-end/backEndLogin/login.html");
 			return;
 		} else {

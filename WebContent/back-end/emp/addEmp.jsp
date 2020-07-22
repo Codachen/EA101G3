@@ -322,7 +322,7 @@ top:100px;
 	<div class="rightmain col-6">
 		<div style="width: 100%; text-align: center;">
 			<img class="preview" style="max-height: 500px; max-width: 660px;"
-				src="https://icon-library.com/images/person-image-icon/person-image-icon-6.jpg">
+				src="<%=request.getContextPath()%>/back-end/emp/Nodata/none.jpg">
 		</div>
 	</div>
 	<span id="lblMsg">

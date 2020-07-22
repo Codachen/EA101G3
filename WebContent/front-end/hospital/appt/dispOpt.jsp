@@ -31,7 +31,7 @@ List<OptVO> list = optSvc.getCalInfo(map);
 Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 String jsonStr = gson.toJson(list);
 
-System.out.println("Object to JSON: " + jsonStr);
+// System.out.println("Object to JSON: " + jsonStr);
 
 pageContext.setAttribute("jsonStr", jsonStr);
 
