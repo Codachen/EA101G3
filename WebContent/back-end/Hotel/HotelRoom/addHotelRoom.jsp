@@ -69,7 +69,7 @@
 						<input type="text" class="form-control" name="petNo" value="${hotelRoomVO.petNo}" />
 					</div>
 					<div class="form-group font-weight-bold" id="select3">
-						<input type="hidden" name="roomStatus" size="45" value="1" />
+						<input type="hidden" name="roomStatus" size="45" value="0" />
 					</div>
 					<div class="form-group font-weight-bold" id="select3">
 						<label for="exampleInputEmail1">©Ð«¬¦WºÙ</label>
