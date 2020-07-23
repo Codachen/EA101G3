@@ -19,7 +19,9 @@ public class jdbcUtil_CompositeQuery_Appt2 {
 			aCondition = columnName + "=" + value;
 		else if ("apptno".equals(columnName)|| "memno".equals(columnName)|| "sessionno".equals(columnName)|| "DOCTOR.docno".equals(columnName)|| "optsession".equals(columnName)) // �Ω�varchar
 			aCondition = columnName + " like '%" + value + "%'";
-
+		else if ("optdate".equals(columnName)) // �Ω��L
+			aCondition = columnName + "= to_date('" + value +"', 'YYYY-MM-DD')";
+		 
 		return aCondition + " ";
 	}
 
