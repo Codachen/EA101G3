@@ -1,3 +1,2 @@
-# project
-# I am Xuan
-# I am Chang
+# 中壢資策會Java雲端服務開發技術養成班 
+# 第三組專題
